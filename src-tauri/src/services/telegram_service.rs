@@ -11,7 +11,11 @@ use crate::{
 };
 use chrono::Utc;
 use entity::message::{Currency, Model as Message};
-use grammers_client::{session::Session, types::LoginToken, Client, Config, Update};
+use grammers_client::{
+    session::Session,
+    types::{LoginToken, PasswordToken},
+    Client, Config, SignInError, Update,
+};
 use serde::Serialize;
 use uuid::Uuid;
 
@@ -219,10 +223,35 @@ impl TelegramService {
         &self,
         phone_code: String,
         login_token: &LoginToken,
-    ) -> Result<(), String> {
+    ) -> Result<Option<PasswordToken>, String> {
         let client = self.client.as_ref().unwrap();
         let sign_in = client.sign_in(login_token, &phone_code).await;
         match sign_in {
+            Ok(_) => {
+                client.session().save_to_file(&*self.session_path).unwrap();
+                self.listen_tribute().await?;
+                return Ok(None);
+            }
+            Err(e) => match e {
+                SignInError::PasswordRequired(password_token) => {
+                    return Ok(Some(password_token));
+                }
+                _ => {
+                    log::error!("{}", e.to_string());
+                    return Err(e.to_string());
+                }
+            },
+        };
+    }
+
+    pub async fn check_password(
+        &self,
+        password: String,
+        password_token: PasswordToken,
+    ) -> Result<(), String> {
+        let client = self.client.as_ref().unwrap();
+        let check_password = client.check_password(password_token, password).await;
+        match check_password {
             Ok(_) => {
                 client.session().save_to_file(&*self.session_path).unwrap();
                 self.listen_tribute().await?;
@@ -234,6 +263,7 @@ impl TelegramService {
             }
         };
     }
+
     pub async fn is_authorized(&self) -> Result<bool, String> {
         let is_authorized = self
             .client

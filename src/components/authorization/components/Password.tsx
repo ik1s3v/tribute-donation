@@ -1,40 +1,37 @@
-import { Button, TextField } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import { invoke } from "@tauri-apps/api/core";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { setIsClientAuthorized } from "../../../store/slices/mainSlice";
-import { useState } from "react";
-import { showSnackBar } from "../../../store/slices/snackBarSlice";
 import { AlertSeverity } from "../../../../shared/enums";
+import { setIsClientAuthorized } from "../../../store/slices/mainSlice";
+import { showSnackBar } from "../../../store/slices/snackBarSlice";
 
-const SignIn = () => {
+const Password = () => {
 	const navigate = useNavigate();
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
-	const [phoneCode, setPhoneCode] = useState("");
+	const [password, setPassword] = useState("");
 
 	return (
 		<>
-			<label htmlFor="">{t("authorization.telegram_code")}</label>
+			<label htmlFor="">{t("authorization.2fa_password")}</label>
 			<TextField
-				placeholder={t("authorization.your_code")}
+				placeholder={t("authorization.password")}
 				autoComplete="off"
-				onChange={(e) => setPhoneCode(e.target.value)}
+				type="password"
+				onChange={(e) => setPassword(e.target.value)}
 			/>
 			<Button
 				variant="contained"
 				onClick={() =>
-					invoke("sign_in", { phoneCode })
+					invoke("check_password", { password })
 						.then(() => {
 							dispatch(setIsClientAuthorized(true));
 							navigate("/dashboard/messages");
 						})
 						.catch((error) => {
-							if (error === "Password required") {
-								navigate("/authorization/password");
-								return;
-							}
 							dispatch(
 								showSnackBar({
 									message: error,
@@ -49,4 +46,4 @@ const SignIn = () => {
 		</>
 	);
 };
-export default SignIn;
+export default Password;

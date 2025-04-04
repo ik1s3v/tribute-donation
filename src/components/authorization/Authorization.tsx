@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router";
 import RequestCode from "./components/RequestCode";
 import SignIn from "./components/SignIn";
 import { useMediaQuery, useTheme } from "@mui/material";
+import Password from "./components/Password";
 
 const Authorization = () => {
 	const { t } = useTranslation();
@@ -32,6 +33,7 @@ const Authorization = () => {
 				<Routes>
 					<Route path="request-code" element={<RequestCode />} />
 					<Route path="singin" element={<SignIn />} />
+					<Route path="password" element={<Password />} />
 				</Routes>
 			</div>
 		</div>

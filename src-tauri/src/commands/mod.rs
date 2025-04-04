@@ -1,3 +1,4 @@
+pub mod check_password;
 pub mod get_alert_by_id;
 pub mod get_alerts;
 pub mod get_messages;
@@ -11,6 +12,7 @@ pub mod skip_alert;
 pub mod update_alert_settings;
 pub mod update_settings;
 
+pub use check_password::*;
 pub use get_alert_by_id::*;
 pub use get_alerts::*;
 pub use get_messages::*;
