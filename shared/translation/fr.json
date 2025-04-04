@@ -1,0 +1,80 @@
+{
+  "on": "Activé",
+  "off": "Désactivé",
+  "select": "Sélectionner",
+  "success": "Succès",
+  "sound_volume": "Volume sonore",
+  "authorization": {
+    "title": "Autorisation",
+    "code": "Demander un code",
+    "sign_in": "Connexion",
+    "phone": "Numéro de téléphone",
+    "telegram_code": "Code de Telegram",
+    "your_code": "Votre code"
+  },
+  "dashboard": {
+    "messages": "Messages",
+    "settings": "Paramètres",
+    "alerts": "Alertes"
+  },
+  "messages": {
+    "title": "Derniers messages"
+  },
+  "message": {
+    "skip": "Ignorer",
+    "donate": "Faire un don"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "pause": "Mettre en pause les messages d'alerte",
+    "moderation_duration": "Durée de modération",
+    "black_list": "Liste noire",
+    "remove_links": "Supprimer Liens",
+    "language": "Langue",
+    "sec": "Sec"
+  },
+  "alerts": {
+    "title": "Alertes",
+    "group": "Groupe"
+  },
+  "alert": {
+    "save": "Enregistrer",
+    "back": "Retour",
+    "image": "Image",
+    "audio": "Audio",
+    "view": "Affichage",
+    "title": "Titre",
+    "message": "Message"
+  },
+  "widget": {
+    "copy": "Copier",
+    "launch": "Lancer",
+    "url": "URL du widget"
+  },
+  "view": {
+    "top": "Image en haut, texte en bas",
+    "bottom": "Image en bas, texte en haut",
+    "left": "Image à gauche, texte à droite",
+    "right": "Image à droite, texte à gauche",
+    "overlay": "Image de superposition de texte"
+  },
+  "text": {
+    "font": "Police",
+    "font_size": "Taille de police",
+    "text_color": "Texte couleur",
+    "bold": "Gras",
+    "italics": "Italique",
+    "underline": "Soulignement",
+    "transformation": "Transformation",
+    "letter_spacing": "Espacement des lettres",
+    "word_spacing": "Espacement des mots",
+    "horizontal_alignment": "Alignement horizontal",
+    "vertical_alignment": "Alignement vertical",
+    "text_preview": "Ceci est un aperçu !",
+    "name": "Nom"
+  },
+  "audio": {
+    "play": "Lecture",
+    "stop": "Arrêter"
+  }
+}

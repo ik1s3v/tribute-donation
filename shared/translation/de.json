@@ -1,0 +1,80 @@
+{
+  "on": "An",
+  "off": "Aus",
+  "select": "Auswählen",
+  "success": "Erfolg",
+  "sound_volume": "Lautstärke",
+  "authorization": {
+    "title": "Autorisierung",
+    "code": "Code anfordern",
+    "sign_in": "Anmelden",
+    "phone": "Telefonnummer",
+    "telegram_code": "Code aus Telegram",
+    "your_code": "Dein Code"
+  },
+  "dashboard": {
+    "messages": "Nachrichten",
+    "settings": "Einstellungen",
+    "alerts": "Benachrichtigungen"
+  },
+  "messages": {
+    "title": "Letzte Nachrichten"
+  },
+  "message": {
+    "skip": "Überspringen",
+    "donate": "Spenden"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "pause": "Benachrichtigungen pausieren",
+    "moderation_duration": "Moderationsdauer",
+    "black_list": "Schwarze Liste",
+    "remove_links": "Entfernen Links",
+    "language": "Sprache",
+    "sec": "Sekunde"
+  },
+  "alerts": {
+    "title": "Warnungen",
+    "group": "Gruppe"
+  },
+  "alert": {
+    "save": "Speichern",
+    "back": "Zurück",
+    "image": "Bild",
+    "audio": "Audio",
+    "view": "Ansicht",
+    "title": "Titel",
+    "message": "Nachricht"
+  },
+  "widget": {
+    "copy": "Kopieren",
+    "launch": "Starten",
+    "url": "Widget-URL"
+  },
+  "view": {
+    "top": "Bild oben, Text unten",
+    "bottom": "Bild unten, Text oben",
+    "left": "Bild links, Text rechts",
+    "right": "Bild rechts, Text links",
+    "overlay": "Text-Overlay-Bild"
+  },
+  "text": {
+    "font": "Schriftart",
+    "font_size": "Schriftgröße",
+    "text_color": "Text Farbe",
+    "bold": "Fett",
+    "italics": "Kursiv",
+    "underline": "Unterstrichen",
+    "transformation": "Transformation",
+    "letter_spacing": "Buchstabenabstand",
+    "word_spacing": "Wortabstand",
+    "horizontal_alignment": "Horizontale Ausrichtung",
+    "vertical_alignment": "Vertikale Ausrichtung",
+    "text_preview": "Dies ist eine Vorschau!",
+    "name": "Name"
+  },
+  "audio": {
+    "play": "Abspielen",
+    "stop": "Stopp"
+  }
+}

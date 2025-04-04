@@ -1,0 +1,80 @@
+{
+  "on": "تشغيل",
+  "off": "إيقاف",
+  "select": "تحديد",
+  "success": "نجاح",
+  "sound_volume": "مستوى الصوت",
+  "authorization": {
+    "title": "التفويض",
+    "code": "رمز الطلب",
+    "sign_in": "تسجيل الدخول",
+    "phone": "رقم الهاتف",
+    "telegram_code": "رمز من التلجرام",
+    "your_code": "رمزك"
+  },
+  "dashboard": {
+    "messages": "الرسائل",
+    "settings": "الإعدادات",
+    "alerts": "التنبيهات"
+  },
+  "messages": {
+    "title": "آخر الرسائل"
+  },
+  "message": {
+    "skip": "تخطي",
+    "donate": "تبرع"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "pause": "إيقاف رسائل التنبيه مؤقتًا",
+    "moderation_duration": "مدة الإشراف",
+    "black_list": "القائمة السوداء",
+    "remove_links": "إزالة الروابط",
+    "language": "اللغة",
+    "sec": "الثانية"
+  },
+  "alerts": {
+    "title": "التنبيهات",
+    "group": "المجموعة"
+  },
+  "alert": {
+    "save": "حفظ",
+    "back": "رجوع",
+    "image": "الصورة",
+    "audio": "الصوت",
+    "view": "عرض",
+    "title": "العنوان",
+    "message": "الرسالة"
+  },
+  "widget": {
+    "copy": "نسخ",
+    "launch": "تشغيل",
+    "url": "رابط الأداة"
+  },
+  "view": {
+    "top": "الصورة أعلى، النص أسفل",
+    "bottom": "الصورة أسفل، النص أعلى",
+    "left": "الصورة يسار، النص يمين",
+    "right": "الصورة يمين، النص يسار",
+    "overlay": "صورة تراكب النص"
+  },
+  "text": {
+    "font": "الخط",
+    "font_size": "حجم الخط",
+    "text_color": "النص اللون",
+    "bold": "غامق",
+    "italics": "مائل",
+    "underline": "تسطير",
+    "transformation": "تحويل",
+    "letter_spacing": "تباعد الأحرف",
+    "word_spacing": "تباعد الكلمات",
+    "horizontal_alignment": "محاذاة أفقية",
+    "vertical_alignment": "محاذاة رأسية",
+    "text_preview": "هذه معاينة!",
+    "name": "الاسم"
+  },
+  "audio": {
+    "play": "تشغيل",
+    "stop": "إيقاف"
+  }
+}

@@ -1,0 +1,80 @@
+{
+    "on": "On",
+    "off": "Off",
+    "select": "Select",
+    "success": "Success",
+    "sound_volume": "Sound volume",
+    "authorization": {
+        "title": "Authorization",
+        "code": "Request code",
+        "sign_in": "Sign in",
+        "phone": "Phone number",
+        "telegram_code": "Code from telegram",
+        "your_code": "Your code"
+    },
+    "dashboard": {
+        "messages": "Messages",
+        "settings": "Settings",
+        "alerts": "Alerts"
+    },
+    "messages": {
+        "title": "Last messages"
+    },
+    "message": {
+        "skip": "Skip",
+        "donate": "donate"
+    },
+    "settings": {
+        "title": "Settings",
+        "pause": "Pause alert messages",
+        "moderation_duration": "Moderation duration",
+        "black_list": "Black list",
+        "remove_links": "Remove links",
+        "language": "Language",
+        "sec": "Sec"
+    },
+    "alerts": {
+        "title": "Alerts",
+        "group": "Group"
+    },
+    "alert": {
+        "save": "Save",
+        "back": "Back",
+        "image": "Image",
+        "audio": "Audio",
+        "view": "View",
+        "title": "Title",
+        "message": "Message"
+    },
+    "widget": {
+        "copy": "Copy",
+        "launch": "Launch",
+        "url": "Widget url"
+    },
+    "view": {
+        "top": "Image top, text bottom",
+        "bottom": "Image bottom, text top",
+        "left": "Image left, text right",
+        "right": "Image right, text left",
+        "overlay": "Text overlay image"
+    },
+    "text": {
+        "font": "Font",
+        "font_size": "Font size",
+        "text_color": "Text color",
+        "bold": "Bold",
+        "italics": "Italics",
+        "underline": "Underline",
+        "transformation": "Transformation",
+        "letter_spacing": "Letter spacing",
+        "word_spacing": "Word spacing",
+        "horizontal_alignment": "Horizontal alignment",
+        "vertical_alignment": "Vertical alignment",
+        "text_preview": "This is a preview!",
+        "name": "Name"
+    },
+    "audio": {
+        "play": "Play",
+        "stop": "Stop"
+    }
+}

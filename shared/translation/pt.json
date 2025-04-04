@@ -1,0 +1,80 @@
+{
+  "on": "Ligado",
+  "off": "Desligado",
+  "select": "Selecionar",
+  "success": "Sucesso",
+  "sound_volume": "Volume do som",
+  "authorization": {
+    "title": "Autorização",
+    "code": "Solicitar código",
+    "sign_in": "Entrar",
+    "phone": "Número de telefone",
+    "telegram_code": "Código do telegrama",
+    "your_code": "Seu código"
+  },
+  "dashboard": {
+    "messages": "Mensagens",
+    "settings": "Configurações",
+    "alerts": "Alertas"
+  },
+  "messages": {
+    "title": "Últimas mensagens"
+  },
+  "message": {
+    "skip": "Ignorar",
+    "donate": "doar"
+  },
+  "settings": {
+    "title": "Configurações",
+    "pause": "Pausar mensagens de alerta",
+    "moderation_duration": "Duração da moderação",
+    "black_list": "Lista negra",
+    "remove_links": "Remover links",
+    "language": "Idioma",
+    "sec": "Seg"
+  },
+  "alerts": {
+    "title": "Alertas",
+    "group": "Grupo"
+  },
+  "alert": {
+    "save": "Salvar",
+    "back": "Voltar",
+    "image": "Imagem",
+    "audio": "Áudio",
+    "view": "Exibir",
+    "title": "Título",
+    "message": "Mensagem"
+  },
+  "widget": {
+    "copy": "Copiar",
+    "launch": "Iniciar",
+    "url": "URL do widget"
+  },
+  "view": {
+    "top": "Imagem superior, texto inferior",
+    "bottom": "Imagem inferior, texto superior",
+    "left": "Imagem esquerda, texto direita",
+    "right": "Imagem direita, texto esquerda",
+    "overlay": "Imagem de sobreposição de texto"
+  },
+  "text": {
+    "font": "Fonte",
+    "font_size": "Tamanho da fonte",
+    "text_color": "Texto cor",
+    "bold": "Negrito",
+    "italics": "Itálico",
+    "underline": "Sublinhado",
+    "transformation": "Transformação",
+    "letter_spacing": "Espaçamento entre letras",
+    "word_spacing": "Espaçamento entre palavras",
+    "horizontal_alignment": "Alinhamento horizontal",
+    "vertical_alignment": "Alinhamento vertical",
+    "text_preview": "Esta é uma prévia!",
+    "name": "Nome"
+  },
+  "audio": {
+    "play": "Reproduzir",
+    "stop": "Parar"
+  }
+}

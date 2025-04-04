@@ -1,0 +1,80 @@
+{
+  "on": "चालू",
+  "off": "बंद",
+  "select": "चुनें",
+  "success": "सफलता",
+  "sound_volume": "ध्वनि की मात्रा",
+  "authorization": {
+    "title": "प्राधिकरण",
+    "code": "अनुरोध कोड",
+    "sign_in": "साइन इन करें",
+    "phone": "फ़ोन नंबर",
+    "telegram_code": "टेलीग्राम से कोड",
+    "your_code": "आपका कोड"
+  },
+  "dashboard": {
+    "messages": "संदेश",
+    "settings": "सेटिंग्स",
+    "alerts": "अलर्ट"
+  },
+  "messages": {
+    "title": "अंतिम संदेश"
+  },
+  "message": {
+    "skip": "छोड़ें",
+    "donate": "दान करें"
+  },
+  "settings": {
+    "title": "सेटिंग्स",
+    "pause": "अलर्ट संदेश रोकें",
+    "moderation_duration": "मॉडरेशन अवधि",
+    "black_list": "ब्लैक लिस्ट",
+    "remove_links": "हटाएँ लिंक",
+    "language": "भाषा",
+    "sec": "सेक"
+  },
+  "alerts": {
+    "title": "अलर्ट",
+    "group": "समूह"
+  },
+  "alert": {
+    "save": "सहेजें",
+    "back": "वापस",
+    "image": "छवि",
+    "audio": "ऑडियो",
+    "view": "देखें",
+    "title": "शीर्षक",
+    "message": "संदेश"
+  },
+  "widget": {
+    "copy": "कॉपी करें",
+    "launch": "लॉन्च",
+    "url": "विजेट यूआरएल"
+  },
+  "view": {
+    "top": "छवि शीर्ष, पाठ नीचे",
+    "bottom": "छवि नीचे, पाठ शीर्ष",
+    "left": "छवि बाईं ओर, पाठ दाईं ओर",
+    "right": "छवि दाईं ओर, पाठ बाईं ओर",
+    "overlay": "पाठ ओवरले छवि"
+  },
+  "text": {
+    "font": "फ़ॉन्ट",
+    "font_size": "फ़ॉन्ट आकार",
+    "text_color": "पाठ रंग",
+    "bold": "बोल्ड",
+    "italics": "इटैलिक",
+    "underline": "अंडरलाइन",
+    "transformation": "रूपांतरण",
+    "letter_spacing": "अक्षर रिक्ति",
+    "word_spacing": "शब्द रिक्ति",
+    "horizontal_alignment": "क्षैतिज संरेखण",
+    "vertical_alignment": "ऊर्ध्वाधर संरेखण",
+    "text_preview": "यह एक पूर्वावलोकन है!",
+    "name": "नाम"
+  },
+  "audio": {
+    "play": "चलाएँ",
+    "stop": "रोकें"
+  }
+}

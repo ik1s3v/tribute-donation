@@ -1,0 +1,57 @@
+[package]
+name = "tribute-donation"
+version = "0.1.0"
+description = "A Tauri App"
+authors = ["ik1s3v"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+# The `_lib` suffix may seem redundant but it is necessary
+# to make the lib name unique and wouldn't conflict with the bin name.
+# This seems to be only an issue on Windows, see https://github.com/rust-lang/cargo/issues/8519
+name = "tribute_donation_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[env]
+API_HASH = "example"
+API_ID = "example"
+TAURI_SIGNING_PRIVATE_KEY_PASSWORD=""
+TAURI_SIGNING_PRIVATE_KEY = "dW50cnVzdGVkIGNvbW1lbnQ6IHJzaWduIGVuY3J5cHRlZCBzZWNyZXQga2V5ClJXUlRZMEl5MWV4Y1VWQURkQk5ibHJzTUtSWU5BbDYyd3JyTEQ4Yk1KSDA0d2xVTEZ0QUFBQkFBQUFBQUFBQUFBQUlBQUFBQTgyVUM3TGJsQzZqZlpmaGhGNTd1MHNoY1VkbnNHOWdxR2NocmhEVmJBOS9tU1RPbTI0VGtxK1oxNE8rMUtFRDBycy91d0wrLzlEaVpXcUlKUTJ2R2JWMnJDSk9RamRJeTRjdlB0S1BHSzIxYWdHc285NERpblVYb2ZVZVNxeWQ1aytLT2hkb1RyajQ9Cg=="
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+entity = { path = "entity" }
+migration = { path = "migration" }
+tauri = { version = "2", features = ["protocol-asset"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+grammers-client = "0.7.0"
+tokio = { version = "1.43.0", features = ["full"] }
+tokio-tungstenite = "0.26.1"
+futures = "0.3.31"
+actix-web = "4.9.0"
+actix-files = "0.6.6"
+thiserror = "2.0.12"
+tauri-plugin-fs = "2"
+tauri-plugin-dialog = "2"
+reqwest = "0.12.14"
+uuid = { version = "1.16.0", features = ["v4", "serde"] }
+chrono = { version = "0.4.40", features = [ "serde"] }
+async-trait = "0.1.88"
+regex = "1.11.1"
+lingua = "1.7.1"
+sea-orm = { version = "1.1.7", features = [ "sqlx-sqlite", "runtime-tokio-rustls", "macros", "with-json", "tests-cfg"] }
+tauri-plugin-log = "2"
+log = "0.4.27"
+
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
+tauri-plugin-single-instance = "2"
+tauri-plugin-updater = "2"
+
+[dev-dependencies]
+tempfile = "3.19.1"
+

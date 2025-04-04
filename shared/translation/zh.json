@@ -1,0 +1,80 @@
+{
+  "on": "开启",
+  "off": "关闭",
+  "select": "选择",
+  "success": "成功",
+  "sound_volume": "音量",
+  "authorization": {
+    "title": "授权",
+    "code": "请求代码",
+    "sign_in": "登录",
+    "phone": "电话号码",
+    "telegram_code": "电报代码",
+    "your_code": "你的代码"
+  },
+  "dashboard": {
+    "messages": "消息",
+    "settings": "设置",
+    "alerts": "警报"
+  },
+  "messages": {
+    "title": "最后消息"
+  },
+  "message": {
+    "skip": "跳过",
+    "donate": "捐赠"
+  },
+  "settings": {
+    "title": "设置",
+    "pause": "暂停警报消息",
+    "moderation_duration": "审核时长",
+    "black_list": "黑名单",
+    "remove_links": "删除链接",
+    "language": "语言",
+    "sec": "Sec"
+  },
+  "alerts": {
+    "title": "警报",
+    "group": "组"
+  },
+  "alert": {
+    "save": "保存",
+    "back": "返回",
+    "image": "图片",
+    "audio": "音频",
+    "view": "查看",
+    "title": "标题",
+    "message": "消息"
+  },
+  "widget": {
+    "copy": "复制",
+    "launch": "启动",
+    "url": "小部件网址"
+  },
+  "view": {
+    "top": "图片顶部，文本底部",
+    "bottom": "图片底部，文本顶部",
+    "left": "图片左侧，文本右侧",
+    "right": "图片右侧，文本左侧",
+    "overlay": "文本覆盖图片"
+  },
+  "text": {
+    "font": "字体",
+    "font_size": "字体大小",
+    "text_color": "文本颜色",
+    "bold": "粗体",
+    "italics": "斜体",
+    "underline": "下划线",
+    "transformation": "变换",
+    "letter_spacing": "字母间距",
+    "word_spacing": "单词间距",
+    "horizontal_alignment": "水平对齐",
+    "vertical_alignment": "垂直对齐",
+    "text_preview": "这是一个预览！",
+    "name": "名称"
+  },
+  "audio": {
+    "play": "播放",
+    "stop": "停止"
+  }
+}

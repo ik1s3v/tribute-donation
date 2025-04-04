@@ -1,0 +1,80 @@
+{
+  "on": "Activado",
+  "off": "Desactivado",
+  "select": "Seleccionar",
+  "success": "Éxito",
+  "sound_volume": "Volumen del sonido",
+  "authorization": {
+    "title": "Autorización",
+    "code": "Solicitar código",
+    "sign_in": "Iniciar sesión",
+    "phone": "Número de teléfono",
+    "telegram_code": "Código de Telegram",
+    "your_code": "Tu código"
+  },
+  "dashboard": {
+    "messages": "Mensajes",
+    "settings": "Ajustes",
+    "alerts": "Alertas"
+  },
+  "messages": {
+    "title": "Últimos mensajes"
+  },
+  "message": {
+    "skip": "Omitir",
+    "donate": "donar"
+  },
+  "settings": {
+    "title": "Ajustes",
+    "pause": "Pausar mensajes de alerta",
+    "moderation_duration": "Duración de la moderación",
+    "black_list": "Lista negra",
+    "remove_links": "Eliminar Enlaces",
+    "language": "Idioma",
+    "sec": "Seg"
+  },
+  "alerts": {
+    "title": "Alertas",
+    "group": "Grupo"
+  },
+  "alert": {
+    "save": "Guardar",
+    "back": "Atrás",
+    "image": "Imagen",
+    "audio": "Audio",
+    "view": "Vista",
+    "title": "Título",
+    "message": "Mensaje"
+  },
+  "widget": {
+    "copy": "Copiar",
+    "launch": "Iniciar",
+    "url": "URL del widget"
+  },
+  "view": {
+    "top": "Imagen arriba, texto abajo",
+    "bottom": "Imagen abajo, texto arriba",
+    "left": "Imagen izquierda, texto derecha",
+    "right": "Imagen derecha, texto izquierda",
+    "overlay": "Imagen superpuesta al texto"
+  },
+  "text": {
+    "font": "Fuente",
+    "font_size": "Tamaño de fuente",
+    "text_color": "Texto color",
+    "bold": "Negrita",
+    "italics": "Cursiva",
+    "underline": "Subrayado",
+    "transformation": "Transformación",
+    "letter_spacing": "Espaciado entre letras",
+    "word_spacing": "Espaciado entre palabras",
+    "horizontal_alignment": "Alineación horizontal",
+    "vertical_alignment": "Alineación vertical",
+    "text_preview": "¡Esta es una vista previa!",
+    "name": "Nombre"
+  },
+  "audio": {
+    "play": "Reproducir",
+    "stop": "Detener"
+  }
+}

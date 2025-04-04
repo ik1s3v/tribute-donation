@@ -1,0 +1,22 @@
+.settingsContainer {
+	display: grid;
+	gap: 20px;
+	width: 600px;
+}
+.settings {
+	display: flex;
+	place-items: center;
+}
+.label {
+	width: 230px;
+}
+
+@media (max-width: 700px) {
+	.settings {
+		display: grid;
+		place-items: start;
+	}
+	.settingsContainer {
+		width: 100%;
+	}
+}
