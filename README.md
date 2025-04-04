@@ -17,21 +17,21 @@ Ensure you have the following installed on your system:
 To install and run the project locally, follow these steps:
 
 1. Clone the repository:
-    ```bash
+    
     git clone https://github.com/ik1s3v/tribute-donation.git
     cd tribute-donation
-    ```
+    
 
 2. Install dependencies:
-    ```bash
+   
     npm install
-    ```
+    
 
 3. Start the development:
-    ```bash
+    
     npm run tauri dev
     npm run widget:dev
-    ```
+    
 ```
 
 ## Build
@@ -39,7 +39,7 @@ To install and run the project locally, follow these steps:
 To build the project for production, use the following commands:
 
 For build you need set environment variables API_ID,API_HASH (take it from https://my.telegram.org/) and TAURI_SIGNING_PRIVATE_KEY (take it from Cargo.toml)
-```markdown
+
 To set environment variables on Windows, follow these steps:
 
 1. Open PowerShell.
@@ -49,13 +49,13 @@ To set environment variables on Windows, follow these steps:
     $env:API_HASH="your_api_hash"
     $env:TAURI_SIGNING_PRIVATE_KEY="your_private_key"
    
-    ```
+    
    Replace `your_api_id`, `your_api_hash`, and `your_private_key` with the actual values.
 
 3. Build the Tauri application:
-    ```bash
+    
     npm run build:production
-    ```
+    
 
 The production-ready files will be available in the `src-tauri/target/release` directory.
 ```
