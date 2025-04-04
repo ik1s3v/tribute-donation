@@ -10,7 +10,9 @@
     "sign_in": "Entrar",
     "phone": "Número de telefone",
     "telegram_code": "Código do telegrama",
-    "your_code": "Seu código"
+    "your_code": "Seu código",
+    "2fa_password": "Senha 2fa",
+    "password": "Senha"
   },
   "dashboard": {
     "messages": "Mensagens",

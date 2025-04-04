@@ -10,7 +10,9 @@
     "sign_in": "Iniciar sesión",
     "phone": "Número de teléfono",
     "telegram_code": "Código de Telegram",
-    "your_code": "Tu código"
+    "your_code": "Tu código",
+    "2fa_password": "Contraseña de 2fa",
+    "password": "Contraseña"
   },
   "dashboard": {
     "messages": "Mensajes",

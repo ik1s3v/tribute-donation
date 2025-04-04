@@ -10,7 +10,9 @@
     "sign_in": "साइन इन करें",
     "phone": "फ़ोन नंबर",
     "telegram_code": "टेलीग्राम से कोड",
-    "your_code": "आपका कोड"
+    "your_code": "आपका कोड",
+    "2fa_password": "2fa पासवर्ड",
+    "password": "पासवर्ड"
   },
   "dashboard": {
     "messages": "संदेश",

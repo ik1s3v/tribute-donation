@@ -10,7 +10,9 @@
         "sign_in": "Увійти",
         "phone": "Номер телефону",
         "telegram_code": "Код з Telegram",
-        "your_code": "Ваш код"
+        "your_code": "Ваш код",
+        "2fa_password": "Пароль 2fa",
+        "password": "Пароль"
     },
     "dashboard": {
         "messages": "Повідомлення",

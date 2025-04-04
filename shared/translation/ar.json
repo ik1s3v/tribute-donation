@@ -10,7 +10,9 @@
     "sign_in": "تسجيل الدخول",
     "phone": "رقم الهاتف",
     "telegram_code": "رمز من التلجرام",
-    "your_code": "رمزك"
+    "your_code": "رمزك",
+    "2fa_password": "كلمة مرور 2fa",
+    "password": "شعار"
   },
   "dashboard": {
     "messages": "الرسائل",
