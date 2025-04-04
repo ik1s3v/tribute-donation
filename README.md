@@ -32,6 +32,7 @@ To install and run the project locally, follow these steps:
     npm run tauri dev
     npm run widget:dev
     ```
+```
 
 ## Build
 ```markdown
