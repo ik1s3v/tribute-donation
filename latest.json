@@ -5,7 +5,7 @@
     "platforms": {
         "windows-x86_64": {
             "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRczgwcTc3bWZHRndQcVJBSFdNNGtldCtCQ2p1b2VmWkVWUE9HSmU2WVNQUVprbEI4UDU1MkIyNVVrMVJuNEdRSmVKQnVKUThJbFdVOEx4U1p6WXptZ3k4bmcrNEpIclFFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQzNzY0MDQ1CWZpbGU6dHJpYnV0ZS1kb25hdGlvbl8wLjEuMF94NjQtc2V0dXAuZXhlCk9rVkEyeWM1bk5QN3orVlNlbm5NeE9rWmhTbzFUNTRRcU5zaUFXczJRendJWENSRVNEOFU2d0JvSnZKZ2I3WTU4dmJMdGZSSFRFcTdnQzlkSXQwSkFnPT0K",
-            "url": "https://github.com/ik1s3v/tribute-donation/releases/download/v0.1.0/tribute-donation_0.1.0_x64-setup.exe"
+            "url": "https://github.com/ik1s3v/tribute-donation/releases/download/latest/tribute-donation_x64-setup.exe"
         }
     }
 }
