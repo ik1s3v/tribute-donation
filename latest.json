@@ -1,11 +1,11 @@
 {
-    "version": "0.1.0",
-    "notes": "v0.1.0",
+    "version": "0.1.1",
+    "notes": "v0.1.1",
     "pub_date": "2025-04-04T10:55:37.848027+00:00",
     "platforms": {
         "windows-x86_64": {
-            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRczgwcTc3bWZHRndQcVJBSFdNNGtldCtCQ2p1b2VmWkVWUE9HSmU2WVNQUVprbEI4UDU1MkIyNVVrMVJuNEdRSmVKQnVKUThJbFdVOEx4U1p6WXptZ3k4bmcrNEpIclFFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQzNzY0MDQ1CWZpbGU6dHJpYnV0ZS1kb25hdGlvbl8wLjEuMF94NjQtc2V0dXAuZXhlCk9rVkEyeWM1bk5QN3orVlNlbm5NeE9rWmhTbzFUNTRRcU5zaUFXczJRendJWENSRVNEOFU2d0JvSnZKZ2I3WTU4dmJMdGZSSFRFcTdnQzlkSXQwSkFnPT0K",
-            "url": "https://github.com/ik1s3v/tribute-donation/releases/download/latest/tribute-donation_x64-setup.exe"
+            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRczgwcTc3bWZHRjE2T250WVorS2xnSjFBOGRMdEpybmU3RTYycU14OVVlNE1qcUVlU1Vrbm43VGNRYjNpRkdpd0JKRnE3eU5sRTBwMlMyZEM4clFLME9SSWRJOElMTGd3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQzNzg1MzU0CWZpbGU6dHJpYnV0ZS1kb25hdGlvbl8wLjEuMV94NjQtc2V0dXAuZXhlCkV4Q2JlajNwTjNqTml0Y0VtMERkZlRxQlFxSC8weWZFcUE5UW1sOENDa3JKakZ0MWtuVmk4a1dvbms2SE5xTmFweEkzRW11czU2TnJvMU4yR1VQSEJBPT0K",
+            "url": "https://github.com/ik1s3v/tribute-donation/releases/download/latest/tribute-donation_0.1.1_x64-setup.exe"
         }
     }
 }
