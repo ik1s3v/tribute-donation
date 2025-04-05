@@ -14,6 +14,13 @@
     "2fa_password": "كلمة مرور 2fa",
     "password": "شعار"
   },
+  "updater": {
+    "title": "تحديث",
+    "description": "يتوفر إصدار جديد من التطبيق. هل تريد التحديث؟",
+    "update": "تحديث",
+    "later": "فيما بعد",
+    "downloading": "تحميل..."
+  },
   "dashboard": {
     "messages": "الرسائل",
     "settings": "الإعدادات",

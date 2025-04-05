@@ -12,6 +12,13 @@
     "telegram_code": "电报代码",
     "your_code": "你的代码"
   },
+  "updater": {
+    "title": "更新",
+    "description": "该应用程序的新版本可用。是否要更新？",
+    "update": "更新",
+    "later": "后",
+    "downloading": "下载。。。"
+  },
   "dashboard": {
     "messages": "消息",
     "settings": "设置",

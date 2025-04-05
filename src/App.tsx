@@ -12,29 +12,30 @@ import { showSnackBar } from "./store/slices/snackBarSlice";
 import { AlertSeverity } from "../shared/enums";
 import { CircularProgress } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import UpdaterDialog from "./components/UpdaterDialog";
 function App() {
 	const isInit = useSelector((state: AppState) => state.mainState.isInit);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [isPending, setIsPending] = useState(true);
+	const [isLanguageSet, setIsLanguageSet] = useState(false);
 	const { i18n } = useTranslation();
 
 	useEffect(() => {
 		if (isInit) {
-			setTimeout(() => {
-				invoke<ISettings>("get_settings")
-					.then((settings) => {
-						i18n.changeLanguage(settings.language);
-					})
-					.catch((error) => {
-						dispatch(
-							showSnackBar({
-								message: error,
-								alertSeverity: AlertSeverity.error,
-							}),
-						);
-					});
-			}, 10000);
+			invoke<ISettings>("get_settings")
+				.then((settings) => {
+					i18n.changeLanguage(settings.language);
+					setIsLanguageSet(true);
+				})
+				.catch((error) => {
+					dispatch(
+						showSnackBar({
+							message: error,
+							alertSeverity: AlertSeverity.error,
+						}),
+					);
+				});
 		}
 	}, [dispatch, i18n, isInit]);
 
@@ -69,6 +70,7 @@ function App() {
 
 	return (
 		<main style={{ display: "grid", height: "100dvh" }}>
+			{isLanguageSet && <UpdaterDialog />}
 			<AppSnackBar />
 			{isPending ? (
 				<CircularProgress sx={{ placeSelf: "center" }} />

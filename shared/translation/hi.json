@@ -14,6 +14,13 @@
     "2fa_password": "2fa पासवर्ड",
     "password": "पासवर्ड"
   },
+  "updater": {
+    "title": "आधुनिकीकरणअ",
+    "description": "ऐप का एक नया संस्करण उपलब्ध है। क्या आप अद्यतन करना चाहते हैं?",
+    "update": "आधुनिकीकरणअ",
+    "later": "बाद में",
+    "downloading": "डाउनलोड।।।"
+  },
   "dashboard": {
     "messages": "संदेश",
     "settings": "सेटिंग्स",

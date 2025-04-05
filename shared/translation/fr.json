@@ -14,6 +14,13 @@
     "2fa_password": "Mot de passe 2fa",
     "password": "Mot de passe"
   },
+  "updater": {
+    "title": "Mettre à jour",
+    "description": "Une nouvelle version de l’application est disponible. Voulez-vous mettre à jour ?",
+    "update": "Mettre à jour",
+    "later": "Plus tard",
+    "downloading": "Téléchargement..."
+  },
   "dashboard": {
     "messages": "Messages",
     "settings": "Paramètres",

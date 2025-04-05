@@ -14,6 +14,13 @@
     "2fa_password": "Contraseña de 2fa",
     "password": "Contraseña"
   },
+  "updater": {
+    "title": "Actualizar",
+    "description": "Ya está disponible una nueva versión de la aplicación. ¿Quieres actualizar?",
+    "update": "Actualizar",
+    "later": "Más tarde",
+    "downloading": "Descargar..."
+  },
   "dashboard": {
     "messages": "Mensajes",
     "settings": "Ajustes",

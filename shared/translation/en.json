@@ -14,6 +14,13 @@
         "2fa_password": "2fa Password",
         "password": "Password"
     },
+    "updater": {
+        "title": "Update",
+        "description": "A new version of the app is available. Do you want to update?",
+        "update": "Update",
+        "later": "Later",
+        "downloading": "Downloading..."
+    },
     "dashboard": {
         "messages": "Messages",
         "settings": "Settings",

@@ -14,6 +14,13 @@
     "2fa_password": "Пароль 2fa",
     "password": "Пароль"
   },
+  "updater": {
+    "title": "Обновлять",
+    "description": "Доступна новая версия приложения. Хотите обновиться?",
+    "update": "Обновлять",
+    "later": "Позже",
+    "downloading": "Загрузки..."
+  },
   "dashboard": {
     "messages": "Сообщения",
     "settings": "Настройки",

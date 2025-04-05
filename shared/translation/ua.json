@@ -14,6 +14,13 @@
         "2fa_password": "Пароль 2fa",
         "password": "Пароль"
     },
+    "updater": {
+        "title": "Оновлення",
+        "description": "Доступна нова версія застосунку. Бажаєте оновити?",
+        "update": "Оновити",
+        "later": "Пізніше",
+        "downloading": "Завантаження..."
+    },
     "dashboard": {
         "messages": "Повідомлення",
         "settings": "Налаштування",

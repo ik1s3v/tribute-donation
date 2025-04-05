@@ -14,6 +14,13 @@
     "2fa_password": "Senha 2fa",
     "password": "Senha"
   },
+  "updater": {
+    "title": "Atualização",
+    "description": "Uma nova versão do aplicativo está disponível. Deseja atualizar?",
+    "update": "Atualização",
+    "later": "Posterior",
+    "downloading": "Transferindo..."
+  },
   "dashboard": {
     "messages": "Mensagens",
     "settings": "Configurações",
