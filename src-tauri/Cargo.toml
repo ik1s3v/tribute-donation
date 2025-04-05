@@ -1,7 +1,7 @@
 [package]
 name = "tribute-donation"
-version = "0.1.1"
-description = "A Tauri App"
+version = "0.1.2"
+description = ". Parser of donation messages from tribute bot and displaying them in obs"
 authors = ["ik1s3v"]
 edition = "2021"
 
