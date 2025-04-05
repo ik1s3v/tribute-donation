@@ -21,10 +21,24 @@
     "later": "Posterior",
     "downloading": "Transferindo..."
   },
+  "media": {
+    "title": "Mídia",
+    "youtube": "Linkedin",
+    "twitch": "Contrair-se",
+    "tiktok": "Tiktok"
+  },
+  "media_settings": {
+    "enabled": "Habilitado",
+    "min_amount_eur": "Valor mínimo EUR",
+    "min_amount_rub": "Quantidade mínima RUB",
+    "video_volume": "Volume do vídeo",
+    "min_views": "Visualizações mínimas"
+  },
   "dashboard": {
     "messages": "Mensagens",
     "settings": "Configurações",
-    "alerts": "Alertas"
+    "alerts": "Alertas",
+    "media": "Mídia"
   },
   "messages": {
     "title": "Últimas mensagens"

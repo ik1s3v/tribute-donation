@@ -26,6 +26,7 @@ export enum AppEvent {
 	Alerts = "Alerts",
 	MakeAudioError = "MakeAudioError",
 	Settings = "Settings",
+	MediaSettings = "MediaSettings",
 	AlertConnected = "AlertConnected",
 }
 

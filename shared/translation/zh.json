@@ -19,10 +19,24 @@
     "later": "后",
     "downloading": "下载。。。"
   },
+  "media": {
+    "title": "媒体",
+    "youtube": "优酷",
+    "twitch": "抽搐",
+    "tiktok": "抖音"
+  },
+  "media_settings": {
+    "enabled": "启用",
+    "min_amount_eur": "最低金额 EUR",
+    "min_amount_rub": "最小金额 RUB",
+    "video_volume": "视频音量",
+    "min_views": "最小视图"
+  },
   "dashboard": {
     "messages": "消息",
     "settings": "设置",
-    "alerts": "警报"
+    "alerts": "警报",
+    "media": "媒体"
   },
   "messages": {
     "title": "最后消息"

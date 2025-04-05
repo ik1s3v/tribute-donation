@@ -10,6 +10,7 @@ pub enum AppEvent {
     Alerts,
     MakeAudioError,
     Settings,
+    MediaSettings,
     AlertConnected,
 }
 impl AppEvent {
@@ -24,6 +25,7 @@ impl AppEvent {
             AppEvent::ReplayAlert => "AlertsSettings",
             AppEvent::AlertConnected => "AlertConnected",
             AppEvent::Settings => "Settings",
+            AppEvent::MediaSettings => "MediaSettings",
         }
     }
 }

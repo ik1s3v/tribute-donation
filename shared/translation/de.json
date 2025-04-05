@@ -21,10 +21,24 @@
     "later": "Später",
     "downloading": "Laden..."
   },
+  "media": {
+    "title": "Medien",
+    "youtube": "Youtube",
+    "twitch": "Zucken",
+    "tiktok": "Tiktok"
+  },
+  "media_settings": {
+    "enabled": "Ermöglichte",
+    "min_amount_eur": "Mindestbetrag EUR",
+    "min_amount_rub": "Mindestbetrag RUB",
+    "video_volume": "Video-Lautstärke",
+    "min_views": "Min. Ansichten"
+  },
   "dashboard": {
     "messages": "Nachrichten",
     "settings": "Einstellungen",
-    "alerts": "Benachrichtigungen"
+    "alerts": "Benachrichtigungen",
+    "media": "Medien"
   },
   "messages": {
     "title": "Letzte Nachrichten"

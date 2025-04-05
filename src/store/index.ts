@@ -4,10 +4,12 @@ import { mainSlice } from "./slices/mainSlice";
 import { api } from "../api";
 import { alertsSlice } from "./slices/alertsSlice";
 import { settingsSlice } from "./slices/settingsSlice";
+import { mediaSlice } from "./slices/mediaSlice";
 
 export const rootReducer = combineReducers({
 	snackBarState: snackBarSlice.reducer,
 	mainState: mainSlice.reducer,
+	mediaState: mediaSlice.reducer,
 	alertsState: alertsSlice.reducer,
 	settingsState: settingsSlice.reducer,
 	[api.reducerPath]: api.reducer,

@@ -42,6 +42,8 @@ pub fn run() {
             update_alert_settings,
             update_settings,
             check_password,
+            get_media_settings,
+            update_media_settings,
             init
         ])
         .run(tauri::generate_context!())

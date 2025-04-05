@@ -21,10 +21,24 @@
     "later": "Позже",
     "downloading": "Загрузки..."
   },
+  "media": {
+    "title": "Медиа",
+    "youtube": "Ютуб",
+    "twitch": "Твич",
+    "tiktok": "Тикток"
+  },
+  "media_settings": {
+    "enabled": "Включен",
+    "min_amount_eur": "Минимальная сумма в евро",
+    "min_amount_rub": "Минимальная сумма руб.",
+    "video_volume": "Громкость видео",
+    "min_views": "Минимальное количество просмотров"
+  },
   "dashboard": {
     "messages": "Сообщения",
     "settings": "Настройки",
-    "alerts": "Оповещения"
+    "alerts": "Оповещения",
+    "media": "Медиа"
   },
   "messages": {
     "title": "Последние сообщения"

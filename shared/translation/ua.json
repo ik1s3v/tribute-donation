@@ -21,10 +21,24 @@
         "later": "Пізніше",
         "downloading": "Завантаження..."
     },
+    "media": {
+        "title": "Медіа",
+        "youtube": "YouTube",
+        "twitch": "Twitch",
+        "tiktok": "TikTok"
+    },
+    "media_settings": {
+        "enabled": "Увімкнено",
+        "min_amount_eur": "Мін. сума в EUR",
+        "min_amount_rub": "Мін. сума в RUB",
+        "video_volume": "Гучність відео",
+        "min_views": "Мін. кількість переглядів"
+    },
     "dashboard": {
         "messages": "Повідомлення",
         "settings": "Налаштування",
-        "alerts": "Сповіщення"
+        "alerts": "Сповіщення",
+        "media": "Медіа"
     },
     "messages": {
         "title": "Останні повідомлення"

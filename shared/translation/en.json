@@ -21,10 +21,24 @@
         "later": "Later",
         "downloading": "Downloading..."
     },
+    "media": {
+        "title": "Media",
+        "youtube": "Youtube",
+        "twitch": "Twitch",
+        "tiktok": "Tiktok"
+    },
+    "media_settings": {
+        "enabled": "Enabled",
+        "min_amount_eur": "Min amount EUR",
+        "min_amount_rub": "Min amount RUB",
+        "video_volume": "Video volume",
+        "min_views": "Min views"
+    },
     "dashboard": {
         "messages": "Messages",
         "settings": "Settings",
-        "alerts": "Alerts"
+        "alerts": "Alerts",
+        "media": "Media"
     },
     "messages": {
         "title": "Last messages"

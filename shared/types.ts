@@ -63,3 +63,16 @@ export interface IAlertsGroup {
 	group_id: string;
 	items: IAlert[];
 }
+
+export interface IMediaSettings {
+	youtube: IMediaPlatformSettings;
+	twitch: IMediaPlatformSettings;
+	tiktok: IMediaPlatformSettings;
+}
+export interface IMediaPlatformSettings {
+	enabled: boolean;
+	min_amount_eur: number;
+	min_amount_rub: number;
+	video_volume: number;
+	min_views: number;
+}

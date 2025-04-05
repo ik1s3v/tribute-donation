@@ -21,10 +21,24 @@
     "later": "فيما بعد",
     "downloading": "تحميل..."
   },
+  "media": {
+    "title": "وسائط",
+    "youtube": "يوتيوب",
+    "twitch": "نشل",
+    "tiktok": "تيك توك"
+  },
+  "media_settings": {
+    "enabled": "تمكين",
+    "min_amount_eur": "الحد الأدنى للمبلغ EUR",
+    "min_amount_rub": "الحد الأدنى للمبلغ RUB",
+    "video_volume": "حجم الفيديو",
+    "min_views": "الحد الأدنى للعرض"
+  },
   "dashboard": {
     "messages": "الرسائل",
     "settings": "الإعدادات",
-    "alerts": "التنبيهات"
+    "alerts": "التنبيهات",
+    "media": "وسائط"
   },
   "messages": {
     "title": "آخر الرسائل"

@@ -21,10 +21,24 @@
     "later": "बाद में",
     "downloading": "डाउनलोड।।।"
   },
+  "media": {
+    "title": "मीडिया",
+    "youtube": "यूट्यूब",
+    "twitch": "फड़काना",
+    "tiktok": "टिकटोक"
+  },
+  "media_settings": {
+    "enabled": "सक्षम",
+    "min_amount_eur": "न्यूनतम राशि EUR",
+    "min_amount_rub": "न्यूनतम राशि RUB",
+    "video_volume": "वीडियो वॉल्यूम",
+    "min_views": "न्यूनतम दृश्य"
+  },
   "dashboard": {
     "messages": "संदेश",
     "settings": "सेटिंग्स",
-    "alerts": "अलर्ट"
+    "alerts": "अलर्ट",
+    "media": "मीडिया"
   },
   "messages": {
     "title": "अंतिम संदेश"
