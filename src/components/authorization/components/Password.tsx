@@ -26,7 +26,7 @@ const Password = () => {
 			<Button
 				variant="contained"
 				onClick={() =>
-					invoke("check_password", { password })
+					invoke("check_password", { password: password.trim() })
 						.then(() => {
 							dispatch(setIsClientAuthorized(true));
 							navigate("/dashboard/messages");

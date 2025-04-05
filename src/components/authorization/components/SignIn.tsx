@@ -25,7 +25,7 @@ const SignIn = () => {
 			<Button
 				variant="contained"
 				onClick={() =>
-					invoke("sign_in", { phoneCode })
+					invoke("sign_in", { phoneCode: phoneCode.trim() })
 						.then(() => {
 							dispatch(setIsClientAuthorized(true));
 							navigate("/dashboard/messages");
