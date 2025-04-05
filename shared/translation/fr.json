@@ -61,14 +61,14 @@
     "group": "Groupe"
   },
   "alert": {
-    "save": "Enregistrer",
-    "back": "Retour",
     "image": "Image",
     "audio": "Audio",
     "view": "Affichage",
     "title": "Titre",
     "message": "Message"
   },
+  "save": "Enregistrer",
+  "back": "Retour",
   "widget": {
     "copy": "Copier",
     "launch": "Lancer",

@@ -59,14 +59,14 @@
     "group": "组"
   },
   "alert": {
-    "save": "保存",
-    "back": "返回",
     "image": "图片",
     "audio": "音频",
     "view": "查看",
     "title": "标题",
     "message": "消息"
   },
+  "save": "保存",
+  "back": "返回",
   "widget": {
     "copy": "复制",
     "launch": "启动",

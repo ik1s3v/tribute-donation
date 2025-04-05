@@ -119,7 +119,7 @@ const Media = () => {
 									});
 							}}
 						>
-							{t("alert.save")}
+							{t("save")}
 						</Button>
 					</div>
 				</>

@@ -139,9 +139,9 @@ const AlertSettings = () => {
 										});
 								}}
 							>
-								{t("alert.save")}
+								{t("save")}
 							</Button>
-							<Button onClick={() => navigate(-1)}>{t("alert.back")}</Button>
+							<Button onClick={() => navigate(-1)}>{t("back")}</Button>
 						</div>
 					</>
 				)}
