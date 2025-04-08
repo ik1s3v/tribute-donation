@@ -13,7 +13,7 @@ impl MigrationTrait for Migration {
             video_volume: 50,
             min_amount_eur: 0,
             min_amount_rub: 0,
-            min_views: 50000,
+            min_views: 5000,
         };
         ActiveModel {
             id: Set(1),
