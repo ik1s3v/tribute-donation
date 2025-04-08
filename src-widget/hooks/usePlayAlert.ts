@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { websocketService } from "../websocket/websocket_service";
+import { websocketService } from "../services/websocket_service";
 import { AppEvent } from "../../shared/enums";
 import type { IAlert, IMessage, ISettings } from "../../shared/types";
 import getAlertByMessage from "../utils/getAlertByMessage";
@@ -11,15 +11,16 @@ const usePlayAlert = () => {
 	const settingsRef = useRef<ISettings | null>(null);
 	const messagesRef = useRef<IMessage[]>([]);
 
-	const [isVisible, setIsVisible] = useState(false);
-	const [currentMessage, setCurrentMessage] = useState<IMessage | null>(null);
-	const [currentAlert, setCurrentAlert] = useState<IAlert | null>(null);
+	const [currentMessage, setCurrentMessage] = useState<IMessage>();
+	const [currentAlert, setCurrentAlert] = useState<IAlert>();
 
 	const handleAudioEnd = useCallback(
 		({
 			message,
 			skip = false,
-		}: { message: IMessage | null; skip?: boolean }) => {
+		}: { message: IMessage | undefined; skip?: boolean }) => {
+			audioRef.current.pause();
+			soundRef.current.pause();
 			setTimeout(
 				() => {
 					if (!message) return;
@@ -28,12 +29,17 @@ const usePlayAlert = () => {
 						data: message.id,
 					});
 					messagesRef.current = messagesRef.current.filter(
-						(alert) => alert.id !== message.id,
+						(m) => m.id !== message.id,
 					);
 
-					setIsVisible(false);
+					const newCurrentMessage = messagesRef.current.at(0);
 
-					playMessage({ message: messagesRef.current.at(0) });
+					setCurrentMessage(undefined);
+					setTimeout(() => {
+						if (newCurrentMessage) {
+							playMessage({ message: newCurrentMessage });
+						}
+					}, 0);
 				},
 				skip ? 0 : 3000,
 			);
@@ -41,41 +47,33 @@ const usePlayAlert = () => {
 		[],
 	);
 
-	const playMessage = useCallback(
-		({ message }: { message: IMessage | undefined }) => {
-			if (settingsRef.current && !settingsRef.current.alert_paused) {
-				setTimeout(() => {
-					if (settingsRef.current && messagesRef.current.length) {
-						if (message) {
-							websocketService.send({
-								event: AppEvent.AlertPlaying,
-								data: message.id,
-							});
-							const alert = getAlertByMessage({
-								alerts: alertsRef.current,
-								message,
-							});
-							setCurrentMessage(message);
-							setCurrentAlert(alert);
-							soundRef.current.src = `static/${alert.audio}`;
-							audioRef.current.src = `static/${message.audio}`;
-							soundRef.current.volume = alert.audio_volume / 100;
-							audioRef.current.volume = settingsRef.current.tts_volume / 100;
-							soundRef.current.play();
-							setIsVisible(true);
-						}
-					}
-				}, settingsRef.current.moderation_duration);
-			}
-		},
-		[],
-	);
+	const playMessage = useCallback(({ message }: { message: IMessage }) => {
+		if (settingsRef.current && !settingsRef.current.alert_paused) {
+			setTimeout(() => {
+				if (settingsRef.current && messagesRef.current.length) {
+					websocketService.send({
+						event: AppEvent.AlertPlaying,
+						data: message.id,
+					});
+					const alert = getAlertByMessage({
+						alerts: alertsRef.current,
+						message,
+					});
+					soundRef.current.src = `static/${alert.audio}`;
+					audioRef.current.src = `static/${message.audio}`;
+					soundRef.current.volume = alert.audio_volume / 100;
+					audioRef.current.volume = settingsRef.current.tts_volume / 100;
+					soundRef.current.play();
+					setCurrentMessage(message);
+					setCurrentAlert(alert);
+				}
+			}, settingsRef.current.moderation_duration);
+		}
+	}, []);
 
 	const skipMessage = useCallback(
 		(id: string) => {
 			if (currentMessage?.id === id) {
-				audioRef.current.pause();
-				soundRef.current.pause();
 				handleAudioEnd({ message: currentMessage, skip: true });
 			} else {
 				messagesRef.current = messagesRef.current.filter(
@@ -85,6 +83,12 @@ const usePlayAlert = () => {
 		},
 		[handleAudioEnd, currentMessage],
 	);
+	const skipPlayingMessage = useCallback(() => {
+		if (currentMessage) {
+			handleAudioEnd({ message: currentMessage, skip: true });
+		}
+	}, [handleAudioEnd, currentMessage]);
+
 	const handleNewMessage = useCallback(
 		(message: IMessage) => {
 			messagesRef.current = [...messagesRef.current, message];
@@ -161,6 +165,15 @@ const usePlayAlert = () => {
 	}, [skipMessage]);
 
 	useEffect(() => {
+		const unsubscribe = websocketService.subscribe<null>(
+			AppEvent.SkipPlayingAlert,
+			skipPlayingMessage,
+		);
+
+		return () => unsubscribe();
+	}, [skipPlayingMessage]);
+
+	useEffect(() => {
 		const unsubscribe = websocketService.subscribe<IAlert[]>(
 			AppEvent.Alerts,
 			(alerts) => {
@@ -177,7 +190,11 @@ const usePlayAlert = () => {
 			(settings) => {
 				if (settingsRef.current?.alert_paused && !settings.alert_paused) {
 					settingsRef.current = settings;
-					playMessage({ message: messagesRef.current.at(0) });
+					const message = messagesRef.current.at(0);
+
+					if (message) {
+						playMessage({ message });
+					}
 					return;
 				}
 				settingsRef.current = settings;
@@ -190,7 +207,6 @@ const usePlayAlert = () => {
 	return {
 		currentMessage,
 		currentAlert,
-		isVisible,
 		settings: settingsRef.current,
 	};
 };

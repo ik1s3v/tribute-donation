@@ -10,7 +10,7 @@ use sea_orm::{
 pub trait MessagesRepository: Send + Sync {
     async fn save_message(&self, alert_message: Model) -> Result<(), DbErr>;
     async fn get_messages(&self, limit: u64, offset: u64) -> Result<Vec<Model>, DbErr>;
-    async fn get_message_by_tg_id(
+    async fn get_message_by_telegram_id(
         &self,
         telegram_message_id: String,
     ) -> Result<Option<Model>, DbErr>;
@@ -43,7 +43,7 @@ impl MessagesRepository for DatabaseService {
             .all(&self.connection)
             .await
     }
-    async fn get_message_by_tg_id(
+    async fn get_message_by_telegram_id(
         &self,
         telegram_message_id: String,
     ) -> Result<Option<Model>, DbErr> {

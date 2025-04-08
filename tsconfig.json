@@ -25,7 +25,7 @@
   "include": [
     "src",
     "src-widget",
-    "src-widget/websocket",
+    "src-widget/services",
     "shared/enums.ts",
     "shared/types.ts",
     "shared/utils/getGridTemplateAreas.ts",

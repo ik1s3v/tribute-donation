@@ -19,7 +19,7 @@ use grammers_client::{
 use serde::Serialize;
 use uuid::Uuid;
 
-use super::{DatabaseService, TTSService, WebSocketService};
+use super::{DatabaseService, MediaService, TTSService, WebSocketService};
 
 #[derive(Serialize, Clone, Debug)]
 pub struct EventMessage<T> {
@@ -44,6 +44,7 @@ pub struct TelegramService {
     websocket_service: Arc<WebSocketService>,
     tts_service: Arc<TTSService>,
     database_service: Arc<DatabaseService>,
+    media_service: Arc<MediaService>,
 }
 impl TelegramService {
     pub fn new(
@@ -53,6 +54,7 @@ impl TelegramService {
         websocket_service: Arc<WebSocketService>,
         tts_service: Arc<TTSService>,
         database_service: Arc<DatabaseService>,
+        media_service: Arc<MediaService>,
     ) -> Self {
         Self {
             client: None,
@@ -62,6 +64,7 @@ impl TelegramService {
             websocket_service,
             tts_service,
             database_service,
+            media_service,
         }
     }
 
@@ -100,6 +103,7 @@ impl TelegramService {
         let database_service = Arc::clone(&self.database_service);
         let websocket_service = Arc::clone(&self.websocket_service);
         let tts_service = Arc::clone(&self.tts_service);
+        let media_service = Arc::clone(&self.media_service);
         tauri::async_runtime::spawn(async move {
             loop {
                 let update = match client.next_update().await {
@@ -120,7 +124,7 @@ impl TelegramService {
                             Some(message) => message,
                             None => continue,
                         };
-
+                        let media = media_service.get_media(&donate_message).await;
                         let settings = match database_service
                             .get_settings()
                             .await
@@ -152,7 +156,7 @@ impl TelegramService {
                         let telegram_message_id = message.id().to_string();
 
                         if let Ok(Some(_)) = database_service
-                            .get_message_by_tg_id(telegram_message_id.clone())
+                            .get_message_by_telegram_id(telegram_message_id.clone())
                             .await
                         {
                             continue;
@@ -187,7 +191,7 @@ impl TelegramService {
                             telegram_message_id,
                             played: false,
                             created_at: Utc::now().timestamp(),
-                            media: None,
+                            media,
                         };
                         database_service
                             .save_message(alert_message.clone())

@@ -13,6 +13,9 @@ import Tiktok from "./components/Tiktok";
 import type { AppState } from "../../../../store";
 import type { IMediaSettings } from "../../../../../shared/types";
 import { setMediaSettings } from "../../../../store/slices/mediaSlice";
+import WidgetUrl from "../alerts/components/WidgetUrl";
+import TikTokIcon from "./components/TikTokIcon";
+import TwitchIcon from "./components/TwitchIcon";
 
 const Media = () => {
 	const [value, setValue] = useState(0);
@@ -39,6 +42,7 @@ const Media = () => {
 		mediaSettings && (
 			<>
 				<h1>{t("media.title")}</h1>
+				<WidgetUrl widgetUrl={"http://localhost:12553/media"} />
 				<Box
 					sx={{
 						borderBottom: 1,
@@ -63,12 +67,12 @@ const Media = () => {
 							label={t("media.youtube")}
 						/>
 						<Tab
-							icon={<YouTubeIcon />}
+							icon={<TwitchIcon />}
 							iconPosition="start"
 							label={t("media.twitch")}
 						/>
 						<Tab
-							icon={<YouTubeIcon />}
+							icon={<TikTokIcon />}
 							iconPosition="start"
 							label={t("media.tiktok")}
 						/>

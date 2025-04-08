@@ -4,6 +4,8 @@
   "select": "تحديد",
   "success": "نجاح",
   "sound_volume": "مستوى الصوت",
+  "skip_media": "تخطي الوسائط المختصرة",
+  "skip_alert": "تنبيه تخطي الاختصار",
   "authorization": {
     "title": "التفويض",
     "code": "رمز الطلب",
@@ -45,6 +47,7 @@
   },
   "message": {
     "skip": "تخطي",
+    "replay": "اعاده",
     "donate": "تبرع"
   },
   "settings": {

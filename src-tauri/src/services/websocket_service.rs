@@ -13,6 +13,7 @@ use uuid::Uuid;
 
 use crate::enums::AppEvent;
 use crate::repositories::AlertsRepository;
+use crate::repositories::MediaSettingsRepository;
 use crate::repositories::SettingsRepository;
 
 use super::DatabaseService;
@@ -29,7 +30,7 @@ pub struct WebSocketService {
 
 impl WebSocketService {
     pub fn new(database_service: Arc<DatabaseService>, app: Arc<AppHandle>) -> Self {
-        WebSocketService {
+        Self {
             clients: Arc::new(Mutex::new(HashMap::new())),
             database_service,
             app,
@@ -87,6 +88,7 @@ impl WebSocketService {
         log::info!("New client connected: {}", id);
         self.send_alerts_settings(tx.clone()).await;
         self.send_settings(tx.clone()).await;
+        self.send_media_settings(tx.clone()).await;
         self.clients.lock().await.insert(id, tx);
     }
     async fn broadcast(&self, msg: Message) {
@@ -141,6 +143,29 @@ impl WebSocketService {
         ))
         .map_err(|e| {
             log::error!("Error sending  settings: {}", e);
+        })
+        .unwrap();
+    }
+
+    async fn send_media_settings(&self, tx: Tx) {
+        let media_settings = self
+            .database_service
+            .get_media_settings()
+            .await
+            .map_err(|e| {
+                log::error!("Get media settings error: {}", e);
+            })
+            .unwrap();
+        tx.send(Message::Text(
+            (&serde_json::to_string(&EventMessage {
+                event: AppEvent::MediaSettings,
+                data: media_settings,
+            })
+            .unwrap())
+                .into(),
+        ))
+        .map_err(|e| {
+            log::error!("Error sending media settings: {}", e);
         })
         .unwrap();
     }

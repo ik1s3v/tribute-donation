@@ -4,6 +4,8 @@
   "select": "Выбрать",
   "success": "Успех",
   "sound_volume": "Громкость звука",
+  "skip_media": "Комбинация скип медиа",
+  "skip_alert": "Комбинация скип алерта",
   "authorization": {
     "title": "Авторизация",
     "code": "Запрос кода",
@@ -45,6 +47,7 @@
   },
   "message": {
     "skip": "Пропустить",
+    "replay": "Повторить",
     "donate": "перевел"
   },
   "settings": {

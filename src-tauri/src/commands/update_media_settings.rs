@@ -21,7 +21,7 @@ pub async fn update_media_settings(
         .map_err(|e| e.to_string())?;
     websocket_service
         .broadcast_event_message(&EventMessage {
-            event: AppEvent::Settings,
+            event: AppEvent::MediaSettings,
             data: media_settings,
         })
         .await;

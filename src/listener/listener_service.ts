@@ -9,6 +9,7 @@ export class ListenerService extends Subscriptions {
 			const websocketMessage: IEventMessage<unknown> = JSON.parse(
 				event.payload,
 			);
+
 			this.notifySubscribers(websocketMessage.event, websocketMessage.data);
 		});
 	}

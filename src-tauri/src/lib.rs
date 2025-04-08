@@ -4,15 +4,22 @@ pub mod enums;
 pub mod repositories;
 pub mod services;
 pub mod utils;
+
 use crate::commands::*;
 use crate::enums::*;
 use grammers_client::types::{LoginToken, PasswordToken};
+
 use tauri::is_dev;
 use tokio::sync::Mutex;
+use utils::register_shortcuts;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .setup(|app: &mut tauri::App| {
+            register_shortcuts(app)?;
+            Ok(())
+        })
         .plugin(tauri_plugin_updater::Builder::new().build())
         .plugin(tauri_plugin_single_instance::init(|_, _, _| {}))
         .plugin(
@@ -44,6 +51,10 @@ pub fn run() {
             check_password,
             get_media_settings,
             update_media_settings,
+            skip_media,
+            pause_media,
+            play_media,
+            replay_media,
             init
         ])
         .run(tauri::generate_context!())

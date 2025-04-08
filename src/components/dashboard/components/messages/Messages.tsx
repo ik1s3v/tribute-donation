@@ -12,6 +12,9 @@ const Messages = () => {
 	const playingAlertId = useSelector(
 		(state: AppState) => state.alertsState.playingAlertId,
 	);
+	const playingMediaId = useSelector(
+		(state: AppState) => state.mediaState.playingMediaId,
+	);
 	const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
 		useGetMessagesInfiniteQuery(undefined, {
 			refetchOnFocus: false,
@@ -22,6 +25,8 @@ const Messages = () => {
 	return (
 		<>
 			<h1>{t("messages.title")}</h1>
+			<div>{t("skip_alert")} - ctrl+F1</div>
+			<div>{t("skip_media")} - ctrl+F2</div>
 
 			{!data?.pages[0].length ? (
 				<Skeleton
@@ -49,7 +54,8 @@ const Messages = () => {
 							page.map((message) => (
 								<MessageTile
 									message={message}
-									isPlaying={message.id === playingAlertId}
+									isAlertPlaying={message.id === playingAlertId}
+									isMediaPlaying={message.id === playingMediaId}
 									key={message.id}
 								/>
 							)),

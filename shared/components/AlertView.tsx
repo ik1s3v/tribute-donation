@@ -13,7 +13,6 @@ const AlertView = ({
 	imageSrc,
 	width,
 	height,
-	isVisible,
 	backgroundColor,
 }: {
 	alert: IAlert;
@@ -21,14 +20,13 @@ const AlertView = ({
 	imageSrc: string;
 	width: number;
 	height: number;
-	isVisible: boolean;
 	backgroundColor?: string;
 }) => {
 	const { t } = useTranslation();
 	return (
 		<div
 			style={{
-				display: isVisible ? "grid" : "none",
+				display: "grid",
 				height,
 				width,
 				backgroundColor,

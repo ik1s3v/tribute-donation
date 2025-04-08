@@ -4,6 +4,8 @@
   "select": "चुनें",
   "success": "सफलता",
   "sound_volume": "ध्वनि की मात्रा",
+  "skip_media": "शॉर्टकट मीडिया छोड़ें",
+  "skip_alert": "शॉर्टकट स्किप अलर्ट",
   "authorization": {
     "title": "प्राधिकरण",
     "code": "अनुरोध कोड",
@@ -45,6 +47,7 @@
   },
   "message": {
     "skip": "छोड़ें",
+    "replay": "पुनरावृत्ति",
     "donate": "दान करें"
   },
   "settings": {

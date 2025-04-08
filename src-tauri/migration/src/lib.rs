@@ -5,7 +5,7 @@ mod m20250324_221133_create_table_settings;
 mod m20250325_171158_create_table_alerts;
 mod m20250325_185301_add_default_alert;
 mod m20250325_185310_add_default_settings;
-mod m20250405_190810_crate_table_media_settings;
+mod m20250405_190810_create_table_media_settings;
 mod m20250405_190835_add_default_media_settings;
 
 pub struct Migrator;
@@ -19,7 +19,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20250325_171158_create_table_alerts::Migration),
             Box::new(m20250325_185301_add_default_alert::Migration),
             Box::new(m20250325_185310_add_default_settings::Migration),
-            Box::new(m20250405_190810_crate_table_media_settings::Migration),
+            Box::new(m20250405_190810_create_table_media_settings::Migration),
             Box::new(m20250405_190835_add_default_media_settings::Migration),
         ]
     }

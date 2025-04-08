@@ -4,6 +4,8 @@
   "select": "Auswählen",
   "success": "Erfolg",
   "sound_volume": "Lautstärke",
+  "skip_media": "Tastenkombination zum Überspringen von Medien",
+  "skip_alert": "Benachrichtigung zum Überspringen von Verknüpfungen",
   "authorization": {
     "title": "Autorisierung",
     "code": "Code anfordern",
@@ -45,6 +47,7 @@
   },
   "message": {
     "skip": "Überspringen",
+    "replay": "Wiederholungsspiel",
     "donate": "Spenden"
   },
   "settings": {

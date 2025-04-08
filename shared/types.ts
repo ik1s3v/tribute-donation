@@ -1,4 +1,4 @@
-import type { AppEvent, Currency, ViewType } from "./enums";
+import type { AppEvent, Currency, MediaType, ViewType } from "./enums";
 
 export interface IMessage {
 	id: string;
@@ -7,7 +7,7 @@ export interface IMessage {
 	user_name: string;
 	text?: string;
 	audio?: string;
-	media?: string;
+	media?: IMedia;
 	played: boolean;
 	currency: Currency;
 	created_at: number;
@@ -75,4 +75,10 @@ export interface IMediaPlatformSettings {
 	min_amount_rub: number;
 	video_volume: number;
 	min_views: number;
+}
+export interface IMedia {
+	url: string;
+	media_type: MediaType;
+	expires?: number;
+	temporary_src?: string;
 }

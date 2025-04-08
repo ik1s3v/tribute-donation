@@ -144,7 +144,6 @@ const TextStyle = ({
 					<AlertView
 						width={400}
 						height={300}
-						isVisible={true}
 						alert={alert as IAlert}
 						backgroundColor="green"
 						message={{

@@ -3,28 +3,28 @@ import { invoke } from "@tauri-apps/api/core";
 import { Box, Button, Card, IconButton, Typography } from "@mui/material";
 import type { IMessage } from "../../../../../../shared/types";
 import getCurrencySymbol from "../../../../../../shared/utils/getCurrencySymbol";
-import { format } from "date-fns";
 import ReplayIcon from "@mui/icons-material/Replay";
 
+import getColorByMediaType from "../../../../../utils/getColorByMediaType";
+import MediaTile from "./MediaTile";
+import MessageDate from "./MessageDate";
 const MessageTile = ({
 	message,
-	isPlaying,
-}: { message: IMessage; isPlaying: boolean }) => {
+	isAlertPlaying,
+	isMediaPlaying,
+}: { message: IMessage; isAlertPlaying: boolean; isMediaPlaying: boolean }) => {
 	const { t } = useTranslation();
-	const date = format(
-		new Date(message.created_at * 1000),
-		"yyyy-MM-dd HH:mm:ss",
-	);
 
 	return (
 		<>
 			<Card
 				sx={(theme) => ({
 					display: "flex",
+					position: "relative",
 					border: "2px solid",
 					borderRadius: 3,
 					boxSizing: "border-box",
-					borderColor: isPlaying
+					borderColor: isAlertPlaying
 						? theme.palette.primary.main
 						: theme.palette.background.default,
 					marginBottom: "1rem",
@@ -32,16 +32,33 @@ const MessageTile = ({
 					overflow: "hidden",
 				})}
 			>
+				{isMediaPlaying && <MediaTile message={message} />}
 				<Box
 					sx={(theme) => ({
 						width: "3rem",
-						background: theme.palette.background.paper,
+						display: "grid",
+						placeItems: "center",
+						background: message.media
+							? getColorByMediaType(message.media.media_type)
+							: theme.palette.background.paper,
 						minHeight: "100%",
 					})}
-				/>
+				>
+					{!isMediaPlaying && !isAlertPlaying && (
+						<IconButton
+							onClick={() => {
+								invoke("replay_media", { message });
+							}}
+						>
+							<ReplayIcon />
+						</IconButton>
+					)}
+				</Box>
 
 				<div style={{ width: "100%", padding: 15 }}>
-					<span style={{ float: "right", fontSize: 12 }}>{date}</span>
+					<div style={{ float: "right" }}>
+						<MessageDate message={message} />
+					</div>
 					<div>
 						<Typography
 							sx={(theme) => ({
@@ -57,25 +74,29 @@ const MessageTile = ({
 						<span>{message.text}</span>
 					</div>
 
-					<div style={{ display: "grid", gridAutoFlow: "column" }}>
-						{!isPlaying && (
-							<IconButton
+					<div
+						style={{ display: "grid", gridAutoFlow: "column", marginTop: 10 }}
+					>
+						{!isAlertPlaying && (
+							<Button
 								size="small"
 								sx={{
 									justifySelf: "start",
+									fontSize: 12,
 								}}
 								onClick={() => {
 									invoke("replay_alert", { message });
 								}}
 							>
-								<ReplayIcon />
-							</IconButton>
+								{t("message.replay")}
+							</Button>
 						)}
 
 						<Button
 							size="small"
 							sx={{
 								justifySelf: "end",
+								fontSize: 12,
 							}}
 							onClick={() => {
 								invoke("skip_alert", { id: message.id });

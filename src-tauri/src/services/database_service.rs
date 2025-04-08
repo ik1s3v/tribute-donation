@@ -25,7 +25,7 @@ impl DatabaseService {
         let connection = Self::establish_connection(options).await?;
         Self::run_migrations(&connection).await?;
 
-        Ok(DatabaseService { connection })
+        Ok(Self { connection })
     }
 
     async fn establish_connection(options: ConnectOptions) -> Result<DatabaseConnection, String> {

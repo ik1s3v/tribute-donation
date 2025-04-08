@@ -4,6 +4,8 @@
   "select": "Seleccionar",
   "success": "Éxito",
   "sound_volume": "Volumen del sonido",
+  "skip_media": "Atajo, omitir medios",
+  "skip_alert": "Alerta de salto de acceso directo",
   "authorization": {
     "title": "Autorización",
     "code": "Solicitar código",
@@ -45,6 +47,7 @@
   },
   "message": {
     "skip": "Omitir",
+    "replay": "Repetir",
     "donate": "donar"
   },
   "settings": {

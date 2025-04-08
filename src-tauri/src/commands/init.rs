@@ -1,6 +1,6 @@
 use crate::constants::{SQLITE_DB, STATIC_DIR, WS_WIDGET_PORT};
 use crate::services::{
-    DatabaseService, HttpService, TTSService, TelegramService, WebSocketService,
+    DatabaseService, HttpService, MediaService, TTSService, TelegramService, WebSocketService,
 };
 use crate::utils::copy_assets_to_static;
 use std::env;
@@ -59,6 +59,7 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
         .path()
         .resolve("telegram.session", BaseDirectory::AppLocalData)
         .unwrap();
+    let media_service = Arc::new(MediaService::new(Arc::clone(&database_service)));
     let mut telegram_service = TelegramService::new(
         api_id,
         api_hash,
@@ -66,6 +67,7 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
         Arc::clone(&websocket_service),
         Arc::clone(&tts_service),
         Arc::clone(&database_service),
+        Arc::clone(&media_service),
     );
     telegram_service.connect().await?;
 

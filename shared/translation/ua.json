@@ -4,6 +4,8 @@
     "select": "Вибрати",
     "success": "Успіх",
     "sound_volume": "Гучність звуку",
+    "skip_media": "Комбінація скіп медіа",
+    "skip_alert": "Комбінація скіп алерт",
     "authorization": {
         "title": "Авторизація",
         "code": "Запитати код",
@@ -45,6 +47,7 @@
     },
     "message": {
         "skip": "Пропустити",
+        "replay": "Повторити",
         "donate": "задонатив"
     },
     "settings": {

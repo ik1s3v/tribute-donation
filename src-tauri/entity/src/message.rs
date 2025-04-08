@@ -1,4 +1,4 @@
-use sea_orm::entity::prelude::*;
+use sea_orm::{entity::prelude::*, FromJsonQueryResult};
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Serialize, Deserialize)]
@@ -12,7 +12,8 @@ pub struct Model {
     pub currency: Currency,
     pub text: Option<String>,
     pub audio: Option<String>,
-    pub media: Option<String>,
+    #[sea_orm(column_type = "Text")]
+    pub media: Option<Media>,
     pub played: bool,
     pub created_at: i64,
 }
@@ -32,4 +33,24 @@ pub enum Currency {
     USD,
     #[sea_orm(string_value = "NONE")]
     NONE,
+}
+
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, Eq, FromJsonQueryResult)]
+
+pub struct Media {
+    pub url: String,
+    pub media_type: MediaType,
+    pub expires: Option<u64>,
+    pub temporary_src: Option<String>,
+}
+
+#[derive(Debug, Clone, PartialEq, EnumIter, DeriveActiveEnum, Serialize, Deserialize, Eq)]
+#[sea_orm(rs_type = "String", db_type = "Text")]
+pub enum MediaType {
+    #[sea_orm(string_value = "Youtube")]
+    Youtube,
+    #[sea_orm(string_value = "Twitch")]
+    Twitch,
+    #[sea_orm(string_value = "TikTok")]
+    TikTok,
 }

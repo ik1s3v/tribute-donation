@@ -23,6 +23,16 @@ export enum AppEvent {
 	ReplayAlert = "ReplayAlert",
 	AlertPlaying = "AlertPlaying",
 	AlertPlayed = "AlertPlayed",
+	MediaPlaying = "MediaPlaying",
+	SkipPlayingMedia = "SkipPlayingMedia",
+	SkipPlayingAlert = "SkipPlayingAlert",
+	MediaEnd = "MediaEnd",
+	MediaPaused = "MediaPaused",
+	PauseMedia = "PauseMedia",
+	MediaPlayed = "MediaPlayed",
+	PlayMedia = "PlayMedia",
+	SkipMedia = "SkipMedia",
+	ReplayMedia = "ReplayMedia",
 	Alerts = "Alerts",
 	MakeAudioError = "MakeAudioError",
 	Settings = "Settings",
@@ -42,4 +52,9 @@ export enum Currency {
 	EUR = "EUR",
 	USD = "USD",
 	NONE = "NONE",
+}
+export enum MediaType {
+	Youtube = "Youtube",
+	Twitch = "Twitch",
+	TikTok = "TikTok",
 }

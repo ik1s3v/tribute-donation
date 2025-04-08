@@ -4,6 +4,8 @@
   "select": "选择",
   "success": "成功",
   "sound_volume": "音量",
+  "skip_media": "快捷方式跳过媒体",
+  "skip_alert": "快捷方式跳过警报",
   "authorization": {
     "title": "授权",
     "code": "请求代码",
@@ -43,6 +45,7 @@
   },
   "message": {
     "skip": "跳过",
+    "replay": "重播",
     "donate": "捐赠"
   },
   "settings": {

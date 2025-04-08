@@ -14,7 +14,7 @@ pub struct TTSService {
 }
 impl TTSService {
     pub fn new(audio_path: impl AsRef<Path>) -> Self {
-        TTSService {
+        Self {
             audio_path: Arc::new(audio_path.as_ref().to_path_buf()),
             language_detector: Arc::new(
                 LanguageDetectorBuilder::from_languages(&[
