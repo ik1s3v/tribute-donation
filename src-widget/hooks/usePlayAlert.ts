@@ -59,10 +59,13 @@ const usePlayAlert = () => {
 						alerts: alertsRef.current,
 						message,
 					});
+
+					if (message.audio) {
+						audioRef.current.src = `static/${message.audio}`;
+						audioRef.current.volume = settingsRef.current.tts_volume / 100;
+					}
 					soundRef.current.src = `static/${alert.audio}`;
-					audioRef.current.src = `static/${message.audio}`;
 					soundRef.current.volume = alert.audio_volume / 100;
-					audioRef.current.volume = settingsRef.current.tts_volume / 100;
 					soundRef.current.play();
 					setCurrentMessage(message);
 					setCurrentAlert(alert);
@@ -110,8 +113,12 @@ const usePlayAlert = () => {
 	);
 
 	const handleSoundEnd = useCallback(() => {
-		audioRef.current.play();
-	}, []);
+		if (currentMessage?.audio) {
+			audioRef.current.play();
+		} else {
+			handleAudioEnd({ message: currentMessage });
+		}
+	}, [currentMessage, handleAudioEnd]);
 
 	useEffect(() => {
 		audioRef.current.onended = () =>

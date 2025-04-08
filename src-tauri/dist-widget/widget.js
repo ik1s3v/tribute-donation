@@ -19431,7 +19431,7 @@ const zN = (r, a) => {
           alerts: o.current,
           message: M
         });
-        r.current.src = `static/${L.audio}`, a.current.src = `static/${M.audio}`, r.current.volume = L.audio_volume / 100, a.current.volume = u.current.tts_volume / 100, r.current.play(), d(M), m(L);
+        M.audio && (a.current.src = `static/${M.audio}`, a.current.volume = u.current.tts_volume / 100), r.current.src = `static/${L.audio}`, r.current.volume = L.audio_volume / 100, r.current.play(), d(M), m(L);
       }
     }, u.current.moderation_duration);
   }, []), b = P.useCallback(
@@ -19454,8 +19454,8 @@ const zN = (r, a) => {
     },
     [E]
   ), O = P.useCallback(() => {
-    a.current.play();
-  }, []);
+    f != null && f.audio ? a.current.play() : h({ message: f });
+  }, [f, h]);
   return P.useEffect(() => (a.current.onended = () => h({ message: f }), a.current.onerror = () => h({ message: f }), () => {
     a.current.onended = null, a.current.onerror = null;
   }), [f, h]), P.useEffect(() => (r.current.onended = O, r.current.onerror = O, () => {

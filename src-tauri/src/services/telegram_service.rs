@@ -5,7 +5,6 @@ use std::{
 
 use crate::{
     app_event::AppEvent,
-    constants::TRIBUTE_ID,
     repositories::{MessagesRepository, SettingsRepository},
     utils::{parse_message_to_tribute_donate_message, remove_black_listed_words, remove_links},
 };
@@ -104,6 +103,10 @@ impl TelegramService {
         let websocket_service = Arc::clone(&self.websocket_service);
         let tts_service = Arc::clone(&self.tts_service);
         let media_service = Arc::clone(&self.media_service);
+        #[cfg(not(debug_assertions))]
+        let tribute_id: i64 = 6675346585;
+        #[cfg(debug_assertions)]
+        let tribute_id: i64 = std::env::var("TRIBUTE_ID").unwrap().parse().unwrap();
         tauri::async_runtime::spawn(async move {
             loop {
                 let update = match client.next_update().await {
@@ -115,7 +118,12 @@ impl TelegramService {
                 };
                 match update {
                     Update::NewMessage(message)
-                        if !message.outgoing() && message.chat().id() == TRIBUTE_ID =>
+                        if cfg!(debug_assertions)
+                            && message.outgoing()
+                            && message.chat().id() == tribute_id
+                            || !cfg!(debug_assertions)
+                                && !message.outgoing()
+                                && message.chat().id() == tribute_id =>
                     {
                         let donate_message = match parse_message_to_tribute_donate_message(
                             message.text(),

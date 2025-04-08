@@ -44,7 +44,7 @@ const MessageTile = ({
 						minHeight: "100%",
 					})}
 				>
-					{!isMediaPlaying && !isAlertPlaying && (
+					{message.media && !isMediaPlaying && !isAlertPlaying && (
 						<IconButton
 							onClick={() => {
 								invoke("replay_media", { message });
