@@ -12,9 +12,7 @@ const MediaTile = ({ message }: { message: IMessage }) => {
 	const pausedMediaId = useSelector(
 		(state: AppState) => state.mediaState.pausedMediaId,
 	);
-	const playingMediaId = useSelector(
-		(state: AppState) => state.mediaState.playingMediaId,
-	);
+
 	return (
 		<>
 			{message.media && (
