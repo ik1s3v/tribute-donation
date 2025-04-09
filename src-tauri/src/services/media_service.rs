@@ -412,6 +412,14 @@ impl MediaParser for MediaService {
                 {
                     return Some(video_id);
                 }
+                if let Some(path) = url.path().strip_prefix("/shorts/") {
+                    if !path.is_empty() {
+                        // Extract the video ID from the path
+                        // Split at any secondary parameters
+                        let video_id = path.split('/').next().unwrap_or(path);
+                        return Some(video_id.to_string());
+                    }
+                }
             }
 
             // Check for youtu.be format
