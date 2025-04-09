@@ -9,28 +9,35 @@ use crate::commands::*;
 use crate::enums::*;
 use grammers_client::types::{LoginToken, PasswordToken};
 
-use tauri::is_dev;
 use tokio::sync::Mutex;
 use utils::register_shortcuts;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    tauri::Builder::default()
+    let mut builder = tauri::Builder::default();
+
+    #[cfg(debug_assertions)]
+    {
+        let devtools = tauri_plugin_devtools::init();
+        builder = builder.plugin(devtools);
+    }
+
+    #[cfg(not(debug_assertions))]
+    {
+        let log_plugin = tauri_plugin_log::Builder::new()
+            .level(log::LevelFilter::Error)
+            .build();
+
+        builder = builder.plugin(log_plugin);
+    }
+
+    builder
         .setup(|app: &mut tauri::App| {
             register_shortcuts(app)?;
             Ok(())
         })
         .plugin(tauri_plugin_updater::Builder::new().build())
         .plugin(tauri_plugin_single_instance::init(|_, _, _| {}))
-        .plugin(
-            tauri_plugin_log::Builder::new()
-                .level(if is_dev() {
-                    log::LevelFilter::Info
-                } else {
-                    log::LevelFilter::Error
-                })
-                .build(),
-        )
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
         .manage(ExecutionFlag(Mutex::new(false)))
