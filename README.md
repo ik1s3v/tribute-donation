@@ -43,7 +43,6 @@ To set environment variables on Windows, follow these steps:
    $env:API_ID="your_api_id"
    $env:API_HASH="your_api_hash"
    $env:TAURI_SIGNING_PRIVATE_KEY="your_private_key"
-   $env:TRIBUTE_ID="your_telegram_chanel_id_for_test"
    ```
    
    Replace `your_api_id`,`your_telegram_chanel_id_for_test`, `your_api_hash`, and `your_private_key` with the actual values.
