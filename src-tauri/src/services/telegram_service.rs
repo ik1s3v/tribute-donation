@@ -171,7 +171,7 @@ impl TelegramService {
                         }
                         let audio = if let Some(text) = text.clone() {
                             match tts_service
-                                .make_audio(text.as_str(), message.id().to_string())
+                                .make_audio(&remove_links(&text), message.id().to_string())
                                 .await
                             {
                                 Ok(audio) => Some(audio),
