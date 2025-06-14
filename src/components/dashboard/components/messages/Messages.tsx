@@ -1,11 +1,13 @@
 import { useTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroller";
 import { useGetMessagesInfiniteQuery } from "../../../../api/messagesApi";
-
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import type { AppState } from "../../../../store";
 import MessageTile from "./components/MessageTile";
 import { Skeleton } from "@mui/material";
+import { useEffect } from "react";
+import { showSnackBar } from "../../../../store/slices/snackBarSlice";
+import { AlertSeverity } from "../../../../../shared/enums";
 
 const Messages = () => {
 	const { t } = useTranslation();
@@ -15,12 +17,24 @@ const Messages = () => {
 	const playingMediaId = useSelector(
 		(state: AppState) => state.mediaState.playingMediaId,
 	);
-	const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+	const { data, fetchNextPage, hasNextPage, isFetchingNextPage, error } =
 		useGetMessagesInfiniteQuery(undefined, {
 			refetchOnFocus: false,
 			refetchOnMountOrArgChange: false,
 			refetchOnReconnect: false,
 		});
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (error) {
+			dispatch(
+				showSnackBar({
+					message: error as string,
+					alertSeverity: AlertSeverity.error,
+				}),
+			);
+		}
+	}, [error, dispatch]);
 
 	return (
 		<>

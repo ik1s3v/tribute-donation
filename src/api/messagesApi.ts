@@ -1,9 +1,5 @@
-import { store } from "./../store/index";
-import { invoke } from "@tauri-apps/api/core";
 import { api } from ".";
 import type { IMessage, IParms } from "../../shared/types";
-import { showSnackBar } from "../store/slices/snackBarSlice";
-import { AlertSeverity } from "../../shared/enums";
 
 export const messagesApi = api.injectEndpoints({
 	endpoints: (builder) => ({
@@ -31,22 +27,10 @@ export const messagesApi = api.injectEndpoints({
 					};
 				},
 			},
-			queryFn: async ({ pageParam }) => {
-				try {
-					const data = await invoke<IMessage[]>("get_messages", {
-						...pageParam,
-					});
-					return { data };
-				} catch (error) {
-					store.dispatch(
-						showSnackBar({
-							message: error as string,
-							alertSeverity: AlertSeverity.error,
-						}),
-					);
-					return { error: { status: 500, data: error } };
-				}
-			},
+			query: ({ pageParam }) => ({
+				command: "get_messages",
+				data: { ...pageParam },
+			}),
 		}),
 	}),
 });
