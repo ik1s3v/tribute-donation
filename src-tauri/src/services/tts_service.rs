@@ -33,9 +33,12 @@ impl TTSService {
                 Some(language) => language.iso_code_639_1().to_string(),
                 None => "en".to_string(),
             };
+
+            let encoded_text = urlencoding::encode(&text_parts);
+
             let url = format!(
                 "https://translate.google.com/translate_tts?ie=UTF-8&q={}&tl={}&total=1&idx=0&textlen={}&client=tw-ob",
-                text_parts,
+                encoded_text,
                 language,
                 text_parts.chars().count()
             );

@@ -29,7 +29,7 @@ const Messages = () => {
 		if (error) {
 			dispatch(
 				showSnackBar({
-					message: error as string,
+					message: error.message as string,
 					alertSeverity: AlertSeverity.error,
 				}),
 			);

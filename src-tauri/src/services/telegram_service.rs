@@ -15,6 +15,7 @@ use grammers_client::{
     types::{LoginToken, PasswordToken},
     Client, Config, SignInError, Update,
 };
+
 use serde::Serialize;
 use uuid::Uuid;
 

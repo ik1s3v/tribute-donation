@@ -52,6 +52,7 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     http_service.run().await?;
 
     let tts_service = Arc::new(TTSService::new(static_path.clone()));
+
     let api_id: i32 = env!("API_ID").parse().expect("API_ID must be a valid i32");
     let api_hash: String = env!("API_HASH").to_string();
 

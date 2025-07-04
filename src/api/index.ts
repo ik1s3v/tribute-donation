@@ -12,12 +12,10 @@ const tauriBaseQuery =
 		try {
 			const result = await invoke<unknown>(command, data);
 			return { data: result };
-		} catch (tauriError) {
-			const err = tauriError as string;
+		} catch (error) {
 			return {
 				error: {
-					name: command,
-					message: err,
+					message: error as string,
 				},
 			};
 		}
