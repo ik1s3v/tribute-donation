@@ -1,7 +1,5 @@
-use std::sync::Arc;
-
 use entity::alert::*;
-use tauri::State;
+use tauri::{AppHandle, State};
 
 use crate::{
     enums::AppEvent,
@@ -11,8 +9,9 @@ use crate::{
 
 #[tauri::command]
 pub async fn update_alert_settings(
-    database_service: State<'_, Arc<DatabaseService>>,
-    websocket_service: State<'_, Arc<WebSocketService>>,
+    app: AppHandle,
+    database_service: State<'_, DatabaseService>,
+    websocket_service: State<'_, WebSocketService>,
     alert: Model,
 ) -> Result<(), String> {
     database_service
@@ -24,10 +23,13 @@ pub async fn update_alert_settings(
         .await
         .map_err(|e| e.to_string())?;
     websocket_service
-        .broadcast_event_message(&EventMessage {
-            event: AppEvent::Alerts,
-            data: alerts,
-        })
+        .broadcast_event_message(
+            &EventMessage {
+                event: AppEvent::Alerts,
+                data: alerts,
+            },
+            app,
+        )
         .await;
     Ok(())
 }

@@ -13,6 +13,7 @@ import { AlertSeverity } from "../shared/enums";
 import { CircularProgress } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import UpdaterDialog from "./components/UpdaterDialog";
+
 function App() {
 	const isInit = useSelector((state: AppState) => state.mainState.isInit);
 	const dispatch = useDispatch();

@@ -1,7 +1,5 @@
-use std::sync::Arc;
-
 use entity::media_settings::*;
-use tauri::State;
+use tauri::{AppHandle, State};
 
 use crate::{
     enums::AppEvent,
@@ -11,8 +9,9 @@ use crate::{
 
 #[tauri::command]
 pub async fn update_media_settings(
-    database_service: State<'_, Arc<DatabaseService>>,
-    websocket_service: State<'_, Arc<WebSocketService>>,
+    app: AppHandle,
+    database_service: State<'_, DatabaseService>,
+    websocket_service: State<'_, WebSocketService>,
     media_settings: Model,
 ) -> Result<(), String> {
     database_service
@@ -20,10 +19,13 @@ pub async fn update_media_settings(
         .await
         .map_err(|e| e.to_string())?;
     websocket_service
-        .broadcast_event_message(&EventMessage {
-            event: AppEvent::MediaSettings,
-            data: media_settings,
-        })
+        .broadcast_event_message(
+            &EventMessage {
+                event: AppEvent::MediaSettings,
+                data: media_settings,
+            },
+            app,
+        )
         .await;
     Ok(())
 }

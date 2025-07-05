@@ -1,13 +1,10 @@
-use std::sync::Arc;
-
+use crate::{repositories::SettingsRepository, services::DatabaseService};
 use entity::settings::*;
 use tauri::State;
 
-use crate::{repositories::SettingsRepository, services::DatabaseService};
-
 #[tauri::command]
 pub async fn get_settings(
-    database_service: State<'_, Arc<DatabaseService>>,
+    database_service: State<'_, DatabaseService>,
 ) -> Result<Option<Model>, String> {
     let settings = database_service
         .get_settings()

@@ -1,13 +1,10 @@
-use std::sync::Arc;
-
+use crate::{repositories::MessagesRepository, services::DatabaseService};
 use entity::message::*;
 use tauri::State;
 
-use crate::{repositories::MessagesRepository, services::DatabaseService};
-
 #[tauri::command]
 pub async fn get_messages(
-    database_service: State<'_, Arc<DatabaseService>>,
+    database_service: State<'_, DatabaseService>,
     limit: u64,
     offset: u64,
 ) -> Result<Vec<Model>, String> {

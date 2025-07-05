@@ -1,35 +1,28 @@
-use lingua::Language::{
-    Arabic, Chinese, English, French, German, Hindi, Portuguese, Russian, Spanish, Ukrainian,
-};
-use lingua::{Language, LanguageDetector, LanguageDetectorBuilder};
+use lingua::{Language, LanguageDetector};
 use std::path::{Path, PathBuf};
-use std::sync::Arc;
+use tauri::{AppHandle, Manager};
 use tokio::{fs::File, io::AsyncWriteExt};
 
 #[derive(Clone)]
-
 pub struct TTSService {
-    audio_path: Arc<PathBuf>,
-    language_detector: Arc<LanguageDetector>,
+    audio_path: PathBuf,
 }
 impl TTSService {
     pub fn new(audio_path: impl AsRef<Path>) -> Self {
         Self {
-            audio_path: Arc::new(audio_path.as_ref().to_path_buf()),
-            language_detector: Arc::new(
-                LanguageDetectorBuilder::from_languages(&[
-                    English, French, German, Spanish, Russian, Ukrainian, Portuguese, Hindi,
-                    Chinese, Arabic,
-                ])
-                .build(),
-            ),
+            audio_path: audio_path.as_ref().to_path_buf(),
         }
     }
-    pub async fn make_audio(&self, text: &str, file_name: String) -> Result<String, String> {
+    pub async fn make_audio(
+        &self,
+        text: &str,
+        file_name: String,
+        app: AppHandle,
+    ) -> Result<String, String> {
         let mut audio_bytes = Vec::new();
 
         for text_parts in self.split_text(text, 100) {
-            let language = match self.detect_language(&text_parts) {
+            let language = match self.detect_language(&text_parts, app.clone()) {
                 Some(language) => language.iso_code_639_1().to_string(),
                 None => "en".to_string(),
             };
@@ -97,7 +90,9 @@ impl TTSService {
 
         result
     }
-    fn detect_language(&self, text: &str) -> Option<Language> {
-        self.language_detector.detect_language_of(text)
+
+    fn detect_language(&self, text: &str, app: AppHandle) -> Option<Language> {
+        let language_detector = app.state::<LanguageDetector>();
+        language_detector.detect_language_of(text)
     }
 }

@@ -1,20 +1,17 @@
-#[cfg(test)]
-use mockall::predicate::*;
-
+use super::{DatabaseService, TributeDonateMessage};
+use crate::repositories::MediaSettingsRepository;
 use entity::{
     media_settings::MediaPlatformSettings,
     message::{Currency, Media, MediaType},
 };
+#[cfg(test)]
+use mockall::predicate::*;
 use regex::Regex;
 use reqwest::Client;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
-use std::sync::Arc;
+use tauri::{AppHandle, Manager};
 use url::Url;
-
-use crate::repositories::MediaSettingsRepository;
-
-use super::{DatabaseService, TributeDonateMessage};
 
 struct UrlMedia {
     url: String,
@@ -116,21 +113,20 @@ pub struct TwitchExtensions {
     #[serde(rename = "requestID")]
     pub request_id: String,
 }
-pub struct MediaService {
-    database_service: Arc<DatabaseService>,
-    client: Arc<Client>,
-}
+pub struct MediaService {}
 
 impl MediaService {
-    pub fn new(database_service: Arc<DatabaseService>) -> Self {
-        let client=Arc::new(reqwest::Client::builder().user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36").build().unwrap());
-        Self {
-            database_service,
-            client,
-        }
+    pub fn new() -> Self {
+        Self {}
     }
-    pub async fn get_media(&self, donate_message: &TributeDonateMessage) -> Option<Media> {
-        let media_settings = match self.database_service.get_media_settings().await {
+
+    pub async fn get_media(
+        &self,
+        donate_message: &TributeDonateMessage,
+        app: AppHandle,
+    ) -> Option<Media> {
+        let database_service = app.state::<DatabaseService>();
+        let media_settings = match database_service.get_media_settings().await {
             Ok(Some(media_settings)) => media_settings,
             Ok(None) => return None,
             Err(e) => {
@@ -145,7 +141,7 @@ impl MediaService {
             MediaType::Twitch => {
                 self.check_enabled_and_min_amount(&donate_message, &media_settings.twitch)?;
 
-                let twitch_clip_info = self.get_twitch_clip_info(&url_media.url).await?;
+                let twitch_clip_info = self.get_twitch_clip_info(&url_media.url, app).await?;
                 let token = match serde_json::from_str::<Token>(
                     &twitch_clip_info.data.clip.playback_access_token.value,
                 ) {
@@ -168,7 +164,7 @@ impl MediaService {
             MediaType::TikTok => {
                 self.check_enabled_and_min_amount(&donate_message, &media_settings.tiktok)?;
 
-                let tiktok_info = self.get_tiktok_info(&url_media.url).await?;
+                let tiktok_info = self.get_tiktok_info(&url_media.url, app).await?;
 
                 if media_settings.tiktok.min_views > tiktok_info.play_count {
                     return None;
@@ -186,7 +182,7 @@ impl MediaService {
 
                 let video_id = self.get_youtube_video_id(&url_media.url.clone())?;
 
-                let youtube_views = self.get_youtube_views(&url_media.url).await?;
+                let youtube_views = self.get_youtube_views(&url_media.url, app).await?;
 
                 if media_settings.youtube.min_views > youtube_views {
                     return None;
@@ -226,9 +222,9 @@ impl MediaService {
         Some(true)
     }
 
-    async fn get_tiktok_info(&self, url: &str) -> Option<TikTokInfo> {
-        let response = match self
-            .client
+    async fn get_tiktok_info(&self, url: &str, app: AppHandle) -> Option<TikTokInfo> {
+        let request_client = app.state::<reqwest::Client>();
+        let response = match request_client
             .get(url)
             .header("Accept-Language", "en-US,en;q=0.9")
             .send()
@@ -274,9 +270,9 @@ impl MediaService {
         Some(TikTokInfo { id, play_count })
     }
 
-    async fn get_youtube_views(&self, url: &str) -> Option<u64> {
-        let response = match self
-            .client
+    async fn get_youtube_views(&self, url: &str, app: AppHandle) -> Option<u64> {
+        let request_client: tauri::State<'_, Client> = app.state::<reqwest::Client>();
+        let response = match request_client
             .get(url)
             .header("Accept-Language", "en-US,en;q=0.9")
             .send()
@@ -314,7 +310,7 @@ impl MediaService {
         return None;
     }
 
-    async fn get_twitch_clip_info(&self, clip_url: &str) -> Option<TwitchClipInfo> {
+    async fn get_twitch_clip_info(&self, clip_url: &str, app: AppHandle) -> Option<TwitchClipInfo> {
         let twitch_gql_endpoint = "https://gql.twitch.tv/gql";
         let slug = clip_url.split('/').last().unwrap_or_default().to_string();
         let payload = vec![Operation {
@@ -328,8 +324,10 @@ impl MediaService {
                 },
             },
         }];
-        let response = match self
-            .client
+
+        let request_client: tauri::State<'_, Client> = app.state::<reqwest::Client>();
+
+        let response = match request_client
             .post(twitch_gql_endpoint)
             .header("Client-Id", "kimne78kx3ncx6brgo4mv6wki5h1ko")
             .header("Content-Type", "text/plain;charset=UTF-8")

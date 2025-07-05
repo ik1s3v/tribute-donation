@@ -1,8 +1,4 @@
-use std::{
-    path::{Path, PathBuf},
-    sync::Arc,
-};
-
+use super::{DatabaseService, MediaService, TTSService, WebSocketService};
 use crate::{
     app_event::AppEvent,
     repositories::{MessagesRepository, SettingsRepository},
@@ -15,11 +11,10 @@ use grammers_client::{
     types::{LoginToken, PasswordToken},
     Client, Config, SignInError, Update,
 };
-
 use serde::Serialize;
+use std::path::{Path, PathBuf};
+use tauri::{AppHandle, Manager};
 use uuid::Uuid;
-
-use super::{DatabaseService, MediaService, TTSService, WebSocketService};
 
 #[derive(Serialize, Clone, Debug)]
 pub struct EventMessage<T> {
@@ -40,35 +35,20 @@ pub struct TelegramService {
     client: Option<Client>,
     api_id: i32,
     api_hash: String,
-    session_path: Arc<PathBuf>,
-    websocket_service: Arc<WebSocketService>,
-    tts_service: Arc<TTSService>,
-    database_service: Arc<DatabaseService>,
-    media_service: Arc<MediaService>,
+    session_path: PathBuf,
 }
+
 impl TelegramService {
-    pub fn new(
-        api_id: i32,
-        api_hash: String,
-        session_path: impl AsRef<Path>,
-        websocket_service: Arc<WebSocketService>,
-        tts_service: Arc<TTSService>,
-        database_service: Arc<DatabaseService>,
-        media_service: Arc<MediaService>,
-    ) -> Self {
+    pub fn new(api_id: i32, api_hash: String, session_path: impl AsRef<Path>) -> Self {
         Self {
             client: None,
             api_id,
             api_hash,
-            session_path: Arc::new(session_path.as_ref().to_path_buf()),
-            websocket_service,
-            tts_service,
-            database_service,
-            media_service,
+            session_path: session_path.as_ref().to_path_buf(),
         }
     }
 
-    pub async fn connect(&mut self) -> Result<(), String> {
+    pub async fn connect(&mut self, app: AppHandle) -> Result<(), String> {
         let client = Client::connect(Config {
             session: Session::load_file_or_create(&*self.session_path).map_err(|e| {
                 log::error!("{}", e.to_string());
@@ -90,25 +70,25 @@ impl TelegramService {
         })?;
         self.client = Some(client);
         if is_authorized {
-            self.listen_tribute().await?;
+            self.listen_tribute(app).await?;
         }
         Ok(())
     }
-    pub async fn listen_tribute(&self) -> Result<(), String> {
-        let client = Arc::clone(&Arc::new(
-            self.client
-                .to_owned()
-                .ok_or("Telegram client is not initialized.".to_string())?,
-        ));
-        let database_service = Arc::clone(&self.database_service);
-        let websocket_service = Arc::clone(&self.websocket_service);
-        let tts_service = Arc::clone(&self.tts_service);
-        let media_service = Arc::clone(&self.media_service);
+    pub async fn listen_tribute(&self, app: AppHandle) -> Result<(), String> {
+        let client = self
+            .client
+            .clone()
+            .ok_or("Telegram client is not initialized")?;
+        let app = app.clone();
         #[cfg(not(debug_assertions))]
         let tribute_id: i64 = 6675346585;
         #[cfg(debug_assertions)]
         let tribute_id: i64 = std::env::var("TRIBUTE_ID").unwrap().parse().unwrap();
         tauri::async_runtime::spawn(async move {
+            let database_service = app.state::<DatabaseService>();
+            let websocket_service = app.state::<WebSocketService>();
+            let tts_service = app.state::<TTSService>();
+            let media_service = app.state::<MediaService>();
             loop {
                 let update = match client.next_update().await {
                     Ok(update) => update,
@@ -133,7 +113,7 @@ impl TelegramService {
                             Some(message) => message,
                             None => continue,
                         };
-                        let media = media_service.get_media(&donate_message).await;
+                        let media = media_service.get_media(&donate_message, app.clone()).await;
                         let settings = match database_service
                             .get_settings()
                             .await
@@ -172,7 +152,11 @@ impl TelegramService {
                         }
                         let audio = if let Some(text) = text.clone() {
                             match tts_service
-                                .make_audio(&remove_links(&text), message.id().to_string())
+                                .make_audio(
+                                    &remove_links(&text),
+                                    message.id().to_string(),
+                                    app.clone(),
+                                )
                                 .await
                             {
                                 Ok(audio) => Some(audio),
@@ -183,7 +167,9 @@ impl TelegramService {
                                         data: e,
                                     };
 
-                                    websocket_service.broadcast_event_message(&ws_message).await;
+                                    websocket_service
+                                        .broadcast_event_message(&ws_message, app.clone())
+                                        .await;
                                     None
                                 }
                             }
@@ -213,7 +199,7 @@ impl TelegramService {
                         };
 
                         websocket_service
-                            .broadcast_event_message(&event_message)
+                            .broadcast_event_message(&event_message, app.clone())
                             .await;
                     }
                     _ => {}
@@ -236,13 +222,14 @@ impl TelegramService {
         &self,
         phone_code: String,
         login_token: &LoginToken,
+        app: AppHandle,
     ) -> Result<Option<PasswordToken>, String> {
         let client = self.client.as_ref().unwrap();
         let sign_in = client.sign_in(login_token, &phone_code).await;
         match sign_in {
             Ok(_) => {
                 client.session().save_to_file(&*self.session_path).unwrap();
-                self.listen_tribute().await?;
+                self.listen_tribute(app).await?;
                 return Ok(None);
             }
             Err(e) => match e {
@@ -261,13 +248,14 @@ impl TelegramService {
         &self,
         password: String,
         password_token: PasswordToken,
+        app: AppHandle,
     ) -> Result<(), String> {
         let client = self.client.as_ref().unwrap();
         let check_password = client.check_password(password_token, password).await;
         match check_password {
             Ok(_) => {
                 client.session().save_to_file(&*self.session_path).unwrap();
-                self.listen_tribute().await?;
+                self.listen_tribute(app).await?;
                 return Ok(());
             }
             Err(e) => {

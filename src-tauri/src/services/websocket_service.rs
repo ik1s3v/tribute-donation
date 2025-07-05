@@ -1,8 +1,15 @@
+use super::DatabaseService;
+use super::EventMessage;
+use crate::enums::AppEvent;
+use crate::repositories::AlertsRepository;
+use crate::repositories::MediaSettingsRepository;
+use crate::repositories::SettingsRepository;
 use futures::{SinkExt, StreamExt};
 use std::collections::HashMap;
 use std::sync::Arc;
 use tauri::AppHandle;
 use tauri::Emitter;
+use tauri::Manager;
 use tokio::net::TcpListener;
 use tokio::net::TcpStream;
 use tokio::sync::mpsc;
@@ -11,49 +18,33 @@ use tokio_tungstenite::accept_async;
 use tokio_tungstenite::tungstenite::Message;
 use uuid::Uuid;
 
-use crate::enums::AppEvent;
-use crate::repositories::AlertsRepository;
-use crate::repositories::MediaSettingsRepository;
-use crate::repositories::SettingsRepository;
-
-use super::DatabaseService;
-use super::EventMessage;
-
 type Tx = mpsc::UnboundedSender<Message>;
 
 #[derive(Clone)]
-pub struct WebSocketService {
-    clients: Arc<Mutex<HashMap<Uuid, Tx>>>,
-    database_service: Arc<DatabaseService>,
-    app: Arc<AppHandle>,
-}
+pub struct WebSocketService {}
 
 impl WebSocketService {
-    pub fn new(database_service: Arc<DatabaseService>, app: Arc<AppHandle>) -> Self {
-        Self {
-            clients: Arc::new(Mutex::new(HashMap::new())),
-            database_service,
-            app,
-        }
+    pub fn new() -> Self {
+        Self {}
     }
 
-    pub async fn start(&self, addr: &str) -> Result<(), String> {
+    pub async fn start(&self, addr: &str, app: AppHandle) -> Result<(), String> {
         let listener: TcpListener = self.bind_listener(addr).await?;
         let websocket_service = Arc::new(self.clone());
         tauri::async_runtime::spawn(async move {
             loop {
                 let (stream, _) = listener.accept().await.unwrap();
                 let websocket_service = Arc::clone(&websocket_service);
-
+                let app = app.clone();
                 tauri::async_runtime::spawn(async move {
-                    websocket_service.handle_connection(stream).await;
+                    websocket_service.handle_connection(stream, app).await;
                 });
             }
         });
         Ok(())
     }
 
-    async fn handle_connection(&self, stream: TcpStream) {
+    async fn handle_connection(&self, stream: TcpStream, app: AppHandle) {
         log::info!("Handling new connection...");
         if let Ok(ws_stream) = accept_async(stream).await {
             let id = Uuid::new_v4();
@@ -61,7 +52,7 @@ impl WebSocketService {
             let (tx, mut rx) = mpsc::unbounded_channel();
 
             let server = self.clone();
-            self.initialize_client(id, tx.clone()).await;
+            self.initialize_client(id, tx.clone(), app.clone()).await;
 
             let recv_task = async {
                 while let Some(msg) = rx.recv().await {
@@ -71,34 +62,36 @@ impl WebSocketService {
                     }
                 }
             };
-
             let send_task = async {
                 while let Some(Ok(msg)) = ws_read.next().await {
-                    server.broadcast(msg).await;
+                    server.broadcast(msg, app.clone()).await;
                 }
             };
             tokio::select! {
                 _ = send_task => {},
                 _ = recv_task => {},
             }
-            server.remove_client(id).await;
+            server.remove_client(id, app).await;
         }
     }
-    async fn initialize_client(&self, id: Uuid, tx: Tx) {
+
+    async fn initialize_client(&self, id: Uuid, tx: Tx, app: AppHandle) {
         log::info!("New client connected: {}", id);
-        self.send_alerts_settings(tx.clone()).await;
-        self.send_settings(tx.clone()).await;
-        self.send_media_settings(tx.clone()).await;
-        self.clients.lock().await.insert(id, tx);
+        self.send_alerts_settings(tx.clone(), app.clone()).await;
+        self.send_settings(tx.clone(), app.clone()).await;
+        self.send_media_settings(tx.clone(), app.clone()).await;
+        let websocket_clients = app.state::<Mutex<HashMap<Uuid, Tx>>>();
+        websocket_clients.lock().await.insert(id, tx);
     }
-    async fn broadcast(&self, msg: Message) {
-        self.app
-            .emit("websocket", msg.clone().into_text().unwrap().to_string())
+    async fn broadcast(&self, msg: Message, app: AppHandle) {
+        app.emit("websocket", msg.clone().into_text().unwrap().to_string())
             .map_err(|e| {
                 log::error!("Error sending websocket event: {}", e);
             })
             .unwrap();
-        let clients = self.clients.lock().await;
+        let websocket_clients = app.state::<Mutex<HashMap<Uuid, Tx>>>();
+
+        let clients = websocket_clients.lock().await;
         let senders: Vec<Tx> = clients.values().cloned().collect();
         drop(clients); // Release lock before await points
 
@@ -109,8 +102,9 @@ impl WebSocketService {
         }
     }
 
-    async fn send_alerts_settings(&self, tx: Tx) {
-        let alerts = self.database_service.get_alerts().await.unwrap();
+    async fn send_alerts_settings(&self, tx: Tx, app: AppHandle) {
+        let database_service = app.state::<DatabaseService>();
+        let alerts = database_service.get_alerts().await.unwrap();
         tx.send(Message::Text(
             (&serde_json::to_string(&EventMessage {
                 event: AppEvent::Alerts,
@@ -124,9 +118,9 @@ impl WebSocketService {
         })
         .unwrap();
     }
-    async fn send_settings(&self, tx: Tx) {
-        let settings = self
-            .database_service
+    async fn send_settings(&self, tx: Tx, app: AppHandle) {
+        let database_service = app.state::<DatabaseService>();
+        let settings = database_service
             .get_settings()
             .await
             .map_err(|e| {
@@ -147,9 +141,9 @@ impl WebSocketService {
         .unwrap();
     }
 
-    async fn send_media_settings(&self, tx: Tx) {
-        let media_settings = self
-            .database_service
+    async fn send_media_settings(&self, tx: Tx, app: AppHandle) {
+        let database_service = app.state::<DatabaseService>();
+        let media_settings = database_service
             .get_media_settings()
             .await
             .map_err(|e| {
@@ -170,18 +164,20 @@ impl WebSocketService {
         .unwrap();
     }
 
-    pub async fn broadcast_event_message<T>(&self, message: &EventMessage<T>)
+    pub async fn broadcast_event_message<T>(&self, message: &EventMessage<T>, app: AppHandle)
     where
         T: serde::Serialize,
     {
-        self.broadcast(Message::Text(
-            (&serde_json::to_string(message).unwrap()).into(),
-        ))
+        self.broadcast(
+            Message::Text((&serde_json::to_string(message).unwrap()).into()),
+            app,
+        )
         .await;
     }
-    async fn remove_client(&self, id: Uuid) {
+    async fn remove_client(&self, id: Uuid, app: AppHandle) {
         log::info!("Client disconnected: {}", id);
-        self.clients.lock().await.remove(&id);
+        let websocket_clients = app.state::<Mutex<HashMap<Uuid, Tx>>>();
+        websocket_clients.lock().await.remove(&id);
     }
 
     async fn bind_listener(&self, addr: &str) -> Result<TcpListener, String> {

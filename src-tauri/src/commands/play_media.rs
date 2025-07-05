@@ -1,22 +1,23 @@
-use std::sync::Arc;
-
-use tauri::State;
-
 use crate::{
     enums::AppEvent,
     services::{EventMessage, WebSocketService},
 };
+use tauri::{AppHandle, State};
 
 #[tauri::command]
 pub async fn play_media(
-    websocket_service: State<'_, Arc<WebSocketService>>,
+    app: AppHandle,
+    websocket_service: State<'_, WebSocketService>,
     id: String,
 ) -> Result<(), ()> {
     websocket_service
-        .broadcast_event_message(&EventMessage {
-            event: AppEvent::PlayMedia,
-            data: id,
-        })
+        .broadcast_event_message(
+            &EventMessage {
+                event: AppEvent::PlayMedia,
+                data: id,
+            },
+            app,
+        )
         .await;
     Ok(())
 }
