@@ -223,8 +223,8 @@ impl MediaService {
     }
 
     async fn get_tiktok_info(&self, url: &str, app: AppHandle) -> Option<TikTokInfo> {
-        let request_client = app.state::<reqwest::Client>();
-        let response = match request_client
+        let reqwest_client = app.state::<reqwest::Client>();
+        let response = match reqwest_client
             .get(url)
             .header("Accept-Language", "en-US,en;q=0.9")
             .send()
@@ -271,8 +271,8 @@ impl MediaService {
     }
 
     async fn get_youtube_views(&self, url: &str, app: AppHandle) -> Option<u64> {
-        let request_client: tauri::State<'_, Client> = app.state::<reqwest::Client>();
-        let response = match request_client
+        let reqwest_client: tauri::State<'_, Client> = app.state::<reqwest::Client>();
+        let response = match reqwest_client
             .get(url)
             .header("Accept-Language", "en-US,en;q=0.9")
             .send()
@@ -325,9 +325,9 @@ impl MediaService {
             },
         }];
 
-        let request_client: tauri::State<'_, Client> = app.state::<reqwest::Client>();
+        let reqwest_client: tauri::State<'_, Client> = app.state::<reqwest::Client>();
 
-        let response = match request_client
+        let response = match reqwest_client
             .post(twitch_gql_endpoint)
             .header("Client-Id", "kimne78kx3ncx6brgo4mv6wki5h1ko")
             .header("Content-Type", "text/plain;charset=UTF-8")

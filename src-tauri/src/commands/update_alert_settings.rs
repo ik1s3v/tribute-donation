@@ -11,7 +11,6 @@ use crate::{
 pub async fn update_alert_settings(
     app: AppHandle,
     database_service: State<'_, DatabaseService>,
-    websocket_service: State<'_, WebSocketService>,
     alert: Model,
 ) -> Result<(), String> {
     database_service
@@ -22,14 +21,13 @@ pub async fn update_alert_settings(
         .get_alerts()
         .await
         .map_err(|e| e.to_string())?;
-    websocket_service
-        .broadcast_event_message(
-            &EventMessage {
-                event: AppEvent::Alerts,
-                data: alerts,
-            },
-            app,
-        )
-        .await;
+    WebSocketService::broadcast_event_message(
+        &EventMessage {
+            event: AppEvent::Alerts,
+            data: alerts,
+        },
+        app,
+    )
+    .await;
     Ok(())
 }

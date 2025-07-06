@@ -14,6 +14,7 @@ use grammers_client::{
 use serde::Serialize;
 use std::path::{Path, PathBuf};
 use tauri::{AppHandle, Manager};
+use tokio::sync::Mutex;
 use uuid::Uuid;
 
 #[derive(Serialize, Clone, Debug)]
@@ -32,7 +33,6 @@ pub struct TributeDonateMessage {
 
 #[derive(Clone)]
 pub struct TelegramService {
-    client: Option<Client>,
     api_id: i32,
     api_hash: String,
     session_path: PathBuf,
@@ -41,7 +41,6 @@ pub struct TelegramService {
 impl TelegramService {
     pub fn new(api_id: i32, api_hash: String, session_path: impl AsRef<Path>) -> Self {
         Self {
-            client: None,
             api_id,
             api_hash,
             session_path: session_path.as_ref().to_path_buf(),
@@ -49,7 +48,7 @@ impl TelegramService {
     }
 
     pub async fn connect(&mut self, app: AppHandle) -> Result<(), String> {
-        let client = Client::connect(Config {
+        let telegram_client = Client::connect(Config {
             session: Session::load_file_or_create(&*self.session_path).map_err(|e| {
                 log::error!("{}", e.to_string());
                 e.to_string()
@@ -63,34 +62,29 @@ impl TelegramService {
             log::error!("{}", e.to_string());
             e.to_string()
         })?;
-
-        let is_authorized = client.is_authorized().await.map_err(|e| {
+        let is_authorized = telegram_client.is_authorized().await.map_err(|e| {
             log::error!("{}", e.to_string());
             e.to_string()
         })?;
-        self.client = Some(client);
+        app.manage(telegram_client);
         if is_authorized {
             self.listen_tribute(app).await?;
         }
         Ok(())
     }
+
     pub async fn listen_tribute(&self, app: AppHandle) -> Result<(), String> {
-        let client = self
-            .client
-            .clone()
-            .ok_or("Telegram client is not initialized")?;
-        let app = app.clone();
         #[cfg(not(debug_assertions))]
         let tribute_id: i64 = 6675346585;
         #[cfg(debug_assertions)]
         let tribute_id: i64 = std::env::var("TRIBUTE_ID").unwrap().parse().unwrap();
         tauri::async_runtime::spawn(async move {
+            let telegram_client = app.state::<Client>();
             let database_service = app.state::<DatabaseService>();
-            let websocket_service = app.state::<WebSocketService>();
             let tts_service = app.state::<TTSService>();
             let media_service = app.state::<MediaService>();
             loop {
-                let update = match client.next_update().await {
+                let update = match telegram_client.next_update().await {
                     Ok(update) => update,
                     Err(e) => {
                         log::error!("Failed to get next update: {}", e.to_string());
@@ -167,9 +161,11 @@ impl TelegramService {
                                         data: e,
                                     };
 
-                                    websocket_service
-                                        .broadcast_event_message(&ws_message, app.clone())
-                                        .await;
+                                    WebSocketService::broadcast_event_message(
+                                        &ws_message,
+                                        app.clone(),
+                                    )
+                                    .await;
                                     None
                                 }
                             }
@@ -198,8 +194,7 @@ impl TelegramService {
                             data: alert_message,
                         };
 
-                        websocket_service
-                            .broadcast_event_message(&event_message, app.clone())
+                        WebSocketService::broadcast_event_message(&event_message, app.clone())
                             .await;
                     }
                     _ => {}
@@ -208,33 +203,47 @@ impl TelegramService {
         });
         Ok(())
     }
-    pub async fn request_login_code(&mut self, phone_number: String) -> Result<LoginToken, String> {
-        let client = self.client.as_ref().unwrap();
-        match client.request_login_code(&phone_number).await {
-            Ok(login_token) => return Ok(login_token),
+    pub async fn request_login_code(
+        &self,
+        phone_number: String,
+        app: AppHandle,
+    ) -> Result<(), String> {
+        let telegram_client = app.state::<Client>();
+        let login_token_state = app.state::<Mutex<Option<LoginToken>>>();
+        let mut login_token_guard = login_token_state.lock().await;
+        match telegram_client.request_login_code(&phone_number).await {
+            Ok(login_token) => {
+                *login_token_guard = Some(login_token);
+            }
             Err(e) => {
                 log::error!("{}", e.to_string());
                 return Err(e.to_string());
             }
         }
+        Ok(())
     }
-    pub async fn sign_in(
-        &self,
-        phone_code: String,
-        login_token: &LoginToken,
-        app: AppHandle,
-    ) -> Result<Option<PasswordToken>, String> {
-        let client = self.client.as_ref().unwrap();
-        let sign_in = client.sign_in(login_token, &phone_code).await;
+
+    pub async fn sign_in(&self, phone_code: String, app: AppHandle) -> Result<(), String> {
+        let app_handle = app.clone();
+        let telegram_client = app_handle.state::<Client>();
+        let login_token_state = app_handle.state::<Mutex<Option<LoginToken>>>();
+        let login_token_guard = login_token_state.lock().await;
+        let login_token = login_token_guard.as_ref().unwrap();
+        let password_token_state = app_handle.state::<Mutex<Option<PasswordToken>>>();
+        let mut password_token_guard = password_token_state.lock().await;
+        let sign_in = telegram_client.sign_in(login_token, &phone_code).await;
         match sign_in {
             Ok(_) => {
-                client.session().save_to_file(&*self.session_path).unwrap();
+                telegram_client
+                    .session()
+                    .save_to_file(&*self.session_path)
+                    .unwrap();
                 self.listen_tribute(app).await?;
-                return Ok(None);
             }
             Err(e) => match e {
                 SignInError::PasswordRequired(password_token) => {
-                    return Ok(Some(password_token));
+                    *password_token_guard = Some(password_token);
+                    return Err("Password required".to_string());
                 }
                 _ => {
                     log::error!("{}", e.to_string());
@@ -242,19 +251,24 @@ impl TelegramService {
                 }
             },
         };
+        Ok(())
     }
 
-    pub async fn check_password(
-        &self,
-        password: String,
-        password_token: PasswordToken,
-        app: AppHandle,
-    ) -> Result<(), String> {
-        let client = self.client.as_ref().unwrap();
-        let check_password = client.check_password(password_token, password).await;
+    pub async fn check_password(&self, password: String, app: AppHandle) -> Result<(), String> {
+        let app_handle = app.clone();
+        let password_token_state = app_handle.state::<Mutex<Option<PasswordToken>>>();
+        let password_token_guard = password_token_state.lock().await;
+        let password_token = password_token_guard.as_ref().unwrap();
+        let telegram_client = app_handle.state::<Client>();
+        let check_password = telegram_client
+            .check_password(password_token.clone(), password)
+            .await;
         match check_password {
             Ok(_) => {
-                client.session().save_to_file(&*self.session_path).unwrap();
+                telegram_client
+                    .session()
+                    .save_to_file(&*self.session_path)
+                    .unwrap();
                 self.listen_tribute(app).await?;
                 return Ok(());
             }
@@ -265,29 +279,20 @@ impl TelegramService {
         };
     }
 
-    pub async fn is_authorized(&self) -> Result<bool, String> {
-        let is_authorized = self
-            .client
-            .as_ref()
-            .unwrap()
-            .is_authorized()
-            .await
-            .map_err(|e| {
-                log::error!("{}", e.to_string());
-                e.to_string()
-            })?;
+    pub async fn is_authorized(&self, app: AppHandle) -> Result<bool, String> {
+        let telegram_client = app.state::<Client>();
+        let is_authorized = telegram_client.is_authorized().await.map_err(|e| {
+            log::error!("{}", e.to_string());
+            e.to_string()
+        })?;
         Ok(is_authorized)
     }
-    pub async fn sign_out(&self) -> Result<(), String> {
-        self.client
-            .as_ref()
-            .unwrap()
-            .sign_out()
-            .await
-            .map_err(|e| {
-                log::error!("{}", e.to_string());
-                e.to_string()
-            })?;
+    pub async fn sign_out(&self, app: AppHandle) -> Result<(), String> {
+        let telegram_client = app.state::<Client>();
+        telegram_client.sign_out().await.map_err(|e| {
+            log::error!("{}", e.to_string());
+            e.to_string()
+        })?;
         Ok(())
     }
 }

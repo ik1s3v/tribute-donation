@@ -10,21 +10,19 @@ use tauri::{AppHandle, State};
 pub async fn update_settings(
     app: AppHandle,
     database_service: State<'_, DatabaseService>,
-    websocket_service: State<'_, WebSocketService>,
     settings: Model,
 ) -> Result<(), String> {
     database_service
         .update_settings(settings.clone())
         .await
         .map_err(|e| e.to_string())?;
-    websocket_service
-        .broadcast_event_message(
-            &EventMessage {
-                event: AppEvent::Settings,
-                data: settings,
-            },
-            app,
-        )
-        .await;
+    WebSocketService::broadcast_event_message(
+        &EventMessage {
+            event: AppEvent::Settings,
+            data: settings,
+        },
+        app,
+    )
+    .await;
     Ok(())
 }

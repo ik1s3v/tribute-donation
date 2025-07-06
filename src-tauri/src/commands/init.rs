@@ -78,11 +78,11 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
         .resolve("telegram.session", BaseDirectory::AppLocalData)
         .unwrap();
     let user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36";
-    let request_client = reqwest::Client::builder()
+    let reqwest_client = reqwest::Client::builder()
         .user_agent(user_agent)
         .build()
         .unwrap();
-    app.manage(request_client);
+    app.manage(reqwest_client);
 
     let media_service = MediaService::new();
     app.manage(media_service);
@@ -91,7 +91,7 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     app.manage(Mutex::new(None::<PasswordToken>));
     let mut telegram_service = TelegramService::new(api_id, api_hash, session_path);
     telegram_service.connect(app.clone()).await?;
-    app.manage(Mutex::new(telegram_service));
+    app.manage(telegram_service);
 
     Ok(())
 }

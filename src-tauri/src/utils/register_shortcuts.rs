@@ -2,7 +2,7 @@ use crate::{
     enums::AppEvent,
     services::{EventMessage, WebSocketService},
 };
-use tauri::{App, Manager};
+use tauri::App;
 
 pub fn register_shortcuts(app: &mut App) -> Result<(), Box<dyn std::error::Error>> {
     #[cfg(desktop)]
@@ -21,16 +21,14 @@ pub fn register_shortcuts(app: &mut App) -> Result<(), Box<dyn std::error::Error
                         match event.state() {
                             ShortcutState::Pressed => {
                                 tauri::async_runtime::spawn(async move {
-                                    let websocket_service = app_handle.state::<WebSocketService>();
-                                    websocket_service
-                                        .broadcast_event_message(
-                                            &EventMessage {
-                                                event: AppEvent::SkipPlayingAlert,
-                                                data: None::<String>,
-                                            },
-                                            app_handle.clone(),
-                                        )
-                                        .await;
+                                    WebSocketService::broadcast_event_message(
+                                        &EventMessage {
+                                            event: AppEvent::SkipPlayingAlert,
+                                            data: None::<String>,
+                                        },
+                                        app_handle.clone(),
+                                    )
+                                    .await;
                                 });
                             }
                             _ => {}
@@ -39,16 +37,14 @@ pub fn register_shortcuts(app: &mut App) -> Result<(), Box<dyn std::error::Error
                         match event.state() {
                             ShortcutState::Pressed => {
                                 tauri::async_runtime::spawn(async move {
-                                    let websocket_service = app_handle.state::<WebSocketService>();
-                                    websocket_service
-                                        .broadcast_event_message(
-                                            &EventMessage {
-                                                event: AppEvent::SkipPlayingMedia,
-                                                data: None::<String>,
-                                            },
-                                            app_handle.clone(),
-                                        )
-                                        .await;
+                                    WebSocketService::broadcast_event_message(
+                                        &EventMessage {
+                                            event: AppEvent::SkipPlayingMedia,
+                                            data: None::<String>,
+                                        },
+                                        app_handle.clone(),
+                                    )
+                                    .await;
                                 });
                             }
                             _ => {}

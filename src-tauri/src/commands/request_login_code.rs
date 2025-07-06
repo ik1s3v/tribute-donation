@@ -1,19 +1,11 @@
-use grammers_client::types::LoginToken;
-use tauri::State;
-use tokio::sync::Mutex;
-
 use crate::services::TelegramService;
+use tauri::{AppHandle, State};
 
 #[tauri::command]
 pub async fn request_login_code(
-    telegram_state: State<'_, Mutex<TelegramService>>,
-    login_token_state: State<'_, Mutex<Option<LoginToken>>>,
+    app: AppHandle,
+    telegram_service: State<'_, TelegramService>,
     phone_number: String,
 ) -> Result<(), String> {
-    let mut login_token: tokio::sync::MutexGuard<'_, Option<LoginToken>> =
-        login_token_state.lock().await;
-    let mut telegram_service: tokio::sync::MutexGuard<'_, TelegramService> =
-        telegram_state.lock().await;
-    *login_token = Some(telegram_service.request_login_code(phone_number).await?);
-    Ok(())
+    telegram_service.request_login_code(phone_number, app).await
 }
