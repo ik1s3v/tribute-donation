@@ -67,4 +67,4 @@ export class WebSocketService extends Subscriptions {
 	}
 }
 
-export const websocketService = new WebSocketService("ws://localhost:12554");
+export const websocketService = new WebSocketService("ws://localhost:12553/ws");

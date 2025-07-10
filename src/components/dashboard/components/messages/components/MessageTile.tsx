@@ -1,19 +1,26 @@
 import { useTranslation } from "react-i18next";
-import { invoke } from "@tauri-apps/api/core";
 import { Box, Button, Card, IconButton, Typography } from "@mui/material";
 import type { IMessage } from "../../../../../../shared/types";
 import getCurrencySymbol from "../../../../../../shared/utils/getCurrencySymbol";
 import ReplayIcon from "@mui/icons-material/Replay";
-
 import getColorByMediaType from "../../../../../utils/getColorByMediaType";
 import MediaTile from "./MediaTile";
 import MessageDate from "./MessageDate";
+import { useReplayMediaMutation } from "../../../../../api/mediaApi";
+import {
+	useReplayAlertMutation,
+	useSkipAlertMutation,
+} from "../../../../../api/alertsApi";
+
 const MessageTile = ({
 	message,
 	isAlertPlaying,
 	isMediaPlaying,
 }: { message: IMessage; isAlertPlaying: boolean; isMediaPlaying: boolean }) => {
 	const { t } = useTranslation();
+	const [replayMedia] = useReplayMediaMutation();
+	const [replayAlert] = useReplayAlertMutation();
+	const [skipAlert] = useSkipAlertMutation();
 
 	return (
 		<>
@@ -47,7 +54,7 @@ const MessageTile = ({
 					{message.media && !isMediaPlaying && !isAlertPlaying && (
 						<IconButton
 							onClick={() => {
-								invoke("replay_media", { message });
+								replayMedia({ message });
 							}}
 						>
 							<ReplayIcon />
@@ -85,7 +92,7 @@ const MessageTile = ({
 									fontSize: 12,
 								}}
 								onClick={() => {
-									invoke("replay_alert", { message });
+									replayAlert({ message });
 								}}
 							>
 								{t("message.replay")}
@@ -99,7 +106,7 @@ const MessageTile = ({
 								fontSize: 12,
 							}}
 							onClick={() => {
-								invoke("skip_alert", { id: message.id });
+								skipAlert({ id: message.id });
 							}}
 						>
 							{t("message.skip")}

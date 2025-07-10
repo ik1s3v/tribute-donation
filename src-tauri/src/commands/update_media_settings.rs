@@ -1,10 +1,10 @@
 use entity::media_settings::*;
-use tauri::{AppHandle, State};
+use tauri::{AppHandle, Manager, State};
 
 use crate::{
     enums::AppEvent,
     repositories::MediaSettingsRepository,
-    services::{DatabaseService, EventMessage, WebSocketService},
+    services::{DatabaseService, EventMessage, WebSocketBroadcaster},
 };
 
 #[tauri::command]
@@ -17,13 +17,14 @@ pub async fn update_media_settings(
         .update_media_settings(media_settings.clone())
         .await
         .map_err(|e| e.to_string())?;
-    WebSocketService::broadcast_event_message(
-        &EventMessage {
-            event: AppEvent::MediaSettings,
-            data: media_settings,
-        },
-        app,
-    )
-    .await;
-    Ok(())
+    let websocket_broadcaster = app.state::<WebSocketBroadcaster>();
+    websocket_broadcaster
+        .broadcast_event_message(
+            &EventMessage {
+                event: AppEvent::MediaSettings,
+                data: media_settings,
+            },
+            &app,
+        )
+        .await
 }

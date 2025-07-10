@@ -1,18 +1,20 @@
-import { TextField, Button } from "@mui/material";
-import { invoke } from "@tauri-apps/api/core";
+import { TextField } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { AlertSeverity } from "../../../../shared/enums";
-import { setIsClientAuthorized } from "../../../store/slices/mainSlice";
 import { showSnackBar } from "../../../store/slices/snackBarSlice";
+import { useCheckPasswordMutation } from "../../../api/authApi";
+import AuthButton from "./AuthButton";
+import type { SerializedError } from "@reduxjs/toolkit";
 
 const Password = () => {
 	const navigate = useNavigate();
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
 	const [password, setPassword] = useState("");
+	const [checkPassword, { isLoading }] = useCheckPasswordMutation();
 
 	return (
 		<>
@@ -23,26 +25,25 @@ const Password = () => {
 				type="password"
 				onChange={(e) => setPassword(e.target.value)}
 			/>
-			<Button
-				variant="contained"
-				onClick={() =>
-					invoke("check_password", { password: password.trim() })
-						.then(() => {
-							dispatch(setIsClientAuthorized(true));
-							navigate("/dashboard/messages");
-						})
-						.catch((error) => {
-							dispatch(
-								showSnackBar({
-									message: error,
-									alertSeverity: AlertSeverity.error,
-								}),
-							);
-						})
-				}
+			<AuthButton
+				isPending={isLoading}
+				onClick={async () => {
+					try {
+						await checkPassword({ password: password.trim() }).unwrap();
+						navigate("/dashboard/messages", { replace: true });
+					} catch (error) {
+						const err = error as SerializedError;
+						dispatch(
+							showSnackBar({
+								message: err.message as string,
+								alertSeverity: AlertSeverity.error,
+							}),
+						);
+					}
+				}}
 			>
 				{t("authorization.sign_in")}
-			</Button>
+			</AuthButton>
 		</>
 	);
 };

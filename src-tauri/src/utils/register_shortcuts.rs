@@ -1,8 +1,8 @@
 use crate::{
     enums::AppEvent,
-    services::{EventMessage, WebSocketService},
+    services::{EventMessage, WebSocketBroadcaster},
 };
-use tauri::App;
+use tauri::{App, Manager};
 
 pub fn register_shortcuts(app: &mut App) -> Result<(), Box<dyn std::error::Error>> {
     #[cfg(desktop)]
@@ -21,14 +21,18 @@ pub fn register_shortcuts(app: &mut App) -> Result<(), Box<dyn std::error::Error
                         match event.state() {
                             ShortcutState::Pressed => {
                                 tauri::async_runtime::spawn(async move {
-                                    WebSocketService::broadcast_event_message(
-                                        &EventMessage {
-                                            event: AppEvent::SkipPlayingAlert,
-                                            data: None::<String>,
-                                        },
-                                        app_handle.clone(),
-                                    )
-                                    .await;
+                                    let websocket_broadcaster =
+                                        app_handle.state::<WebSocketBroadcaster>();
+                                    websocket_broadcaster
+                                        .broadcast_event_message(
+                                            &EventMessage {
+                                                event: AppEvent::SkipPlayingAlert,
+                                                data: None::<String>,
+                                            },
+                                            &app_handle,
+                                        )
+                                        .await
+                                        .unwrap();
                                 });
                             }
                             _ => {}
@@ -37,14 +41,18 @@ pub fn register_shortcuts(app: &mut App) -> Result<(), Box<dyn std::error::Error
                         match event.state() {
                             ShortcutState::Pressed => {
                                 tauri::async_runtime::spawn(async move {
-                                    WebSocketService::broadcast_event_message(
-                                        &EventMessage {
-                                            event: AppEvent::SkipPlayingMedia,
-                                            data: None::<String>,
-                                        },
-                                        app_handle.clone(),
-                                    )
-                                    .await;
+                                    let websocket_broadcaster =
+                                        app_handle.state::<WebSocketBroadcaster>();
+                                    websocket_broadcaster
+                                        .broadcast_event_message(
+                                            &EventMessage {
+                                                event: AppEvent::SkipPlayingMedia,
+                                                data: None::<String>,
+                                            },
+                                            &app_handle,
+                                        )
+                                        .await
+                                        .unwrap();
                                 });
                             }
                             _ => {}

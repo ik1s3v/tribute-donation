@@ -17392,7 +17392,7 @@ class LP extends MP {
       }
   }
 }
-const dt = new LP("ws://localhost:12554"), $P = () => {
+const dt = new LP("ws://localhost:12553/ws"), $P = () => {
   const r = P.useRef(null), a = P.useRef(null), o = P.useRef([]), [u, l] = P.useState(), f = P.useCallback(
     ({ message: b }) => {
       if (!b) return;

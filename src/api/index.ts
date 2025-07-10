@@ -4,13 +4,13 @@ import { invoke, type InvokeArgs } from "@tauri-apps/api/core";
 
 const tauriBaseQuery =
 	(): BaseQueryFn<
-		{ command: string; data: InvokeArgs | undefined },
+		{ command: string; args?: InvokeArgs | undefined },
 		unknown,
 		SerializedError
 	> =>
-	async ({ command, data }) => {
+	async ({ command, args }) => {
 		try {
-			const result = await invoke<unknown>(command, data);
+			const result = await invoke<unknown>(command, args);
 			return { data: result };
 		} catch (error) {
 			return {

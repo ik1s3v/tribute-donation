@@ -1,18 +1,19 @@
 use crate::{
     enums::AppEvent,
-    services::{EventMessage, WebSocketService},
+    services::{EventMessage, WebSocketBroadcaster},
 };
-use tauri::AppHandle;
+use tauri::{AppHandle, Manager};
 
 #[tauri::command]
-pub async fn skip_media(app: AppHandle, id: String) -> Result<(), ()> {
-    WebSocketService::broadcast_event_message(
-        &EventMessage {
-            event: AppEvent::SkipMedia,
-            data: id,
-        },
-        app,
-    )
-    .await;
-    Ok(())
+pub async fn skip_media(app: AppHandle, id: String) -> Result<(), String> {
+    let websocket_broadcaster = app.state::<WebSocketBroadcaster>();
+    websocket_broadcaster
+        .broadcast_event_message(
+            &EventMessage {
+                event: AppEvent::SkipMedia,
+                data: id,
+            },
+            &app,
+        )
+        .await
 }

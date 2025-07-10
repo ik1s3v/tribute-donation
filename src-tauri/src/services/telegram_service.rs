@@ -1,4 +1,4 @@
-use super::{DatabaseService, MediaService, TTSService, WebSocketService};
+use super::{DatabaseService, MediaService, TTSService, WebSocketBroadcaster};
 use crate::{
     app_event::AppEvent,
     repositories::{MessagesRepository, SettingsRepository},
@@ -83,6 +83,7 @@ impl TelegramService {
             let database_service = app.state::<DatabaseService>();
             let tts_service = app.state::<TTSService>();
             let media_service = app.state::<MediaService>();
+            let websocket_broadcaster = app.state::<WebSocketBroadcaster>();
             loop {
                 let update = match telegram_client.next_update().await {
                     Ok(update) => update,
@@ -161,11 +162,10 @@ impl TelegramService {
                                         data: e,
                                     };
 
-                                    WebSocketService::broadcast_event_message(
-                                        &ws_message,
-                                        app.clone(),
-                                    )
-                                    .await;
+                                    websocket_broadcaster
+                                        .broadcast_event_message(&ws_message, &app)
+                                        .await
+                                        .unwrap();
                                     None
                                 }
                             }
@@ -194,8 +194,10 @@ impl TelegramService {
                             data: alert_message,
                         };
 
-                        WebSocketService::broadcast_event_message(&event_message, app.clone())
-                            .await;
+                        websocket_broadcaster
+                            .broadcast_event_message(&event_message, &app)
+                            .await
+                            .unwrap();
                     }
                     _ => {}
                 }

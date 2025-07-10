@@ -1,19 +1,20 @@
-import { Button, TextField } from "@mui/material";
-import { invoke } from "@tauri-apps/api/core";
+import { TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { setIsClientAuthorized } from "../../../store/slices/mainSlice";
 import { useState } from "react";
 import { showSnackBar } from "../../../store/slices/snackBarSlice";
 import { AlertSeverity } from "../../../../shared/enums";
+import { useSignInMutation } from "../../../api/authApi";
+import AuthButton from "./AuthButton";
+import type { SerializedError } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 
 const SignIn = () => {
 	const navigate = useNavigate();
 	const { t } = useTranslation();
-	const dispatch = useDispatch();
 	const [phoneCode, setPhoneCode] = useState("");
-
+	const dispatch = useDispatch();
+	const [signin, { isLoading }] = useSignInMutation();
 	return (
 		<>
 			<label htmlFor="">{t("authorization.telegram_code")}</label>
@@ -22,30 +23,29 @@ const SignIn = () => {
 				autoComplete="off"
 				onChange={(e) => setPhoneCode(e.target.value)}
 			/>
-			<Button
-				variant="contained"
-				onClick={() =>
-					invoke("sign_in", { phoneCode: phoneCode.trim() })
-						.then(() => {
-							dispatch(setIsClientAuthorized(true));
-							navigate("/dashboard/messages");
-						})
-						.catch((error) => {
-							if (error === "Password required") {
-								navigate("/authorization/password");
-								return;
-							}
-							dispatch(
-								showSnackBar({
-									message: error,
-									alertSeverity: AlertSeverity.error,
-								}),
-							);
-						})
-				}
+			<AuthButton
+				isPending={isLoading}
+				onClick={async () => {
+					try {
+						await signin({ phoneCode: phoneCode.trim() }).unwrap();
+						navigate("/dashboard/messages");
+					} catch (error) {
+						const err = error as SerializedError;
+						if (err.message === "Password required") {
+							navigate("/authorization/password");
+							return;
+						}
+						dispatch(
+							showSnackBar({
+								message: err.message as string,
+								alertSeverity: AlertSeverity.error,
+							}),
+						);
+					}
+				}}
 			>
 				{t("authorization.sign_in")}
-			</Button>
+			</AuthButton>
 		</>
 	);
 };

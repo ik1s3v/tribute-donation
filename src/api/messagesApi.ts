@@ -1,9 +1,9 @@
 import { api } from ".";
-import type { IMessage, IParms } from "../../shared/types";
+import type { IMessage, IPageParm } from "../../shared/types";
 
 export const messagesApi = api.injectEndpoints({
 	endpoints: (builder) => ({
-		getMessages: builder.infiniteQuery<IMessage[], void, IParms>({
+		getMessages: builder.infiniteQuery<IMessage[], void, IPageParm>({
 			infiniteQueryOptions: {
 				initialPageParam: {
 					offset: 0,
@@ -29,7 +29,7 @@ export const messagesApi = api.injectEndpoints({
 			},
 			query: ({ pageParam }) => ({
 				command: "get_messages",
-				data: { ...pageParam },
+				args: { ...pageParam },
 			}),
 		}),
 	}),

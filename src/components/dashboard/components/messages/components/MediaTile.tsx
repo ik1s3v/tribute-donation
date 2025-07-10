@@ -7,11 +7,19 @@ import { IconButton } from "@mui/material";
 import MessageDate from "./MessageDate";
 import { useSelector } from "react-redux";
 import type { AppState } from "../../../../../store";
-import { invoke } from "@tauri-apps/api/core";
+import {
+	usePauseMediaMutation,
+	usePlayMediaMutation,
+	useSkipMediaMutation,
+} from "../../../../../api/mediaApi";
+
 const MediaTile = ({ message }: { message: IMessage }) => {
 	const pausedMediaId = useSelector(
 		(state: AppState) => state.mediaState.pausedMediaId,
 	);
+	const [skipMedia] = useSkipMediaMutation();
+	const [playMedia] = usePlayMediaMutation();
+	const [pauseMedia] = usePauseMediaMutation();
 
 	return (
 		<>
@@ -50,10 +58,11 @@ const MediaTile = ({ message }: { message: IMessage }) => {
 					<div style={{ position: "relative", display: "grid" }}>
 						<IconButton
 							onClick={() => {
-								invoke(
-									pausedMediaId === message.id ? "play_media" : "pause_media",
-									{ id: message.id },
-								);
+								if (pausedMediaId === message.id) {
+									playMedia({ id: message.id });
+								} else {
+									pauseMedia({ id: message.id });
+								}
 							}}
 						>
 							{pausedMediaId === message.id ? (
@@ -71,7 +80,7 @@ const MediaTile = ({ message }: { message: IMessage }) => {
 								left: 70,
 							}}
 							onClick={() => {
-								invoke("skip_media", { id: message.id });
+								skipMedia({ id: message.id });
 							}}
 						>
 							<SkipNextIcon />

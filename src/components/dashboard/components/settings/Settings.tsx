@@ -1,13 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { Button, MenuItem, Select, TextField } from "@mui/material";
-import { invoke } from "@tauri-apps/api/core";
-import type { ISettings } from "../../../../../shared/types";
 import styles from "./Settings.module.css";
 import OnOffSwitch from "../../../OnOffSwitch";
 import { useDispatch, useSelector } from "react-redux";
 import { showSnackBar } from "../../../../store/slices/snackBarSlice";
 import { AlertSeverity } from "../../../../../shared/enums";
-
 import InputSlider from "../../../InputSlider";
 import type { AppState } from "../../../../store";
 import {
@@ -15,7 +12,8 @@ import {
 	setSettings,
 } from "../../../../store/slices/settingsSlice";
 import { languages } from "../../../../../shared/i18n/languages";
-import { useEffect } from "react";
+import { useUpdateSettingsMutation } from "../../../../api/settingsApi";
+import type { SerializedError } from "@reduxjs/toolkit";
 
 const Settings = () => {
 	const { t, i18n } = useTranslation();
@@ -26,34 +24,18 @@ const Settings = () => {
 		(state: AppState) => state.settingsState.duration,
 	);
 	const dispatch = useDispatch();
-	useEffect(() => {
-		invoke<ISettings>("get_settings")
-			.then((settings) => {
-				i18n.changeLanguage(settings.language);
-				dispatch(setSettings(settings));
-				dispatch(setDuration(settings.moderation_duration / 1000));
-			})
-			.catch((error) => {
-				dispatch(
-					showSnackBar({
-						message: error,
-						alertSeverity: AlertSeverity.error,
-					}),
-				);
-			});
-	}, [dispatch, i18n]);
+	const [updateSettings] = useUpdateSettingsMutation();
+
 	return (
 		settings && (
 			<>
 				<h1>{t("settings.title")}</h1>
-
 				<div style={{ display: "grid", placeItems: "center" }}>
 					<div className={styles.settingsContainer}>
 						<div className={styles.settings}>
 							<div className={styles.label}>
 								<span>{t("settings.language")}:</span>
 							</div>
-
 							<Select sx={{ width: 150 }} value={settings.language}>
 								{languages.map((language) => (
 									<MenuItem
@@ -175,28 +157,24 @@ const Settings = () => {
 						<div style={{ display: "flex", placeContent: "center" }}>
 							<Button
 								variant="contained"
-								onClick={() => {
-									invoke("update_settings", {
-										settings,
-									})
-										.then(() =>
-											dispatch(
-												dispatch(
-													showSnackBar({
-														message: t("success"),
-														alertSeverity: AlertSeverity.success,
-													}),
-												),
-											),
-										)
-										.catch((error) => {
-											dispatch(
-												showSnackBar({
-													message: error,
-													alertSeverity: AlertSeverity.error,
-												}),
-											);
-										});
+								onClick={async () => {
+									try {
+										await updateSettings({ settings }).unwrap();
+										dispatch(
+											showSnackBar({
+												message: t("success"),
+												alertSeverity: AlertSeverity.success,
+											}),
+										);
+									} catch (error) {
+										const err = error as SerializedError;
+										dispatch(
+											showSnackBar({
+												message: err.message as string,
+												alertSeverity: AlertSeverity.error,
+											}),
+										);
+									}
 								}}
 							>
 								{t("save")}

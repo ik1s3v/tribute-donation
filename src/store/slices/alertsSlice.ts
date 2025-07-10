@@ -1,14 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { IAlert, ITextStyle } from "../../../shared/types";
 interface AlertsState {
-	alerts: IAlert[];
 	alert: IAlert | null;
 	playingAlertId: string;
 	connectedAlerts: string[];
 }
 
 const initialState: AlertsState = {
-	alerts: [],
 	alert: null,
 	playingAlertId: "",
 	connectedAlerts: [],
@@ -18,14 +16,6 @@ export const alertsSlice = createSlice({
 	name: "alerts",
 	initialState,
 	reducers: {
-		setAlerts: (
-			state,
-			action: {
-				payload: IAlert[];
-			},
-		) => {
-			state.alerts = action.payload;
-		},
 		addConnectedAlert: (
 			state,
 			action: {
@@ -76,7 +66,6 @@ export const alertsSlice = createSlice({
 });
 
 export const {
-	setAlerts,
 	setAlert,
 	setTitleStyle,
 	setMessageStyle,

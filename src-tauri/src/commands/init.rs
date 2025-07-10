@@ -1,6 +1,6 @@
-use crate::constants::{SQLITE_DB, STATIC_DIR, WS_WIDGET_PORT};
+use crate::constants::{SQLITE_DB, STATIC_DIR};
 use crate::services::{
-    DatabaseService, HttpService, MediaService, TTSService, TelegramService, WebSocketService,
+    AxumService, DatabaseService, MediaService, TTSService, TelegramService, WebSocketBroadcaster,
 };
 use crate::utils::copy_assets_to_static;
 use grammers_client::types::{LoginToken, PasswordToken};
@@ -8,15 +8,12 @@ use lingua::Language::{
     Arabic, Chinese, English, French, German, Hindi, Portuguese, Russian, Spanish, Ukrainian,
 };
 use lingua::LanguageDetectorBuilder;
-use std::collections::HashMap;
 use std::env;
 use tauri::path::BaseDirectory;
 use tauri::{AppHandle, Manager, State};
 use tokio::sync::{mpsc, Mutex};
 use tokio_tungstenite::tungstenite::Message;
-use uuid::Uuid;
 pub struct ExecutionFlag(pub Mutex<bool>);
-type Tx = mpsc::UnboundedSender<Message>;
 
 #[tauri::command]
 pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), String> {
@@ -46,20 +43,14 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     let database_service = DatabaseService::new(&db_path).await?;
     app.manage(database_service);
 
-    let websocket_service = WebSocketService::new();
-    let websocket_clients: Mutex<HashMap<Uuid, Tx>> = Mutex::new(HashMap::new());
-    app.manage(websocket_clients);
-    websocket_service
-        .start(&format!("127.0.0.1:{}", WS_WIDGET_PORT), app.clone())
-        .await?;
-    app.manage(websocket_service);
-
     copy_assets_to_static(&assets_path, &static_path)?;
 
-    let http_service = HttpService::new(widget_path.clone(), static_path.clone());
+    let websocket_broadcaster = WebSocketBroadcaster::new();
+    app.manage(websocket_broadcaster);
 
-    http_service.run().await?;
-    app.manage(http_service);
+    let axum_service = AxumService::new(widget_path.clone(), static_path.clone());
+    axum_service.run(app.clone()).await?;
+    app.manage(axum_service);
 
     let language_detector = LanguageDetectorBuilder::from_languages(&[
         English, French, German, Spanish, Russian, Ukrainian, Portuguese, Hindi, Chinese, Arabic,

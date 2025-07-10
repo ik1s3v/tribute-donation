@@ -1,10 +1,10 @@
 use entity::alert::*;
-use tauri::{AppHandle, State};
+use tauri::{AppHandle, Manager, State};
 
 use crate::{
     enums::AppEvent,
     repositories::AlertsRepository,
-    services::{DatabaseService, EventMessage, WebSocketService},
+    services::{DatabaseService, EventMessage, WebSocketBroadcaster},
 };
 
 #[tauri::command]
@@ -21,13 +21,14 @@ pub async fn update_alert_settings(
         .get_alerts()
         .await
         .map_err(|e| e.to_string())?;
-    WebSocketService::broadcast_event_message(
-        &EventMessage {
-            event: AppEvent::Alerts,
-            data: alerts,
-        },
-        app,
-    )
-    .await;
-    Ok(())
+    let websocket_broadcaster = app.state::<WebSocketBroadcaster>();
+    websocket_broadcaster
+        .broadcast_event_message(
+            &EventMessage {
+                event: AppEvent::Alerts,
+                data: alerts,
+            },
+            &app,
+        )
+        .await
 }

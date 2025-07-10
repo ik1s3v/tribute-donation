@@ -13,7 +13,7 @@ export interface IMessage {
 	created_at: number;
 }
 
-export interface IParms {
+export interface IPageParm {
 	limit: number;
 	offset: number;
 }

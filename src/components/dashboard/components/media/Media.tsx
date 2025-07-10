@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Button, Tab, Tabs } from "@mui/material";
 import TabPanel from "../../../TabPanel";
-import { invoke } from "@tauri-apps/api/core";
 import { showSnackBar } from "../../../../store/slices/snackBarSlice";
 import { AlertSeverity } from "../../../../../shared/enums";
 import YouTubeIcon from "@mui/icons-material/YouTube";
@@ -11,11 +10,15 @@ import Youtube from "./components/Youtube";
 import Twitch from "./components/Twitch";
 import Tiktok from "./components/Tiktok";
 import type { AppState } from "../../../../store";
-import type { IMediaSettings } from "../../../../../shared/types";
 import { setMediaSettings } from "../../../../store/slices/mediaSlice";
 import WidgetUrl from "../alerts/components/WidgetUrl";
 import TikTokIcon from "./components/TikTokIcon";
 import TwitchIcon from "./components/TwitchIcon";
+import {
+	useGetMediaSettingsQuery,
+	useUpdateMediaSettingsMutation,
+} from "../../../../api/mediaApi";
+import type { SerializedError } from "@reduxjs/toolkit";
 
 const Media = () => {
 	const [value, setValue] = useState(0);
@@ -24,20 +27,28 @@ const Media = () => {
 	const mediaSettings = useSelector(
 		(state: AppState) => state.mediaState.mediaSettings,
 	);
+	const { data, error } = useGetMediaSettingsQuery(undefined, {
+		refetchOnMountOrArgChange: true,
+	});
+	const [updateMediaSettings] = useUpdateMediaSettingsMutation();
+
 	useEffect(() => {
-		invoke<IMediaSettings>("get_media_settings")
-			.then((mediaSettings) => {
-				dispatch(setMediaSettings(mediaSettings));
-			})
-			.catch((error) => {
-				dispatch(
-					showSnackBar({
-						message: error,
-						alertSeverity: AlertSeverity.error,
-					}),
-				);
-			});
-	}, [dispatch]);
+		if (data) {
+			dispatch(setMediaSettings(data));
+		}
+	}, [dispatch, data]);
+
+	useEffect(() => {
+		if (error) {
+			dispatch(
+				showSnackBar({
+					message: error.message as string,
+					alertSeverity: AlertSeverity.error,
+				}),
+			);
+		}
+	}, [dispatch, error]);
+
 	return (
 		mediaSettings && (
 			<>
@@ -101,26 +112,24 @@ const Media = () => {
 					>
 						<Button
 							variant="contained"
-							onClick={() => {
-								invoke("update_media_settings", { mediaSettings })
-									.then(() =>
-										dispatch(
-											dispatch(
-												showSnackBar({
-													message: t("success"),
-													alertSeverity: AlertSeverity.success,
-												}),
-											),
-										),
-									)
-									.catch((error) => {
-										dispatch(
-											showSnackBar({
-												message: error,
-												alertSeverity: AlertSeverity.error,
-											}),
-										);
-									});
+							onClick={async () => {
+								try {
+									await updateMediaSettings({ mediaSettings }).unwrap();
+									dispatch(
+										showSnackBar({
+											message: t("success"),
+											alertSeverity: AlertSeverity.success,
+										}),
+									);
+								} catch (error) {
+									const err = error as SerializedError;
+									dispatch(
+										showSnackBar({
+											message: err.message as string,
+											alertSeverity: AlertSeverity.error,
+										}),
+									);
+								}
 							}}
 						>
 							{t("save")}
