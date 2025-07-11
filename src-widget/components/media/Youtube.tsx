@@ -1,7 +1,7 @@
 import YouTube, { type YouTubePlayer } from "react-youtube";
 import type { IMediaPlatformSettings, IMessage } from "../../../shared/types";
 import { useEffect, useState } from "react";
-import { websocketService } from "../../services/websocket_service";
+import { websocketService } from "../../services/websocketService";
 import { AppEvent } from "../../../shared/enums";
 
 const Youtube = ({
@@ -29,7 +29,7 @@ const Youtube = ({
 	};
 	const onError = () => {
 		websocketService.send({
-			event: AppEvent.MediaEnd,
+			event: AppEvent.MediaError,
 			data: message.id,
 		});
 	};
@@ -79,17 +79,15 @@ const Youtube = ({
 	}, [message, player]);
 
 	return (
-		<>
-			<YouTube
-				videoId={message.media?.temporary_src}
-				opts={opts}
-				onError={onError}
-				onReady={onReady}
-				onPlay={onPlay}
-				onPause={onPause}
-				onEnd={onEnd}
-			/>
-		</>
+		<YouTube
+			videoId={message.media?.temporary_src}
+			opts={opts}
+			onError={onError}
+			onReady={onReady}
+			onPlay={onPlay}
+			onPause={onPause}
+			onEnd={onEnd}
+		/>
 	);
 };
 export default Youtube;

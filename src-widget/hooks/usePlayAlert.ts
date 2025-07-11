@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { websocketService } from "../services/websocket_service";
+import { websocketService } from "../services/websocketService";
 import { AppEvent } from "../../shared/enums";
 import type { IAlert, IMessage, ISettings } from "../../shared/types";
 import getAlertByMessage from "../utils/getAlertByMessage";

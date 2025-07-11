@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { websocketService } from "../services/websocket_service";
+import { websocketService } from "../services/websocketService";
 import type { IMediaSettings, IMessage, ISettings } from "../../shared/types";
 import { AppEvent } from "../../shared/enums";
 
@@ -7,7 +7,6 @@ const usePlayMedia = () => {
 	const mediaSettingsRef = useRef<IMediaSettings | null>(null);
 	const settingsRef = useRef<ISettings | null>(null);
 	const messagesRef = useRef<IMessage[]>([]);
-
 	const [currentMessage, setCurrentMessage] = useState<IMessage>();
 
 	const handleMediaEnd = useCallback(
@@ -143,6 +142,20 @@ const usePlayMedia = () => {
 	useEffect(() => {
 		const unsubscribe = websocketService.subscribe<string>(
 			AppEvent.MediaEnd,
+			(id) => {
+				const message = messagesRef.current.find(
+					(message) => message.id === id,
+				);
+				handleMediaEnd({ message });
+			},
+		);
+
+		return () => unsubscribe();
+	}, [handleMediaEnd]);
+
+	useEffect(() => {
+		const unsubscribe = websocketService.subscribe<string>(
+			AppEvent.MediaError,
 			(id) => {
 				const message = messagesRef.current.find(
 					(message) => message.id === id,

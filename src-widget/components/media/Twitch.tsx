@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import type { IMediaPlatformSettings, IMessage } from "../../../shared/types";
 import { AppEvent } from "../../../shared/enums";
-import { websocketService } from "../../services/websocket_service";
+import { websocketService } from "../../services/websocketService";
 
 const Twitch = ({
 	message,
@@ -35,7 +35,7 @@ const Twitch = ({
 		};
 		videoRef.current.onerror = () => {
 			websocketService.send({
-				event: AppEvent.MediaEnd,
+				event: AppEvent.MediaError,
 				data: message.id,
 			});
 		};

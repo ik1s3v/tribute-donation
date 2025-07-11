@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import type { IMediaPlatformSettings, IMessage } from "../../../shared/types";
 import { AppEvent } from "../../../shared/enums";
-import { websocketService } from "../../services/websocket_service";
+import { websocketService } from "../../services/websocketService";
 
 const TikTok = ({
 	message,
@@ -56,7 +56,7 @@ const TikTok = ({
 					break;
 				case "onError":
 					websocketService.send({
-						event: AppEvent.MediaEnd,
+						event: AppEvent.MediaError,
 						data: message.id,
 					});
 					break;
@@ -107,16 +107,14 @@ const TikTok = ({
 		return () => unsubscribe();
 	}, [message]);
 	return (
-		<>
-			<iframe
-				ref={tiktokRef}
-				height="100%"
-				width="100%"
-				src={`https://www.tiktok.com/player/v1/${message.media?.temporary_src}?controls=0&progress_bar=0&play_button=0&volume_control=0&music_info=0&autoplay=1&timestamp=0&fullscreen_button=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
-				allow="fullscreen"
-				title="widget"
-			/>
-		</>
+		<iframe
+			ref={tiktokRef}
+			height="100%"
+			width="100%"
+			src={`https://www.tiktok.com/player/v1/${message.media?.temporary_src}?controls=0&progress_bar=0&play_button=0&volume_control=0&music_info=0&autoplay=1&timestamp=0&fullscreen_button=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+			allow="fullscreen"
+			title="widget"
+		/>
 	);
 };
 export default TikTok;

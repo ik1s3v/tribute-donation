@@ -27,6 +27,7 @@ export enum AppEvent {
 	SkipPlayingMedia = "SkipPlayingMedia",
 	SkipPlayingAlert = "SkipPlayingAlert",
 	MediaEnd = "MediaEnd",
+	MediaError = "MediaError",
 	MediaPaused = "MediaPaused",
 	PauseMedia = "PauseMedia",
 	MediaPlayed = "MediaPlayed",

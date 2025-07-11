@@ -11,7 +11,7 @@ import { createTheme } from "@mui/material";
 
 import { appLocalDataDir } from "@tauri-apps/api/path";
 import { setAppDataDir } from "./store/slices/mainSlice";
-import { listenerService } from "./listener/listener_service";
+import { listenerService } from "./services/listenerService";
 import type { IMessage } from "../shared/types";
 import { AppEvent } from "../shared/enums";
 import { messagesApi } from "./api/messagesApi";
