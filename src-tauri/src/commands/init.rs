@@ -11,8 +11,7 @@ use lingua::LanguageDetectorBuilder;
 use std::env;
 use tauri::path::BaseDirectory;
 use tauri::{AppHandle, Manager, State};
-use tokio::sync::{mpsc, Mutex};
-use tokio_tungstenite::tungstenite::Message;
+use tokio::sync::Mutex;
 pub struct ExecutionFlag(pub Mutex<bool>);
 
 #[tauri::command]

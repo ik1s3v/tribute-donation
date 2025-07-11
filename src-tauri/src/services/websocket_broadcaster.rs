@@ -65,12 +65,17 @@ impl WebSocketBroadcaster {
         T: serde::Serialize,
     {
         let text = serde_json::to_string(message).unwrap();
+        self.broadcast_event(text.clone(), app).await?;
+        self.broadcast_text(text.into()).await?;
+        Ok(())
+    }
+
+    pub async fn broadcast_event(&self, text: String, app: &AppHandle) -> Result<(), String> {
         app.emit("websocket", text.clone())
             .map_err(|e| {
                 log::error!("Error sending websocket event: {}", e);
             })
             .unwrap();
-        self.broadcast_text(text.into()).await?;
         Ok(())
     }
 

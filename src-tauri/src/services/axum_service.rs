@@ -82,8 +82,6 @@ impl AxumService {
 
         let app_handle = axum_state.app;
 
-        let app_handle_clone: AppHandle = app_handle.clone();
-
         let websocket_broadcaster = app_handle.state::<WebSocketBroadcaster>();
 
         let connection_id = websocket_broadcaster.add_connection(tx.clone()).await;
@@ -94,6 +92,7 @@ impl AxumService {
             return;
         }
 
+        let app_handle_clone: AppHandle = app_handle.clone();
         let outgoing_task = tauri::async_runtime::spawn(async move {
             let websocket_broadcaster = app_handle_clone.state::<WebSocketBroadcaster>();
 
@@ -109,6 +108,10 @@ impl AxumService {
         while let Some(msg) = receiver.next().await {
             match msg {
                 Ok(Message::Text(text)) => {
+                    websocket_broadcaster
+                        .broadcast_event(text.to_string(), &app_handle.clone())
+                        .await
+                        .unwrap();
                     if let Err(e) = websocket_broadcaster.broadcast_text(text).await {
                         log::error!("Broadcast error: {}", e);
                     }
