@@ -7,6 +7,8 @@ mod m20250325_185301_add_default_alert;
 mod m20250325_185310_add_default_settings;
 mod m20250405_190810_create_table_media_settings;
 mod m20250405_190835_add_default_media_settings;
+mod m20250711_124016_crate_table_auction_settings;
+mod m20250711_124829_add_default_auction_settings;
 
 pub struct Migrator;
 
@@ -21,6 +23,8 @@ impl MigratorTrait for Migrator {
             Box::new(m20250325_185310_add_default_settings::Migration),
             Box::new(m20250405_190810_create_table_media_settings::Migration),
             Box::new(m20250405_190835_add_default_media_settings::Migration),
+            Box::new(m20250711_124016_crate_table_auction_settings::Migration),
+            Box::new(m20250711_124829_add_default_auction_settings::Migration),
         ]
     }
 }

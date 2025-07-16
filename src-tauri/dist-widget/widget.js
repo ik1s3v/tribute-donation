@@ -5337,7 +5337,7 @@ Check the render method of \`` + e + "`." : "";
     function Nb(e, t) {
       return e & t;
     }
-    function AB(e) {
+    function MB(e) {
       return e;
     }
     function D_(e, t) {
@@ -7629,7 +7629,7 @@ Check the render method of \`` + e + "`." : "";
         };
       }
     }
-    function MB(e) {
+    function LB(e) {
       return e;
     }
     function XO(e) {
@@ -9860,9 +9860,9 @@ Incoming: %s`, J, "[" + t.join(", ") + "]", "[" + e.join(", ") + "]");
       }
       return [v, c];
     }
-    function LB(e, t, n) {
-    }
     function $B(e, t, n) {
+    }
+    function PB(e, t, n) {
     }
     function em(e, t, n) {
       var i = Dt, s = Ra(), c, p = jn();
@@ -23875,7 +23875,7 @@ $x.propTypes = {
    */
   enableColorScheme: Ye.bool
 };
-const pF = "On", hF = "Off", vF = "Select", mF = "Success", gF = "Sound volume", yF = "Shortcut skip media", bF = "Shortcut skip alert", SF = { title: "Authorization", code: "Request code", sign_in: "Sign in", phone: "Phone number", telegram_code: "Code from telegram", your_code: "Your code", "2fa_password": "2fa Password", password: "Password" }, EF = { title: "Update", description: "A new version of the app is available. Do you want to update?", update: "Update", later: "Later", downloading: "Downloading..." }, CF = { title: "Media", youtube: "Youtube", twitch: "Twitch", tiktok: "Tiktok" }, RF = { enabled: "Enabled", min_amount_eur: "Min amount EUR", min_amount_rub: "Min amount RUB", video_volume: "Video volume", min_views: "Min views" }, TF = { messages: "Messages", settings: "Settings", alerts: "Alerts", media: "Media" }, xF = { title: "Last messages" }, wF = { skip: "Skip", replay: "Replay", donate: "donate" }, _F = { title: "Settings", pause: "Pause alert messages", moderation_duration: "Moderation duration", black_list: "Black list", remove_links: "Remove links", language: "Language", sec: "Sec" }, OF = { title: "Alerts", group: "Group" }, kF = { image: "Image", audio: "Audio", view: "View", title: "Title", message: "Message" }, DF = "Save", AF = "Back", MF = { copy: "Copy", launch: "Launch", url: "Widget url" }, LF = { top: "Image top, text bottom", bottom: "Image bottom, text top", left: "Image left, text right", right: "Image right, text left", overlay: "Text overlay image" }, $F = { font: "Font", font_size: "Font size", text_color: "Text color", bold: "Bold", italics: "Italics", underline: "Underline", transformation: "Transformation", letter_spacing: "Letter spacing", word_spacing: "Word spacing", horizontal_alignment: "Horizontal alignment", vertical_alignment: "Vertical alignment", text_preview: "This is a preview!", name: "Name" }, PF = { play: "Play", stop: "Stop" }, NF = {
+const pF = "On", hF = "Off", vF = "Select", mF = "Success", gF = "Sound volume", yF = "Shortcut skip media", bF = "Shortcut skip alert", SF = { title: "Authorization", code: "Request code", sign_in: "Sign in", phone: "Phone number", telegram_code: "Code from telegram", your_code: "Your code", "2fa_password": "2fa Password", password: "Password" }, EF = { title: "Update", description: "A new version of the app is available. Do you want to update?", update: "Update", later: "Later", downloading: "Downloading..." }, CF = { title: "Media", youtube: "Youtube", twitch: "Twitch", tiktok: "Tiktok" }, RF = { lots: "Lots", wheel: "Wheel", settings: "Settings" }, TF = { enabled: "Enabled", min_amount_eur: "Min amount EUR", min_amount_rub: "Min amount RUB", video_volume: "Video volume", min_views: "Min views" }, xF = { messages: "Messages", settings: "Settings", alerts: "Alerts", media: "Media", auction: "Auction" }, wF = { title: "Last messages" }, _F = { skip: "Skip", replay: "Replay", donate: "donate" }, OF = { title: "Settings", pause: "Pause alert messages", moderation_duration: "Moderation duration", black_list: "Black list", remove_links: "Remove links", language: "Language", sec: "Sec" }, kF = { title: "Alerts", group: "Group" }, DF = { image: "Image", audio: "Audio", view: "View", title: "Title", message: "Message" }, AF = "Save", MF = "Back", LF = { copy: "Copy", launch: "Launch", url: "Widget url" }, $F = { top: "Image top, text bottom", bottom: "Image bottom, text top", left: "Image left, text right", right: "Image right, text left", overlay: "Text overlay image" }, PF = { font: "Font", font_size: "Font size", text_color: "Text color", bold: "Bold", italics: "Italics", underline: "Underline", transformation: "Transformation", letter_spacing: "Letter spacing", word_spacing: "Word spacing", horizontal_alignment: "Horizontal alignment", vertical_alignment: "Vertical alignment", text_preview: "This is a preview!", name: "Name" }, NF = { play: "Play", stop: "Stop" }, UF = {
   on: pF,
   off: hF,
   select: vF,
@@ -23886,222 +23886,223 @@ const pF = "On", hF = "Off", vF = "Select", mF = "Success", gF = "Sound volume",
   authorization: SF,
   updater: EF,
   media: CF,
-  media_settings: RF,
-  dashboard: TF,
-  messages: xF,
-  message: wF,
-  settings: _F,
-  alerts: OF,
-  alert: kF,
-  save: DF,
-  back: AF,
-  widget: MF,
-  view: LF,
-  text: $F,
-  audio: PF
-}, UF = "Вкл", jF = "Выкл", zF = "Выбрать", FF = "Успех", IF = "Громкость звука", VF = "Комбинация скип медиа", BF = "Комбинация скип алерта", HF = { title: "Авторизация", code: "Запрос кода", sign_in: "Войти", phone: "Номер телефона", telegram_code: "Код из telegram", your_code: "Ваш код", "2fa_password": "Пароль 2fa", password: "Пароль" }, YF = { title: "Обновлять", description: "Доступна новая версия приложения. Хотите обновиться?", update: "Обновлять", later: "Позже", downloading: "Загрузки..." }, WF = { title: "Медиа", youtube: "Ютуб", twitch: "Твич", tiktok: "Тикток" }, qF = { enabled: "Включен", min_amount_eur: "Минимальная сумма в евро", min_amount_rub: "Минимальная сумма руб.", video_volume: "Громкость видео", min_views: "Минимальное количество просмотров" }, GF = { messages: "Сообщения", settings: "Настройки", alerts: "Оповещения", media: "Медиа" }, KF = { title: "Последние сообщения" }, QF = { skip: "Пропустить", replay: "Повторить", donate: "перевел" }, JF = { title: "Настройки", pause: "Приостановить оповещения", moderation_duration: "Длительность модерации", black_list: "Черный список", remove_links: "Удалить ссылки", language: "Язык", sec: "Сек" }, XF = { title: "Оповещения", group: "Группа" }, ZF = { image: "Изображение", audio: "Аудио", view: "Просмотр", title: "Заголовок", message: "Сообщение" }, eI = "Сохранить", tI = "Назад", nI = { copy: "Копировать", launch: "Запуск", url: "URL-адрес виджета" }, rI = { top: "Изображение вверху, текст внизу", bottom: "Изображение внизу, текст вверху", left: "Изображение слева, текст справа", right: "Изображение справа, текст слева", overlay: "Наложение текста" }, aI = { font: "Шрифт", font_size: "Размер шрифта", text_color: "Текст цвет", bold: "Жирный", italics: "Курсив", underline: "Подчеркнутый", transformation: "Преобразование", letter_spacing: "Интервал между буквами", word_spacing: "Интервал между словами", horizontal_alignment: "Горизонтальное выравнивание", vertical_alignment: "Вертикальное выравнивание", text_preview: "Это предварительный просмотр!", name: "Имя" }, iI = { play: "Воспроизведение", stop: "Стоп" }, oI = {
-  on: UF,
-  off: jF,
-  select: zF,
-  success: FF,
-  sound_volume: IF,
-  skip_media: VF,
-  skip_alert: BF,
-  authorization: HF,
-  updater: YF,
-  media: WF,
-  media_settings: qF,
-  dashboard: GF,
-  messages: KF,
-  message: QF,
-  settings: JF,
-  alerts: XF,
-  alert: ZF,
-  save: eI,
-  back: tI,
-  widget: nI,
-  view: rI,
-  text: aI,
-  audio: iI
-}, sI = "Увімкнено", uI = "Вимкнено", lI = "Вибрати", cI = "Успіх", fI = "Гучність звуку", dI = "Комбінація скіп медіа", pI = "Комбінація скіп алерт", hI = { title: "Авторизація", code: "Запитати код", sign_in: "Увійти", phone: "Номер телефону", telegram_code: "Код з Telegram", your_code: "Ваш код", "2fa_password": "Пароль 2fa", password: "Пароль" }, vI = { title: "Оновлення", description: "Доступна нова версія застосунку. Бажаєте оновити?", update: "Оновити", later: "Пізніше", downloading: "Завантаження..." }, mI = { title: "Медіа", youtube: "YouTube", twitch: "Twitch", tiktok: "TikTok" }, gI = { enabled: "Увімкнено", min_amount_eur: "Мін. сума в EUR", min_amount_rub: "Мін. сума в RUB", video_volume: "Гучність відео", min_views: "Мін. кількість переглядів" }, yI = { messages: "Повідомлення", settings: "Налаштування", alerts: "Сповіщення", media: "Медіа" }, bI = { title: "Останні повідомлення" }, SI = { skip: "Пропустити", replay: "Повторити", donate: "задонатив" }, EI = { title: "Налаштування", pause: "Призупинити сповіщення", moderation_duration: "Тривалість модерації", black_list: "Чорний список", remove_links: "Видалити посилання", language: "Мова", sec: "Сек" }, CI = { title: "Сповіщення", group: "Група" }, RI = { image: "Зображення", audio: "Аудіо", view: "Переглянути", title: "Заголовок", message: "Повідомлення" }, TI = "Зберегти", xI = "Назад", wI = { copy: "Копіювати", launch: "Запустити", url: "URL віджета" }, _I = { top: "Зображення зверху, текст знизу", bottom: "Зображення знизу, текст зверху", left: "Зображення зліва, текст справа", right: "Зображення справа, текст зліва", overlay: "Текст поверх зображення" }, OI = { font: "Шрифт", font_size: "Розмір шрифту", text_color: "Колір тексту", bold: "Жирний", italics: "Курсив", underline: "Підкреслення", transformation: "Трансформація", letter_spacing: "Міжлітерний інтервал", word_spacing: "Міжсловний інтервал", horizontal_alignment: "Горизонтальне вирівнювання", vertical_alignment: "Вертикальне вирівнювання", text_preview: "Це попередній перегляд!", name: "Ім'я" }, kI = { play: "Відтворити", stop: "Зупинити" }, DI = {
-  on: sI,
-  off: uI,
-  select: lI,
-  success: cI,
-  sound_volume: fI,
-  skip_media: dI,
-  skip_alert: pI,
-  authorization: hI,
-  updater: vI,
-  media: mI,
-  media_settings: gI,
-  dashboard: yI,
-  messages: bI,
-  message: SI,
-  settings: EI,
-  alerts: CI,
-  alert: RI,
-  save: TI,
-  back: xI,
-  widget: wI,
-  view: _I,
-  text: OI,
-  audio: kI
-}, AI = "An", MI = "Aus", LI = "Auswählen", $I = "Erfolg", PI = "Lautstärke", NI = "Tastenkombination zum Überspringen von Medien", UI = "Benachrichtigung zum Überspringen von Verknüpfungen", jI = { title: "Autorisierung", code: "Code anfordern", sign_in: "Anmelden", phone: "Telefonnummer", telegram_code: "Code aus Telegram", your_code: "Dein Code", "2fa_password": "2fa-Passwort", password: "Passwort" }, zI = { title: "Aktualisieren", description: "Eine neue Version der App ist verfügbar. Möchten Sie aktualisieren?", update: "Aktualisieren", later: "Später", downloading: "Laden..." }, FI = { title: "Medien", youtube: "Youtube", twitch: "Zucken", tiktok: "Tiktok" }, II = { enabled: "Ermöglichte", min_amount_eur: "Mindestbetrag EUR", min_amount_rub: "Mindestbetrag RUB", video_volume: "Video-Lautstärke", min_views: "Min. Ansichten" }, VI = { messages: "Nachrichten", settings: "Einstellungen", alerts: "Benachrichtigungen", media: "Medien" }, BI = { title: "Letzte Nachrichten" }, HI = { skip: "Überspringen", replay: "Wiederholungsspiel", donate: "Spenden" }, YI = { title: "Einstellungen", pause: "Benachrichtigungen pausieren", moderation_duration: "Moderationsdauer", black_list: "Schwarze Liste", remove_links: "Entfernen Links", language: "Sprache", sec: "Sekunde" }, WI = { title: "Warnungen", group: "Gruppe" }, qI = { image: "Bild", audio: "Audio", view: "Ansicht", title: "Titel", message: "Nachricht" }, GI = "Speichern", KI = "Zurück", QI = { copy: "Kopieren", launch: "Starten", url: "Widget-URL" }, JI = { top: "Bild oben, Text unten", bottom: "Bild unten, Text oben", left: "Bild links, Text rechts", right: "Bild rechts, Text links", overlay: "Text-Overlay-Bild" }, XI = { font: "Schriftart", font_size: "Schriftgröße", text_color: "Text Farbe", bold: "Fett", italics: "Kursiv", underline: "Unterstrichen", transformation: "Transformation", letter_spacing: "Buchstabenabstand", word_spacing: "Wortabstand", horizontal_alignment: "Horizontale Ausrichtung", vertical_alignment: "Vertikale Ausrichtung", text_preview: "Dies ist eine Vorschau!", name: "Name" }, ZI = { play: "Abspielen", stop: "Stopp" }, e5 = {
-  on: AI,
-  off: MI,
-  select: LI,
-  success: $I,
-  sound_volume: PI,
-  skip_media: NI,
-  skip_alert: UI,
-  authorization: jI,
-  updater: zI,
-  media: FI,
-  media_settings: II,
-  dashboard: VI,
-  messages: BI,
-  message: HI,
-  settings: YI,
-  alerts: WI,
-  alert: qI,
-  save: GI,
-  back: KI,
-  widget: QI,
-  view: JI,
-  text: XI,
-  audio: ZI
-}, t5 = "Activado", n5 = "Desactivado", r5 = "Seleccionar", a5 = "Éxito", i5 = "Volumen del sonido", o5 = "Atajo, omitir medios", s5 = "Alerta de salto de acceso directo", u5 = { title: "Autorización", code: "Solicitar código", sign_in: "Iniciar sesión", phone: "Número de teléfono", telegram_code: "Código de Telegram", your_code: "Tu código", "2fa_password": "Contraseña de 2fa", password: "Contraseña" }, l5 = { title: "Actualizar", description: "Ya está disponible una nueva versión de la aplicación. ¿Quieres actualizar?", update: "Actualizar", later: "Más tarde", downloading: "Descargar..." }, c5 = { title: "Medio", youtube: "Youtube", twitch: "Tic", tiktok: "Tiktok" }, f5 = { enabled: "Habilitado", min_amount_eur: "Importe mínimo EUR", min_amount_rub: "Cantidad mínima RUB", video_volume: "Volumen de vídeo", min_views: "Vistas mínimas" }, d5 = { messages: "Mensajes", settings: "Ajustes", alerts: "Alertas", media: "Medio" }, p5 = { title: "Últimos mensajes" }, h5 = { skip: "Omitir", replay: "Repetir", donate: "donar" }, v5 = { title: "Ajustes", pause: "Pausar mensajes de alerta", moderation_duration: "Duración de la moderación", black_list: "Lista negra", remove_links: "Eliminar Enlaces", language: "Idioma", sec: "Seg" }, m5 = { title: "Alertas", group: "Grupo" }, g5 = { image: "Imagen", audio: "Audio", view: "Vista", title: "Título", message: "Mensaje" }, y5 = "Guardar", b5 = "Atrás", S5 = { copy: "Copiar", launch: "Iniciar", url: "URL del widget" }, E5 = { top: "Imagen arriba, texto abajo", bottom: "Imagen abajo, texto arriba", left: "Imagen izquierda, texto derecha", right: "Imagen derecha, texto izquierda", overlay: "Imagen superpuesta al texto" }, C5 = { font: "Fuente", font_size: "Tamaño de fuente", text_color: "Texto color", bold: "Negrita", italics: "Cursiva", underline: "Subrayado", transformation: "Transformación", letter_spacing: "Espaciado entre letras", word_spacing: "Espaciado entre palabras", horizontal_alignment: "Alineación horizontal", vertical_alignment: "Alineación vertical", text_preview: "¡Esta es una vista previa!", name: "Nombre" }, R5 = { play: "Reproducir", stop: "Detener" }, T5 = {
-  on: t5,
-  off: n5,
-  select: r5,
-  success: a5,
-  sound_volume: i5,
-  skip_media: o5,
-  skip_alert: s5,
-  authorization: u5,
-  updater: l5,
-  media: c5,
-  media_settings: f5,
-  dashboard: d5,
-  messages: p5,
-  message: h5,
-  settings: v5,
-  alerts: m5,
-  alert: g5,
-  save: y5,
-  back: b5,
-  widget: S5,
-  view: E5,
-  text: C5,
-  audio: R5
-}, x5 = "Activé", w5 = "Désactivé", _5 = "Sélectionner", O5 = "Succès", k5 = "Volume sonore", D5 = "Raccourci : sauter le média", A5 = "Alerte de saut de raccourci", M5 = { title: "Autorisation", code: "Demander un code", sign_in: "Connexion", phone: "Numéro de téléphone", telegram_code: "Code de Telegram", your_code: "Votre code", "2fa_password": "Mot de passe 2fa", password: "Mot de passe" }, L5 = { title: "Mettre à jour", description: "Une nouvelle version de l’application est disponible. Voulez-vous mettre à jour ?", update: "Mettre à jour", later: "Plus tard", downloading: "Téléchargement..." }, $5 = { title: "Média", youtube: "Youtube", twitch: "Tic", tiktok: "Tiktok" }, P5 = { enabled: "Activé", min_amount_eur: "Montant minimum EUR", min_amount_rub: "Quantité minimale RUB", video_volume: "Volume vidéo", min_views: "Vues min" }, N5 = { messages: "Messages", settings: "Paramètres", alerts: "Alertes", media: "Média" }, U5 = { title: "Derniers messages" }, j5 = { skip: "Ignorer", replay: "Rejouer", donate: "Faire un don" }, z5 = { title: "Paramètres", pause: "Mettre en pause les messages d'alerte", moderation_duration: "Durée de modération", black_list: "Liste noire", remove_links: "Supprimer Liens", language: "Langue", sec: "Sec" }, F5 = { title: "Alertes", group: "Groupe" }, I5 = { image: "Image", audio: "Audio", view: "Affichage", title: "Titre", message: "Message" }, V5 = "Enregistrer", B5 = "Retour", H5 = { copy: "Copier", launch: "Lancer", url: "URL du widget" }, Y5 = { top: "Image en haut, texte en bas", bottom: "Image en bas, texte en haut", left: "Image à gauche, texte à droite", right: "Image à droite, texte à gauche", overlay: "Image de superposition de texte" }, W5 = { font: "Police", font_size: "Taille de police", text_color: "Texte couleur", bold: "Gras", italics: "Italique", underline: "Soulignement", transformation: "Transformation", letter_spacing: "Espacement des lettres", word_spacing: "Espacement des mots", horizontal_alignment: "Alignement horizontal", vertical_alignment: "Alignement vertical", text_preview: "Ceci est un aperçu !", name: "Nom" }, q5 = { play: "Lecture", stop: "Arrêter" }, G5 = {
-  on: x5,
-  off: w5,
-  select: _5,
-  success: O5,
-  sound_volume: k5,
-  skip_media: D5,
-  skip_alert: A5,
-  authorization: M5,
-  updater: L5,
-  media: $5,
-  media_settings: P5,
-  dashboard: N5,
-  messages: U5,
-  message: j5,
-  settings: z5,
-  alerts: F5,
-  alert: I5,
-  save: V5,
-  back: B5,
-  widget: H5,
-  view: Y5,
-  text: W5,
-  audio: q5
-}, K5 = "चालू", Q5 = "बंद", J5 = "चुनें", X5 = "सफलता", Z5 = "ध्वनि की मात्रा", eV = "शॉर्टकट मीडिया छोड़ें", tV = "शॉर्टकट स्किप अलर्ट", nV = { title: "प्राधिकरण", code: "अनुरोध कोड", sign_in: "साइन इन करें", phone: "फ़ोन नंबर", telegram_code: "टेलीग्राम से कोड", your_code: "आपका कोड", "2fa_password": "2fa पासवर्ड", password: "पासवर्ड" }, rV = { title: "आधुनिकीकरणअ", description: "ऐप का एक नया संस्करण उपलब्ध है। क्या आप अद्यतन करना चाहते हैं?", update: "आधुनिकीकरणअ", later: "बाद में", downloading: "डाउनलोड।।।" }, aV = { title: "मीडिया", youtube: "यूट्यूब", twitch: "फड़काना", tiktok: "टिकटोक" }, iV = { enabled: "सक्षम", min_amount_eur: "न्यूनतम राशि EUR", min_amount_rub: "न्यूनतम राशि RUB", video_volume: "वीडियो वॉल्यूम", min_views: "न्यूनतम दृश्य" }, oV = { messages: "संदेश", settings: "सेटिंग्स", alerts: "अलर्ट", media: "मीडिया" }, sV = { title: "अंतिम संदेश" }, uV = { skip: "छोड़ें", replay: "पुनरावृत्ति", donate: "दान करें" }, lV = { title: "सेटिंग्स", pause: "अलर्ट संदेश रोकें", moderation_duration: "मॉडरेशन अवधि", black_list: "ब्लैक लिस्ट", remove_links: "हटाएँ लिंक", language: "भाषा", sec: "सेक" }, cV = { title: "अलर्ट", group: "समूह" }, fV = { image: "छवि", audio: "ऑडियो", view: "देखें", title: "शीर्षक", message: "संदेश" }, dV = "सहेजें", pV = "वापस", hV = { copy: "कॉपी करें", launch: "लॉन्च", url: "विजेट यूआरएल" }, vV = { top: "छवि शीर्ष, पाठ नीचे", bottom: "छवि नीचे, पाठ शीर्ष", left: "छवि बाईं ओर, पाठ दाईं ओर", right: "छवि दाईं ओर, पाठ बाईं ओर", overlay: "पाठ ओवरले छवि" }, mV = { font: "फ़ॉन्ट", font_size: "फ़ॉन्ट आकार", text_color: "पाठ रंग", bold: "बोल्ड", italics: "इटैलिक", underline: "अंडरलाइन", transformation: "रूपांतरण", letter_spacing: "अक्षर रिक्ति", word_spacing: "शब्द रिक्ति", horizontal_alignment: "क्षैतिज संरेखण", vertical_alignment: "ऊर्ध्वाधर संरेखण", text_preview: "यह एक पूर्वावलोकन है!", name: "नाम" }, gV = { play: "चलाएँ", stop: "रोकें" }, yV = {
-  on: K5,
-  off: Q5,
-  select: J5,
-  success: X5,
-  sound_volume: Z5,
-  skip_media: eV,
-  skip_alert: tV,
-  authorization: nV,
-  updater: rV,
-  media: aV,
-  media_settings: iV,
-  dashboard: oV,
-  messages: sV,
-  message: uV,
-  settings: lV,
-  alerts: cV,
-  alert: fV,
-  save: dV,
-  back: pV,
-  widget: hV,
-  view: vV,
-  text: mV,
-  audio: gV
-}, bV = "Ligado", SV = "Desligado", EV = "Selecionar", CV = "Sucesso", RV = "Volume do som", TV = "Atalho para pular mídia", xV = "Alerta de salto de atalho", wV = { title: "Autorização", code: "Solicitar código", sign_in: "Entrar", phone: "Número de telefone", telegram_code: "Código do telegrama", your_code: "Seu código", "2fa_password": "Senha 2fa", password: "Senha" }, _V = { title: "Atualização", description: "Uma nova versão do aplicativo está disponível. Deseja atualizar?", update: "Atualização", later: "Posterior", downloading: "Transferindo..." }, OV = { title: "Mídia", youtube: "Linkedin", twitch: "Contrair-se", tiktok: "Tiktok" }, kV = { enabled: "Habilitado", min_amount_eur: "Valor mínimo EUR", min_amount_rub: "Quantidade mínima RUB", video_volume: "Volume do vídeo", min_views: "Visualizações mínimas" }, DV = { messages: "Mensagens", settings: "Configurações", alerts: "Alertas", media: "Mídia" }, AV = { title: "Últimas mensagens" }, MV = { skip: "Ignorar", replay: "Rejogar", donate: "doar" }, LV = { title: "Configurações", pause: "Pausar mensagens de alerta", moderation_duration: "Duração da moderação", black_list: "Lista negra", remove_links: "Remover links", language: "Idioma", sec: "Seg" }, $V = { title: "Alertas", group: "Grupo" }, PV = { image: "Imagem", audio: "Áudio", view: "Exibir", title: "Título", message: "Mensagem" }, NV = "Salvar", UV = "Voltar", jV = { copy: "Copiar", launch: "Iniciar", url: "URL do widget" }, zV = { top: "Imagem superior, texto inferior", bottom: "Imagem inferior, texto superior", left: "Imagem esquerda, texto direita", right: "Imagem direita, texto esquerda", overlay: "Imagem de sobreposição de texto" }, FV = { font: "Fonte", font_size: "Tamanho da fonte", text_color: "Texto cor", bold: "Negrito", italics: "Itálico", underline: "Sublinhado", transformation: "Transformação", letter_spacing: "Espaçamento entre letras", word_spacing: "Espaçamento entre palavras", horizontal_alignment: "Alinhamento horizontal", vertical_alignment: "Alinhamento vertical", text_preview: "Esta é uma prévia!", name: "Nome" }, IV = { play: "Reproduzir", stop: "Parar" }, VV = {
-  on: bV,
-  off: SV,
-  select: EV,
-  success: CV,
-  sound_volume: RV,
-  skip_media: TV,
-  skip_alert: xV,
-  authorization: wV,
-  updater: _V,
-  media: OV,
-  media_settings: kV,
-  dashboard: DV,
-  messages: AV,
-  message: MV,
-  settings: LV,
-  alerts: $V,
-  alert: PV,
-  save: NV,
-  back: UV,
-  widget: jV,
-  view: zV,
-  text: FV,
-  audio: IV
-}, BV = "开启", HV = "关闭", YV = "选择", WV = "成功", qV = "音量", GV = "快捷方式跳过媒体", KV = "快捷方式跳过警报", QV = { title: "授权", code: "请求代码", sign_in: "登录", phone: "电话号码", telegram_code: "电报代码", your_code: "你的代码" }, JV = { title: "更新", description: "该应用程序的新版本可用。是否要更新？", update: "更新", later: "后", downloading: "下载。。。" }, XV = { title: "媒体", youtube: "优酷", twitch: "抽搐", tiktok: "抖音" }, ZV = { enabled: "启用", min_amount_eur: "最低金额 EUR", min_amount_rub: "最小金额 RUB", video_volume: "视频音量", min_views: "最小视图" }, eB = { messages: "消息", settings: "设置", alerts: "警报", media: "媒体" }, tB = { title: "最后消息" }, nB = { skip: "跳过", replay: "重播", donate: "捐赠" }, rB = { title: "设置", pause: "暂停警报消息", moderation_duration: "审核时长", black_list: "黑名单", remove_links: "删除链接", language: "语言", sec: "Sec" }, aB = { title: "警报", group: "组" }, iB = { image: "图片", audio: "音频", view: "查看", title: "标题", message: "消息" }, oB = "保存", sB = "返回", uB = { copy: "复制", launch: "启动", url: "小部件网址" }, lB = { top: "图片顶部，文本底部", bottom: "图片底部，文本顶部", left: "图片左侧，文本右侧", right: "图片右侧，文本左侧", overlay: "文本覆盖图片" }, cB = { font: "字体", font_size: "字体大小", text_color: "文本颜色", bold: "粗体", italics: "斜体", underline: "下划线", transformation: "变换", letter_spacing: "字母间距", word_spacing: "单词间距", horizontal_alignment: "水平对齐", vertical_alignment: "垂直对齐", text_preview: "这是一个预览！", name: "名称" }, fB = { play: "播放", stop: "停止" }, dB = {
-  on: BV,
-  off: HV,
-  select: YV,
-  success: WV,
-  sound_volume: qV,
-  skip_media: GV,
-  skip_alert: KV,
-  authorization: QV,
-  updater: JV,
-  media: XV,
-  media_settings: ZV,
-  dashboard: eB,
-  messages: tB,
-  message: nB,
-  settings: rB,
-  alerts: aB,
-  alert: iB,
-  save: oB,
-  back: sB,
-  widget: uB,
-  view: lB,
-  text: cB,
-  audio: fB
+  auction: RF,
+  media_settings: TF,
+  dashboard: xF,
+  messages: wF,
+  message: _F,
+  settings: OF,
+  alerts: kF,
+  alert: DF,
+  save: AF,
+  back: MF,
+  widget: LF,
+  view: $F,
+  text: PF,
+  audio: NF
+}, jF = "Вкл", zF = "Выкл", FF = "Выбрать", IF = "Успех", VF = "Громкость звука", BF = "Комбинация скип медиа", HF = "Комбинация скип алерта", YF = { title: "Авторизация", code: "Запрос кода", sign_in: "Войти", phone: "Номер телефона", telegram_code: "Код из telegram", your_code: "Ваш код", "2fa_password": "Пароль 2fa", password: "Пароль" }, WF = { title: "Обновлять", description: "Доступна новая версия приложения. Хотите обновиться?", update: "Обновлять", later: "Позже", downloading: "Загрузки..." }, qF = { title: "Медиа", youtube: "Ютуб", twitch: "Твич", tiktok: "Тикток" }, GF = { enabled: "Включен", min_amount_eur: "Минимальная сумма в евро", min_amount_rub: "Минимальная сумма руб.", video_volume: "Громкость видео", min_views: "Минимальное количество просмотров" }, KF = { messages: "Сообщения", settings: "Настройки", alerts: "Оповещения", media: "Медиа" }, QF = { title: "Последние сообщения" }, JF = { skip: "Пропустить", replay: "Повторить", donate: "перевел" }, XF = { title: "Настройки", pause: "Приостановить оповещения", moderation_duration: "Длительность модерации", black_list: "Черный список", remove_links: "Удалить ссылки", language: "Язык", sec: "Сек" }, ZF = { title: "Оповещения", group: "Группа" }, eI = { image: "Изображение", audio: "Аудио", view: "Просмотр", title: "Заголовок", message: "Сообщение" }, tI = "Сохранить", nI = "Назад", rI = { copy: "Копировать", launch: "Запуск", url: "URL-адрес виджета" }, aI = { top: "Изображение вверху, текст внизу", bottom: "Изображение внизу, текст вверху", left: "Изображение слева, текст справа", right: "Изображение справа, текст слева", overlay: "Наложение текста" }, iI = { font: "Шрифт", font_size: "Размер шрифта", text_color: "Текст цвет", bold: "Жирный", italics: "Курсив", underline: "Подчеркнутый", transformation: "Преобразование", letter_spacing: "Интервал между буквами", word_spacing: "Интервал между словами", horizontal_alignment: "Горизонтальное выравнивание", vertical_alignment: "Вертикальное выравнивание", text_preview: "Это предварительный просмотр!", name: "Имя" }, oI = { play: "Воспроизведение", stop: "Стоп" }, sI = {
+  on: jF,
+  off: zF,
+  select: FF,
+  success: IF,
+  sound_volume: VF,
+  skip_media: BF,
+  skip_alert: HF,
+  authorization: YF,
+  updater: WF,
+  media: qF,
+  media_settings: GF,
+  dashboard: KF,
+  messages: QF,
+  message: JF,
+  settings: XF,
+  alerts: ZF,
+  alert: eI,
+  save: tI,
+  back: nI,
+  widget: rI,
+  view: aI,
+  text: iI,
+  audio: oI
+}, uI = "Увімкнено", lI = "Вимкнено", cI = "Вибрати", fI = "Успіх", dI = "Гучність звуку", pI = "Комбінація скіп медіа", hI = "Комбінація скіп алерт", vI = { title: "Авторизація", code: "Запитати код", sign_in: "Увійти", phone: "Номер телефону", telegram_code: "Код з Telegram", your_code: "Ваш код", "2fa_password": "Пароль 2fa", password: "Пароль" }, mI = { title: "Оновлення", description: "Доступна нова версія застосунку. Бажаєте оновити?", update: "Оновити", later: "Пізніше", downloading: "Завантаження..." }, gI = { title: "Медіа", youtube: "YouTube", twitch: "Twitch", tiktok: "TikTok" }, yI = { enabled: "Увімкнено", min_amount_eur: "Мін. сума в EUR", min_amount_rub: "Мін. сума в RUB", video_volume: "Гучність відео", min_views: "Мін. кількість переглядів" }, bI = { messages: "Повідомлення", settings: "Налаштування", alerts: "Сповіщення", media: "Медіа" }, SI = { title: "Останні повідомлення" }, EI = { skip: "Пропустити", replay: "Повторити", donate: "задонатив" }, CI = { title: "Налаштування", pause: "Призупинити сповіщення", moderation_duration: "Тривалість модерації", black_list: "Чорний список", remove_links: "Видалити посилання", language: "Мова", sec: "Сек" }, RI = { title: "Сповіщення", group: "Група" }, TI = { image: "Зображення", audio: "Аудіо", view: "Переглянути", title: "Заголовок", message: "Повідомлення" }, xI = "Зберегти", wI = "Назад", _I = { copy: "Копіювати", launch: "Запустити", url: "URL віджета" }, OI = { top: "Зображення зверху, текст знизу", bottom: "Зображення знизу, текст зверху", left: "Зображення зліва, текст справа", right: "Зображення справа, текст зліва", overlay: "Текст поверх зображення" }, kI = { font: "Шрифт", font_size: "Розмір шрифту", text_color: "Колір тексту", bold: "Жирний", italics: "Курсив", underline: "Підкреслення", transformation: "Трансформація", letter_spacing: "Міжлітерний інтервал", word_spacing: "Міжсловний інтервал", horizontal_alignment: "Горизонтальне вирівнювання", vertical_alignment: "Вертикальне вирівнювання", text_preview: "Це попередній перегляд!", name: "Ім'я" }, DI = { play: "Відтворити", stop: "Зупинити" }, AI = {
+  on: uI,
+  off: lI,
+  select: cI,
+  success: fI,
+  sound_volume: dI,
+  skip_media: pI,
+  skip_alert: hI,
+  authorization: vI,
+  updater: mI,
+  media: gI,
+  media_settings: yI,
+  dashboard: bI,
+  messages: SI,
+  message: EI,
+  settings: CI,
+  alerts: RI,
+  alert: TI,
+  save: xI,
+  back: wI,
+  widget: _I,
+  view: OI,
+  text: kI,
+  audio: DI
+}, MI = "An", LI = "Aus", $I = "Auswählen", PI = "Erfolg", NI = "Lautstärke", UI = "Tastenkombination zum Überspringen von Medien", jI = "Benachrichtigung zum Überspringen von Verknüpfungen", zI = { title: "Autorisierung", code: "Code anfordern", sign_in: "Anmelden", phone: "Telefonnummer", telegram_code: "Code aus Telegram", your_code: "Dein Code", "2fa_password": "2fa-Passwort", password: "Passwort" }, FI = { title: "Aktualisieren", description: "Eine neue Version der App ist verfügbar. Möchten Sie aktualisieren?", update: "Aktualisieren", later: "Später", downloading: "Laden..." }, II = { title: "Medien", youtube: "Youtube", twitch: "Zucken", tiktok: "Tiktok" }, VI = { enabled: "Ermöglichte", min_amount_eur: "Mindestbetrag EUR", min_amount_rub: "Mindestbetrag RUB", video_volume: "Video-Lautstärke", min_views: "Min. Ansichten" }, BI = { messages: "Nachrichten", settings: "Einstellungen", alerts: "Benachrichtigungen", media: "Medien" }, HI = { title: "Letzte Nachrichten" }, YI = { skip: "Überspringen", replay: "Wiederholungsspiel", donate: "Spenden" }, WI = { title: "Einstellungen", pause: "Benachrichtigungen pausieren", moderation_duration: "Moderationsdauer", black_list: "Schwarze Liste", remove_links: "Entfernen Links", language: "Sprache", sec: "Sekunde" }, qI = { title: "Warnungen", group: "Gruppe" }, GI = { image: "Bild", audio: "Audio", view: "Ansicht", title: "Titel", message: "Nachricht" }, KI = "Speichern", QI = "Zurück", JI = { copy: "Kopieren", launch: "Starten", url: "Widget-URL" }, XI = { top: "Bild oben, Text unten", bottom: "Bild unten, Text oben", left: "Bild links, Text rechts", right: "Bild rechts, Text links", overlay: "Text-Overlay-Bild" }, ZI = { font: "Schriftart", font_size: "Schriftgröße", text_color: "Text Farbe", bold: "Fett", italics: "Kursiv", underline: "Unterstrichen", transformation: "Transformation", letter_spacing: "Buchstabenabstand", word_spacing: "Wortabstand", horizontal_alignment: "Horizontale Ausrichtung", vertical_alignment: "Vertikale Ausrichtung", text_preview: "Dies ist eine Vorschau!", name: "Name" }, e5 = { play: "Abspielen", stop: "Stopp" }, t5 = {
+  on: MI,
+  off: LI,
+  select: $I,
+  success: PI,
+  sound_volume: NI,
+  skip_media: UI,
+  skip_alert: jI,
+  authorization: zI,
+  updater: FI,
+  media: II,
+  media_settings: VI,
+  dashboard: BI,
+  messages: HI,
+  message: YI,
+  settings: WI,
+  alerts: qI,
+  alert: GI,
+  save: KI,
+  back: QI,
+  widget: JI,
+  view: XI,
+  text: ZI,
+  audio: e5
+}, n5 = "Activado", r5 = "Desactivado", a5 = "Seleccionar", i5 = "Éxito", o5 = "Volumen del sonido", s5 = "Atajo, omitir medios", u5 = "Alerta de salto de acceso directo", l5 = { title: "Autorización", code: "Solicitar código", sign_in: "Iniciar sesión", phone: "Número de teléfono", telegram_code: "Código de Telegram", your_code: "Tu código", "2fa_password": "Contraseña de 2fa", password: "Contraseña" }, c5 = { title: "Actualizar", description: "Ya está disponible una nueva versión de la aplicación. ¿Quieres actualizar?", update: "Actualizar", later: "Más tarde", downloading: "Descargar..." }, f5 = { title: "Medio", youtube: "Youtube", twitch: "Tic", tiktok: "Tiktok" }, d5 = { enabled: "Habilitado", min_amount_eur: "Importe mínimo EUR", min_amount_rub: "Cantidad mínima RUB", video_volume: "Volumen de vídeo", min_views: "Vistas mínimas" }, p5 = { messages: "Mensajes", settings: "Ajustes", alerts: "Alertas", media: "Medio" }, h5 = { title: "Últimos mensajes" }, v5 = { skip: "Omitir", replay: "Repetir", donate: "donar" }, m5 = { title: "Ajustes", pause: "Pausar mensajes de alerta", moderation_duration: "Duración de la moderación", black_list: "Lista negra", remove_links: "Eliminar Enlaces", language: "Idioma", sec: "Seg" }, g5 = { title: "Alertas", group: "Grupo" }, y5 = { image: "Imagen", audio: "Audio", view: "Vista", title: "Título", message: "Mensaje" }, b5 = "Guardar", S5 = "Atrás", E5 = { copy: "Copiar", launch: "Iniciar", url: "URL del widget" }, C5 = { top: "Imagen arriba, texto abajo", bottom: "Imagen abajo, texto arriba", left: "Imagen izquierda, texto derecha", right: "Imagen derecha, texto izquierda", overlay: "Imagen superpuesta al texto" }, R5 = { font: "Fuente", font_size: "Tamaño de fuente", text_color: "Texto color", bold: "Negrita", italics: "Cursiva", underline: "Subrayado", transformation: "Transformación", letter_spacing: "Espaciado entre letras", word_spacing: "Espaciado entre palabras", horizontal_alignment: "Alineación horizontal", vertical_alignment: "Alineación vertical", text_preview: "¡Esta es una vista previa!", name: "Nombre" }, T5 = { play: "Reproducir", stop: "Detener" }, x5 = {
+  on: n5,
+  off: r5,
+  select: a5,
+  success: i5,
+  sound_volume: o5,
+  skip_media: s5,
+  skip_alert: u5,
+  authorization: l5,
+  updater: c5,
+  media: f5,
+  media_settings: d5,
+  dashboard: p5,
+  messages: h5,
+  message: v5,
+  settings: m5,
+  alerts: g5,
+  alert: y5,
+  save: b5,
+  back: S5,
+  widget: E5,
+  view: C5,
+  text: R5,
+  audio: T5
+}, w5 = "Activé", _5 = "Désactivé", O5 = "Sélectionner", k5 = "Succès", D5 = "Volume sonore", A5 = "Raccourci : sauter le média", M5 = "Alerte de saut de raccourci", L5 = { title: "Autorisation", code: "Demander un code", sign_in: "Connexion", phone: "Numéro de téléphone", telegram_code: "Code de Telegram", your_code: "Votre code", "2fa_password": "Mot de passe 2fa", password: "Mot de passe" }, $5 = { title: "Mettre à jour", description: "Une nouvelle version de l’application est disponible. Voulez-vous mettre à jour ?", update: "Mettre à jour", later: "Plus tard", downloading: "Téléchargement..." }, P5 = { title: "Média", youtube: "Youtube", twitch: "Tic", tiktok: "Tiktok" }, N5 = { enabled: "Activé", min_amount_eur: "Montant minimum EUR", min_amount_rub: "Quantité minimale RUB", video_volume: "Volume vidéo", min_views: "Vues min" }, U5 = { messages: "Messages", settings: "Paramètres", alerts: "Alertes", media: "Média" }, j5 = { title: "Derniers messages" }, z5 = { skip: "Ignorer", replay: "Rejouer", donate: "Faire un don" }, F5 = { title: "Paramètres", pause: "Mettre en pause les messages d'alerte", moderation_duration: "Durée de modération", black_list: "Liste noire", remove_links: "Supprimer Liens", language: "Langue", sec: "Sec" }, I5 = { title: "Alertes", group: "Groupe" }, V5 = { image: "Image", audio: "Audio", view: "Affichage", title: "Titre", message: "Message" }, B5 = "Enregistrer", H5 = "Retour", Y5 = { copy: "Copier", launch: "Lancer", url: "URL du widget" }, W5 = { top: "Image en haut, texte en bas", bottom: "Image en bas, texte en haut", left: "Image à gauche, texte à droite", right: "Image à droite, texte à gauche", overlay: "Image de superposition de texte" }, q5 = { font: "Police", font_size: "Taille de police", text_color: "Texte couleur", bold: "Gras", italics: "Italique", underline: "Soulignement", transformation: "Transformation", letter_spacing: "Espacement des lettres", word_spacing: "Espacement des mots", horizontal_alignment: "Alignement horizontal", vertical_alignment: "Alignement vertical", text_preview: "Ceci est un aperçu !", name: "Nom" }, G5 = { play: "Lecture", stop: "Arrêter" }, K5 = {
+  on: w5,
+  off: _5,
+  select: O5,
+  success: k5,
+  sound_volume: D5,
+  skip_media: A5,
+  skip_alert: M5,
+  authorization: L5,
+  updater: $5,
+  media: P5,
+  media_settings: N5,
+  dashboard: U5,
+  messages: j5,
+  message: z5,
+  settings: F5,
+  alerts: I5,
+  alert: V5,
+  save: B5,
+  back: H5,
+  widget: Y5,
+  view: W5,
+  text: q5,
+  audio: G5
+}, Q5 = "चालू", J5 = "बंद", X5 = "चुनें", Z5 = "सफलता", eV = "ध्वनि की मात्रा", tV = "शॉर्टकट मीडिया छोड़ें", nV = "शॉर्टकट स्किप अलर्ट", rV = { title: "प्राधिकरण", code: "अनुरोध कोड", sign_in: "साइन इन करें", phone: "फ़ोन नंबर", telegram_code: "टेलीग्राम से कोड", your_code: "आपका कोड", "2fa_password": "2fa पासवर्ड", password: "पासवर्ड" }, aV = { title: "आधुनिकीकरणअ", description: "ऐप का एक नया संस्करण उपलब्ध है। क्या आप अद्यतन करना चाहते हैं?", update: "आधुनिकीकरणअ", later: "बाद में", downloading: "डाउनलोड।।।" }, iV = { title: "मीडिया", youtube: "यूट्यूब", twitch: "फड़काना", tiktok: "टिकटोक" }, oV = { enabled: "सक्षम", min_amount_eur: "न्यूनतम राशि EUR", min_amount_rub: "न्यूनतम राशि RUB", video_volume: "वीडियो वॉल्यूम", min_views: "न्यूनतम दृश्य" }, sV = { messages: "संदेश", settings: "सेटिंग्स", alerts: "अलर्ट", media: "मीडिया" }, uV = { title: "अंतिम संदेश" }, lV = { skip: "छोड़ें", replay: "पुनरावृत्ति", donate: "दान करें" }, cV = { title: "सेटिंग्स", pause: "अलर्ट संदेश रोकें", moderation_duration: "मॉडरेशन अवधि", black_list: "ब्लैक लिस्ट", remove_links: "हटाएँ लिंक", language: "भाषा", sec: "सेक" }, fV = { title: "अलर्ट", group: "समूह" }, dV = { image: "छवि", audio: "ऑडियो", view: "देखें", title: "शीर्षक", message: "संदेश" }, pV = "सहेजें", hV = "वापस", vV = { copy: "कॉपी करें", launch: "लॉन्च", url: "विजेट यूआरएल" }, mV = { top: "छवि शीर्ष, पाठ नीचे", bottom: "छवि नीचे, पाठ शीर्ष", left: "छवि बाईं ओर, पाठ दाईं ओर", right: "छवि दाईं ओर, पाठ बाईं ओर", overlay: "पाठ ओवरले छवि" }, gV = { font: "फ़ॉन्ट", font_size: "फ़ॉन्ट आकार", text_color: "पाठ रंग", bold: "बोल्ड", italics: "इटैलिक", underline: "अंडरलाइन", transformation: "रूपांतरण", letter_spacing: "अक्षर रिक्ति", word_spacing: "शब्द रिक्ति", horizontal_alignment: "क्षैतिज संरेखण", vertical_alignment: "ऊर्ध्वाधर संरेखण", text_preview: "यह एक पूर्वावलोकन है!", name: "नाम" }, yV = { play: "चलाएँ", stop: "रोकें" }, bV = {
+  on: Q5,
+  off: J5,
+  select: X5,
+  success: Z5,
+  sound_volume: eV,
+  skip_media: tV,
+  skip_alert: nV,
+  authorization: rV,
+  updater: aV,
+  media: iV,
+  media_settings: oV,
+  dashboard: sV,
+  messages: uV,
+  message: lV,
+  settings: cV,
+  alerts: fV,
+  alert: dV,
+  save: pV,
+  back: hV,
+  widget: vV,
+  view: mV,
+  text: gV,
+  audio: yV
+}, SV = "Ligado", EV = "Desligado", CV = "Selecionar", RV = "Sucesso", TV = "Volume do som", xV = "Atalho para pular mídia", wV = "Alerta de salto de atalho", _V = { title: "Autorização", code: "Solicitar código", sign_in: "Entrar", phone: "Número de telefone", telegram_code: "Código do telegrama", your_code: "Seu código", "2fa_password": "Senha 2fa", password: "Senha" }, OV = { title: "Atualização", description: "Uma nova versão do aplicativo está disponível. Deseja atualizar?", update: "Atualização", later: "Posterior", downloading: "Transferindo..." }, kV = { title: "Mídia", youtube: "Linkedin", twitch: "Contrair-se", tiktok: "Tiktok" }, DV = { enabled: "Habilitado", min_amount_eur: "Valor mínimo EUR", min_amount_rub: "Quantidade mínima RUB", video_volume: "Volume do vídeo", min_views: "Visualizações mínimas" }, AV = { messages: "Mensagens", settings: "Configurações", alerts: "Alertas", media: "Mídia" }, MV = { title: "Últimas mensagens" }, LV = { skip: "Ignorar", replay: "Rejogar", donate: "doar" }, $V = { title: "Configurações", pause: "Pausar mensagens de alerta", moderation_duration: "Duração da moderação", black_list: "Lista negra", remove_links: "Remover links", language: "Idioma", sec: "Seg" }, PV = { title: "Alertas", group: "Grupo" }, NV = { image: "Imagem", audio: "Áudio", view: "Exibir", title: "Título", message: "Mensagem" }, UV = "Salvar", jV = "Voltar", zV = { copy: "Copiar", launch: "Iniciar", url: "URL do widget" }, FV = { top: "Imagem superior, texto inferior", bottom: "Imagem inferior, texto superior", left: "Imagem esquerda, texto direita", right: "Imagem direita, texto esquerda", overlay: "Imagem de sobreposição de texto" }, IV = { font: "Fonte", font_size: "Tamanho da fonte", text_color: "Texto cor", bold: "Negrito", italics: "Itálico", underline: "Sublinhado", transformation: "Transformação", letter_spacing: "Espaçamento entre letras", word_spacing: "Espaçamento entre palavras", horizontal_alignment: "Alinhamento horizontal", vertical_alignment: "Alinhamento vertical", text_preview: "Esta é uma prévia!", name: "Nome" }, VV = { play: "Reproduzir", stop: "Parar" }, BV = {
+  on: SV,
+  off: EV,
+  select: CV,
+  success: RV,
+  sound_volume: TV,
+  skip_media: xV,
+  skip_alert: wV,
+  authorization: _V,
+  updater: OV,
+  media: kV,
+  media_settings: DV,
+  dashboard: AV,
+  messages: MV,
+  message: LV,
+  settings: $V,
+  alerts: PV,
+  alert: NV,
+  save: UV,
+  back: jV,
+  widget: zV,
+  view: FV,
+  text: IV,
+  audio: VV
+}, HV = "开启", YV = "关闭", WV = "选择", qV = "成功", GV = "音量", KV = "快捷方式跳过媒体", QV = "快捷方式跳过警报", JV = { title: "授权", code: "请求代码", sign_in: "登录", phone: "电话号码", telegram_code: "电报代码", your_code: "你的代码" }, XV = { title: "更新", description: "该应用程序的新版本可用。是否要更新？", update: "更新", later: "后", downloading: "下载。。。" }, ZV = { title: "媒体", youtube: "优酷", twitch: "抽搐", tiktok: "抖音" }, eB = { enabled: "启用", min_amount_eur: "最低金额 EUR", min_amount_rub: "最小金额 RUB", video_volume: "视频音量", min_views: "最小视图" }, tB = { messages: "消息", settings: "设置", alerts: "警报", media: "媒体" }, nB = { title: "最后消息" }, rB = { skip: "跳过", replay: "重播", donate: "捐赠" }, aB = { title: "设置", pause: "暂停警报消息", moderation_duration: "审核时长", black_list: "黑名单", remove_links: "删除链接", language: "语言", sec: "Sec" }, iB = { title: "警报", group: "组" }, oB = { image: "图片", audio: "音频", view: "查看", title: "标题", message: "消息" }, sB = "保存", uB = "返回", lB = { copy: "复制", launch: "启动", url: "小部件网址" }, cB = { top: "图片顶部，文本底部", bottom: "图片底部，文本顶部", left: "图片左侧，文本右侧", right: "图片右侧，文本左侧", overlay: "文本覆盖图片" }, fB = { font: "字体", font_size: "字体大小", text_color: "文本颜色", bold: "粗体", italics: "斜体", underline: "下划线", transformation: "变换", letter_spacing: "字母间距", word_spacing: "单词间距", horizontal_alignment: "水平对齐", vertical_alignment: "垂直对齐", text_preview: "这是一个预览！", name: "名称" }, dB = { play: "播放", stop: "停止" }, pB = {
+  on: HV,
+  off: YV,
+  select: WV,
+  success: qV,
+  sound_volume: GV,
+  skip_media: KV,
+  skip_alert: QV,
+  authorization: JV,
+  updater: XV,
+  media: ZV,
+  media_settings: eB,
+  dashboard: tB,
+  messages: nB,
+  message: rB,
+  settings: aB,
+  alerts: iB,
+  alert: oB,
+  save: sB,
+  back: uB,
+  widget: lB,
+  view: cB,
+  text: fB,
+  audio: dB
 }, Xe = (r) => typeof r == "string", ql = () => {
   let r, a;
   const o = new Promise((u, l) => {
     r = u, a = l;
   });
   return o.resolve = r, o.reject = a, o;
-}, ET = (r) => r == null ? "" : "" + r, pB = (r, a, o) => {
+}, ET = (r) => r == null ? "" : "" + r, hB = (r, a, o) => {
   r.forEach((u) => {
     a[u] && (o[u] = a[u]);
   });
-}, hB = /###/g, CT = (r) => r && r.indexOf("###") > -1 ? r.replace(hB, ".") : r, RT = (r) => !r || Xe(r), ec = (r, a, o) => {
+}, vB = /###/g, CT = (r) => r && r.indexOf("###") > -1 ? r.replace(vB, ".") : r, RT = (r) => !r || Xe(r), ec = (r, a, o) => {
   const u = Xe(a) ? a.split(".") : a;
   let l = 0;
   for (; l < u.length - 1; ) {
@@ -24126,7 +24127,7 @@ const pF = "On", hF = "Off", vF = "Select", mF = "Success", gF = "Sound volume",
   for (; g.obj === void 0 && d.length; )
     f = `${d[d.length - 1]}.${f}`, d = d.slice(0, d.length - 1), g = ec(r, d, Object), g != null && g.obj && typeof g.obj[`${g.k}.${f}`] < "u" && (g.obj = void 0);
   g.obj[`${g.k}.${f}`] = o;
-}, vB = (r, a, o, u) => {
+}, mB = (r, a, o, u) => {
   const {
     obj: l,
     k: f
@@ -24139,7 +24140,7 @@ const pF = "On", hF = "Off", vF = "Select", mF = "Success", gF = "Sound volume",
   } = ec(r, a);
   if (o && Object.prototype.hasOwnProperty.call(o, u))
     return o[u];
-}, mB = (r, a, o) => {
+}, gB = (r, a, o) => {
   const u = np(r, o);
   return u !== void 0 ? u : np(a, o);
 }, Px = (r, a, o) => {
@@ -24147,7 +24148,7 @@ const pF = "On", hF = "Off", vF = "Select", mF = "Success", gF = "Sound volume",
     u !== "__proto__" && u !== "constructor" && (u in r ? Xe(r[u]) || r[u] instanceof String || Xe(a[u]) || a[u] instanceof String ? o && (r[u] = a[u]) : Px(r[u], a[u], o) : r[u] = a[u]);
   return r;
 }, Hs = (r) => r.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-var gB = {
+var yB = {
   "&": "&amp;",
   "<": "&lt;",
   ">": "&gt;",
@@ -24155,8 +24156,8 @@ var gB = {
   "'": "&#39;",
   "/": "&#x2F;"
 };
-const yB = (r) => Xe(r) ? r.replace(/[&<>"'\/]/g, (a) => gB[a]) : r;
-class bB {
+const bB = (r) => Xe(r) ? r.replace(/[&<>"'\/]/g, (a) => yB[a]) : r;
+class SB {
   constructor(a) {
     this.capacity = a, this.regExpMap = /* @__PURE__ */ new Map(), this.regExpQueue = [];
   }
@@ -24168,11 +24169,11 @@ class bB {
     return this.regExpQueue.length === this.capacity && this.regExpMap.delete(this.regExpQueue.shift()), this.regExpMap.set(a, u), this.regExpQueue.push(a), u;
   }
 }
-const SB = [" ", ",", "?", "!", ";"], EB = new bB(20), CB = (r, a, o) => {
+const EB = [" ", ",", "?", "!", ";"], CB = new SB(20), RB = (r, a, o) => {
   a = a || "", o = o || "";
-  const u = SB.filter((d) => a.indexOf(d) < 0 && o.indexOf(d) < 0);
+  const u = EB.filter((d) => a.indexOf(d) < 0 && o.indexOf(d) < 0);
   if (u.length === 0) return !0;
-  const l = EB.getRegExp(`(${u.map((d) => d === "?" ? "\\?" : d).join("|")})`);
+  const l = CB.getRegExp(`(${u.map((d) => d === "?" ? "\\?" : d).join("|")})`);
   let f = !l.test(r);
   if (!f) {
     const d = r.indexOf(o);
@@ -24200,7 +24201,7 @@ const SB = [" ", ",", "?", "!", ";"], EB = new bB(20), CB = (r, a, o) => {
     l = d;
   }
   return l;
-}, rp = (r) => r == null ? void 0 : r.replace("_", "-"), RB = {
+}, rp = (r) => r == null ? void 0 : r.replace("_", "-"), TB = {
   type: "logger",
   log(r) {
     this.output("log", r);
@@ -24223,7 +24224,7 @@ class ap {
   }
   init(a) {
     let o = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-    this.prefix = o.prefix || "i18next:", this.logger = a || RB, this.options = o, this.debug = o.debug;
+    this.prefix = o.prefix || "i18next:", this.logger = a || TB, this.options = o, this.debug = o.debug;
   }
   log() {
     for (var a = arguments.length, o = new Array(a), u = 0; u < a; u++)
@@ -24383,7 +24384,7 @@ const wT = {}, _T = (r) => !Xe(r) && typeof r != "boolean" && typeof r != "numbe
 class ip extends xp {
   constructor(a) {
     let o = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-    super(), pB(["resourceStore", "languageUtils", "pluralResolver", "interpolator", "backendConnector", "i18nFormat", "utils"], a, this), this.options = o, this.options.keySeparator === void 0 && (this.options.keySeparator = "."), this.logger = La.create("translator");
+    super(), hB(["resourceStore", "languageUtils", "pluralResolver", "interpolator", "backendConnector", "i18nFormat", "utils"], a, this), this.options = o, this.options.keySeparator === void 0 && (this.options.keySeparator = "."), this.logger = La.create("translator");
   }
   changeLanguage(a) {
     a && (this.language = a);
@@ -24402,7 +24403,7 @@ class ip extends xp {
     u === void 0 && (u = ":");
     const l = o.keySeparator !== void 0 ? o.keySeparator : this.options.keySeparator;
     let f = o.ns || this.options.defaultNS || [];
-    const d = u && a.indexOf(u) > -1, g = !this.options.userDefinedKeySeparator && !o.keySeparator && !this.options.userDefinedNsSeparator && !o.nsSeparator && !CB(a, u, l);
+    const d = u && a.indexOf(u) > -1, g = !this.options.userDefinedKeySeparator && !o.keySeparator && !this.options.userDefinedNsSeparator && !o.nsSeparator && !RB(a, u, l);
     if (d && !g) {
       const m = a.match(this.interpolator.nestingRegexp);
       if (m && m.length > 0)
@@ -24713,7 +24714,7 @@ const kT = {
     pluralCategories: ["one", "other"]
   })
 };
-class TB {
+class xB {
   constructor(a) {
     let o = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
     this.languageUtils = a, this.options = o, this.logger = La.create("pluralResolver"), this.pluralRulesCache = {};
@@ -24765,10 +24766,10 @@ class TB {
   }
 }
 const AT = function(r, a, o) {
-  let u = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : ".", l = arguments.length > 4 && arguments[4] !== void 0 ? arguments[4] : !0, f = mB(r, a, o);
+  let u = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : ".", l = arguments.length > 4 && arguments[4] !== void 0 ? arguments[4] : !0, f = gB(r, a, o);
   return !f && l && Xe(o) && (f = Ry(r, o, u), f === void 0 && (f = Ry(a, o, u))), f;
 }, iy = (r) => r.replace(/\$/g, "$$$$");
-class xB {
+class wB {
   constructor() {
     var o;
     let a = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
@@ -24798,7 +24799,7 @@ class xB {
       maxReplaces: L,
       alwaysFormat: j
     } = a.interpolation;
-    this.escape = o !== void 0 ? o : yB, this.escapeValue = u !== void 0 ? u : !0, this.useRawValueToEscape = l !== void 0 ? l : !1, this.prefix = f ? Hs(f) : d || "{{", this.suffix = g ? Hs(g) : m || "}}", this.formatSeparator = h || ",", this.unescapePrefix = E ? "" : b || "-", this.unescapeSuffix = this.unescapePrefix ? "" : E || "", this.nestingPrefix = C ? Hs(C) : k || Hs("$t("), this.nestingSuffix = T ? Hs(T) : O || Hs(")"), this.nestingOptionsSeparator = M || ",", this.maxReplaces = L || 1e3, this.alwaysFormat = j !== void 0 ? j : !1, this.resetRegExp();
+    this.escape = o !== void 0 ? o : bB, this.escapeValue = u !== void 0 ? u : !0, this.useRawValueToEscape = l !== void 0 ? l : !1, this.prefix = f ? Hs(f) : d || "{{", this.suffix = g ? Hs(g) : m || "}}", this.formatSeparator = h || ",", this.unescapePrefix = E ? "" : b || "-", this.unescapeSuffix = this.unescapePrefix ? "" : E || "", this.nestingPrefix = C ? Hs(C) : k || Hs("$t("), this.nestingSuffix = T ? Hs(T) : O || Hs(")"), this.nestingOptionsSeparator = M || ",", this.maxReplaces = L || 1e3, this.alwaysFormat = j !== void 0 ? j : !1, this.resetRegExp();
   }
   reset() {
     this.options && this.init(this.options);
@@ -24894,7 +24895,7 @@ class xB {
     return a;
   }
 }
-const wB = (r) => {
+const _B = (r) => {
   let a = r.toLowerCase().trim();
   const o = {};
   if (r.indexOf("(") > -1) {
@@ -24925,7 +24926,7 @@ const wB = (r) => {
     return g || (g = r(rp(u), l), a[d] = g), g(o);
   };
 };
-class _B {
+class OB {
   constructor() {
     let a = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
     this.logger = La.create("formatter"), this.options = a, this.formats = {
@@ -24986,7 +24987,7 @@ class _B {
       const {
         formatName: h,
         formatOptions: E
-      } = wB(m);
+      } = _B(m);
       if (this.formats[h]) {
         let C = g;
         try {
@@ -25006,10 +25007,10 @@ class _B {
     }, a);
   }
 }
-const OB = (r, a) => {
+const kB = (r, a) => {
   r.pending[a] !== void 0 && (delete r.pending[a], r.pendingCount--);
 };
-class kB extends xp {
+class DB extends xp {
   constructor(a, o, u) {
     var f, d;
     let l = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : {};
@@ -25043,7 +25044,7 @@ class kB extends xp {
     }), this.state[a] = o ? -1 : 2, o && u && (this.state[a] = 0);
     const g = {};
     this.queue.forEach((m) => {
-      vB(m.loaded, [f], d), OB(m, a), o && m.errors.push(o), m.pendingCount === 0 && !m.done && (Object.keys(m.loaded).forEach((h) => {
+      mB(m.loaded, [f], d), kB(m, a), o && m.errors.push(o), m.pendingCount === 0 && !m.done && (Object.keys(m.loaded).forEach((h) => {
         g[h] || (g[h] = {});
         const E = m.loaded[h];
         E.length && E.forEach((b) => {
@@ -25206,7 +25207,7 @@ const MT = () => ({
   var a, o;
   return Xe(r.ns) && (r.ns = [r.ns]), Xe(r.fallbackLng) && (r.fallbackLng = [r.fallbackLng]), Xe(r.fallbackNS) && (r.fallbackNS = [r.fallbackNS]), ((o = (a = r.supportedLngs) == null ? void 0 : a.indexOf) == null ? void 0 : o.call(a, "cimode")) < 0 && (r.supportedLngs = r.supportedLngs.concat(["cimode"])), typeof r.initImmediate == "boolean" && (r.initAsync = r.initImmediate), r;
 }, Vd = () => {
-}, DB = (r) => {
+}, AB = (r) => {
   Object.getOwnPropertyNames(Object.getPrototypeOf(r)).forEach((o) => {
     typeof r[o] == "function" && (r[o] = r[o].bind(r));
   });
@@ -25216,7 +25217,7 @@ class oc extends xp {
     let a = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, o = arguments.length > 1 ? arguments[1] : void 0;
     if (super(), this.options = LT(a), this.services = {}, this.logger = La, this.modules = {
       external: []
-    }, DB(this), o && !this.isInitialized && !a.isClone) {
+    }, AB(this), o && !this.isInitialized && !a.isClone) {
       if (!this.options.initAsync)
         return this.init(a, o), this;
       setTimeout(() => {
@@ -25241,16 +25242,16 @@ class oc extends xp {
     if (!this.options.isClone) {
       this.modules.logger ? La.init(f(this.modules.logger), this.options) : La.init(null, this.options);
       let E;
-      this.modules.formatter ? E = this.modules.formatter : E = _B;
+      this.modules.formatter ? E = this.modules.formatter : E = OB;
       const b = new OT(this.options);
       this.store = new xT(this.options.resources, this.options);
       const C = this.services;
-      C.logger = La, C.resourceStore = this.store, C.languageUtils = b, C.pluralResolver = new TB(b, {
+      C.logger = La, C.resourceStore = this.store, C.languageUtils = b, C.pluralResolver = new xB(b, {
         prepend: this.options.pluralSeparator,
         simplifyPluralSuffix: this.options.simplifyPluralSuffix
-      }), E && (!this.options.interpolation.format || this.options.interpolation.format === l.interpolation.format) && (C.formatter = f(E), C.formatter.init(C, this.options), this.options.interpolation.format = C.formatter.format.bind(C.formatter)), C.interpolator = new xB(this.options), C.utils = {
+      }), E && (!this.options.interpolation.format || this.options.interpolation.format === l.interpolation.format) && (C.formatter = f(E), C.formatter.init(C, this.options), this.options.interpolation.format = C.formatter.format.bind(C.formatter)), C.interpolator = new wB(this.options), C.utils = {
         hasLoadedNamespace: this.hasLoadedNamespace.bind(this)
-      }, C.backendConnector = new kB(f(this.modules.backend), C.resourceStore, C, this.options), C.backendConnector.on("*", function(k) {
+      }, C.backendConnector = new DB(f(this.modules.backend), C.resourceStore, C, this.options), C.backendConnector.on("*", function(k) {
         for (var T = arguments.length, O = new Array(T > 1 ? T - 1 : 0), M = 1; M < T; M++)
           O[M - 1] = arguments[M];
         a.emit(k, ...O);
@@ -25484,31 +25485,31 @@ rr.loadLanguages;
 rr.use(NN).init({
   resources: {
     en: {
-      translation: NF
+      translation: UF
     },
     ua: {
-      translation: DI
+      translation: AI
     },
     ru: {
-      translation: oI
+      translation: sI
     },
     de: {
-      translation: e5
+      translation: t5
     },
     es: {
-      translation: T5
+      translation: x5
     },
     fr: {
-      translation: G5
+      translation: K5
     },
     hi: {
-      translation: yV
+      translation: bV
     },
     pt: {
-      translation: VV
+      translation: BV
     },
     zh: {
-      translation: dB
+      translation: pB
     }
   },
   lng: "en",

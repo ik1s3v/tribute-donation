@@ -6,6 +6,8 @@ import Messages from "../components/dashboard/components/messages/Messages";
 import Settings from "../components/dashboard/components/settings/Settings";
 import MovieIcon from "@mui/icons-material/Movie";
 import Media from "../components/dashboard/components/media/Media";
+import Auction from "../components/dashboard/components/auction/Auction";
+import AuctionIcon from "../components/dashboard/components/auction/components/AuctionIcon";
 export const dashboardRouts = [
 	{
 		path: "messages",
@@ -31,5 +33,11 @@ export const dashboardRouts = [
 		element: <Media />,
 		icon: <MovieIcon />,
 		name: "media",
+	},
+	{
+		path: "auction",
+		element: <Auction />,
+		icon: <AuctionIcon />,
+		name: "auction",
 	},
 ];

@@ -59,6 +59,20 @@ export interface ISettings {
 	language: string;
 }
 
+export interface IAuctionSettings {
+	id: number;
+	leader_change_adding_time: number;
+	new_lot_adding_time: number;
+	new_donation_adding_time: number;
+	timer_adding_time: number;
+	is_greater_timer_adding_time: boolean;
+	is_show_odds: boolean;
+	is_show_total_sum: boolean;
+	is_new_lot_adding_time: boolean;
+	is_leader_change_adding_time: boolean;
+	is_new_donation_adding_time: boolean;
+}
+
 export interface IAlertsGroup {
 	group_id: string;
 	items: IAlert[];
@@ -81,4 +95,15 @@ export interface IMedia {
 	media_type: MediaType;
 	expires?: number;
 	temporary_src?: string;
+}
+export interface ILot {
+	fastId: number;
+	name?: string;
+	color: string;
+	amount?: number;
+	extra?: number;
+	eliminationAmount?: number;
+	eliminationOptionSize?: number;
+	normalOptionSize?: number;
+	winChancePercent?: string;
 }

@@ -1,38 +1,29 @@
-import { InputAdornment, Slider, TextField } from "@mui/material";
+import { InputAdornment, TextField } from "@mui/material";
 import { NumericFormat } from "react-number-format";
-const InputSlider = ({
-	sliderValue,
+import OnOffSwitch from "./OnOffSwitch";
+
+const InputSwitch = ({
+	checked,
 	inputValue,
 	onChange,
+	onSwitchChange,
 	min,
-	sliderMax,
 	inputMax,
 	adornmentText,
-	disabled,
 }: {
-	sliderValue: number;
+	checked: boolean;
 	inputValue: number;
 	onChange: (value: number) => void;
+	onSwitchChange: () => void;
 	min: number;
-	sliderMax: number;
 	inputMax: number;
 	adornmentText: string;
-	disabled?: boolean;
 }) => {
 	return (
 		<div style={{ display: "flex", width: "300px", placeItems: "center" }}>
-			<Slider
-				disabled={disabled}
-				value={sliderValue}
-				min={min}
-				max={sliderMax}
-				onChange={(_, value) => {
-					onChange(value as number);
-				}}
-			/>
+			<OnOffSwitch checked={checked} onChange={onSwitchChange} />
 			<div style={{ marginLeft: 20, width: 100 }}>
 				<NumericFormat
-					disabled={disabled}
 					style={{ width: 100 }}
 					inputMode="decimal"
 					autoComplete="off"
@@ -64,4 +55,4 @@ const InputSlider = ({
 		</div>
 	);
 };
-export default InputSlider;
+export default InputSwitch;

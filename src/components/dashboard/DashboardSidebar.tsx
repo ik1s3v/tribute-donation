@@ -21,7 +21,7 @@ const SideBar = styled("div")(({ theme }: { theme?: AppTheme }) => ({
 	left: 0,
 	bottom: 0,
 	position: "sticky",
-	zIndex: 2,
+	zIndex: 10,
 	backgroundColor: theme?.palette.background.section,
 	height: "100dvh",
 	textWrap: "wrap",
@@ -45,56 +45,54 @@ export default function DashboardSidebar() {
 		[currentPath],
 	);
 	return (
-		<>
-			<SideBar>
-				<List sx={{ paddingTop: 0 }}>
-					{dashboardRouts.map((navItem) => (
-						<Tooltip
-							disableHoverListener={!matches}
-							title={t(`dashboard.${navItem.path}`)}
-							key={navItem.path}
-							placement="right"
+		<SideBar>
+			<List sx={{ paddingTop: 0 }}>
+				{dashboardRouts.map((navItem) => (
+					<Tooltip
+						disableHoverListener={!matches}
+						title={t(`dashboard.${navItem.path}`)}
+						key={navItem.path}
+						placement="right"
+					>
+						<NavLink
+							to={`/dashboard/${navItem.path}`}
+							style={{ textDecoration: "none" }}
 						>
-							<NavLink
-								to={`/dashboard/${navItem.path}`}
-								style={{ textDecoration: "none" }}
+							<ListItemButton
+								sx={{
+									height: 50,
+									padding: "16px 0",
+									"&:hover": { backgroundColor: "rgba(0,0,0,0.3)" },
+								}}
+								component="div"
+								selected={isSelected(navItem.path)}
 							>
-								<ListItemButton
+								<ListItemIcon
 									sx={{
-										height: 50,
-										padding: "16px 0",
-										"&:hover": { backgroundColor: "rgba(0,0,0,0.3)" },
+										padding: "0 20px",
+										minWidth: 24,
+										color: isSelected(navItem.path)
+											? theme.palette.primary.main
+											: theme.palette.primary.contrastText,
 									}}
-									component="div"
-									selected={isSelected(navItem.path)}
 								>
-									<ListItemIcon
-										sx={{
-											padding: "0 20px",
-											minWidth: 24,
-											color: isSelected(navItem.path)
-												? theme.palette.primary.main
-												: theme.palette.primary.contrastText,
-										}}
-									>
-										{navItem.icon}
-									</ListItemIcon>
-									<ListItemText
-										sx={{
-											color: isSelected(navItem.path)
-												? theme.palette.primary.main
-												: theme.palette.primary.contrastText,
-											display: { xs: "none", md: "flex" },
-										}}
-									>
-										{t(`dashboard.${navItem.name}`)}
-									</ListItemText>
-								</ListItemButton>
-							</NavLink>
-						</Tooltip>
-					))}
-				</List>
-			</SideBar>
-		</>
+									{navItem.icon}
+								</ListItemIcon>
+								<ListItemText
+									sx={{
+										color: isSelected(navItem.path)
+											? theme.palette.primary.main
+											: theme.palette.primary.contrastText,
+										display: { xs: "none", md: "flex" },
+									}}
+								>
+									{t(`dashboard.${navItem.name}`)}
+								</ListItemText>
+							</ListItemButton>
+						</NavLink>
+					</Tooltip>
+				))}
+			</List>
+		</SideBar>
 	);
 }

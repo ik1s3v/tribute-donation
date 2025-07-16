@@ -3,6 +3,7 @@ import type {
 	IMediaPlatformSettings,
 	IMediaSettings,
 } from "../../../shared/types";
+
 interface MediaState {
 	mediaSettings: IMediaSettings | null;
 	playingMediaId: string;

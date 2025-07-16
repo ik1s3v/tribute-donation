@@ -1,14 +1,11 @@
 import type { IMessage } from "../../../../../../shared/types";
-import { format } from "date-fns";
+import dayjs from "../../../../../dayjs";
 
 const MessageDate = ({ message }: { message: IMessage }) => {
-	const date = format(
-		new Date(message.created_at * 1000),
-		"yyyy-MM-dd HH:mm:ss",
-	);
+	const date = dayjs(message.created_at * 1000);
 	return (
 		<>
-			<span style={{ fontSize: 12 }}>{date}</span>
+			<span style={{ fontSize: 12 }}>{date.format("YYYY-MM-DD HH:mm:ss")}</span>
 		</>
 	);
 };

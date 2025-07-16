@@ -20,10 +20,14 @@ import {
 	setPlayingAlertId,
 } from "./store/slices/alertsSlice";
 import { setPausedMediaId, setPlayingMediaId } from "./store/slices/mediaSlice";
+import { auctionMessagesSlice } from "./store/slices/messagesSlice";
 
 appLocalDataDir().then((path) => store.dispatch(setAppDataDir(path)));
 
+const { addMessage } = auctionMessagesSlice.actions;
+
 listenerService.subscribe<IMessage>(AppEvent.Message, (message) => {
+	store.dispatch(addMessage(message));
 	store.dispatch(
 		messagesApi.util.updateQueryData("getMessages", undefined, (draft) => {
 			draft.pages[0].unshift(message);

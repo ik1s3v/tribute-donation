@@ -1,8 +1,5 @@
-import type { InvokeArgs } from "@tauri-apps/api/core";
 import { api } from ".";
 import type { ISettings } from "../../shared/types";
-
-export type UpdateSettingsArgs = InvokeArgs & { settings: ISettings };
 
 export const settingsApi = api.injectEndpoints({
 	endpoints: (builder) => ({
@@ -11,7 +8,7 @@ export const settingsApi = api.injectEndpoints({
 				command: "get_settings",
 			}),
 		}),
-		updateSettings: builder.mutation<void, UpdateSettingsArgs>({
+		updateSettings: builder.mutation<void, { settings: ISettings }>({
 			query: (args) => ({
 				command: "update_settings",
 				args,

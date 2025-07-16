@@ -29,6 +29,11 @@
         "twitch": "Twitch",
         "tiktok": "Tiktok"
     },
+    "auction": {
+        "lots": "Lots",
+        "wheel": "Wheel",
+        "settings": "Settings"
+    },
     "media_settings": {
         "enabled": "Enabled",
         "min_amount_eur": "Min amount EUR",
@@ -40,7 +45,8 @@
         "messages": "Messages",
         "settings": "Settings",
         "alerts": "Alerts",
-        "media": "Media"
+        "media": "Media",
+        "auction": "Auction"
     },
     "messages": {
         "title": "Last messages"
@@ -58,6 +64,46 @@
         "remove_links": "Remove links",
         "language": "Language",
         "sec": "Sec"
+    },
+    "wheel": {
+        "normal": "Normal",
+        "dropout": "Dropout",
+        "spin": "Spin",
+        "speed": "Wheel speed"
+    },
+    "timer": {
+        "continue": "Continue",
+        "pause": "Pause",
+        "reset": "Reset",
+        "addTime": "Add time",
+        "reduceTime": "Reduce time",
+        "addTimex2": "Add time x2"
+    },
+    "lot": {
+        "name": "Name",
+        "delete": "Delete",
+        "add": "Add amount"
+    },
+    "bid": {
+        "delete": "Delete",
+        "toLot": "To lot",
+        "new": "New",
+        "add_to_random_slot": "Add to random lot"
+    },
+    "lots": {
+        "add": "Add",
+        "new_lot_name": "New lot name",
+        "search": "Search lot"
+    },
+    "auction_settings": {
+        "leader_change": "Leader change",
+        "new_lot": "New lot",
+        "new_donation": "New donation",
+        "show_odds": "Show odds",
+        "show_total_sum": "Show total sum",
+        "greater_timer_adding_time": "Greater timer adding time",
+        "not_add_time_if": "Not add time if",
+        "adding_time": "Time"
     },
     "alerts": {
         "title": "Alerts",

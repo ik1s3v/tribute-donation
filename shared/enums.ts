@@ -59,3 +59,7 @@ export enum MediaType {
 	Twitch = "Twitch",
 	TikTok = "TikTok",
 }
+export enum WheelVariant {
+	normal = "normal",
+	dropout = "dropout",
+}
