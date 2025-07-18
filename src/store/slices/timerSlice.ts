@@ -71,4 +71,6 @@ export const createTimerSlice = (name: string) =>
 
 export const auctionTimerSlice = createTimerSlice("auction-timer");
 
+export const maptionTimerSlice = createTimerSlice("maption-timer");
+
 export type TimerSlice = ReturnType<typeof createTimerSlice>;

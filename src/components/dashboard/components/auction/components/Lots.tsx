@@ -19,11 +19,17 @@ import NewLotForm from "./NewLotForm";
 import { auctionTimerSlice } from "../../../../../store/slices/timerSlice";
 import { auctionMessagesSlice } from "../../../../../store/slices/messagesSlice";
 import { updateLot } from "../../../../../store/slices/lotsSlice";
-import { List, AutoSizer } from "react-virtualized";
+import {
+	List,
+	AutoSizer,
+	CellMeasurer,
+	CellMeasurerCache,
+} from "react-virtualized";
 import "react-virtualized/styles.css";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
 import { AlertSeverity } from "../../../../../../shared/enums";
+import ResizeObserver from "rc-resize-observer";
 
 const Lots = () => {
 	const { lots, searchPattern } = useSelector(
@@ -32,6 +38,9 @@ const Lots = () => {
 	const [activeMessageId, setActiveMessageId] = useState<UniqueIdentifier>();
 	const { messages } = useSelector(
 		(state: AppState) => state.auctionMessagesState,
+	);
+	const cacheRef = useRef(
+		new CellMeasurerCache({ fixedWidth: true, defaultHeight: 110 }),
 	);
 
 	const auctionSettings = useSelector(
@@ -145,21 +154,39 @@ const Lots = () => {
 					<div
 						style={{
 							height: `calc(100vh - ${15 + 73 + 20 + 56 + 20}px - 120px)`,
-							overflowY: "auto",
 						}}
 					>
-						{messages.map((message) => (
-							<div style={{ position: "relative" }} key={message.id}>
-								<DraggableMessageCard message={message} />
-								<div
-									style={{
-										opacity: 0.5,
+						<AutoSizer>
+							{({ height, width }) => (
+								<List
+									style={{ overflow: activeMessageId ? "hidden" : "auto" }}
+									width={width}
+									height={height}
+									rowCount={messages.length}
+									rowHeight={cacheRef.current.rowHeight}
+									rowRenderer={({ key, index, style, parent }) => {
+										return (
+											<CellMeasurer
+												key={key}
+												cache={cacheRef.current}
+												parent={parent}
+												columnIndex={0}
+												rowIndex={index}
+											>
+												{({ measure }) => (
+													<div style={style}>
+														<ResizeObserver.Collection onBatchResize={measure}>
+															<DraggableMessageCard message={messages[index]} />
+														</ResizeObserver.Collection>
+													</div>
+												)}
+											</CellMeasurer>
+										);
 									}}
-								>
-									<AuctionMessageCard message={message} />
-								</div>
-							</div>
-						))}
+								/>
+							)}
+						</AutoSizer>
+
 						<DragOverlay>
 							{activeMessageId ? (
 								<AuctionMessageCard

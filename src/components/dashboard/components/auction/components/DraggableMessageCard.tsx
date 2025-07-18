@@ -14,8 +14,6 @@ const DraggableMessageCard = ({ message }: { message: IMessage }) => {
 			ref={setNodeRef}
 			style={{
 				transform: CSS.Translate.toString(transform),
-				position: "absolute",
-				zIndex: 4,
 			}}
 			{...listeners}
 			{...attributes}

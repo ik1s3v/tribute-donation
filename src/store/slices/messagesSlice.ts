@@ -45,4 +45,6 @@ const createMessagesSlice = (name: string) =>
 
 export const auctionMessagesSlice = createMessagesSlice("auction-messages");
 
+export const maptionMessagesSlice = createMessagesSlice("maption-messages");
+
 export type MessagesSlice = ReturnType<typeof createMessagesSlice>;

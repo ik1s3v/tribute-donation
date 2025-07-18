@@ -1,6 +1,6 @@
 import type { Middleware } from "@reduxjs/toolkit";
 import type { AppState } from "..";
-import isAuctionAddTime from "../../helpers/isAuctionAddTime";
+import isDonationAddTime from "../../helpers/isDonationAddTime";
 import { auctionTimerSlice } from "../slices/timerSlice";
 import findLotsMinMaxAmount from "../../helpers/findLotsMinMaxAmount";
 
@@ -25,7 +25,12 @@ const lotsLeaderChangeAddTimeMiddleware: Middleware<unknown, AppState> =
 			nextLeader &&
 			prevLeader.fastId !== nextLeader.fastId &&
 			auctionSettings?.is_leader_change_adding_time &&
-			isAuctionAddTime(auctionSettings, time)
+			isDonationAddTime({
+				is_greater_timer_adding_time:
+					auctionSettings.is_greater_timer_adding_time,
+				timer_adding_time: auctionSettings.timer_adding_time,
+				time,
+			})
 		) {
 			store.dispatch(addTime(auctionSettings.leader_change_adding_time));
 		}

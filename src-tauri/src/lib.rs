@@ -58,7 +58,9 @@ pub fn run() {
             play_media,
             replay_media,
             get_auction_settings,
+            get_maption_settings,
             update_auction_settings,
+            update_maption_settings,
             init
         ])
         .run(tauri::generate_context!())

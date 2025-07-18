@@ -16,15 +16,20 @@ import type { TimerSlice } from "../../../../../store/slices/timerSlice";
 const Timer = ({
 	timerSlice,
 	timerStateName,
+	iconSize = 40,
+	size = 80,
 }: {
 	timerSlice: TimerSlice;
-	timerStateName: "auctionTimerState";
+	timerStateName: "auctionTimerState" | "maptionTimerState";
+	iconSize?: number;
+	size?: number;
 }) => {
 	const { t } = useTranslation();
 	const timerState = useSelector((state: AppState) => state[timerStateName]);
 	const dispatch = useDispatch();
 	const { addTime, subtractTime, setCurrentIntervalId, setTime, setIsStopped } =
 		timerSlice.actions;
+	const iconSx = { width: iconSize, height: iconSize };
 
 	const clearCurrentInterval = useCallback(() => {
 		if (timerState.currentIntervalId) {
@@ -71,55 +76,31 @@ const Timer = ({
 	}, [dispatch, addTime]);
 
 	return (
-		<div>
-			<Typography sx={{ fontSize: 80 }}>
+		<div style={{ display: "grid", placeItems: "center" }}>
+			<Typography sx={{ fontSize: size }}>
 				{formatTime(timerState.time)}
 			</Typography>
 			<div>
 				{timerState.isStopped ? (
-					<IconButton
-						onClick={handleStartTimer}
-						title={t("timer.continue")}
-						size="large"
-					>
-						<PlayArrowIcon fontSize="large" />
+					<IconButton onClick={handleStartTimer} title={t("timer.continue")}>
+						<PlayArrowIcon sx={iconSx} />
 					</IconButton>
 				) : (
-					<IconButton
-						onClick={handleStopTimer}
-						title={t("timer.pause")}
-						size="large"
-					>
-						<PauseIcon fontSize="large" />
+					<IconButton onClick={handleStopTimer} title={t("timer.pause")}>
+						<PauseIcon sx={iconSx} />
 					</IconButton>
 				)}
-				<IconButton
-					onClick={handleResetTimer}
-					title={t("timer.reset")}
-					size="large"
-				>
-					<ReplayIcon fontSize="large" />
+				<IconButton onClick={handleResetTimer} title={t("timer.reset")}>
+					<ReplayIcon sx={iconSx} />
 				</IconButton>
-				<IconButton
-					onClick={handleAddTime}
-					title={t("timer.addTime")}
-					size="large"
-				>
-					<ExpandLessIcon fontSize="large" />
+				<IconButton onClick={handleAddTime} title={t("timer.addTime")}>
+					<ExpandLessIcon sx={iconSx} />
 				</IconButton>
-				<IconButton
-					onClick={handleReduceTime}
-					title={t("timer.reduceTime")}
-					size="large"
-				>
-					<ExpandMoreIcon fontSize="large" />
+				<IconButton onClick={handleReduceTime} title={t("timer.reduceTime")}>
+					<ExpandMoreIcon sx={iconSx} />
 				</IconButton>
-				<IconButton
-					onClick={handleAddTimeX2}
-					title={t("timer.addTimex2")}
-					size="large"
-				>
-					<KeyboardCapslockIcon fontSize="large" />
+				<IconButton onClick={handleAddTimeX2} title={t("timer.addTimex2")}>
+					<KeyboardCapslockIcon sx={iconSx} />
 				</IconButton>
 			</div>
 		</div>

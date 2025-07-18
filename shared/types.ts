@@ -73,6 +73,17 @@ export interface IAuctionSettings {
 	is_new_donation_adding_time: boolean;
 }
 
+export interface IMaptionSettings {
+	id: number;
+	price_for_meter: string;
+	latitude: string;
+	longitude: string;
+	new_donation_adding_time: number;
+	timer_adding_time: number;
+	is_greater_timer_adding_time: boolean;
+	is_new_donation_adding_time: boolean;
+}
+
 export interface IAlertsGroup {
 	group_id: string;
 	items: IAlert[];

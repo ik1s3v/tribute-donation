@@ -21,8 +21,8 @@ import findLotsMinMaxAmount from "../../../../../helpers/findLotsMinMaxAmount";
 import type { ILot } from "../../../../../../shared/types";
 
 const WheelContainer = styled("div")({
-	width: "70vh",
-	height: "70vh",
+	width: "65vh",
+	height: "65vh",
 	minHeight: 300,
 	minWidth: 300,
 	justifySelf: "center",
@@ -90,7 +90,7 @@ const AuctionWheel = ({ lots }: { lots: ILot[] }) => {
 							placeItems: "center",
 							gap: 5,
 							position: "absolute",
-							width: "70vh",
+							width: "65vh",
 							height: 100,
 							minWidth: 300,
 							backgroundColor: lots[winnerIndex].color,
@@ -155,7 +155,7 @@ const AuctionWheel = ({ lots }: { lots: ILot[] }) => {
 					<Button
 						variant="contained"
 						onClick={handleSpinClick}
-						disabled={isSpinning}
+						disabled={!lots.length || isSpinning}
 					>
 						{t("wheel.spin")}
 					</Button>

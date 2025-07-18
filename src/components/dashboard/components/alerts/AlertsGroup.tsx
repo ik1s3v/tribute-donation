@@ -13,41 +13,39 @@ const AlertsGroup = ({ alertsGroup }: { alertsGroup: IAlertsGroup }) => {
 	);
 	const { t } = useTranslation();
 	return (
-		<>
-			<Card
-				sx={{
-					padding: "20px",
-					display: "grid",
-					gap: "5px",
-					position: "relative",
-				}}
-			>
-				<>
-					<div
-						style={{
-							top: 10,
-							right: 10,
-							height: 10,
-							width: 10,
-							background: connectedAlerts.includes(alertsGroup.group_id)
-								? "green"
-								: undefined,
-							position: "absolute",
-							borderRadius: 50,
-						}}
-					/>
-					<h3>
-						{t("alerts.group")} {alertsGroup.group_id.toUpperCase()}
-					</h3>
-					<WidgetUrl widgetUrl={widgetUrl} />
-					<div style={{ display: "flex" }}>
-						{alertsGroup.items.map((alert) => (
-							<AlertTile alert={alert} key={alert.id} />
-						))}
-					</div>
-				</>
-			</Card>
-		</>
+		<Card
+			sx={{
+				padding: "20px",
+				display: "grid",
+				gap: "5px",
+				position: "relative",
+			}}
+		>
+			<>
+				<div
+					style={{
+						top: 10,
+						right: 10,
+						height: 10,
+						width: 10,
+						background: connectedAlerts.includes(alertsGroup.group_id)
+							? "green"
+							: undefined,
+						position: "absolute",
+						borderRadius: 50,
+					}}
+				/>
+				<h3>
+					{t("alerts.group")} {alertsGroup.group_id.toUpperCase()}
+				</h3>
+				<WidgetUrl widgetUrl={widgetUrl} />
+				<div style={{ display: "flex" }}>
+					{alertsGroup.items.map((alert) => (
+						<AlertTile alert={alert} key={alert.id} />
+					))}
+				</div>
+			</>
+		</Card>
 	);
 };
 export default AlertsGroup;

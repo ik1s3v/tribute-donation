@@ -1,12 +1,12 @@
 import type { Middleware, UnknownAction } from "@reduxjs/toolkit";
 import type { AppState } from "..";
-import isAuctionAddTime from "../../helpers/isAuctionAddTime";
+import isDonationAddTime from "../../helpers/isDonationAddTime";
 import { auctionTimerSlice } from "../slices/timerSlice";
 import { lotsSlice } from "../slices/lotsSlice";
 
 const { addTime } = auctionTimerSlice.actions;
 
-const newLotAddTimeMiddleware: Middleware<unknown, AppState> =
+const newLotAddAuctionTimeMiddleware: Middleware<unknown, AppState> =
 	(store) => (next) => (action) => {
 		const appAction = action as UnknownAction;
 		const result = next(action);
@@ -17,7 +17,12 @@ const newLotAddTimeMiddleware: Middleware<unknown, AppState> =
 		if (
 			appAction.type === lotsSlice.actions.addLot.type &&
 			auctionSettings?.is_new_lot_adding_time &&
-			isAuctionAddTime(auctionSettings, time)
+			isDonationAddTime({
+				is_greater_timer_adding_time:
+					auctionSettings.is_greater_timer_adding_time,
+				timer_adding_time: auctionSettings.timer_adding_time,
+				time,
+			})
 		) {
 			store.dispatch(addTime(auctionSettings.new_lot_adding_time));
 		}
@@ -25,4 +30,4 @@ const newLotAddTimeMiddleware: Middleware<unknown, AppState> =
 		return result;
 	};
 
-export default newLotAddTimeMiddleware;
+export default newLotAddAuctionTimeMiddleware;

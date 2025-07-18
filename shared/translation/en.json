@@ -34,6 +34,13 @@
         "wheel": "Wheel",
         "settings": "Settings"
     },
+    "maption": {
+        "set_point": "Set point",
+        "meter_price": "Price for 1 meter",
+        "amount": "Amount",
+        "finish": "Finish",
+        "rules": "For the pointer to automatically change position in the message there should be only one word from:"
+    },
     "media_settings": {
         "enabled": "Enabled",
         "min_amount_eur": "Min amount EUR",
@@ -46,7 +53,8 @@
         "settings": "Settings",
         "alerts": "Alerts",
         "media": "Media",
-        "auction": "Auction"
+        "auction": "Auction",
+        "maption": "Maption"
     },
     "messages": {
         "title": "Last messages"

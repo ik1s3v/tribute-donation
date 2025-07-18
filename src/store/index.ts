@@ -6,14 +6,21 @@ import { alertsSlice } from "./slices/alertsSlice";
 import { settingsSlice } from "./slices/settingsSlice";
 import { mediaSlice } from "./slices/mediaSlice";
 import { lotsSlice } from "./slices/lotsSlice";
-import { auctionMessagesSlice } from "./slices/messagesSlice";
-import { auctionTimerSlice } from "./slices/timerSlice";
+import {
+	auctionMessagesSlice,
+	maptionMessagesSlice,
+} from "./slices/messagesSlice";
+import { auctionTimerSlice, maptionTimerSlice } from "./slices/timerSlice";
 import { auctionSlice } from "./slices/auctionSlice";
 import lotsLeaderChangeAddTimeMiddleware from "./middlewares/lotsLeaderChangeAddTimeMiddleware";
-import newLotAddTimeMiddleware from "./middlewares/newLotAddTimeMiddleware";
-import newDonationAddTimeMiddleware from "./middlewares/newDonationAddTimeMiddleware";
+import newLotAddAuctionTimeMiddleware from "./middlewares/newLotAddAuctionTimeMiddleware";
+import newDonationAddAuctionTimeMiddleware from "./middlewares/newDonationAddAuctionTimeMiddleware";
 import calculateLotsProbabilityMiddleware from "./middlewares/calculateLotsProbabilityMiddleware";
 import newDonationUpdateLotMiddleware from "./middlewares/newDonationUpdateLotMiddleware";
+import { maptionSlice } from "./slices/maptionSlice";
+import updateMaptionSettingsMiddleware from "./middlewares/updateMaptionSettingsMiddleware";
+import newDonationAddMaptionTimeMiddleware from "./middlewares/newDonationAddMaptionTimeMiddleware";
+import newDonationUpdateMaptionPositionMiddleware from "./middlewares/newDonationUpdateMaptionPositionMiddleware";
 
 export const rootReducer = combineReducers({
 	snackBarState: snackBarSlice.reducer,
@@ -24,7 +31,10 @@ export const rootReducer = combineReducers({
 	lotsState: lotsSlice.reducer,
 	auctionState: auctionSlice.reducer,
 	auctionTimerState: auctionTimerSlice.reducer,
+	maptionTimerState: maptionTimerSlice.reducer,
 	auctionMessagesState: auctionMessagesSlice.reducer,
+	maptionMessagesState: maptionMessagesSlice.reducer,
+	maptionState: maptionSlice.reducer,
 	[api.reducerPath]: api.reducer,
 });
 
@@ -35,10 +45,13 @@ export const setupStore = (preloadedState?: Partial<AppState>) => {
 			getDefaultMiddleware()
 				.concat(api.middleware)
 				.concat(lotsLeaderChangeAddTimeMiddleware)
-				.concat(newLotAddTimeMiddleware)
-				.concat(newDonationAddTimeMiddleware)
+				.concat(newLotAddAuctionTimeMiddleware)
+				.concat(newDonationAddAuctionTimeMiddleware)
 				.concat(calculateLotsProbabilityMiddleware)
-				.concat(newDonationUpdateLotMiddleware),
+				.concat(newDonationUpdateLotMiddleware)
+				.concat(updateMaptionSettingsMiddleware)
+				.concat(newDonationAddMaptionTimeMiddleware)
+				.concat(newDonationUpdateMaptionPositionMiddleware),
 		preloadedState,
 		devTools: process.env.NODE_ENV !== "production",
 	});
