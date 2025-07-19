@@ -22,16 +22,19 @@ import {
 } from "../../../../../store/slices/maptionSlice";
 import InputSwitch from "../../../../InputSwitch";
 import OnOffSwitch from "../../../../OnOffSwitch";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import calculateMaptionDistance from "../../../../../helpers/calculateMaptionDistance";
+import isValidLatitude from "../../../../../helpers/isValidLatitude";
+import isValidLongitude from "../../../../../helpers/isValidLongitude";
 
 const MaptionSettings = () => {
+	const [latError, setLatError] = useState(false);
+	const [lngError, setLngError] = useState(false);
 	const { t } = useTranslation();
 	const { maptionSettings, amount } = useSelector(
 		(state: AppState) => state.maptionState,
 	);
 	const dispatch = useDispatch();
-
 	const distance = useMemo(
 		() =>
 			calculateMaptionDistance({
@@ -40,6 +43,36 @@ const MaptionSettings = () => {
 			}),
 		[maptionSettings?.price_for_meter, amount],
 	);
+
+	const handleLatChange = (value: number | undefined) => {
+		if (!maptionSettings) return;
+		if (isValidLatitude(value)) {
+			setLatError(false);
+			dispatch(
+				setMaptionSettings({
+					...maptionSettings,
+					latitude: String(value),
+				}),
+			);
+			return;
+		}
+		setLatError(true);
+	};
+
+	const handleLngChange = (value: number | undefined) => {
+		if (!maptionSettings) return;
+		if (isValidLongitude(value)) {
+			setLngError(false);
+			dispatch(
+				setMaptionSettings({
+					...maptionSettings,
+					longitude: String(value),
+				}),
+			);
+			return;
+		}
+		setLngError(true);
+	};
 
 	return (
 		<>
@@ -66,37 +99,35 @@ const MaptionSettings = () => {
 						<div style={{ display: "flex", gap: 5 }}>
 							<NumericFormat
 								sx={{ width: 120 }}
+								autoComplete="off"
+								allowNegative
 								value={maptionSettings.latitude}
-								onChange={(e) => {
-									dispatch(
-										setMaptionSettings({
-											...maptionSettings,
-											latitude: e.target.value,
-										}),
-									);
+								onValueChange={({ floatValue }) => {
+									handleLatChange(floatValue);
 								}}
-								placeholder="e.g., 40.712776"
+								placeholder="40.712776"
 								min={-90}
 								max={90}
 								decimalScale={6}
 								customInput={TextField}
+								error={latError}
+								helperText={latError ? t("maption.lat_error") : ""}
 							/>
 							<NumericFormat
 								sx={{ width: 120 }}
+								autoComplete="off"
+								allowNegative
 								value={maptionSettings.longitude}
-								onChange={(e) => {
-									dispatch(
-										setMaptionSettings({
-											...maptionSettings,
-											longitude: e.target.value,
-										}),
-									);
+								onValueChange={({ floatValue }) => {
+									handleLngChange(floatValue);
 								}}
-								placeholder="e.g., -74.005974"
+								placeholder="-74.005974"
 								min={-180}
 								max={180}
 								decimalScale={6}
 								customInput={TextField}
+								error={lngError}
+								helperText={lngError ? t("lng_error.lat_error") : ""}
 							/>
 						</div>
 						<Button variant="contained" onClick={() => dispatch(setPoint())}>

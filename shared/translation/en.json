@@ -39,6 +39,8 @@
         "meter_price": "Price for 1 meter",
         "amount": "Amount",
         "finish": "Finish",
+        "lat_error": "Latitude must be between -90 and 90",
+        "lng_error": "Longitude must be between -180 and 180",
         "rules": "For the pointer to automatically change position in the message there should be only one word from:"
     },
     "media_settings": {
