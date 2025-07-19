@@ -22,7 +22,7 @@ const Maption = () => {
 		<div style={{ position: "relative", height: "calc(100vh - 30px)" }}>
 			<MaptionRules />
 			<MaptionSettings />
-			<APIProvider apiKey={"AIzaSyDxgYyaU9hJ0ODJoo7oD80RLLQkOsUEb4k"}>
+			<APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
 				<AppMap />
 			</APIProvider>
 		</div>

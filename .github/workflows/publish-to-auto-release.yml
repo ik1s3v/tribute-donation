@@ -46,6 +46,7 @@ jobs:
         # webkitgtk 4.0 is for Tauri v1 - webkitgtk 4.1 is for Tauri v2.
         # You can remove the one that doesn't apply to your app to speed up the workflow a bit.
       - name: run tests
+        working-directory: ./src-tauri
         run: cargo test
       - name: import windows certificate
         if: matrix.platform == 'windows-latest'
