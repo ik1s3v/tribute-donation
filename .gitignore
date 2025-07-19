@@ -1,4 +1,8 @@
 # Logs
+cert.cer
+certificate.pfx
+private-key.key
+base64cert.txt
 logs
 *.log
 npm-debug.log*
