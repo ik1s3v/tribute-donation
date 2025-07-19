@@ -1,24 +1,24 @@
 {
     "on": "Увімкнено",
     "off": "Вимкнено",
-    "select": "Вибрати",
+    "select": "Обрати",
     "success": "Успіх",
     "sound_volume": "Гучність звуку",
-    "skip_media": "Комбінація скіп медіа",
-    "skip_alert": "Комбінація скіп алерт",
+    "skip_media": "Гаряча клавіша пропустити медіа",
+    "skip_alert": "Гаряча клавіша пропустити сповіщення",
     "authorization": {
         "title": "Авторизація",
-        "code": "Запитати код",
+        "code": "Запросити код",
         "sign_in": "Увійти",
         "phone": "Номер телефону",
         "telegram_code": "Код з Telegram",
         "your_code": "Ваш код",
-        "2fa_password": "Пароль 2fa",
+        "2fa_password": "Пароль 2FA",
         "password": "Пароль"
     },
     "updater": {
         "title": "Оновлення",
-        "description": "Доступна нова версія застосунку. Бажаєте оновити?",
+        "description": "Доступна нова версія додатка. Бажаєте оновити?",
         "update": "Оновити",
         "later": "Пізніше",
         "downloading": "Завантаження..."
@@ -29,18 +29,34 @@
         "twitch": "Twitch",
         "tiktok": "TikTok"
     },
+    "auction": {
+        "lots": "Лоти",
+        "wheel": "Колесо",
+        "settings": "Налаштування"
+    },
+    "maption": {
+        "set_point": "Встановити точку",
+        "meter_price": "Ціна за метр",
+        "amount": "Сума",
+        "finish": "Завершити",
+        "lat_error": "Широта повинна бути між -90 і 90",
+        "lng_error": "Довгота повинна бути між -180 і 180",
+        "rules": "Щоб вказівник автоматично змінював позицію в повідомленні, має бути лише одне слово з:"
+    },
     "media_settings": {
         "enabled": "Увімкнено",
-        "min_amount_eur": "Мін. сума в EUR",
-        "min_amount_rub": "Мін. сума в RUB",
+        "min_amount_eur": "Мінімальна сума EUR",
+        "min_amount_rub": "Мінімальна сума RUB",
         "video_volume": "Гучність відео",
-        "min_views": "Мін. кількість переглядів"
+        "min_views": "Мінімальні перегляди"
     },
     "dashboard": {
         "messages": "Повідомлення",
         "settings": "Налаштування",
         "alerts": "Сповіщення",
-        "media": "Медіа"
+        "media": "Медіа",
+        "auction": "Аукціон",
+        "maption": "Карта"
     },
     "messages": {
         "title": "Останні повідомлення"
@@ -48,16 +64,56 @@
     "message": {
         "skip": "Пропустити",
         "replay": "Повторити",
-        "donate": "задонатив"
+        "donate": "донат"
     },
     "settings": {
         "title": "Налаштування",
-        "pause": "Призупинити сповіщення",
+        "pause": "Призупинити повідомлення сповіщень",
         "moderation_duration": "Тривалість модерації",
         "black_list": "Чорний список",
-        "remove_links": "Видалити посилання",
+        "remove_links": "Видаляти посилання",
         "language": "Мова",
         "sec": "Сек"
+    },
+    "wheel": {
+        "normal": "Звичайне",
+        "dropout": "Випадіння",
+        "spin": "Крутити",
+        "speed": "Швидкість колеса"
+    },
+    "timer": {
+        "continue": "Продовжити",
+        "pause": "Пауза",
+        "reset": "Скинути",
+        "add_time": "Додати час",
+        "reduce_time": "Зменшити час",
+        "add_timex2": "Додати час x2"
+    },
+    "lot": {
+        "name": "Назва",
+        "delete": "Видалити",
+        "add": "Додати суму"
+    },
+    "bid": {
+        "delete": "Видалити",
+        "to_lot": "До лоту",
+        "new": "Нова",
+        "add_to_random_slot": "Додати до випадкового лоту"
+    },
+    "lots": {
+        "add": "Додати",
+        "new_lot_name": "Назва нового лоту",
+        "search": "Пошук лоту"
+    },
+    "auction_settings": {
+        "leader_change": "Зміна лідера",
+        "new_lot": "Новий лот",
+        "new_donation": "Новий донат",
+        "show_odds": "Показувати шанси",
+        "show_total_sum": "Показувати загальну суму",
+        "greater_timer_adding_time": "Додавання часу більшому таймеру",
+        "not_add_time_if": "Не додавати час якщо",
+        "adding_time": "Час"
     },
     "alerts": {
         "title": "Сповіщення",
@@ -66,7 +122,7 @@
     "alert": {
         "image": "Зображення",
         "audio": "Аудіо",
-        "view": "Переглянути",
+        "view": "Вигляд",
         "title": "Заголовок",
         "message": "Повідомлення"
     },
@@ -90,14 +146,14 @@
         "text_color": "Колір тексту",
         "bold": "Жирний",
         "italics": "Курсив",
-        "underline": "Підкреслення",
-        "transformation": "Трансформація",
+        "underline": "Підкреслений",
+        "transformation": "Перетворення",
         "letter_spacing": "Міжлітерний інтервал",
-        "word_spacing": "Міжсловний інтервал",
+        "word_spacing": "Міжслівний інтервал",
         "horizontal_alignment": "Горизонтальне вирівнювання",
         "vertical_alignment": "Вертикальне вирівнювання",
         "text_preview": "Це попередній перегляд!",
-        "name": "Ім'я"
+        "name": "Назва"
     },
     "audio": {
         "play": "Відтворити",

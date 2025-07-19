@@ -1,106 +1,162 @@
 {
-  "on": "تشغيل",
-  "off": "إيقاف",
-  "select": "تحديد",
-  "success": "نجاح",
-  "sound_volume": "مستوى الصوت",
-  "skip_media": "تخطي الوسائط المختصرة",
-  "skip_alert": "تنبيه تخطي الاختصار",
-  "authorization": {
-    "title": "التفويض",
-    "code": "رمز الطلب",
-    "sign_in": "تسجيل الدخول",
-    "phone": "رقم الهاتف",
-    "telegram_code": "رمز من التلجرام",
-    "your_code": "رمزك",
-    "2fa_password": "كلمة مرور 2fa",
-    "password": "شعار"
-  },
-  "updater": {
-    "title": "تحديث",
-    "description": "يتوفر إصدار جديد من التطبيق. هل تريد التحديث؟",
-    "update": "تحديث",
-    "later": "فيما بعد",
-    "downloading": "تحميل..."
-  },
-  "media": {
-    "title": "وسائط",
-    "youtube": "يوتيوب",
-    "twitch": "نشل",
-    "tiktok": "تيك توك"
-  },
-  "media_settings": {
-    "enabled": "تمكين",
-    "min_amount_eur": "الحد الأدنى للمبلغ EUR",
-    "min_amount_rub": "الحد الأدنى للمبلغ RUB",
-    "video_volume": "حجم الفيديو",
-    "min_views": "الحد الأدنى للعرض"
-  },
-  "dashboard": {
-    "messages": "الرسائل",
-    "settings": "الإعدادات",
-    "alerts": "التنبيهات",
-    "media": "وسائط"
-  },
-  "messages": {
-    "title": "آخر الرسائل"
-  },
-  "message": {
-    "skip": "تخطي",
-    "replay": "اعاده",
-    "donate": "تبرع"
-  },
-  "settings": {
-    "title": "الإعدادات",
-    "pause": "إيقاف رسائل التنبيه مؤقتًا",
-    "moderation_duration": "مدة الإشراف",
-    "black_list": "القائمة السوداء",
-    "remove_links": "إزالة الروابط",
-    "language": "اللغة",
-    "sec": "الثانية"
-  },
-  "alerts": {
-    "title": "التنبيهات",
-    "group": "المجموعة"
-  },
-  "alert": {
-    "image": "الصورة",
-    "audio": "الصوت",
-    "view": "عرض",
-    "title": "العنوان",
-    "message": "الرسالة"
-  },
-  "save": "حفظ",
-  "back": "رجوع",
-  "widget": {
-    "copy": "نسخ",
-    "launch": "تشغيل",
-    "url": "رابط الأداة"
-  },
-  "view": {
-    "top": "الصورة أعلى، النص أسفل",
-    "bottom": "الصورة أسفل، النص أعلى",
-    "left": "الصورة يسار، النص يمين",
-    "right": "الصورة يمين، النص يسار",
-    "overlay": "صورة تراكب النص"
-  },
-  "text": {
-    "font": "الخط",
-    "font_size": "حجم الخط",
-    "text_color": "النص اللون",
-    "bold": "غامق",
-    "italics": "مائل",
-    "underline": "تسطير",
-    "transformation": "تحويل",
-    "letter_spacing": "تباعد الأحرف",
-    "word_spacing": "تباعد الكلمات",
-    "horizontal_alignment": "محاذاة أفقية",
-    "vertical_alignment": "محاذاة رأسية",
-    "text_preview": "هذه معاينة!",
-    "name": "الاسم"
-  },
-  "audio": {
-    "play": "تشغيل",
-    "stop": "إيقاف"
-  }
+    "on": "تشغيل",
+    "off": "إيقاف",
+    "select": "اختيار",
+    "success": "نجح",
+    "sound_volume": "مستوى الصوت",
+    "skip_media": "اختصار تخطي الوسائط",
+    "skip_alert": "اختصار تخطي التنبيه",
+    "authorization": {
+        "title": "التفويض",
+        "code": "طلب كود",
+        "sign_in": "تسجيل الدخول",
+        "phone": "رقم الهاتف",
+        "telegram_code": "كود من تليجرام",
+        "your_code": "كودك",
+        "2fa_password": "كلمة مرور التحقق الثنائي",
+        "password": "كلمة المرور"
+    },
+    "updater": {
+        "title": "تحديث",
+        "description": "إصدار جديد من التطبيق متاح. هل تريد التحديث؟",
+        "update": "تحديث",
+        "later": "لاحقاً",
+        "downloading": "جاري التنزيل..."
+    },
+    "media": {
+        "title": "الوسائط",
+        "youtube": "يوتيوب",
+        "twitch": "تويتش",
+        "tiktok": "تيك توك"
+    },
+    "auction": {
+        "lots": "القطع",
+        "wheel": "العجلة",
+        "settings": "الإعدادات"
+    },
+    "maption": {
+        "set_point": "تعيين نقطة",
+        "meter_price": "سعر المتر الواحد",
+        "amount": "المبلغ",
+        "finish": "إنهاء",
+        "lat_error": "خط العرض يجب أن يكون بين -90 و 90",
+        "lng_error": "خط الطول يجب أن يكون بين -180 و 180",
+        "rules": "لكي يغير المؤشر موضعه تلقائياً في الرسالة يجب أن تحتوي على كلمة واحدة فقط من:"
+    },
+    "media_settings": {
+        "enabled": "مُفعل",
+        "min_amount_eur": "أقل مبلغ يورو",
+        "min_amount_rub": "أقل مبلغ روبل",
+        "video_volume": "مستوى صوت الفيديو",
+        "min_views": "أقل عدد مشاهدات"
+    },
+    "dashboard": {
+        "messages": "الرسائل",
+        "settings": "الإعدادات",
+        "alerts": "التنبيهات",
+        "media": "الوسائط",
+        "auction": "المزاد",
+        "maption": "الخريطة"
+    },
+    "messages": {
+        "title": "آخر الرسائل"
+    },
+    "message": {
+        "skip": "تخطي",
+        "replay": "إعادة تشغيل",
+        "donate": "تبرع"
+    },
+    "settings": {
+        "title": "الإعدادات",
+        "pause": "إيقاف رسائل التنبيه مؤقتاً",
+        "moderation_duration": "مدة الإشراف",
+        "black_list": "القائمة السوداء",
+        "remove_links": "إزالة الروابط",
+        "language": "اللغة",
+        "sec": "ثانية"
+    },
+    "wheel": {
+        "normal": "عادي",
+        "dropout": "انقطاع",
+        "spin": "دوران",
+        "speed": "سرعة العجلة"
+    },
+    "timer": {
+        "continue": "متابعة",
+        "pause": "إيقاف مؤقت",
+        "reset": "إعادة تعيين",
+        "add_time": "إضافة وقت",
+        "reduce_time": "تقليل الوقت",
+        "add_timex2": "إضافة وقت x2"
+    },
+    "lot": {
+        "name": "الاسم",
+        "delete": "حذف",
+        "add": "إضافة مبلغ"
+    },
+    "bid": {
+        "delete": "حذف",
+        "to_lot": "إلى القطعة",
+        "new": "جديد",
+        "add_to_random_slot": "إضافة إلى قطعة عشوائية"
+    },
+    "lots": {
+        "add": "إضافة",
+        "new_lot_name": "اسم القطعة الجديدة",
+        "search": "البحث عن قطعة"
+    },
+    "auction_settings": {
+        "leader_change": "تغيير القائد",
+        "new_lot": "قطعة جديدة",
+        "new_donation": "تبرع جديد",
+        "show_odds": "إظهار الاحتمالات",
+        "show_total_sum": "إظهار المجموع الكلي",
+        "greater_timer_adding_time": "إضافة وقت للمؤقت الأكبر",
+        "not_add_time_if": "عدم إضافة وقت إذا",
+        "adding_time": "الوقت"
+    },
+    "alerts": {
+        "title": "التنبيهات",
+        "group": "المجموعة"
+    },
+    "alert": {
+        "image": "صورة",
+        "audio": "صوت",
+        "view": "عرض",
+        "title": "العنوان",
+        "message": "الرسالة"
+    },
+    "save": "حفظ",
+    "back": "رجوع",
+    "widget": {
+        "copy": "نسخ",
+        "launch": "تشغيل",
+        "url": "رابط الأداة"
+    },
+    "view": {
+        "top": "صورة في الأعلى، نص في الأسفل",
+        "bottom": "صورة في الأسفل، نص في الأعلى",
+        "left": "صورة على اليسار، نص على اليمين",
+        "right": "صورة على اليمين، نص على اليسار",
+        "overlay": "نص فوق الصورة"
+    },
+    "text": {
+        "font": "الخط",
+        "font_size": "حجم الخط",
+        "text_color": "لون النص",
+        "bold": "عريض",
+        "italics": "مائل",
+        "underline": "خط تحتي",
+        "transformation": "تحويل",
+        "letter_spacing": "تباعد الأحرف",
+        "word_spacing": "تباعد الكلمات",
+        "horizontal_alignment": "المحاذاة الأفقية",
+        "vertical_alignment": "المحاذاة العمودية",
+        "text_preview": "هذه معاينة!",
+        "name": "الاسم"
+    },
+    "audio": {
+        "play": "تشغيل",
+        "stop": "إيقاف"
+    }
 }

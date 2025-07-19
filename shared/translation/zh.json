@@ -1,104 +1,162 @@
 {
-  "on": "开启",
-  "off": "关闭",
-  "select": "选择",
-  "success": "成功",
-  "sound_volume": "音量",
-  "skip_media": "快捷方式跳过媒体",
-  "skip_alert": "快捷方式跳过警报",
-  "authorization": {
-    "title": "授权",
-    "code": "请求代码",
-    "sign_in": "登录",
-    "phone": "电话号码",
-    "telegram_code": "电报代码",
-    "your_code": "你的代码"
-  },
-  "updater": {
-    "title": "更新",
-    "description": "该应用程序的新版本可用。是否要更新？",
-    "update": "更新",
-    "later": "后",
-    "downloading": "下载。。。"
-  },
-  "media": {
-    "title": "媒体",
-    "youtube": "优酷",
-    "twitch": "抽搐",
-    "tiktok": "抖音"
-  },
-  "media_settings": {
-    "enabled": "启用",
-    "min_amount_eur": "最低金额 EUR",
-    "min_amount_rub": "最小金额 RUB",
-    "video_volume": "视频音量",
-    "min_views": "最小视图"
-  },
-  "dashboard": {
-    "messages": "消息",
-    "settings": "设置",
-    "alerts": "警报",
-    "media": "媒体"
-  },
-  "messages": {
-    "title": "最后消息"
-  },
-  "message": {
-    "skip": "跳过",
-    "replay": "重播",
-    "donate": "捐赠"
-  },
-  "settings": {
-    "title": "设置",
-    "pause": "暂停警报消息",
-    "moderation_duration": "审核时长",
-    "black_list": "黑名单",
-    "remove_links": "删除链接",
-    "language": "语言",
-    "sec": "Sec"
-  },
-  "alerts": {
-    "title": "警报",
-    "group": "组"
-  },
-  "alert": {
-    "image": "图片",
-    "audio": "音频",
-    "view": "查看",
-    "title": "标题",
-    "message": "消息"
-  },
-  "save": "保存",
-  "back": "返回",
-  "widget": {
-    "copy": "复制",
-    "launch": "启动",
-    "url": "小部件网址"
-  },
-  "view": {
-    "top": "图片顶部，文本底部",
-    "bottom": "图片底部，文本顶部",
-    "left": "图片左侧，文本右侧",
-    "right": "图片右侧，文本左侧",
-    "overlay": "文本覆盖图片"
-  },
-  "text": {
-    "font": "字体",
-    "font_size": "字体大小",
-    "text_color": "文本颜色",
-    "bold": "粗体",
-    "italics": "斜体",
-    "underline": "下划线",
-    "transformation": "变换",
-    "letter_spacing": "字母间距",
-    "word_spacing": "单词间距",
-    "horizontal_alignment": "水平对齐",
-    "vertical_alignment": "垂直对齐",
-    "text_preview": "这是一个预览！",
-    "name": "名称"
-  },
-  "audio": {
-    "play": "播放",
-    "stop": "停止"
-  }
+    "on": "开启",
+    "off": "关闭",
+    "select": "选择",
+    "success": "成功",
+    "sound_volume": "音量",
+    "skip_media": "跳过媒体",
+    "skip_alert": "跳过警报",
+    "authorization": {
+        "title": "授权",
+        "code": "请求代码",
+        "sign_in": "登录",
+        "phone": "电话号码",
+        "telegram_code": "来自 Telegram 的代码",
+        "your_code": "你的代码",
+        "2fa_password": "双重验证密码",
+        "password": "密码"
+    },
+    "updater": {
+        "title": "更新",
+        "description": "有新版本可用，是否更新？",
+        "update": "更新",
+        "later": "稍后",
+        "downloading": "正在下载..."
+    },
+    "media": {
+        "title": "媒体",
+        "youtube": "YouTube",
+        "twitch": "Twitch",
+        "tiktok": "抖音"
+    },
+    "auction": {
+        "lots": "拍品",
+        "wheel": "转盘",
+        "settings": "设置"
+    },
+    "maption": {
+        "set_point": "设置点",
+        "meter_price": "每米价格",
+        "amount": "金额",
+        "finish": "完成",
+        "lat_error": "纬度必须在 -90 到 90 之间",
+        "lng_error": "经度必须在 -180 到 180 之间",
+        "rules": "要使指针自动更改位置，消息中只能有一个以下单词："
+    },
+    "media_settings": {
+        "enabled": "已启用",
+        "min_amount_eur": "最小金额 EUR",
+        "min_amount_rub": "最小金额 RUB",
+        "video_volume": "视频音量",
+        "min_views": "最少观看次数"
+    },
+    "dashboard": {
+        "messages": "消息",
+        "settings": "设置",
+        "alerts": "警报",
+        "media": "媒体",
+        "auction": "拍卖",
+        "maption": "地图拍卖"
+    },
+    "messages": {
+        "title": "最新消息"
+    },
+    "message": {
+        "skip": "跳过",
+        "replay": "重播",
+        "donate": "捐赠"
+    },
+    "settings": {
+        "title": "设置",
+        "pause": "暂停警报消息",
+        "moderation_duration": "审核时长",
+        "black_list": "黑名单",
+        "remove_links": "移除链接",
+        "language": "语言",
+        "sec": "秒"
+    },
+    "wheel": {
+        "normal": "正常",
+        "dropout": "淘汰",
+        "spin": "旋转",
+        "speed": "转盘速度"
+    },
+    "timer": {
+        "continue": "继续",
+        "pause": "暂停",
+        "reset": "重置",
+        "add_time": "增加时间",
+        "reduce_time": "减少时间",
+        "add_timex2": "加倍时间"
+    },
+    "lot": {
+        "name": "名称",
+        "delete": "删除",
+        "add": "增加金额"
+    },
+    "bid": {
+        "delete": "删除",
+        "to_lot": "加入拍品",
+        "new": "新建",
+        "add_to_random_slot": "添加到随机拍品"
+    },
+    "lots": {
+        "add": "添加",
+        "new_lot_name": "新拍品名称",
+        "search": "搜索拍品"
+    },
+    "auction_settings": {
+        "leader_change": "领导者变更",
+        "new_lot": "新拍品",
+        "new_donation": "新捐赠",
+        "show_odds": "显示概率",
+        "show_total_sum": "显示总金额",
+        "greater_timer_adding_time": "较长的添加时间",
+        "not_add_time_if": "如果...则不加时间",
+        "adding_time": "添加时间"
+    },
+    "alerts": {
+        "title": "警报",
+        "group": "分组"
+    },
+    "alert": {
+        "image": "图片",
+        "audio": "音频",
+        "view": "视图",
+        "title": "标题",
+        "message": "消息"
+    },
+    "save": "保存",
+    "back": "返回",
+    "widget": {
+        "copy": "复制",
+        "launch": "启动",
+        "url": "组件地址"
+    },
+    "view": {
+        "top": "图片在上，文字在下",
+        "bottom": "图片在下，文字在上",
+        "left": "图片在左，文字在右",
+        "right": "图片在右，文字在左",
+        "overlay": "文字覆盖图片"
+    },
+    "text": {
+        "font": "字体",
+        "font_size": "字体大小",
+        "text_color": "文字颜色",
+        "bold": "加粗",
+        "italics": "斜体",
+        "underline": "下划线",
+        "transformation": "转换",
+        "letter_spacing": "字母间距",
+        "word_spacing": "词间距",
+        "horizontal_alignment": "水平对齐",
+        "vertical_alignment": "垂直对齐",
+        "text_preview": "这是一个预览！",
+        "name": "名称"
+    },
+    "audio": {
+        "play": "播放",
+        "stop": "停止"
+    }
 }

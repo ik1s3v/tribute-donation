@@ -85,9 +85,9 @@
         "continue": "Continue",
         "pause": "Pause",
         "reset": "Reset",
-        "addTime": "Add time",
-        "reduceTime": "Reduce time",
-        "addTimex2": "Add time x2"
+        "add_time": "Add time",
+        "reduce_time": "Reduce time",
+        "add_timex2": "Add time x2"
     },
     "lot": {
         "name": "Name",
@@ -96,7 +96,7 @@
     },
     "bid": {
         "delete": "Delete",
-        "toLot": "To lot",
+        "to_lot": "To lot",
         "new": "New",
         "add_to_random_slot": "Add to random lot"
     },

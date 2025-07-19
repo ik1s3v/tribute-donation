@@ -1,106 +1,162 @@
 {
-  "on": "Ligado",
-  "off": "Desligado",
-  "select": "Selecionar",
-  "success": "Sucesso",
-  "sound_volume": "Volume do som",
-  "skip_media": "Atalho para pular mídia",
-  "skip_alert": "Alerta de salto de atalho",
-  "authorization": {
-    "title": "Autorização",
-    "code": "Solicitar código",
-    "sign_in": "Entrar",
-    "phone": "Número de telefone",
-    "telegram_code": "Código do telegrama",
-    "your_code": "Seu código",
-    "2fa_password": "Senha 2fa",
-    "password": "Senha"
-  },
-  "updater": {
-    "title": "Atualização",
-    "description": "Uma nova versão do aplicativo está disponível. Deseja atualizar?",
-    "update": "Atualização",
-    "later": "Posterior",
-    "downloading": "Transferindo..."
-  },
-  "media": {
-    "title": "Mídia",
-    "youtube": "Linkedin",
-    "twitch": "Contrair-se",
-    "tiktok": "Tiktok"
-  },
-  "media_settings": {
-    "enabled": "Habilitado",
-    "min_amount_eur": "Valor mínimo EUR",
-    "min_amount_rub": "Quantidade mínima RUB",
-    "video_volume": "Volume do vídeo",
-    "min_views": "Visualizações mínimas"
-  },
-  "dashboard": {
-    "messages": "Mensagens",
-    "settings": "Configurações",
-    "alerts": "Alertas",
-    "media": "Mídia"
-  },
-  "messages": {
-    "title": "Últimas mensagens"
-  },
-  "message": {
-    "skip": "Ignorar",
-    "replay": "Rejogar",
-    "donate": "doar"
-  },
-  "settings": {
-    "title": "Configurações",
-    "pause": "Pausar mensagens de alerta",
-    "moderation_duration": "Duração da moderação",
-    "black_list": "Lista negra",
-    "remove_links": "Remover links",
-    "language": "Idioma",
-    "sec": "Seg"
-  },
-  "alerts": {
-    "title": "Alertas",
-    "group": "Grupo"
-  },
-  "alert": {
-    "image": "Imagem",
-    "audio": "Áudio",
-    "view": "Exibir",
-    "title": "Título",
-    "message": "Mensagem"
-  },
-  "save": "Salvar",
-  "back": "Voltar",
-  "widget": {
-    "copy": "Copiar",
-    "launch": "Iniciar",
-    "url": "URL do widget"
-  },
-  "view": {
-    "top": "Imagem superior, texto inferior",
-    "bottom": "Imagem inferior, texto superior",
-    "left": "Imagem esquerda, texto direita",
-    "right": "Imagem direita, texto esquerda",
-    "overlay": "Imagem de sobreposição de texto"
-  },
-  "text": {
-    "font": "Fonte",
-    "font_size": "Tamanho da fonte",
-    "text_color": "Texto cor",
-    "bold": "Negrito",
-    "italics": "Itálico",
-    "underline": "Sublinhado",
-    "transformation": "Transformação",
-    "letter_spacing": "Espaçamento entre letras",
-    "word_spacing": "Espaçamento entre palavras",
-    "horizontal_alignment": "Alinhamento horizontal",
-    "vertical_alignment": "Alinhamento vertical",
-    "text_preview": "Esta é uma prévia!",
-    "name": "Nome"
-  },
-  "audio": {
-    "play": "Reproduzir",
-    "stop": "Parar"
-  }
+    "on": "Ligado",
+    "off": "Desligado",
+    "select": "Selecionar",
+    "success": "Sucesso",
+    "sound_volume": "Volume do som",
+    "skip_media": "Atalho pular mídia",
+    "skip_alert": "Atalho pular alerta",
+    "authorization": {
+        "title": "Autorização",
+        "code": "Solicitar código",
+        "sign_in": "Entrar",
+        "phone": "Número de telefone",
+        "telegram_code": "Código do Telegram",
+        "your_code": "Seu código",
+        "2fa_password": "Senha 2FA",
+        "password": "Senha"
+    },
+    "updater": {
+        "title": "Atualizar",
+        "description": "Uma nova versão do aplicativo está disponível. Deseja atualizar?",
+        "update": "Atualizar",
+        "later": "Mais tarde",
+        "downloading": "Baixando..."
+    },
+    "media": {
+        "title": "Mídia",
+        "youtube": "YouTube",
+        "twitch": "Twitch",
+        "tiktok": "TikTok"
+    },
+    "auction": {
+        "lots": "Lotes",
+        "wheel": "Roda",
+        "settings": "Configurações"
+    },
+    "maption": {
+        "set_point": "Definir ponto",
+        "meter_price": "Preço por metro",
+        "amount": "Quantidade",
+        "finish": "Finalizar",
+        "lat_error": "A latitude deve estar entre -90 e 90",
+        "lng_error": "A longitude deve estar entre -180 e 180",
+        "rules": "Para que o ponteiro mude automaticamente de posição na mensagem, deve conter apenas uma palavra de:"
+    },
+    "media_settings": {
+        "enabled": "Habilitado",
+        "min_amount_eur": "Valor mínimo EUR",
+        "min_amount_rub": "Valor mínimo RUB",
+        "video_volume": "Volume do vídeo",
+        "min_views": "Visualizações mínimas"
+    },
+    "dashboard": {
+        "messages": "Mensagens",
+        "settings": "Configurações",
+        "alerts": "Alertas",
+        "media": "Mídia",
+        "auction": "Leilão",
+        "maption": "Mapa"
+    },
+    "messages": {
+        "title": "Últimas mensagens"
+    },
+    "message": {
+        "skip": "Pular",
+        "replay": "Repetir",
+        "donate": "doar"
+    },
+    "settings": {
+        "title": "Configurações",
+        "pause": "Pausar mensagens de alerta",
+        "moderation_duration": "Duração da moderação",
+        "black_list": "Lista negra",
+        "remove_links": "Remover links",
+        "language": "Idioma",
+        "sec": "Seg"
+    },
+    "wheel": {
+        "normal": "Normal",
+        "dropout": "Desistência",
+        "spin": "Girar",
+        "speed": "Velocidade da roda"
+    },
+    "timer": {
+        "continue": "Continuar",
+        "pause": "Pausar",
+        "reset": "Reiniciar",
+        "add_time": "Adicionar tempo",
+        "reduce_time": "Reduzir tempo",
+        "add_timex2": "Adicionar tempo x2"
+    },
+    "lot": {
+        "name": "Nome",
+        "delete": "Deletar",
+        "add": "Adicionar valor"
+    },
+    "bid": {
+        "delete": "Deletar",
+        "to_lot": "Para o lote",
+        "new": "Novo",
+        "add_to_random_slot": "Adicionar a lote aleatório"
+    },
+    "lots": {
+        "add": "Adicionar",
+        "new_lot_name": "Nome do novo lote",
+        "search": "Buscar lote"
+    },
+    "auction_settings": {
+        "leader_change": "Mudança de líder",
+        "new_lot": "Novo lote",
+        "new_donation": "Nova doação",
+        "show_odds": "Mostrar probabilidades",
+        "show_total_sum": "Mostrar soma total",
+        "greater_timer_adding_time": "Tempo de adição do timer maior",
+        "not_add_time_if": "Não adicionar tempo se",
+        "adding_time": "Tempo"
+    },
+    "alerts": {
+        "title": "Alertas",
+        "group": "Grupo"
+    },
+    "alert": {
+        "image": "Imagem",
+        "audio": "Áudio",
+        "view": "Visualizar",
+        "title": "Título",
+        "message": "Mensagem"
+    },
+    "save": "Salvar",
+    "back": "Voltar",
+    "widget": {
+        "copy": "Copiar",
+        "launch": "Iniciar",
+        "url": "URL do widget"
+    },
+    "view": {
+        "top": "Imagem em cima, texto embaixo",
+        "bottom": "Imagem embaixo, texto em cima",
+        "left": "Imagem à esquerda, texto à direita",
+        "right": "Imagem à direita, texto à esquerda",
+        "overlay": "Texto sobreposto à imagem"
+    },
+    "text": {
+        "font": "Fonte",
+        "font_size": "Tamanho da fonte",
+        "text_color": "Cor do texto",
+        "bold": "Negrito",
+        "italics": "Itálico",
+        "underline": "Sublinhado",
+        "transformation": "Transformação",
+        "letter_spacing": "Espaçamento de letras",
+        "word_spacing": "Espaçamento de palavras",
+        "horizontal_alignment": "Alinhamento horizontal",
+        "vertical_alignment": "Alinhamento vertical",
+        "text_preview": "Esta é uma prévia!",
+        "name": "Nome"
+    },
+    "audio": {
+        "play": "Reproduzir",
+        "stop": "Parar"
+    }
 }

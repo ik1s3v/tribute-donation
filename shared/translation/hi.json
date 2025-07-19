@@ -1,106 +1,162 @@
 {
-  "on": "चालू",
-  "off": "बंद",
-  "select": "चुनें",
-  "success": "सफलता",
-  "sound_volume": "ध्वनि की मात्रा",
-  "skip_media": "शॉर्टकट मीडिया छोड़ें",
-  "skip_alert": "शॉर्टकट स्किप अलर्ट",
-  "authorization": {
-    "title": "प्राधिकरण",
-    "code": "अनुरोध कोड",
-    "sign_in": "साइन इन करें",
-    "phone": "फ़ोन नंबर",
-    "telegram_code": "टेलीग्राम से कोड",
-    "your_code": "आपका कोड",
-    "2fa_password": "2fa पासवर्ड",
-    "password": "पासवर्ड"
-  },
-  "updater": {
-    "title": "आधुनिकीकरणअ",
-    "description": "ऐप का एक नया संस्करण उपलब्ध है। क्या आप अद्यतन करना चाहते हैं?",
-    "update": "आधुनिकीकरणअ",
-    "later": "बाद में",
-    "downloading": "डाउनलोड।।।"
-  },
-  "media": {
-    "title": "मीडिया",
-    "youtube": "यूट्यूब",
-    "twitch": "फड़काना",
-    "tiktok": "टिकटोक"
-  },
-  "media_settings": {
-    "enabled": "सक्षम",
-    "min_amount_eur": "न्यूनतम राशि EUR",
-    "min_amount_rub": "न्यूनतम राशि RUB",
-    "video_volume": "वीडियो वॉल्यूम",
-    "min_views": "न्यूनतम दृश्य"
-  },
-  "dashboard": {
-    "messages": "संदेश",
-    "settings": "सेटिंग्स",
-    "alerts": "अलर्ट",
-    "media": "मीडिया"
-  },
-  "messages": {
-    "title": "अंतिम संदेश"
-  },
-  "message": {
-    "skip": "छोड़ें",
-    "replay": "पुनरावृत्ति",
-    "donate": "दान करें"
-  },
-  "settings": {
-    "title": "सेटिंग्स",
-    "pause": "अलर्ट संदेश रोकें",
-    "moderation_duration": "मॉडरेशन अवधि",
-    "black_list": "ब्लैक लिस्ट",
-    "remove_links": "हटाएँ लिंक",
-    "language": "भाषा",
-    "sec": "सेक"
-  },
-  "alerts": {
-    "title": "अलर्ट",
-    "group": "समूह"
-  },
-  "alert": {
-    "image": "छवि",
-    "audio": "ऑडियो",
-    "view": "देखें",
-    "title": "शीर्षक",
-    "message": "संदेश"
-  },
-  "save": "सहेजें",
-  "back": "वापस",
-  "widget": {
-    "copy": "कॉपी करें",
-    "launch": "लॉन्च",
-    "url": "विजेट यूआरएल"
-  },
-  "view": {
-    "top": "छवि शीर्ष, पाठ नीचे",
-    "bottom": "छवि नीचे, पाठ शीर्ष",
-    "left": "छवि बाईं ओर, पाठ दाईं ओर",
-    "right": "छवि दाईं ओर, पाठ बाईं ओर",
-    "overlay": "पाठ ओवरले छवि"
-  },
-  "text": {
-    "font": "फ़ॉन्ट",
-    "font_size": "फ़ॉन्ट आकार",
-    "text_color": "पाठ रंग",
-    "bold": "बोल्ड",
-    "italics": "इटैलिक",
-    "underline": "अंडरलाइन",
-    "transformation": "रूपांतरण",
-    "letter_spacing": "अक्षर रिक्ति",
-    "word_spacing": "शब्द रिक्ति",
-    "horizontal_alignment": "क्षैतिज संरेखण",
-    "vertical_alignment": "ऊर्ध्वाधर संरेखण",
-    "text_preview": "यह एक पूर्वावलोकन है!",
-    "name": "नाम"
-  },
-  "audio": {
-    "play": "चलाएँ",
-    "stop": "रोकें"
-  }
+    "on": "चालू",
+    "off": "बंद",
+    "select": "चयन करें",
+    "success": "सफलता",
+    "sound_volume": "ध्वनि मात्रा",
+    "skip_media": "मीडिया छोड़ें",
+    "skip_alert": "चेतावनी छोड़ें",
+    "authorization": {
+        "title": "प्रमाणीकरण",
+        "code": "कोड अनुरोध करें",
+        "sign_in": "साइन इन करें",
+        "phone": "फोन नंबर",
+        "telegram_code": "टेलीग्राम से कोड",
+        "your_code": "आपका कोड",
+        "2fa_password": "2FA पासवर्ड",
+        "password": "पासवर्ड"
+    },
+    "updater": {
+        "title": "अपडेट",
+        "description": "एप का नया संस्करण उपलब्ध है। क्या आप अपडेट करना चाहते हैं?",
+        "update": "अपडेट करें",
+        "later": "बाद में",
+        "downloading": "डाउनलोड हो रहा है..."
+    },
+    "media": {
+        "title": "मीडिया",
+        "youtube": "यूट्यूब",
+        "twitch": "ट्विच",
+        "tiktok": "टिकटॉक"
+    },
+    "auction": {
+        "lots": "लॉट्स",
+        "wheel": "व्हील",
+        "settings": "सेटिंग्स"
+    },
+    "maption": {
+        "set_point": "बिंदु सेट करें",
+        "meter_price": "1 मीटर की कीमत",
+        "amount": "राशि",
+        "finish": "समाप्त करें",
+        "lat_error": "अक्षांश -90 और 90 के बीच होना चाहिए",
+        "lng_error": "देशांतर -180 और 180 के बीच होना चाहिए",
+        "rules": "पॉइंटर को स्वचालित रूप से बदलने के लिए संदेश में केवल इन शब्दों में से एक होना चाहिए:"
+    },
+    "media_settings": {
+        "enabled": "सक्षम",
+        "min_amount_eur": "न्यूनतम राशि EUR",
+        "min_amount_rub": "न्यूनतम राशि RUB",
+        "video_volume": "वीडियो वॉल्यूम",
+        "min_views": "न्यूनतम दृश्य"
+    },
+    "dashboard": {
+        "messages": "संदेश",
+        "settings": "सेटिंग्स",
+        "alerts": "चेतावनियाँ",
+        "media": "मीडिया",
+        "auction": "नीलामी",
+        "maption": "मैप्शन"
+    },
+    "messages": {
+        "title": "अंतिम संदेश"
+    },
+    "message": {
+        "skip": "छोड़ें",
+        "replay": "फिर से चलाएं",
+        "donate": "दान करें"
+    },
+    "settings": {
+        "title": "सेटिंग्स",
+        "pause": "चेतावनी संदेश रोकें",
+        "moderation_duration": "मॉडरेशन अवधि",
+        "black_list": "ब्लैक लिस्ट",
+        "remove_links": "लिंक हटाएं",
+        "language": "भाषा",
+        "sec": "सेकंड"
+    },
+    "wheel": {
+        "normal": "सामान्य",
+        "dropout": "ड्रॉपआउट",
+        "spin": "घुमाएं",
+        "speed": "व्हील गति"
+    },
+    "timer": {
+        "continue": "जारी रखें",
+        "pause": "रोकें",
+        "reset": "रीसेट करें",
+        "add_time": "समय जोड़ें",
+        "reduce_time": "समय घटाएं",
+        "add_timex2": "2 गुना समय जोड़ें"
+    },
+    "lot": {
+        "name": "नाम",
+        "delete": "हटाएं",
+        "add": "राशि जोड़ें"
+    },
+    "bid": {
+        "delete": "हटाएं",
+        "to_lot": "लॉट में जोड़ें",
+        "new": "नया",
+        "add_to_random_slot": "यादृच्छिक लॉट में जोड़ें"
+    },
+    "lots": {
+        "add": "जोड़ें",
+        "new_lot_name": "नया लॉट नाम",
+        "search": "लॉट खोजें"
+    },
+    "auction_settings": {
+        "leader_change": "नेता परिवर्तन",
+        "new_lot": "नया लॉट",
+        "new_donation": "नया दान",
+        "show_odds": "संभावनाएं दिखाएं",
+        "show_total_sum": "कुल राशि दिखाएं",
+        "greater_timer_adding_time": "अधिकतम टाइमर जोड़ने का समय",
+        "not_add_time_if": "यदि नहीं तो समय न जोड़ें",
+        "adding_time": "समय"
+    },
+    "alerts": {
+        "title": "चेतावनियाँ",
+        "group": "समूह"
+    },
+    "alert": {
+        "image": "छवि",
+        "audio": "ऑडियो",
+        "view": "दृश्य",
+        "title": "शीर्षक",
+        "message": "संदेश"
+    },
+    "save": "सहेजें",
+    "back": "वापस",
+    "widget": {
+        "copy": "कॉपी करें",
+        "launch": "लॉन्च करें",
+        "url": "विजेट यूआरएल"
+    },
+    "view": {
+        "top": "छवि ऊपर, पाठ नीचे",
+        "bottom": "छवि नीचे, पाठ ऊपर",
+        "left": "छवि बाएं, पाठ दाएं",
+        "right": "छवि दाएं, पाठ बाएं",
+        "overlay": "पाठ ओवरले छवि"
+    },
+    "text": {
+        "font": "फ़ॉन्ट",
+        "font_size": "फ़ॉन्ट आकार",
+        "text_color": "पाठ रंग",
+        "bold": "गाढ़ा",
+        "italics": "तिरछा",
+        "underline": "रेखांकित",
+        "transformation": "रूपांतरण",
+        "letter_spacing": "अक्षर दूरी",
+        "word_spacing": "शब्द दूरी",
+        "horizontal_alignment": "क्षैतिज संरेखण",
+        "vertical_alignment": "ऊर्ध्वाधर संरेखण",
+        "text_preview": "यह पूर्वावलोकन है!",
+        "name": "नाम"
+    },
+    "audio": {
+        "play": "चलाएं",
+        "stop": "रोकें"
+    }
 }

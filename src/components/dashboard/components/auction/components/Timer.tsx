@@ -93,13 +93,13 @@ const Timer = ({
 				<IconButton onClick={handleResetTimer} title={t("timer.reset")}>
 					<ReplayIcon sx={iconSx} />
 				</IconButton>
-				<IconButton onClick={handleAddTime} title={t("timer.addTime")}>
+				<IconButton onClick={handleAddTime} title={t("timer.add_time")}>
 					<ExpandLessIcon sx={iconSx} />
 				</IconButton>
-				<IconButton onClick={handleReduceTime} title={t("timer.reduceTime")}>
+				<IconButton onClick={handleReduceTime} title={t("timer.reduce_time")}>
 					<ExpandMoreIcon sx={iconSx} />
 				</IconButton>
-				<IconButton onClick={handleAddTimeX2} title={t("timer.addTimex2")}>
+				<IconButton onClick={handleAddTimeX2} title={t("timer.add_timex2")}>
 					<KeyboardCapslockIcon sx={iconSx} />
 				</IconButton>
 			</div>
