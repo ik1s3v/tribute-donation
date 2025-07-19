@@ -22,6 +22,8 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     }
     *executed = true;
 
+    let version = app.package_info().version.to_string();
+
     let db_path = app
         .path()
         .resolve(SQLITE_DB.to_string(), BaseDirectory::AppLocalData)
@@ -39,7 +41,7 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
         .resolve("assets", BaseDirectory::Resource)
         .unwrap();
 
-    let database_service = DatabaseService::new(&db_path).await?;
+    let database_service = DatabaseService::new(&db_path, &version).await?;
     app.manage(database_service);
 
     copy_assets_to_static(&assets_path, &static_path)?;
