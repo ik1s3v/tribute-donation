@@ -1,6 +1,5 @@
 # Tribute Donation
 
-Парсер донейшн сообщений из бота tribute и отображение их в obs.  
 Parser of donation messages from tribute bot and displaying them in obs.
 
 ## Screenshot
@@ -10,7 +9,7 @@ Here’s a preview of the application:
 ![Messages Screenshot](assets/1.png)
 
 
-## Installation
+## Development
 
 ### Prerequisites
 Ensure you have the following installed on your system:
