@@ -19,7 +19,15 @@
       }
     ],
     "security": {
-      "csp": "default-src 'self' ipc: http://ipc.localhost style-src 'self' 'unsafe-inline' asset: http://asset.localhost data:",
+      "csp": {
+        "default-src": "'self' ipc: http://ipc.localhost asset: http://asset.localhost ",
+        "connect-src": "'self' ipc: http://ipc.localhost https://maps.googleapis.com https://*.googleapis.com https://*.google.com https://*.gstatic.com",
+        "script-src": "'self' 'unsafe-inline' ipc: http://ipc.localhost https://maps.googleapis.com",
+        "style-src": "'self' 'unsafe-inline' asset: http://asset.localhost https://fonts.googleapis.com",
+        "font-src": "'self' https://fonts.gstatic.com",
+        "media-src": "'self' asset: http://asset.localhost",
+        "img-src": "'self' data: asset: http://asset.localhost https://*.googleapis.com https://*.gstatic.com https://*.google.com"
+      },
       "assetProtocol": {
         "enable": true,
         "scope": [

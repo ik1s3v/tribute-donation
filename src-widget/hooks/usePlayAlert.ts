@@ -5,8 +5,8 @@ import type { IAlert, IMessage, ISettings } from "../../shared/types";
 import getAlertByMessage from "../utils/getAlertByMessage";
 
 const usePlayAlert = () => {
-	const soundRef = useRef<HTMLAudioElement>(new Audio());
-	const audioRef = useRef<HTMLAudioElement>(new Audio());
+	const alertAudioRef = useRef<HTMLAudioElement>(new Audio());
+	const messageAudioRef = useRef<HTMLAudioElement>(new Audio());
 	const alertsRef = useRef<IAlert[]>([]);
 	const settingsRef = useRef<ISettings | null>(null);
 	const messagesRef = useRef<IMessage[]>([]);
@@ -19,8 +19,8 @@ const usePlayAlert = () => {
 			message,
 			skip = false,
 		}: { message: IMessage | undefined; skip?: boolean }) => {
-			audioRef.current.pause();
-			soundRef.current.pause();
+			messageAudioRef.current.pause();
+			alertAudioRef.current.pause();
 			setTimeout(
 				() => {
 					if (!message) return;
@@ -61,12 +61,13 @@ const usePlayAlert = () => {
 					});
 
 					if (message.audio) {
-						audioRef.current.src = `static/${message.audio}`;
-						audioRef.current.volume = settingsRef.current.tts_volume / 100;
+						messageAudioRef.current.src = `static/${message.audio}`;
+						messageAudioRef.current.volume =
+							settingsRef.current.tts_volume / 100;
 					}
-					soundRef.current.src = `static/${alert.audio}`;
-					soundRef.current.volume = alert.audio_volume / 100;
-					soundRef.current.play();
+					alertAudioRef.current.src = `static/${alert.audio}`;
+					alertAudioRef.current.volume = alert.audio_volume / 100;
+					alertAudioRef.current.play();
 					setCurrentMessage(message);
 					setCurrentAlert(alert);
 				}
@@ -114,31 +115,31 @@ const usePlayAlert = () => {
 
 	const handleSoundEnd = useCallback(() => {
 		if (currentMessage?.audio) {
-			audioRef.current.play();
+			messageAudioRef.current.play();
 		} else {
 			handleAudioEnd({ message: currentMessage });
 		}
 	}, [currentMessage, handleAudioEnd]);
 
 	useEffect(() => {
-		audioRef.current.onended = () =>
+		messageAudioRef.current.onended = () =>
 			handleAudioEnd({ message: currentMessage });
-		audioRef.current.onerror = () =>
+		messageAudioRef.current.onerror = () =>
 			handleAudioEnd({ message: currentMessage });
 
 		return () => {
-			audioRef.current.onended = null;
-			audioRef.current.onerror = null;
+			messageAudioRef.current.onended = null;
+			messageAudioRef.current.onerror = null;
 		};
 	}, [currentMessage, handleAudioEnd]);
 
 	useEffect(() => {
-		soundRef.current.onended = handleSoundEnd;
-		soundRef.current.onerror = handleSoundEnd;
+		alertAudioRef.current.onended = handleSoundEnd;
+		alertAudioRef.current.onerror = handleSoundEnd;
 
 		return () => {
-			soundRef.current.onended = null;
-			soundRef.current.onerror = null;
+			alertAudioRef.current.onended = null;
+			alertAudioRef.current.onerror = null;
 		};
 	}, [handleSoundEnd]);
 

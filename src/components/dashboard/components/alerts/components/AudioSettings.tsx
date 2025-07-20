@@ -20,13 +20,29 @@ const AudioSettings = () => {
 		(state: AppState) => state.mainState.appDataDir,
 	);
 	const audioUrl = convertFileSrc(`${appDataDir}/static/${alert?.audio}`);
-	const soundRef = useRef(new Audio(audioUrl));
+	const alertAudioRef = useRef(new Audio(audioUrl));
 	const { t } = useTranslation();
+
 	useEffect(() => {
-		if (soundRef.current && alert) {
-			soundRef.current.volume = alert.audio_volume / 100;
+		if (alertAudioRef.current && alert) {
+			alertAudioRef.current.volume = alert.audio_volume / 100;
 		}
 	}, [alert]);
+
+	useEffect(() => {
+		return () => alertAudioRef.current.pause();
+	}, []);
+
+	useEffect(() => {
+		alertAudioRef.current.onended = () => setIsPlaying(false);
+		alertAudioRef.current.onerror = () => setIsPlaying(false);
+
+		return () => {
+			alertAudioRef.current.onended = null;
+			alertAudioRef.current.onerror = null;
+		};
+	}, []);
+
 	return (
 		alert && (
 			<div style={{ display: "grid", placeContent: "center" }}>
@@ -50,7 +66,11 @@ const AudioSettings = () => {
 									writeFile(`static/${getFilenameFromPath(path)}`, data, {
 										baseDir: BaseDirectory.AppLocalData,
 									}).then(() => {
-										soundRef.current.src = convertFileSrc(
+										if (isPlaying) {
+											setIsPlaying(false);
+											alertAudioRef.current.pause();
+										}
+										alertAudioRef.current.src = convertFileSrc(
 											`${appDataDir}/static/${fileName}`,
 										);
 										dispatch(setAlert({ ...alert, audio: fileName }));
@@ -63,12 +83,12 @@ const AudioSettings = () => {
 					</Button>
 					<Button
 						onClick={() => {
-							if (soundRef.current.paused) {
-								soundRef.current.play();
+							if (alertAudioRef.current.paused) {
+								alertAudioRef.current.play();
 								setIsPlaying(true);
 							} else {
-								soundRef.current.pause();
-								soundRef.current.currentTime = 0;
+								alertAudioRef.current.pause();
+								alertAudioRef.current.currentTime = 0;
 								setIsPlaying(false);
 							}
 						}}
