@@ -28,7 +28,7 @@ const wheelDataFromLots = (
 			return lots.map((lot) => ({
 				fastId: lot.fastId,
 				name: lot.name,
-				optionSize: lot.eliminationOptionSize,
+				optionSize: lot.dropoutOptionSize,
 				color: lot.color,
 			}));
 	}

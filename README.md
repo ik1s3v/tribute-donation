@@ -28,8 +28,14 @@ To install and run the project locally, follow these steps:
    ```
    npm install
    ```
-
-3. Start the development:
+3. Enter the following commands:
+   ```
+   $env:API_ID="your_api_id"
+   $env:API_HASH="your_api_hash"
+   $env:VITE_GOOGLE_MAPS_API_KEY="your_google_key"
+   $env:TRIBUTE_ID="your_chanel_id"
+   ```
+4. Start the development:
    ```
    npm run tauri dev
    npm run widget:dev
@@ -39,7 +45,7 @@ To install and run the project locally, follow these steps:
 
 To build the project for production, use the following commands:
 
-For build you need set environment variables API_ID, API_HASH (take it from https://my.telegram.org/) and TAURI_SIGNING_PRIVATE_KEY (take it from Cargo.toml)
+For build you need set environment variables API_ID, API_HASH (take it from https://my.telegram.org/) and TAURI_SIGNING_PRIVATE_KEY (take it from .env.example)
 
 To set environment variables on Windows, follow these steps:
 
@@ -49,10 +55,8 @@ To set environment variables on Windows, follow these steps:
    $env:API_ID="your_api_id"
    $env:API_HASH="your_api_hash"
    $env:TAURI_SIGNING_PRIVATE_KEY="your_private_key"
+   $env:VITE_GOOGLE_MAPS_API_KEY="your_google_key"
    ```
-   
-   Replace `your_api_id`,`your_telegram_chanel_id_for_test`, `your_api_hash`, and `your_private_key` with the actual values.
-
 3. Build the Tauri application:
    ```
    npm run build:production

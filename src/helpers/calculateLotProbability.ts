@@ -10,22 +10,20 @@ const calculateLotProbability = ({
 	minAmount: number | undefined;
 }) => {
 	const winProbability = !totalAmount ? 0 : (amount ?? 0) / totalAmount;
-	const eliminationAmount = (maxAmount ?? 0) / (!amount ? 1 : amount);
-	const maxEliminationAmount =
+	const dropoutAmount = (maxAmount ?? 0) / (!amount ? 1 : amount);
+	const maxDropoutAmount =
 		(maxAmount ?? 0) / (!minAmount || minAmount === 0 ? 1 : minAmount);
-	const eliminationRatio = 1 / maxEliminationAmount;
+	const dropoutRatio = 1 / maxDropoutAmount;
 	const winChance = winProbability * 100;
 	const winChancePercent = winChance.toFixed(1);
 	const normalOptionSize = Math.round(winChance);
-	const eliminationOptionSize = Math.round(
-		eliminationRatio * eliminationAmount * 100,
-	);
+	const dropoutOptionSize = Math.round(dropoutRatio * dropoutAmount * 100);
 
 	return {
-		eliminationAmount,
+		dropoutAmount,
 		winChancePercent,
 		normalOptionSize,
-		eliminationOptionSize,
+		dropoutOptionSize,
 	};
 };
 export default calculateLotProbability;

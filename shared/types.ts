@@ -113,8 +113,8 @@ export interface ILot {
 	color: string;
 	amount?: number;
 	extra?: number;
-	eliminationAmount?: number;
-	eliminationOptionSize?: number;
+	dropoutAmount?: number;
+	dropoutOptionSize?: number;
 	normalOptionSize?: number;
 	winChancePercent?: string;
 }
