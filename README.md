@@ -6,7 +6,7 @@ Parser of donation messages from tribute bot and displaying them in obs.
 
 Here’s a preview of the application:
 
-![Messages Screenshot](assets/1.png)
+![Messages Screenshot](screenshots/1.png)
 
 
 ## Development
