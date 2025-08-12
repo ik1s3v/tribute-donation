@@ -17,11 +17,8 @@ import type { SerializedError } from "@reduxjs/toolkit";
 
 const Settings = () => {
 	const { t, i18n } = useTranslation();
-	const settings = useSelector(
-		(state: AppState) => state.settingsState.settings,
-	);
-	const duration = useSelector(
-		(state: AppState) => state.settingsState.duration,
+	const { settings, duration } = useSelector(
+		(state: AppState) => state.settingsState,
 	);
 	const dispatch = useDispatch();
 	const [updateSettings] = useUpdateSettingsMutation();

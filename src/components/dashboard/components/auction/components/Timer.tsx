@@ -25,17 +25,18 @@ const Timer = ({
 	size?: number;
 }) => {
 	const { t } = useTranslation();
-	const timerState = useSelector((state: AppState) => state[timerStateName]);
+	const { currentIntervalId, time, isStopped } = useSelector(
+		(state: AppState) => state[timerStateName],
+	);
 	const dispatch = useDispatch();
 	const { addTime, subtractTime, setCurrentIntervalId, setTime, setIsStopped } =
 		timerSlice.actions;
 	const iconSx = { width: iconSize, height: iconSize };
-
 	const clearCurrentInterval = useCallback(() => {
-		if (timerState.currentIntervalId) {
-			clearInterval(timerState.currentIntervalId);
+		if (currentIntervalId) {
+			clearInterval(currentIntervalId);
 		}
-	}, [timerState.currentIntervalId]);
+	}, [currentIntervalId]);
 
 	const formatTime = (milliseconds: number) => {
 		const duration = dayjs.duration(milliseconds);
@@ -77,11 +78,9 @@ const Timer = ({
 
 	return (
 		<div style={{ display: "grid", placeItems: "center" }}>
-			<Typography sx={{ fontSize: size }}>
-				{formatTime(timerState.time)}
-			</Typography>
+			<Typography sx={{ fontSize: size }}>{formatTime(time)}</Typography>
 			<div>
-				{timerState.isStopped ? (
+				{isStopped ? (
 					<IconButton onClick={handleStartTimer} title={t("timer.continue")}>
 						<PlayArrowIcon sx={iconSx} />
 					</IconButton>

@@ -11,12 +11,10 @@ import { AlertSeverity } from "../../../../../shared/enums";
 
 const Messages = () => {
 	const { t } = useTranslation();
-	const playingAlertId = useSelector(
-		(state: AppState) => state.alertsState.playingAlertId,
+	const { playingAlertId } = useSelector(
+		(state: AppState) => state.alertsState,
 	);
-	const playingMediaId = useSelector(
-		(state: AppState) => state.mediaState.playingMediaId,
-	);
+	const { playingMediaId } = useSelector((state: AppState) => state.mediaState);
 	const { data, fetchNextPage, hasNextPage, isFetchingNextPage, error } =
 		useGetMessagesInfiniteQuery(undefined, {
 			refetchOnFocus: false,

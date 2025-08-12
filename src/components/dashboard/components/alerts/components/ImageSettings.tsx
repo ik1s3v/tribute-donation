@@ -6,11 +6,9 @@ import type { AppState } from "../../../../../store";
 import { convertFileSrc } from "@tauri-apps/api/core";
 import { setAlert } from "../../../../../store/slices/alertsSlice";
 const ImageSettings = () => {
-	const alert = useSelector((state: AppState) => state.alertsState.alert);
+	const { alert } = useSelector((state: AppState) => state.alertsState);
 	const dispatch = useDispatch();
-	const appDataDir = useSelector(
-		(state: AppState) => state.mainState.appDataDir,
-	);
+	const { appDataDir } = useSelector((state: AppState) => state.mainState);
 
 	return (
 		alert && (

@@ -14,8 +14,8 @@ import { NumericFormat } from "react-number-format";
 
 const AuctionSettings = () => {
 	const { t } = useTranslation();
-	const auctionSettings = useSelector(
-		(state: AppState) => state.auctionState.auctionSettings,
+	const { auctionSettings } = useSelector(
+		(state: AppState) => state.auctionState,
 	);
 	const [updateAuctionSettings] = useUpdateAuctionSettingsMutation();
 	const dispatch = useDispatch();

@@ -10,6 +10,7 @@ import AlertView from "../../../../../../shared/components/AlertView";
 import type { AppState } from "../../../../../store";
 import { convertFileSrc } from "@tauri-apps/api/core";
 import { Currency } from "../../../../../../shared/enums";
+
 const TextStyle = ({
 	textStyle,
 	setTextStyle,
@@ -21,10 +22,9 @@ const TextStyle = ({
 }) => {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
-	const alert = useSelector((state: AppState) => state.alertsState.alert);
-	const appDataDir = useSelector(
-		(state: AppState) => state.mainState.appDataDir,
-	);
+	const { alert } = useSelector((state: AppState) => state.alertsState);
+	const { appDataDir } = useSelector((state: AppState) => state.mainState);
+
 	return (
 		<>
 			<div

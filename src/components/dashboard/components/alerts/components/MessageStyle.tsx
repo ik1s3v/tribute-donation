@@ -4,7 +4,8 @@ import TextStyle from "./TextStyle";
 import type { AppState } from "../../../../../store";
 
 const MessageStyle = () => {
-	const alert = useSelector((state: AppState) => state.alertsState.alert);
+	const { alert } = useSelector((state: AppState) => state.alertsState);
+
 	return (
 		alert && (
 			<TextStyle

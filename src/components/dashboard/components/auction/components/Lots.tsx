@@ -42,11 +42,9 @@ const Lots = () => {
 	const cacheRef = useRef(
 		new CellMeasurerCache({ fixedWidth: true, defaultHeight: 110 }),
 	);
-
-	const auctionSettings = useSelector(
-		(state: AppState) => state.auctionState.auctionSettings,
+	const { auctionSettings } = useSelector(
+		(state: AppState) => state.auctionState,
 	);
-
 	const dispatch = useDispatch();
 	const { removeMessage } = auctionMessagesSlice.actions;
 

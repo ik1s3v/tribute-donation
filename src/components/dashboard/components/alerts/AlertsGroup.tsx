@@ -8,10 +8,11 @@ import type { AppState } from "../../../../store";
 
 const AlertsGroup = ({ alertsGroup }: { alertsGroup: IAlertsGroup }) => {
 	const widgetUrl = `http://localhost:12553/alert?group_id=${alertsGroup.group_id}`;
-	const connectedAlerts = useSelector(
-		(state: AppState) => state.alertsState.connectedAlerts,
+	const { connectedAlerts } = useSelector(
+		(state: AppState) => state.alertsState,
 	);
 	const { t } = useTranslation();
+
 	return (
 		<Card
 			sx={{

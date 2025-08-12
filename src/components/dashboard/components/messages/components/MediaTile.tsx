@@ -14,9 +14,7 @@ import {
 } from "../../../../../api/mediaApi";
 
 const MediaTile = ({ message }: { message: IMessage }) => {
-	const pausedMediaId = useSelector(
-		(state: AppState) => state.mediaState.pausedMediaId,
-	);
+	const { pausedMediaId } = useSelector((state: AppState) => state.mediaState);
 	const [skipMedia] = useSkipMediaMutation();
 	const [playMedia] = usePlayMediaMutation();
 	const [pauseMedia] = usePauseMediaMutation();

@@ -29,7 +29,7 @@ const AlertSettings = () => {
 	const { t } = useTranslation();
 	const { id } = useParams();
 	const dispatch = useDispatch();
-	const alert = useSelector((state: AppState) => state.alertsState.alert);
+	const { alert } = useSelector((state: AppState) => state.alertsState);
 	const { data, error: getAlertByIdError } = useGetAlertByIdQuery(
 		{ id },
 		{ skip: !id, refetchOnMountOrArgChange: true },

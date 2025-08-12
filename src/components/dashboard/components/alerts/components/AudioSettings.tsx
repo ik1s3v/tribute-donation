@@ -14,11 +14,9 @@ import { setAlert } from "../../../../../store/slices/alertsSlice";
 import StopIcon from "@mui/icons-material/Stop";
 const AudioSettings = () => {
 	const [isPlaying, setIsPlaying] = useState(false);
-	const alert = useSelector((state: AppState) => state.alertsState.alert);
+	const { alert } = useSelector((state: AppState) => state.alertsState);
 	const dispatch = useDispatch();
-	const appDataDir = useSelector(
-		(state: AppState) => state.mainState.appDataDir,
-	);
+	const { appDataDir } = useSelector((state: AppState) => state.mainState);
 	const audioUrl = convertFileSrc(`${appDataDir}/static/${alert?.audio}`);
 	const alertAudioRef = useRef(new Audio(audioUrl));
 	const { t } = useTranslation();
