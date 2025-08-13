@@ -21,11 +21,12 @@ impl TTSService {
     ) -> Result<String, String> {
         let mut audio_bytes = Vec::new();
 
+        let language = match self.detect_language(&text, app.clone()) {
+            Some(language) => language.iso_code_639_1().to_string(),
+            None => "en".to_string(),
+        };
+        
         for text_parts in self.split_text(text, 100) {
-            let language = match self.detect_language(&text_parts, app.clone()) {
-                Some(language) => language.iso_code_639_1().to_string(),
-                None => "en".to_string(),
-            };
 
             let encoded_text = urlencoding::encode(&text_parts);
 
