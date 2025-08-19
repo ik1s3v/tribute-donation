@@ -1,13 +1,13 @@
-import { useTranslation } from "react-i18next";
-import type { ILot } from "../../../../../../shared/types";
 import { useDroppable } from "@dnd-kit/core";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Card, Chip, IconButton, TextField, type Theme } from "@mui/material";
+import { memo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { NumericFormat } from "react-number-format";
 import { useDispatch } from "react-redux";
+import type { ILot } from "../../../../../../shared/types";
 import { removeLot, updateLot } from "../../../../../store/slices/lotsSlice";
-import { memo, useState } from "react";
 
 const inputSX = (theme: Theme) => ({
 	"& .MuiOutlinedInput-root": {
@@ -29,7 +29,11 @@ const LotCard = ({
 	lot,
 	index,
 	isShowOdds,
-}: { lot: ILot; index: number; isShowOdds?: boolean }) => {
+}: {
+	lot: ILot;
+	index: number;
+	isShowOdds?: boolean;
+}) => {
 	const { t } = useTranslation();
 	const [amount, setAmount] = useState(lot.amount);
 	const dispatch = useDispatch();
@@ -103,6 +107,7 @@ const LotCard = ({
 					value={lot.amount ?? 0}
 					placeholder="0"
 					onChange={(e) => setAmount(Number(e.target.value))}
+					onBlur={() => dispatch(updateLot({ ...lot, amount }))}
 					onKeyDown={(e) => {
 						if (e.key === "Enter") {
 							dispatch(updateLot({ ...lot, amount }));
