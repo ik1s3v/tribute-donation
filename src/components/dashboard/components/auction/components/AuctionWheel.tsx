@@ -1,8 +1,3 @@
-import { memo, useCallback, useRef, useState } from "react";
-import { Wheel } from "react-custom-roulette";
-import wheelDataFromLots, {
-	type WheelDataWithFastId,
-} from "../../../../../helpers/wheelDataFromLots";
 import {
 	Button,
 	Card,
@@ -10,15 +5,20 @@ import {
 	ToggleButton,
 	ToggleButtonGroup,
 } from "@mui/material";
-import InputSlider from "../../../../InputSlider";
+import { memo, useCallback, useRef, useState } from "react";
+import { Wheel } from "react-custom-roulette";
 import { useTranslation } from "react-i18next";
 import { WheelVariant } from "../../../../../../shared/enums";
-import getRandomWinnerIndex from "../../../../../helpers/getRandomWinnerIndex";
-import calculateLotProbability from "../../../../../helpers/calculateLotProbability";
-import lotsTotalAmount from "../../../../../helpers/lotsTotalAmount";
-import AuctionWheelLots from "./AuctionWheelLots";
-import findLotsMinMaxAmount from "../../../../../helpers/findLotsMinMaxAmount";
 import type { ILot } from "../../../../../../shared/types";
+import getRandomWinnerIndex from "../../../../../../shared/utils/getRandomWinnerIndex";
+import calculateLotProbability from "../../../../../helpers/calculateLotProbability";
+import findLotsMinMaxAmount from "../../../../../helpers/findLotsMinMaxAmount";
+import lotsTotalAmount from "../../../../../helpers/lotsTotalAmount";
+import wheelDataFromLots, {
+	type WheelDataWithFastId,
+} from "../../../../../helpers/wheelDataFromLots";
+import InputSlider from "../../../../InputSlider";
+import AuctionWheelLots from "./AuctionWheelLots";
 
 const WheelContainer = styled("div")({
 	width: "65vh",

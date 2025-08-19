@@ -118,3 +118,35 @@ export interface ILot {
 	normalOptionSize?: number;
 	winChancePercent?: string;
 }
+
+export interface IAucFighterGame {
+	id: string;
+	matches: IAucFighterMatch[];
+}
+
+export interface IAucFighterMatch {
+	id: string;
+	teams: IAucFighterTeam[];
+	is_final: boolean;
+	is_ended: boolean;
+}
+
+export interface IAucFighterTeam {
+	id?: number;
+	name?: string;
+	color?: string;
+	character?: number;
+	is_winner: boolean;
+	amount: number;
+}
+
+export interface IAucFighterMatchWinner {
+	matchId: string;
+	winnerIndex: number;
+}
+
+export interface IAucFighterSettings {
+	id: number;
+	round_duration: number;
+	is_add_players: boolean;
+}

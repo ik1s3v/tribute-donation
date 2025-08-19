@@ -61,6 +61,13 @@ pub fn run() {
             get_maption_settings,
             update_auction_settings,
             update_maption_settings,
+            start_auc_fighter_match,
+            pause_auc_fighter_match,
+            resume_auc_fighter_match,
+            update_auc_fighter_match,
+            cancel_auc_fighter_match,
+            get_auc_fighter_settings,
+            update_auc_fighter_settings,
             init
         ])
         .run(tauri::generate_context!())

@@ -1,16 +1,16 @@
-import { useTranslation } from "react-i18next";
-import styles from "../../settings/Settings.module.css";
-import OnOffSwitch from "../../../../OnOffSwitch";
-import { useDispatch, useSelector } from "react-redux";
-import type { AppState } from "../../../../../store";
 import { Button, InputAdornment, TextField, Typography } from "@mui/material";
-import { useUpdateAuctionSettingsMutation } from "../../../../../api/auctionApi";
-import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
-import { AlertSeverity } from "../../../../../../shared/enums";
 import type { SerializedError } from "@reduxjs/toolkit";
-import InputSwitch from "../../../../InputSwitch";
-import { setAuctionSettings } from "../../../../../store/slices/auctionSlice";
+import { useTranslation } from "react-i18next";
 import { NumericFormat } from "react-number-format";
+import { useDispatch, useSelector } from "react-redux";
+import { AlertSeverity } from "../../../../../../shared/enums";
+import { useUpdateAuctionSettingsMutation } from "../../../../../api/auctionApi";
+import type { AppState } from "../../../../../store";
+import { setAuctionSettings } from "../../../../../store/slices/auctionSlice";
+import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
+import InputSwitch from "../../../../InputSwitch";
+import OnOffSwitch from "../../../../OnOffSwitch";
+import styles from "../../settings/Settings.module.css";
 
 const AuctionSettings = () => {
 	const { t } = useTranslation();

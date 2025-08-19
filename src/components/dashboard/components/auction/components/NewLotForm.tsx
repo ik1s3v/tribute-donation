@@ -1,12 +1,12 @@
-import { Button, TextField } from "@mui/material";
-import { NumericFormat } from "react-number-format";
 import AddIcon from "@mui/icons-material/Add";
-import { useDispatch, useSelector } from "react-redux";
-import { addLot } from "../../../../../store/slices/lotsSlice";
+import { Button, TextField } from "@mui/material";
 import { useState } from "react";
-import type { AppState } from "../../../../../store";
 import { useTranslation } from "react-i18next";
+import { NumericFormat } from "react-number-format";
+import { useDispatch, useSelector } from "react-redux";
 import getRandomColor from "../../../../../helpers/getRandomColor";
+import type { AppState } from "../../../../../store";
+import { addLot } from "../../../../../store/slices/lotsSlice";
 
 const NewLotForm = () => {
 	const { t } = useTranslation();

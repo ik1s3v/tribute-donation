@@ -1,8 +1,3 @@
-import LotCard from "./LotCard";
-import { useDispatch, useSelector } from "react-redux";
-import type { AppState } from "../../../../../store";
-import Timer from "./Timer";
-import LotSearch from "./LotSearch";
 import {
 	DndContext,
 	DragOverlay,
@@ -11,25 +6,30 @@ import {
 	useSensor,
 	useSensors,
 } from "@dnd-kit/core";
-import type { IMessage } from "../../../../../../shared/types";
 import { restrictToWindowEdges } from "@dnd-kit/modifiers";
-import DraggableMessageCard from "./DraggableMessageCard";
-import AuctionMessageCard from "./AuctionMessageCard";
-import NewLotForm from "./NewLotForm";
-import { auctionTimerSlice } from "../../../../../store/slices/timerSlice";
-import { auctionMessagesSlice } from "../../../../../store/slices/messagesSlice";
-import { updateLot } from "../../../../../store/slices/lotsSlice";
+import { useDispatch, useSelector } from "react-redux";
 import {
-	List,
 	AutoSizer,
 	CellMeasurer,
 	CellMeasurerCache,
+	List,
 } from "react-virtualized";
+import type { IMessage } from "../../../../../../shared/types";
+import type { AppState } from "../../../../../store";
+import { updateLot } from "../../../../../store/slices/lotsSlice";
+import { auctionMessagesSlice } from "../../../../../store/slices/messagesSlice";
+import AuctionMessageCard from "./AuctionMessageCard";
+import DraggableMessageCard from "./DraggableMessageCard";
+import LotCard from "./LotCard";
+import LotSearch from "./LotSearch";
+import NewLotForm from "./NewLotForm";
+import Timer from "./Timer";
 import "react-virtualized/styles.css";
-import { useMemo, useRef, useState } from "react";
-import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
-import { AlertSeverity } from "../../../../../../shared/enums";
 import ResizeObserver from "rc-resize-observer";
+import { useMemo, useRef, useState } from "react";
+import { AlertSeverity } from "../../../../../../shared/enums";
+import { auctionTimerSlice } from "../../../../../../shared/slices/timerSlice";
+import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
 
 const Lots = () => {
 	const { lots, searchPattern } = useSelector(

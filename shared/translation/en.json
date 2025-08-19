@@ -1,162 +1,181 @@
 {
-    "on": "On",
-    "off": "Off",
-    "select": "Select",
-    "success": "Success",
-    "sound_volume": "Sound volume",
-    "skip_media": "Shortcut skip media",
-    "skip_alert": "Shortcut skip alert",
-    "authorization": {
-        "title": "Authorization",
-        "code": "Request code",
-        "sign_in": "Sign in",
-        "phone": "Phone number",
-        "telegram_code": "Code from telegram",
-        "your_code": "Your code",
-        "2fa_password": "2fa Password",
-        "password": "Password"
-    },
-    "updater": {
-        "title": "Update",
-        "description": "A new version of the app is available. Do you want to update?",
-        "update": "Update",
-        "later": "Later",
-        "downloading": "Downloading..."
-    },
-    "media": {
-        "title": "Media",
-        "youtube": "Youtube",
-        "twitch": "Twitch",
-        "tiktok": "Tiktok"
-    },
-    "auction": {
-        "lots": "Lots",
-        "wheel": "Wheel",
-        "settings": "Settings"
-    },
-    "maption": {
-        "set_point": "Set point",
-        "meter_price": "Price for 1 meter",
-        "amount": "Amount",
-        "finish": "Finish",
-        "lat_error": "Latitude must be between -90 and 90",
-        "lng_error": "Longitude must be between -180 and 180",
-        "rules": "For the pointer to automatically change position in the message there should be only one word from:"
-    },
-    "media_settings": {
-        "enabled": "Enabled",
-        "min_amount_eur": "Min amount EUR",
-        "min_amount_rub": "Min amount RUB",
-        "video_volume": "Video volume",
-        "min_views": "Min views"
-    },
-    "dashboard": {
-        "messages": "Messages",
-        "settings": "Settings",
-        "alerts": "Alerts",
-        "media": "Media",
-        "auction": "Auction",
-        "maption": "Maption"
-    },
-    "messages": {
-        "title": "Last messages"
-    },
-    "message": {
-        "skip": "Skip",
-        "replay": "Replay",
-        "donate": "donate"
-    },
-    "settings": {
-        "title": "Settings",
-        "pause": "Pause alert messages",
-        "moderation_duration": "Moderation duration",
-        "black_list": "Black list",
-        "remove_links": "Remove links",
-        "language": "Language",
-        "sec": "Sec"
-    },
-    "wheel": {
-        "normal": "Normal",
-        "dropout": "Dropout",
-        "spin": "Spin",
-        "speed": "Wheel speed"
-    },
-    "timer": {
-        "continue": "Continue",
-        "pause": "Pause",
-        "reset": "Reset",
-        "add_time": "Add time",
-        "reduce_time": "Reduce time",
-        "add_timex2": "Add time x2"
-    },
-    "lot": {
-        "name": "Name",
-        "delete": "Delete",
-        "add": "Add amount"
-    },
-    "bid": {
-        "delete": "Delete",
-        "to_lot": "To lot",
-        "new": "New",
-        "add_to_random_slot": "Add to random lot"
-    },
-    "lots": {
-        "add": "Add",
-        "new_lot_name": "New lot name",
-        "search": "Search lot"
-    },
-    "auction_settings": {
-        "leader_change": "Leader change",
-        "new_lot": "New lot",
-        "new_donation": "New donation",
-        "show_odds": "Show odds",
-        "show_total_sum": "Show total sum",
-        "greater_timer_adding_time": "Greater timer adding time",
-        "not_add_time_if": "Not add time if",
-        "adding_time": "Time"
-    },
-    "alerts": {
-        "title": "Alerts",
-        "group": "Group"
-    },
-    "alert": {
-        "image": "Image",
-        "audio": "Audio",
-        "view": "View",
-        "title": "Title",
-        "message": "Message"
-    },
-    "save": "Save",
-    "back": "Back",
-    "widget": {
-        "copy": "Copy",
-        "launch": "Launch",
-        "url": "Widget url"
-    },
-    "view": {
-        "top": "Image top, text bottom",
-        "bottom": "Image bottom, text top",
-        "left": "Image left, text right",
-        "right": "Image right, text left",
-        "overlay": "Text overlay image"
-    },
-    "text": {
-        "font": "Font",
-        "font_size": "Font size",
-        "text_color": "Text color",
-        "bold": "Bold",
-        "italics": "Italics",
-        "underline": "Underline",
-        "transformation": "Transformation",
-        "letter_spacing": "Letter spacing",
-        "word_spacing": "Word spacing",
-        "horizontal_alignment": "Horizontal alignment",
-        "vertical_alignment": "Vertical alignment",
-        "text_preview": "This is a preview!",
-        "name": "Name"
-    },
-    "audio": {
-        "play": "Play",
-        "stop": "Stop"
-    }
+	"on": "On",
+	"off": "Off",
+	"select": "Select",
+	"success": "Success",
+	"sound_volume": "Sound volume",
+	"skip_media": "Shortcut skip media",
+	"skip_alert": "Shortcut skip alert",
+	"authorization": {
+		"title": "Authorization",
+		"code": "Request code",
+		"sign_in": "Sign in",
+		"phone": "Phone number",
+		"telegram_code": "Code from telegram",
+		"your_code": "Your code",
+		"2fa_password": "2fa Password",
+		"password": "Password"
+	},
+	"updater": {
+		"title": "Update",
+		"description": "A new version of the app is available. Do you want to update?",
+		"update": "Update",
+		"later": "Later",
+		"downloading": "Downloading..."
+	},
+	"media": {
+		"title": "Media",
+		"youtube": "Youtube",
+		"twitch": "Twitch",
+		"tiktok": "Tiktok"
+	},
+	"auction": {
+		"lots": "Lots",
+		"wheel": "Wheel",
+		"settings": "Settings"
+	},
+	"maption": {
+		"set_point": "Set point",
+		"meter_price": "Price for 1 meter",
+		"amount": "Amount",
+		"finish": "Finish",
+		"lat_error": "Latitude must be between -90 and 90",
+		"lng_error": "Longitude must be between -180 and 180",
+		"rules": "For the pointer to automatically change position in the message there should be only one word from:"
+	},
+	"media_settings": {
+		"enabled": "Enabled",
+		"min_amount_eur": "Min amount EUR",
+		"min_amount_rub": "Min amount RUB",
+		"video_volume": "Video volume",
+		"min_views": "Min views"
+	},
+	"dashboard": {
+		"messages": "Messages",
+		"settings": "Settings",
+		"alerts": "Alerts",
+		"media": "Media",
+		"auction": "Auction",
+		"maption": "Maption",
+		"fighter": "Fighter"
+	},
+	"messages": {
+		"title": "Last messages"
+	},
+	"message": {
+		"skip": "Skip",
+		"replay": "Replay",
+		"donate": "donate"
+	},
+	"settings": {
+		"title": "Settings",
+		"pause": "Pause alert messages",
+		"moderation_duration": "Moderation duration",
+		"black_list": "Black list",
+		"remove_links": "Remove links",
+		"language": "Language",
+		"sec": "Sec"
+	},
+	"wheel": {
+		"normal": "Normal",
+		"dropout": "Dropout",
+		"spin": "Spin",
+		"speed": "Wheel speed"
+	},
+	"timer": {
+		"continue": "Continue",
+		"pause": "Pause",
+		"reset": "Reset",
+		"add_time": "Add time",
+		"reduce_time": "Reduce time",
+		"add_timex2": "Add time x2"
+	},
+	"fighter": {
+		"title": "Fighter",
+		"match": "Match",
+		"final": "Final",
+		"game": "Game",
+		"cancel": "Cancel game",
+		"winner": "Winner",
+		"settings": "Settings",
+		"create_game": "Create game from lots",
+		"start": "Start",
+		"pause": "Pause",
+		"rematch": "Rematch",
+		"resume": "Resume"
+	},
+	"lot": {
+		"name": "Name",
+		"delete": "Delete",
+		"add": "Add amount"
+	},
+	"bid": {
+		"delete": "Delete",
+		"to_lot": "To lot",
+		"new": "New",
+		"add_to_random_slot": "Add to random lot"
+	},
+	"lots": {
+		"add": "Add",
+		"new_lot_name": "New lot name",
+		"search": "Search lot"
+	},
+	"auction_settings": {
+		"leader_change": "Leader change",
+		"new_lot": "New lot",
+		"new_donation": "New donation",
+		"show_odds": "Show odds",
+		"show_total_sum": "Show total sum",
+		"greater_timer_adding_time": "Greater timer adding time",
+		"not_add_time_if": "Not add time if",
+		"adding_time": "Time"
+	},
+	"auc_fighter_settings": {
+		"round_duration": "Round duration",
+		"add_players": "Add players"
+	},
+	"alerts": {
+		"title": "Alerts",
+		"group": "Group"
+	},
+	"alert": {
+		"image": "Image",
+		"audio": "Audio",
+		"view": "View",
+		"title": "Title",
+		"message": "Message"
+	},
+	"save": "Save",
+	"back": "Back",
+	"widget": {
+		"copy": "Copy",
+		"launch": "Launch",
+		"url": "Widget url"
+	},
+	"view": {
+		"top": "Image top, text bottom",
+		"bottom": "Image bottom, text top",
+		"left": "Image left, text right",
+		"right": "Image right, text left",
+		"overlay": "Text overlay image"
+	},
+	"text": {
+		"font": "Font",
+		"font_size": "Font size",
+		"text_color": "Text color",
+		"bold": "Bold",
+		"italics": "Italics",
+		"underline": "Underline",
+		"transformation": "Transformation",
+		"letter_spacing": "Letter spacing",
+		"word_spacing": "Word spacing",
+		"horizontal_alignment": "Horizontal alignment",
+		"vertical_alignment": "Vertical alignment",
+		"text_preview": "This is a preview!",
+		"name": "Name"
+	},
+	"audio": {
+		"play": "Play",
+		"stop": "Stop"
+	}
 }

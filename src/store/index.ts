@@ -1,26 +1,30 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { snackBarSlice } from "./slices/snackBarSlice";
-import { mainSlice } from "./slices/mainSlice";
+import {
+	auctionTimerSlice,
+	maptionTimerSlice,
+} from "../../shared/slices/timerSlice";
 import { api } from "../api";
+import calculateLotsProbabilityMiddleware from "./middlewares/calculateLotsProbabilityMiddleware";
+import lotsLeaderChangeAddTimeMiddleware from "./middlewares/lotsLeaderChangeAddTimeMiddleware";
+import newDonationAddAuctionTimeMiddleware from "./middlewares/newDonationAddAuctionTimeMiddleware";
+import newDonationAddMaptionTimeMiddleware from "./middlewares/newDonationAddMaptionTimeMiddleware";
+import newDonationUpdateLotMiddleware from "./middlewares/newDonationUpdateLotMiddleware";
+import newDonationUpdateMaptionPositionMiddleware from "./middlewares/newDonationUpdateMaptionPositionMiddleware";
+import newLotAddAuctionTimeMiddleware from "./middlewares/newLotAddAuctionTimeMiddleware";
+import updateMaptionSettingsMiddleware from "./middlewares/updateMaptionSettingsMiddleware";
 import { alertsSlice } from "./slices/alertsSlice";
-import { settingsSlice } from "./slices/settingsSlice";
-import { mediaSlice } from "./slices/mediaSlice";
+import { aucFighterSlice } from "./slices/aucFighterSlice";
+import { auctionSlice } from "./slices/auctionSlice";
 import { lotsSlice } from "./slices/lotsSlice";
+import { mainSlice } from "./slices/mainSlice";
+import { maptionSlice } from "./slices/maptionSlice";
+import { mediaSlice } from "./slices/mediaSlice";
 import {
 	auctionMessagesSlice,
 	maptionMessagesSlice,
 } from "./slices/messagesSlice";
-import { auctionTimerSlice, maptionTimerSlice } from "./slices/timerSlice";
-import { auctionSlice } from "./slices/auctionSlice";
-import lotsLeaderChangeAddTimeMiddleware from "./middlewares/lotsLeaderChangeAddTimeMiddleware";
-import newLotAddAuctionTimeMiddleware from "./middlewares/newLotAddAuctionTimeMiddleware";
-import newDonationAddAuctionTimeMiddleware from "./middlewares/newDonationAddAuctionTimeMiddleware";
-import calculateLotsProbabilityMiddleware from "./middlewares/calculateLotsProbabilityMiddleware";
-import newDonationUpdateLotMiddleware from "./middlewares/newDonationUpdateLotMiddleware";
-import { maptionSlice } from "./slices/maptionSlice";
-import updateMaptionSettingsMiddleware from "./middlewares/updateMaptionSettingsMiddleware";
-import newDonationAddMaptionTimeMiddleware from "./middlewares/newDonationAddMaptionTimeMiddleware";
-import newDonationUpdateMaptionPositionMiddleware from "./middlewares/newDonationUpdateMaptionPositionMiddleware";
+import { settingsSlice } from "./slices/settingsSlice";
+import { snackBarSlice } from "./slices/snackBarSlice";
 
 export const rootReducer = combineReducers({
 	snackBarState: snackBarSlice.reducer,
@@ -35,6 +39,7 @@ export const rootReducer = combineReducers({
 	auctionMessagesState: auctionMessagesSlice.reducer,
 	maptionMessagesState: maptionMessagesSlice.reducer,
 	maptionState: maptionSlice.reducer,
+	aucFighterState: aucFighterSlice.reducer,
 	[api.reducerPath]: api.reducer,
 });
 

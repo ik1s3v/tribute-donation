@@ -1,8 +1,8 @@
 import type { Middleware } from "@reduxjs/toolkit";
-import type { AppState } from "..";
-import isDonationAddTime from "../../helpers/isDonationAddTime";
-import { auctionTimerSlice } from "../slices/timerSlice";
+import { auctionTimerSlice } from "../../../shared/slices/timerSlice";
 import findLotsMinMaxAmount from "../../helpers/findLotsMinMaxAmount";
+import isDonationAddTime from "../../helpers/isDonationAddTime";
+import type { AppState } from "..";
 
 const { addTime } = auctionTimerSlice.actions;
 

@@ -1,15 +1,17 @@
-import MessageIcon from "@mui/icons-material/Message";
-import SettingsIcon from "@mui/icons-material/Settings";
 import CampaignIcon from "@mui/icons-material/Campaign";
-import Alerts from "../components/dashboard/components/alerts/Alerts";
-import Messages from "../components/dashboard/components/messages/Messages";
-import Settings from "../components/dashboard/components/settings/Settings";
+import MapIcon from "@mui/icons-material/Map";
+import MessageIcon from "@mui/icons-material/Message";
 import MovieIcon from "@mui/icons-material/Movie";
-import Media from "../components/dashboard/components/media/Media";
+import SettingsIcon from "@mui/icons-material/Settings";
+import SportsMartialArtsIcon from "@mui/icons-material/SportsMartialArts";
+import Alerts from "../components/dashboard/components/alerts/Alerts";
 import Auction from "../components/dashboard/components/auction/Auction";
 import AuctionIcon from "../components/dashboard/components/auction/components/AuctionIcon";
-import MapIcon from "@mui/icons-material/Map";
+import AucFighter from "../components/dashboard/components/fighter/AucFighter";
 import Maption from "../components/dashboard/components/maption/Maption";
+import Media from "../components/dashboard/components/media/Media";
+import Messages from "../components/dashboard/components/messages/Messages";
+import Settings from "../components/dashboard/components/settings/Settings";
 
 export const dashboardRouts = [
 	{
@@ -42,6 +44,12 @@ export const dashboardRouts = [
 		element: <Auction />,
 		icon: <AuctionIcon />,
 		name: "auction",
+	},
+	{
+		path: "fighter",
+		element: <AucFighter />,
+		icon: <SportsMartialArtsIcon />,
+		name: "fighter",
 	},
 	{
 		path: "maption",

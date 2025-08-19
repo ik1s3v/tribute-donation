@@ -1,6 +1,8 @@
 use crate::constants::HTTP_WIDGET_PORT;
 use crate::enums::AppEvent;
-use crate::repositories::{AlertsRepository, MediaSettingsRepository, SettingsRepository};
+use crate::repositories::{
+    AlertsRepository, AucFighterSettingsRepository, MediaSettingsRepository, SettingsRepository,
+};
 use crate::services::{DatabaseService, EventMessage, WebSocketBroadcaster};
 use axum::extract::ws::{Message, WebSocket};
 use axum::{
@@ -26,23 +28,31 @@ struct AxumState {
 pub struct AxumService {
     widget_path: PathBuf,
     static_path: PathBuf,
+    auc_fighter_path: PathBuf,
 }
 
 impl AxumService {
-    pub fn new(widget_path: PathBuf, static_path: PathBuf) -> Self {
+    pub fn new(widget_path: PathBuf, static_path: PathBuf, auc_fighter_path: PathBuf) -> Self {
         Self {
             widget_path,
             static_path,
+            auc_fighter_path,
         }
     }
 
     pub async fn run(&self, app: AppHandle) -> Result<(), String> {
         let widget_path = self.widget_path.clone();
         let static_path = self.static_path.clone();
+        let auc_fighter_path = self.auc_fighter_path.clone();
 
         let axum_router: Router = Router::new()
             .route("/ws", get(AxumService::websocket_handler))
             .nest_service("/static", ServeDir::new(&static_path))
+            .nest_service(
+                "/auc-fighter",
+                ServeDir::new(&auc_fighter_path)
+                    .fallback(ServeFile::new(auc_fighter_path.join("default.htm"))),
+            )
             .fallback_service(
                 ServeDir::new(&widget_path)
                     .fallback(ServeFile::new(widget_path.join("index.html"))),
@@ -190,6 +200,21 @@ impl AxumService {
             (&serde_json::to_string(&EventMessage {
                 event: AppEvent::Alerts,
                 data: alerts,
+            })
+            .unwrap())
+                .into(),
+        ))?;
+        let auc_fighter_settings = database_service
+            .get_auc_fighter_settings()
+            .await
+            .map_err(|e| {
+                log::error!("Get auc fighter settings error: {}", e);
+            })
+            .unwrap();
+        tx.send(Message::Text(
+            (&serde_json::to_string(&EventMessage {
+                event: AppEvent::AucFighterSettings,
+                data: auc_fighter_settings,
             })
             .unwrap())
                 .into(),

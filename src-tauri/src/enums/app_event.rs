@@ -23,6 +23,15 @@ pub enum AppEvent {
     Settings,
     MediaSettings,
     AlertConnected,
+    StartAucFighterMatch,
+    PauseAucFighterMatch,
+    ResumeAucFighterMatch,
+    AucFighterMatchEnd,
+    AucFighterMatchPlaying,
+    AucFighterMatchPaused,
+    UpdateAucFighterMatch,
+    CancelAucFighterMatch,
+    AucFighterSettings,
 }
 impl AppEvent {
     pub fn as_str(e: AppEvent) -> &'static str {
@@ -48,6 +57,15 @@ impl AppEvent {
             AppEvent::AlertConnected => "AlertConnected",
             AppEvent::Settings => "Settings",
             AppEvent::MediaSettings => "MediaSettings",
+            AppEvent::StartAucFighterMatch => "StartAucFighterMatch",
+            AppEvent::PauseAucFighterMatch => "PauseAucFighterMatch",
+            AppEvent::ResumeAucFighterMatch => "ResumeAucFighterMatch",
+            AppEvent::AucFighterMatchEnd => "AucFighterMatchEnd",
+            AppEvent::AucFighterMatchPlaying => "AucFighterMatchPlaying",
+            AppEvent::AucFighterMatchPaused => "AucFighterMatchPaused",
+            AppEvent::UpdateAucFighterMatch => "UpdateAucFighterMatch",
+            AppEvent::CancelAucFighterMatch => "CancelAucFighterMatch",
+            AppEvent::AucFighterSettings => "AucFighterSettings",
         }
     }
 }

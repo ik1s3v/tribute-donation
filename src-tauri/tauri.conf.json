@@ -42,6 +42,7 @@
     "targets": "all",
     "resources": [
       "dist-widget/*",
+      "auc-fighter/**/*",
       "assets/*"
     ],
     "icon": [

@@ -1,7 +1,7 @@
-import type { Action as UnknownAction, Middleware } from "@reduxjs/toolkit";
-import type { AppState } from "..";
+import type { Middleware, Action as UnknownAction } from "@reduxjs/toolkit";
+import { auctionTimerSlice } from "../../../shared/slices/timerSlice";
 import isDonationAddTime from "../../helpers/isDonationAddTime";
-import { auctionTimerSlice } from "../slices/timerSlice";
+import type { AppState } from "..";
 import { auctionMessagesSlice } from "../slices/messagesSlice";
 
 const { addTime } = auctionTimerSlice.actions;

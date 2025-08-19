@@ -1,13 +1,13 @@
-import { useTranslation } from "react-i18next";
-import InfiniteScroll from "react-infinite-scroller";
-import { useGetMessagesInfiniteQuery } from "../../../../api/messagesApi";
-import { useDispatch, useSelector } from "react-redux";
-import type { AppState } from "../../../../store";
-import MessageTile from "./components/MessageTile";
 import { Skeleton } from "@mui/material";
 import { useEffect } from "react";
-import { showSnackBar } from "../../../../store/slices/snackBarSlice";
+import { useTranslation } from "react-i18next";
+import InfiniteScroll from "react-infinite-scroller";
+import { useDispatch, useSelector } from "react-redux";
 import { AlertSeverity } from "../../../../../shared/enums";
+import { useGetMessagesInfiniteQuery } from "../../../../api/messagesApi";
+import type { AppState } from "../../../../store";
+import { showSnackBar } from "../../../../store/slices/snackBarSlice";
+import MessageTile from "./components/MessageTile";
 
 const Messages = () => {
 	const { t } = useTranslation();

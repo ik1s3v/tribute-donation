@@ -1,14 +1,17 @@
-import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import { NumericFormat } from "react-number-format";
-import Timer from "../../auction/components/Timer";
-import { maptionTimerSlice } from "../../../../../store/slices/timerSlice";
-import WestIcon from "@mui/icons-material/West";
 import EastIcon from "@mui/icons-material/East";
 import NorthIcon from "@mui/icons-material/North";
-import SouthIcon from "@mui/icons-material/South";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import SouthIcon from "@mui/icons-material/South";
+import WestIcon from "@mui/icons-material/West";
+import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
+import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { NumericFormat } from "react-number-format";
 import { useDispatch, useSelector } from "react-redux";
+import { maptionTimerSlice } from "../../../../../../shared/slices/timerSlice";
+import calculateMaptionDistance from "../../../../../helpers/calculateMaptionDistance";
+import isValidLatitude from "../../../../../helpers/isValidLatitude";
+import isValidLongitude from "../../../../../helpers/isValidLongitude";
 import type { AppState } from "../../../../../store";
 import {
 	down,
@@ -22,10 +25,7 @@ import {
 } from "../../../../../store/slices/maptionSlice";
 import InputSwitch from "../../../../InputSwitch";
 import OnOffSwitch from "../../../../OnOffSwitch";
-import { useMemo, useState } from "react";
-import calculateMaptionDistance from "../../../../../helpers/calculateMaptionDistance";
-import isValidLatitude from "../../../../../helpers/isValidLatitude";
-import isValidLongitude from "../../../../../helpers/isValidLongitude";
+import Timer from "../../auction/components/Timer";
 
 const MaptionSettings = () => {
 	const [latError, setLatError] = useState(false);

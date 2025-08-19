@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import type { AppState } from "../../../../../store";
 import { convertFileSrc } from "@tauri-apps/api/core";
 import { setAlert } from "../../../../../store/slices/alertsSlice";
+
 const ImageSettings = () => {
 	const { alert } = useSelector((state: AppState) => state.alertsState);
 	const dispatch = useDispatch();

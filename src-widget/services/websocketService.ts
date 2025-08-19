@@ -1,19 +1,24 @@
 import { AppEvent } from "../../shared/enums";
+import HotReload from "../../shared/services/hotReload";
 import Subscriptions from "../../shared/services/subscriptions";
 import type { IEventMessage } from "../../shared/types";
 
 export class WebSocketService extends Subscriptions {
 	socket: WebSocket | null;
 	url: string;
+	hotReload: HotReload | null;
+
 	constructor(url: string) {
 		super();
 		this.url = url;
 		this.socket = null;
+		this.hotReload = null;
 	}
 
 	connect() {
 		if (!this.socket || this.socket.readyState !== WebSocket.OPEN) {
 			this.socket = new WebSocket(this.url);
+			this.hotReload = new HotReload(this.socket);
 
 			this.socket.onopen = () => {
 				const url = new URL(location.href);
@@ -22,14 +27,8 @@ export class WebSocketService extends Subscriptions {
 					event: AppEvent.AlertConnected,
 					data: groupId,
 				});
-				if (
-					process.env.NODE_ENV === "development" &&
-					localStorage.getItem("isHotReload") === "true"
-				) {
-					localStorage.removeItem("isHotReload");
-					location.reload();
-				}
 			};
+
 			this.socket.onmessage = (message) => {
 				const websocketMessage: IEventMessage<unknown> = JSON.parse(
 					message.data,
@@ -40,12 +39,6 @@ export class WebSocketService extends Subscriptions {
 
 			this.socket.onclose = () => {
 				setTimeout(() => this.connect(), 1000);
-			};
-
-			this.socket.onerror = () => {
-				if (process.env.NODE_ENV === "development") {
-					localStorage.setItem("isHotReload", "true");
-				}
 			};
 		}
 	}

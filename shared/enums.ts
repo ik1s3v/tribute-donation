@@ -39,6 +39,15 @@ export enum AppEvent {
 	Settings = "Settings",
 	MediaSettings = "MediaSettings",
 	AlertConnected = "AlertConnected",
+	StartAucFighterMatch = "StartAucFighterMatch",
+	AucFighterMatchEnd = "AucFighterMatchEnd",
+	PauseAucFighterMatch = "PauseAucFighterMatch",
+	ResumeAucFighterMatch = "ResumeAucFighterMatch",
+	AucFighterMatchPlaying = "AucFighterMatchPlaying",
+	AucFighterMatchPaused = "AucFighterMatchPaused",
+	UpdateAucFighterMatch = "UpdateAucFighterMatch",
+	CancelAucFighterMatch = "CancelAucFighterMatch",
+	AucFighterSettings = "AucFighterSettings",
 }
 
 export enum ViewType {

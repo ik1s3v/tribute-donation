@@ -1,24 +1,24 @@
-import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Box, Button, Tab, Tabs } from "@mui/material";
-import TabPanel from "../../../TabPanel";
-import { showSnackBar } from "../../../../store/slices/snackBarSlice";
-import { AlertSeverity } from "../../../../../shared/enums";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import Youtube from "./components/Youtube";
-import Twitch from "./components/Twitch";
-import Tiktok from "./components/Tiktok";
-import type { AppState } from "../../../../store";
-import { setMediaSettings } from "../../../../store/slices/mediaSlice";
-import WidgetUrl from "../alerts/components/WidgetUrl";
-import TikTokIcon from "./components/TikTokIcon";
-import TwitchIcon from "./components/TwitchIcon";
+import { Box, Button, Tab, Tabs } from "@mui/material";
+import type { SerializedError } from "@reduxjs/toolkit";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { AlertSeverity } from "../../../../../shared/enums";
 import {
 	useGetMediaSettingsQuery,
 	useUpdateMediaSettingsMutation,
 } from "../../../../api/mediaApi";
-import type { SerializedError } from "@reduxjs/toolkit";
+import type { AppState } from "../../../../store";
+import { setMediaSettings } from "../../../../store/slices/mediaSlice";
+import { showSnackBar } from "../../../../store/slices/snackBarSlice";
+import TabPanel from "../../../TabPanel";
+import WidgetUrl from "../alerts/components/WidgetUrl";
+import TikTokIcon from "./components/TikTokIcon";
+import Tiktok from "./components/Tiktok";
+import Twitch from "./components/Twitch";
+import TwitchIcon from "./components/TwitchIcon";
+import Youtube from "./components/Youtube";
 
 const Media = () => {
 	const [value, setValue] = useState(0);

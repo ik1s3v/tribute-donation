@@ -1,17 +1,17 @@
-import { IconButton, Typography } from "@mui/material";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import ReplayIcon from "@mui/icons-material/Replay";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardCapslockIcon from "@mui/icons-material/KeyboardCapslock";
 import PauseIcon from "@mui/icons-material/Pause";
-import { useDispatch, useSelector } from "react-redux";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import ReplayIcon from "@mui/icons-material/Replay";
+import { IconButton, Typography } from "@mui/material";
+import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import type { AppState } from "../../../../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { TimerSlice } from "../../../../../../shared/slices/timerSlice";
 import { DEFAULT_TIME, DEFAULT_TIMER_DURATION } from "../../../../../constants";
 import dayjs from "../../../../../dayjs";
-import { useCallback } from "react";
-import type { TimerSlice } from "../../../../../store/slices/timerSlice";
+import type { AppState } from "../../../../../store";
 
 const Timer = ({
 	timerSlice,

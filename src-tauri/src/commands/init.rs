@@ -32,6 +32,10 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
         .path()
         .resolve("dist-widget", BaseDirectory::Resource)
         .unwrap();
+    let auc_fighter_path = app
+        .path()
+        .resolve("auc-fighter", BaseDirectory::Resource)
+        .unwrap();
     let static_path = app
         .path()
         .resolve(format!("{}", STATIC_DIR), BaseDirectory::AppLocalData)
@@ -49,7 +53,11 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     let websocket_broadcaster = WebSocketBroadcaster::new();
     app.manage(websocket_broadcaster);
 
-    let axum_service = AxumService::new(widget_path.clone(), static_path.clone());
+    let axum_service = AxumService::new(
+        widget_path.clone(),
+        static_path.clone(),
+        auc_fighter_path.clone(),
+    );
     axum_service.run(app.clone()).await?;
     app.manage(axum_service);
 

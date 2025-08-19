@@ -32,7 +32,9 @@
     "shared/utils/getGridAutoRows.ts",
     "shared/utils/getGridAutoColumns.ts",
     "shared/translation",
-    "shared/i18n"
+    "shared/slices",
+    "shared/i18n",
+    "scr-auc-fighter-adapter"
   ],
   "references": [
     {

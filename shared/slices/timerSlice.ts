@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { DEFAULT_TIMER_DURATION } from "../../constants";
 
 interface TimerState {
 	time: number;
@@ -8,7 +7,7 @@ interface TimerState {
 }
 
 const initialState: TimerState = {
-	time: DEFAULT_TIMER_DURATION,
+	time: 600 * 1000,
 	currentIntervalId: undefined,
 	isStopped: true,
 };
@@ -50,12 +49,12 @@ export const createTimerSlice = (name: string) =>
 				},
 			) => {
 				const time = state.time - action.payload;
-				if (time >= 0) {
+				if (time > 0) {
 					state.time = time;
 				} else {
+					clearInterval(state.currentIntervalId);
 					state.time = 0;
 					state.isStopped = true;
-					clearInterval(state.currentIntervalId);
 				}
 			},
 			setCurrentIntervalId: (
@@ -72,5 +71,7 @@ export const createTimerSlice = (name: string) =>
 export const auctionTimerSlice = createTimerSlice("auction-timer");
 
 export const maptionTimerSlice = createTimerSlice("maption-timer");
+
+export const fighterTimerSlice = createTimerSlice("fighter-timer");
 
 export type TimerSlice = ReturnType<typeof createTimerSlice>;
