@@ -17328,12 +17328,17 @@ const iC = Jh("fighter-timer"), kE = {
     "div",
     {
       style: {
+        width: "100%",
+        height: "100%",
+        position: "absolute",
         fontSize: 43,
         color: "red",
         fontWeight: "bold",
         fontStyle: "italic",
-        display: "grid",
-        placeItems: "center"
+        display: "flex",
+        placeItems: "center",
+        placeContent: "center",
+        flexDirection: "column"
       },
       children: [
         /* @__PURE__ */ It.jsxDEV("div", { style: kE, children: [
@@ -17343,12 +17348,12 @@ const iC = Jh("fighter-timer"), kE = {
           s.teams[0].name
         ] }, void 0, !0, {
           fileName: "D:/projects/tribute-donation/scr-auc-fighter-adapter/components/Announcer.tsx",
-          lineNumber: 29,
+          lineNumber: 34,
           columnNumber: 6
         }, void 0),
         /* @__PURE__ */ It.jsxDEV("span", { children: " VS " }, void 0, !1, {
           fileName: "D:/projects/tribute-donation/scr-auc-fighter-adapter/components/Announcer.tsx",
-          lineNumber: 32,
+          lineNumber: 37,
           columnNumber: 6
         }, void 0),
         /* @__PURE__ */ It.jsxDEV("div", { style: kE, children: [
@@ -17358,7 +17363,7 @@ const iC = Jh("fighter-timer"), kE = {
           s.teams[1].name
         ] }, void 0, !0, {
           fileName: "D:/projects/tribute-donation/scr-auc-fighter-adapter/components/Announcer.tsx",
-          lineNumber: 33,
+          lineNumber: 38,
           columnNumber: 6
         }, void 0)
       ]
@@ -17377,7 +17382,7 @@ const iC = Jh("fighter-timer"), kE = {
     columnNumber: 3
   }, void 0);
 }, LE = {
-  fontSize: 50,
+  fontSize: 41,
   color: "red",
   fontStyle: "italic",
   fontWeight: "bold",
@@ -17389,7 +17394,7 @@ const iC = Jh("fighter-timer"), kE = {
     (p) => p.mainState
   );
   return /* @__PURE__ */ It.jsxDEV(It.Fragment, { children: s && u && /* @__PURE__ */ It.jsxDEV(It.Fragment, { children: [
-    /* @__PURE__ */ It.jsxDEV("div", { style: { ...LE, transform: "translate(170px, -9px)" }, children: [
+    /* @__PURE__ */ It.jsxDEV("div", { style: { ...LE, transform: "translate(170px, 0px)" }, children: [
       "#",
       s.teams[0].id
     ] }, void 0, !0, {
@@ -17397,7 +17402,7 @@ const iC = Jh("fighter-timer"), kE = {
       lineNumber: 24,
       columnNumber: 6
     }, void 0),
-    /* @__PURE__ */ It.jsxDEV("div", { style: { ...LE, transform: "translate(540px, -9px)" }, children: [
+    /* @__PURE__ */ It.jsxDEV("div", { style: { ...LE, transform: "translate(540px, 0px)" }, children: [
       "#",
       s.teams[1].id
     ] }, void 0, !0, {
@@ -17418,8 +17423,8 @@ const iC = Jh("fighter-timer"), kE = {
   "div",
   {
     style: {
-      zIndex: 999,
-      position: "relative",
+      zIndex: 99999,
+      position: "absolute",
       width: "100%",
       height: "100%",
       display: "grid",

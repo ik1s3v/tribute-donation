@@ -18,12 +18,17 @@ const Announcer = () => {
 			{isShowAnnouncer && match && (
 				<div
 					style={{
+						width: "100%",
+						height: "100%",
+						position: "absolute",
 						fontSize: 43,
 						color: "red",
 						fontWeight: "bold",
 						fontStyle: "italic",
-						display: "grid",
+						display: "flex",
 						placeItems: "center",
+						placeContent: "center",
+						flexDirection: "column",
 					}}
 				>
 					<div style={style}>

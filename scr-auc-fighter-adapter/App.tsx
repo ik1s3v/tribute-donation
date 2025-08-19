@@ -5,8 +5,8 @@ const App = () => {
 	return (
 		<div
 			style={{
-				zIndex: 999,
-				position: "relative",
+				zIndex: 99999,
+				position: "absolute",
 				width: "100%",
 				height: "100%",
 				display: "grid",

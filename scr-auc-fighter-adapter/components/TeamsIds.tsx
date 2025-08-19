@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { AppState } from "../store";
 
 const style: CSSProperties = {
-	fontSize: 50,
+	fontSize: 41,
 	color: "red",
 	fontStyle: "italic",
 	fontWeight: "bold",
@@ -21,10 +21,10 @@ const TeamsIds = () => {
 		<>
 			{match && isNewRoundStart && (
 				<>
-					<div style={{ ...style, transform: "translate(170px, -9px)" }}>
+					<div style={{ ...style, transform: "translate(170px, 0px)" }}>
 						#{match.teams[0].id}
 					</div>
-					<div style={{ ...style, transform: "translate(540px, -9px)" }}>
+					<div style={{ ...style, transform: "translate(540px, 0px)" }}>
 						#{match.teams[1].id}
 					</div>
 				</>
