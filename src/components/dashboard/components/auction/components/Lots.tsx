@@ -157,7 +157,6 @@ const Lots = () => {
 						<AutoSizer>
 							{({ height, width }) => (
 								<List
-									style={{ overflow: activeMessageId ? "hidden" : "auto" }}
 									width={width}
 									height={height}
 									rowCount={messages.length}
