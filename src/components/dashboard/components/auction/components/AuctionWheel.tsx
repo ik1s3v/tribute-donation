@@ -87,13 +87,13 @@ const AuctionWheel = ({ lots }: { lots: ILot[] }) => {
 					<Card
 						style={{
 							display: "grid",
-							placeItems: "center",
+							textAlign: "center",
 							gap: 5,
 							position: "absolute",
 							width: "65vh",
 							height: 100,
 							minWidth: 300,
-							backgroundColor: lots[winnerIndex].color,
+							backgroundColor: winner.color,
 							zIndex: 6,
 							fontSize: 30,
 							overflow: "hidden",
