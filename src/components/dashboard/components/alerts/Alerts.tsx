@@ -1,11 +1,11 @@
-import { useDispatch } from "react-redux";
-import { useTranslation } from "react-i18next";
-import groupAlertsByGroupId from "../../../../utils/groupAlertsByGroupId";
-import AlertsGroup from "./AlertsGroup";
 import { useEffect } from "react";
-import { showSnackBar } from "../../../../store/slices/snackBarSlice";
+import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import { AlertSeverity } from "../../../../../shared/enums";
 import { useGetAlertsQuery } from "../../../../api/alertsApi";
+import { showSnackBar } from "../../../../store/slices/snackBarSlice";
+import groupAlertsByGroupId from "../../../../utils/groupAlertsByGroupId";
+import AlertsGroup from "./AlertsGroup";
 
 const Alerts = () => {
 	const { t } = useTranslation();

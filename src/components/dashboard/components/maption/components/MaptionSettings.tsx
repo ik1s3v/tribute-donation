@@ -4,11 +4,13 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import SouthIcon from "@mui/icons-material/South";
 import WestIcon from "@mui/icons-material/West";
 import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NumericFormat } from "react-number-format";
 import { useDispatch, useSelector } from "react-redux";
+import { AlertSeverity } from "../../../../../../shared/enums";
 import { maptionTimerSlice } from "../../../../../../shared/slices/timerSlice";
+import { useGetMaptionSettingsQuery } from "../../../../../api/maptionApi";
 import calculateMaptionDistance from "../../../../../helpers/calculateMaptionDistance";
 import isValidLatitude from "../../../../../helpers/isValidLatitude";
 import isValidLongitude from "../../../../../helpers/isValidLongitude";
@@ -23,6 +25,7 @@ import {
 	undoLastStep,
 	up,
 } from "../../../../../store/slices/maptionSlice";
+import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
 import InputSwitch from "../../../../InputSwitch";
 import OnOffSwitch from "../../../../OnOffSwitch";
 import Timer from "../../auction/components/Timer";
@@ -73,6 +76,27 @@ const MaptionSettings = () => {
 		}
 		setLngError(true);
 	};
+
+	const { data, error } = useGetMaptionSettingsQuery(undefined, {
+		refetchOnMountOrArgChange: true,
+	});
+
+	useEffect(() => {
+		if (data) {
+			dispatch(setMaptionSettings(data));
+		}
+	}, [dispatch, data]);
+
+	useEffect(() => {
+		if (error) {
+			dispatch(
+				showSnackBar({
+					message: error.message as string,
+					alertSeverity: AlertSeverity.error,
+				}),
+			);
+		}
+	}, [error, dispatch]);
 
 	return (
 		<>

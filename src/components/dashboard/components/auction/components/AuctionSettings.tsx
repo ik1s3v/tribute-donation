@@ -1,10 +1,14 @@
 import { Button, InputAdornment, TextField, Typography } from "@mui/material";
 import type { SerializedError } from "@reduxjs/toolkit";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { NumericFormat } from "react-number-format";
 import { useDispatch, useSelector } from "react-redux";
 import { AlertSeverity } from "../../../../../../shared/enums";
-import { useUpdateAuctionSettingsMutation } from "../../../../../api/auctionApi";
+import {
+	useGetAuctionSettingsQuery,
+	useUpdateAuctionSettingsMutation,
+} from "../../../../../api/auctionApi";
 import type { AppState } from "../../../../../store";
 import { setAuctionSettings } from "../../../../../store/slices/auctionSlice";
 import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
@@ -19,6 +23,26 @@ const AuctionSettings = () => {
 	);
 	const [updateAuctionSettings] = useUpdateAuctionSettingsMutation();
 	const dispatch = useDispatch();
+	const { data, error } = useGetAuctionSettingsQuery(undefined, {
+		refetchOnMountOrArgChange: true,
+	});
+
+	useEffect(() => {
+		if (data) {
+			dispatch(setAuctionSettings(data));
+		}
+	}, [dispatch, data]);
+
+	useEffect(() => {
+		if (error) {
+			dispatch(
+				showSnackBar({
+					message: error.message as string,
+					alertSeverity: AlertSeverity.error,
+				}),
+			);
+		}
+	}, [error, dispatch]);
 
 	return (
 		auctionSettings && (

@@ -1,10 +1,10 @@
 import { Card } from "@mui/material";
-import type { IAlertsGroup } from "../../../../../shared/types";
-import WidgetUrl from "./components/WidgetUrl";
-import AlertTile from "./components/AlertTile";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import type { IAlertsGroup } from "../../../../../shared/types";
 import type { AppState } from "../../../../store";
+import AlertTile from "./components/AlertTile";
+import WidgetUrl from "./components/WidgetUrl";
 
 const AlertsGroup = ({ alertsGroup }: { alertsGroup: IAlertsGroup }) => {
 	const widgetUrl = `http://localhost:12553/alert?group_id=${alertsGroup.group_id}`;

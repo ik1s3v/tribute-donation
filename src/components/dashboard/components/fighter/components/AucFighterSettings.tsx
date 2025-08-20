@@ -19,16 +19,29 @@ const AucFighterSettings = () => {
 	const { aucFighterSettings } = useSelector(
 		(state: AppState) => state.aucFighterState,
 	);
-	const { data } = useGetAucFighterSettingsQuery();
+	const { data, error } = useGetAucFighterSettingsQuery(undefined, {
+		refetchOnMountOrArgChange: true,
+	});
 	const [updateAucFighterSettings] = useUpdateAucFighterSettingsMutation();
 	const dispatch = useDispatch();
 	const { t } = useTranslation();
 
 	useEffect(() => {
-		if (data && !aucFighterSettings) {
+		if (data) {
 			dispatch(setAucFighterSettings(data));
 		}
-	}, [dispatch, data, aucFighterSettings]);
+	}, [dispatch, data]);
+
+	useEffect(() => {
+		if (error) {
+			dispatch(
+				showSnackBar({
+					message: error.message as string,
+					alertSeverity: AlertSeverity.error,
+				}),
+			);
+		}
+	}, [error, dispatch]);
 
 	return (
 		aucFighterSettings && (

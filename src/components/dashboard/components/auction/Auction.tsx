@@ -1,12 +1,10 @@
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Box, Tab, Tabs } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { useGetAuctionSettingsQuery } from "../../../../api/auctionApi";
+import { useSelector } from "react-redux";
 import type { AppState } from "../../../../store";
-import { setAuctionSettings } from "../../../../store/slices/auctionSlice";
 import TabPanel from "../../../TabPanel";
 import AuctionSettings from "./components/AuctionSettings";
 import AuctionWheel from "./components/AuctionWheel";
@@ -16,15 +14,7 @@ import WheelIcon from "./components/WheelIcon";
 const Auction = () => {
 	const [value, setValue] = useState(0);
 	const { t } = useTranslation();
-	const { data: auctionSettings } = useGetAuctionSettingsQuery();
-	const dispatch = useDispatch();
 	const { lots } = useSelector((state: AppState) => state.lotsState);
-
-	useEffect(() => {
-		if (auctionSettings) {
-			dispatch(setAuctionSettings(auctionSettings));
-		}
-	}, [dispatch, auctionSettings]);
 
 	return (
 		<>
