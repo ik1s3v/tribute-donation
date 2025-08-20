@@ -1,7 +1,7 @@
 import { useDraggable } from "@dnd-kit/core";
-import AuctionMessageCard from "./AuctionMessageCard";
 import { CSS } from "@dnd-kit/utilities";
 import type { IMessage } from "../../../../../../shared/types";
+import AuctionMessageCard from "./AuctionMessageCard";
 
 const DraggableMessageCard = ({ message }: { message: IMessage }) => {
 	const { attributes, listeners, setNodeRef, transform } = useDraggable({

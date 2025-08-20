@@ -37,8 +37,12 @@ const { addMessage: addAuctionMessage } = auctionMessagesSlice.actions;
 const { addMessage: addMaptionMessage } = maptionMessagesSlice.actions;
 
 listenerService.subscribe<IMessage>(AppEvent.Message, (message) => {
+	const state = store.getState() as AppState;
+	const { isShowTributeMessages } = state.auctionState;
+	if (isShowTributeMessages) {
+		store.dispatch(addAuctionMessage(message));
+	}
 	updateAucFighterTeamAmount(message);
-	store.dispatch(addAuctionMessage(message));
 	store.dispatch(addMaptionMessage(message));
 	store.dispatch(
 		messagesApi.util.updateQueryData("getMessages", undefined, (draft) => {

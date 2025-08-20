@@ -25,11 +25,11 @@ import LotSearch from "./LotSearch";
 import NewLotForm from "./NewLotForm";
 import Timer from "./Timer";
 import "react-virtualized/styles.css";
-import ResizeObserver from "rc-resize-observer";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AlertSeverity } from "../../../../../../shared/enums";
 import { auctionTimerSlice } from "../../../../../../shared/slices/timerSlice";
 import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
+import Integrations from "./Integrations";
 
 const Lots = () => {
 	const { lots, searchPattern } = useSelector(
@@ -62,6 +62,11 @@ const Lots = () => {
 			),
 		[searchPattern, lots],
 	);
+
+	useEffect(() => {
+		cacheRef.current.clearAll();
+	}, [messages]);
+
 	return (
 		<DndContext
 			modifiers={[restrictToWindowEdges]}
@@ -149,18 +154,24 @@ const Lots = () => {
 						timerSlice={auctionTimerSlice}
 						timerStateName="auctionTimerState"
 					/>
+					<Integrations></Integrations>
 					<div
 						style={{
-							height: `calc(100vh - ${15 + 73 + 20 + 56 + 20}px - 120px)`,
+							height: `calc(100vh - ${15 + 73 + 20 + 56 + 20}px - 190px)`,
 						}}
 					>
 						<AutoSizer>
 							{({ height, width }) => (
 								<List
+									style={{
+										overflowY: activeMessageId ? "hidden" : "auto",
+										overflowX: "hidden",
+									}}
 									width={width}
 									height={height}
 									rowCount={messages.length}
 									rowHeight={cacheRef.current.rowHeight}
+									deferredMeasurementCache={cacheRef.current}
 									rowRenderer={({ key, index, style, parent }) => {
 										return (
 											<CellMeasurer
@@ -170,13 +181,9 @@ const Lots = () => {
 												columnIndex={0}
 												rowIndex={index}
 											>
-												{({ measure }) => (
-													<div style={style}>
-														<ResizeObserver.Collection onBatchResize={measure}>
-															<DraggableMessageCard message={messages[index]} />
-														</ResizeObserver.Collection>
-													</div>
-												)}
+												<div style={style}>
+													<DraggableMessageCard message={messages[index]} />
+												</div>
 											</CellMeasurer>
 										);
 									}}

@@ -1,26 +1,26 @@
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import CloseIcon from "@mui/icons-material/Close";
 import {
-	Card,
-	CardContent,
-	Typography,
-	IconButton,
 	Button,
 	ButtonGroup,
+	Card,
+	CardContent,
+	IconButton,
 	Menu,
 	MenuItem,
+	Typography,
 } from "@mui/material";
-import type { ILot, IMessage } from "../../../../../../shared/types";
-import CloseIcon from "@mui/icons-material/Close";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { useTranslation } from "react-i18next";
-import { auctionMessagesSlice } from "../../../../../store/slices/messagesSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { addLot, updateLot } from "../../../../../store/slices/lotsSlice";
-import type { AppState } from "../../../../../store";
 import { useCallback, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import { findBestMatch } from "string-similarity";
-import getRandomColor from "../../../../../helpers/getRandomColor";
-import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
 import { AlertSeverity } from "../../../../../../shared/enums";
+import type { ILot, IMessage } from "../../../../../../shared/types";
+import getRandomColor from "../../../../../helpers/getRandomColor";
+import type { AppState } from "../../../../../store";
+import { addLot, updateLot } from "../../../../../store/slices/lotsSlice";
+import { auctionMessagesSlice } from "../../../../../store/slices/messagesSlice";
+import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
 
 const AuctionMessageCard = ({ message }: { message: IMessage }) => {
 	const { t } = useTranslation();
@@ -117,7 +117,7 @@ const AuctionMessageCard = ({ message }: { message: IMessage }) => {
 						<CloseIcon />
 					</IconButton>
 				</div>
-				<Typography>{message.text}</Typography>
+				<Typography sx={{ wordWrap: "break-word" }}>{message.text}</Typography>
 				<div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
 					<ButtonGroup size="small" style={{ display: "flex" }}>
 						<Button
@@ -156,6 +156,7 @@ const AuctionMessageCard = ({ message }: { message: IMessage }) => {
 							variant="outlined"
 							size="small"
 							onClick={handleAddToBestMatch}
+							sx={{ wordBreak: "break-all" }}
 						>
 							{bestMatch.name}
 						</Button>

@@ -29,6 +29,9 @@
 		"twitch": "Twitch",
 		"tiktok": "Tiktok"
 	},
+	"integration": {
+		"tribute": "Show tribute messages"
+	},
 	"auction": {
 		"lots": "Lots",
 		"wheel": "Wheel",
