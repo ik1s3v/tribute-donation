@@ -20,11 +20,35 @@ import wheelDataFromLots, {
 import InputSlider from "../../../../InputSlider";
 import AuctionWheelLots from "./AuctionWheelLots";
 
+const Container = styled("div")(({ theme }) => ({
+	display: "grid",
+	gap: 10,
+	[theme.breakpoints.up("xl")]: {
+		gridTemplate: `"lots wheel controls"`,
+		gridTemplateColumns: "1fr 1fr 1fr",
+	},
+	[theme.breakpoints.down("xl")]: {
+		placeItems: "center",
+		gridTemplate: `
+						"controls"
+						"wheel"
+						"lots"
+					   `,
+	},
+}));
+
+const LotsContainer = styled("div")(({ theme }) => ({
+	height: "calc(100vh - 150px)",
+	width: "100%",
+	gridArea: "lots",
+	[theme.breakpoints.down("lg")]: {
+		height: "300px",
+	},
+}));
+
 const WheelContainer = styled("div")({
 	width: "65vh",
 	height: "65vh",
-	minHeight: 300,
-	minWidth: 300,
 	justifySelf: "center",
 	"& > div": {
 		height: "100%",
@@ -62,22 +86,17 @@ const AuctionWheel = ({ lots }: { lots: ILot[] }) => {
 	}, [isSpinning, wheelData]);
 
 	return (
-		<div
-			style={{
-				display: "grid",
-				gap: 10,
-				gridAutoFlow: "column",
-				gridTemplateColumns: "1fr 1fr 1fr",
-				justifyItems: "end",
-				alignItems: "start",
-			}}
-		>
-			<AuctionWheelLots
-				lots={lots}
-				wheelDataIds={wheelData.map((data) => data.fastId)}
-			/>
+		<Container>
+			<LotsContainer>
+				<AuctionWheelLots
+					lots={lots}
+					wheelDataIds={wheelData.map((data) => data.fastId)}
+				/>
+			</LotsContainer>
+
 			<div
 				style={{
+					gridArea: "wheel",
 					position: "relative",
 					display: "flex",
 					placeItems: "center",
@@ -150,7 +169,14 @@ const AuctionWheel = ({ lots }: { lots: ILot[] }) => {
 				</WheelContainer>
 			</div>
 
-			<div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+			<div
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					gap: 20,
+					gridArea: "controls",
+				}}
+			>
 				<div style={{ display: "flex", gap: 40 }}>
 					<Button
 						variant="contained"
@@ -210,7 +236,7 @@ const AuctionWheel = ({ lots }: { lots: ILot[] }) => {
 					</ToggleButton>
 				</ToggleButtonGroup>
 			</div>
-		</div>
+		</Container>
 	);
 };
 export default memo(AuctionWheel);
