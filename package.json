@@ -1,16 +1,16 @@
 {
   "name": "tribute-donation",
   "private": true,
-  "version": "0.1.6",
+  "version": "0.1.7",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:production": "npm run widget:build && tauri build",
+    "build:production": "npm run auc-fighter-adapter:build && npm run widget:build && tauri build",
     "widget:dev": "cross-env NODE_ENV=development vite build -c vite.config.widget.ts --watch",
     "auc-fighter-adapter:dev": "cross-env NODE_ENV=development vite build -c vite.config.auc_fighter_adapter.ts --watch",
     "widget:build": "cross-env NODE_ENV=production vite build -c vite.config.widget.ts",
-    "auc-fighter-adapter:build": "cross-env NODE_ENV=production vite build -c vite.config.auc-fighter-adapter.ts",
+    "auc-fighter-adapter:build": "cross-env NODE_ENV=production vite build -c vite.config.auc_fighter_adapter.ts",
     "preview": "vite preview",
     "tauri": "tauri"
   },

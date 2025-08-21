@@ -63,6 +63,8 @@ jobs:
         run: npm install # change this to npm, pnpm or bun depending on which one you use.
       - name: build widget
         run: npm run widget:build
+      - name: build auc-fighter-adapter
+        run: npm run auc-fighter-adapter:build
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
