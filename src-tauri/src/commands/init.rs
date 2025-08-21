@@ -45,10 +45,9 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
         .resolve("assets", BaseDirectory::Resource)
         .unwrap();
 
+    copy_assets_to_static(&assets_path, &static_path)?;
     let database_service = DatabaseService::new(&db_path, &version).await?;
     app.manage(database_service);
-
-    copy_assets_to_static(&assets_path, &static_path)?;
 
     let websocket_broadcaster = WebSocketBroadcaster::new();
     app.manage(websocket_broadcaster);
