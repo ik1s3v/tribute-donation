@@ -2,26 +2,26 @@
     "on": "تشغيل",
     "off": "إيقاف",
     "select": "اختيار",
-    "success": "نجح",
+    "success": "نجاح",
     "sound_volume": "مستوى الصوت",
-    "skip_media": "اختصار تخطي الوسائط",
-    "skip_alert": "اختصار تخطي التنبيه",
+    "skip_media": "تخطي الوسائط",
+    "skip_alert": "تخطي التنبيه",
     "authorization": {
         "title": "التفويض",
-        "code": "طلب كود",
+        "code": "طلب الرمز",
         "sign_in": "تسجيل الدخول",
         "phone": "رقم الهاتف",
-        "telegram_code": "كود من تليجرام",
-        "your_code": "كودك",
+        "telegram_code": "الرمز من تيليجرام",
+        "your_code": "رمزك",
         "2fa_password": "كلمة مرور التحقق الثنائي",
         "password": "كلمة المرور"
     },
     "updater": {
         "title": "تحديث",
-        "description": "إصدار جديد من التطبيق متاح. هل تريد التحديث؟",
+        "description": "يتوفر إصدار جديد من التطبيق. هل ترغب في التحديث؟",
         "update": "تحديث",
-        "later": "لاحقاً",
-        "downloading": "جاري التنزيل..."
+        "later": "لاحقًا",
+        "downloading": "جارٍ التحميل..."
     },
     "media": {
         "title": "الوسائط",
@@ -29,26 +29,29 @@
         "twitch": "تويتش",
         "tiktok": "تيك توك"
     },
+    "integration": {
+        "tribute": "إظهار رسائل التكريم"
+    },
     "auction": {
-        "lots": "القطع",
+        "lots": "المزادات",
         "wheel": "العجلة",
         "settings": "الإعدادات"
     },
     "maption": {
-        "set_point": "تعيين نقطة",
-        "meter_price": "سعر المتر الواحد",
+        "set_point": "تحديد النقطة",
+        "meter_price": "السعر لكل متر",
         "amount": "المبلغ",
         "finish": "إنهاء",
-        "lat_error": "خط العرض يجب أن يكون بين -90 و 90",
-        "lng_error": "خط الطول يجب أن يكون بين -180 و 180",
-        "rules": "لكي يغير المؤشر موضعه تلقائياً في الرسالة يجب أن تحتوي على كلمة واحدة فقط من:"
+        "lat_error": "يجب أن يكون خط العرض بين -90 و90",
+        "lng_error": "يجب أن يكون خط الطول بين -180 و180",
+        "rules": "ليتغير موقع المؤشر تلقائيًا في الرسالة، يجب أن تحتوي على كلمة واحدة فقط من:"
     },
     "media_settings": {
-        "enabled": "مُفعل",
-        "min_amount_eur": "أقل مبلغ يورو",
-        "min_amount_rub": "أقل مبلغ روبل",
+        "enabled": "مفعّل",
+        "min_amount_eur": "الحد الأدنى باليورو",
+        "min_amount_rub": "الحد الأدنى بالروبل",
         "video_volume": "مستوى صوت الفيديو",
-        "min_views": "أقل عدد مشاهدات"
+        "min_views": "الحد الأدنى للمشاهدات"
     },
     "dashboard": {
         "messages": "الرسائل",
@@ -56,7 +59,8 @@
         "alerts": "التنبيهات",
         "media": "الوسائط",
         "auction": "المزاد",
-        "maption": "الخريطة"
+        "maption": "الخريطة",
+        "fighter": "المقاتل"
     },
     "messages": {
         "title": "آخر الرسائل"
@@ -68,7 +72,7 @@
     },
     "settings": {
         "title": "الإعدادات",
-        "pause": "إيقاف رسائل التنبيه مؤقتاً",
+        "pause": "إيقاف رسائل التنبيه مؤقتًا",
         "moderation_duration": "مدة الإشراف",
         "black_list": "القائمة السوداء",
         "remove_links": "إزالة الروابط",
@@ -77,8 +81,8 @@
     },
     "wheel": {
         "normal": "عادي",
-        "dropout": "انقطاع",
-        "spin": "دوران",
+        "dropout": "الإقصاء",
+        "spin": "تدوير",
         "speed": "سرعة العجلة"
     },
     "timer": {
@@ -87,7 +91,21 @@
         "reset": "إعادة تعيين",
         "add_time": "إضافة وقت",
         "reduce_time": "تقليل الوقت",
-        "add_timex2": "إضافة وقت x2"
+        "add_timex2": "إضافة وقت ×2"
+    },
+    "fighter": {
+        "title": "المقاتل",
+        "match": "مباراة",
+        "final": "النهائي",
+        "game": "لعبة",
+        "cancel": "إلغاء اللعبة",
+        "winner": "الفائز",
+        "settings": "الإعدادات",
+        "create_game": "إنشاء لعبة من المزادات",
+        "start": "بدء",
+        "pause": "إيقاف مؤقت",
+        "rematch": "إعادة المباراة",
+        "resume": "استئناف"
     },
     "lot": {
         "name": "الاسم",
@@ -96,28 +114,32 @@
     },
     "bid": {
         "delete": "حذف",
-        "to_lot": "إلى القطعة",
+        "to_lot": "إلى المزاد",
         "new": "جديد",
-        "add_to_random_slot": "إضافة إلى قطعة عشوائية"
+        "add_to_random_slot": "إضافة إلى مزاد عشوائي"
     },
     "lots": {
         "add": "إضافة",
-        "new_lot_name": "اسم القطعة الجديدة",
-        "search": "البحث عن قطعة"
+        "new_lot_name": "اسم مزاد جديد",
+        "search": "البحث عن مزاد"
     },
     "auction_settings": {
         "leader_change": "تغيير القائد",
-        "new_lot": "قطعة جديدة",
+        "new_lot": "مزاد جديد",
         "new_donation": "تبرع جديد",
         "show_odds": "إظهار الاحتمالات",
-        "show_total_sum": "إظهار المجموع الكلي",
-        "greater_timer_adding_time": "إضافة وقت للمؤقت الأكبر",
+        "show_total_sum": "إظهار المبلغ الإجمالي",
+        "greater_timer_adding_time": "إضافة وقت أكبر",
         "not_add_time_if": "عدم إضافة وقت إذا",
         "adding_time": "الوقت"
     },
+    "auc_fighter_settings": {
+        "round_duration": "مدة الجولة",
+        "add_players": "إضافة لاعبين"
+    },
     "alerts": {
         "title": "التنبيهات",
-        "group": "المجموعة"
+        "group": "مجموعة"
     },
     "alert": {
         "image": "صورة",
@@ -131,14 +153,14 @@
     "widget": {
         "copy": "نسخ",
         "launch": "تشغيل",
-        "url": "رابط الأداة"
+        "url": "رابط الويدجت"
     },
     "view": {
-        "top": "صورة في الأعلى، نص في الأسفل",
-        "bottom": "صورة في الأسفل، نص في الأعلى",
-        "left": "صورة على اليسار، نص على اليمين",
-        "right": "صورة على اليمين، نص على اليسار",
-        "overlay": "نص فوق الصورة"
+        "top": "الصورة أعلى، النص أسفل",
+        "bottom": "الصورة أسفل، النص أعلى",
+        "left": "الصورة يسار، النص يمين",
+        "right": "الصورة يمين، النص يسار",
+        "overlay": "النص فوق الصورة"
     },
     "text": {
         "font": "الخط",
@@ -146,9 +168,9 @@
         "text_color": "لون النص",
         "bold": "عريض",
         "italics": "مائل",
-        "underline": "خط تحتي",
-        "transformation": "تحويل",
-        "letter_spacing": "تباعد الأحرف",
+        "underline": "تسطير",
+        "transformation": "التحويل",
+        "letter_spacing": "تباعد الحروف",
         "word_spacing": "تباعد الكلمات",
         "horizontal_alignment": "المحاذاة الأفقية",
         "vertical_alignment": "المحاذاة العمودية",

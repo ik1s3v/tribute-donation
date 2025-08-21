@@ -3,12 +3,12 @@
     "off": "Désactivé",
     "select": "Sélectionner",
     "success": "Succès",
-    "sound_volume": "Volume du son",
-    "skip_media": "Raccourci ignorer média",
-    "skip_alert": "Raccourci ignorer alerte",
+    "sound_volume": "Volume sonore",
+    "skip_media": "Passer les médias",
+    "skip_alert": "Passer l'alerte",
     "authorization": {
         "title": "Autorisation",
-        "code": "Demander le code",
+        "code": "Demander un code",
         "sign_in": "Se connecter",
         "phone": "Numéro de téléphone",
         "telegram_code": "Code de Telegram",
@@ -18,7 +18,7 @@
     },
     "updater": {
         "title": "Mise à jour",
-        "description": "Une nouvelle version de l'application est disponible. Voulez-vous mettre à jour?",
+        "description": "Une nouvelle version de l'application est disponible. Voulez-vous mettre à jour ?",
         "update": "Mettre à jour",
         "later": "Plus tard",
         "downloading": "Téléchargement en cours..."
@@ -28,6 +28,9 @@
         "youtube": "YouTube",
         "twitch": "Twitch",
         "tiktok": "TikTok"
+    },
+    "integration": {
+        "tribute": "Afficher les messages d'hommage"
     },
     "auction": {
         "lots": "Lots",
@@ -39,9 +42,9 @@
         "meter_price": "Prix par mètre",
         "amount": "Montant",
         "finish": "Terminer",
-        "lat_error": "La latitude doit être entre -90 et 90",
-        "lng_error": "La longitude doit être entre -180 et 180",
-        "rules": "Pour que le pointeur change automatiquement de position dans le message, il ne doit contenir qu'un seul mot parmi:"
+        "lat_error": "La latitude doit être comprise entre -90 et 90",
+        "lng_error": "La longitude doit être comprise entre -180 et 180",
+        "rules": "Pour que le pointeur change automatiquement de position dans le message, il ne doit contenir qu'un seul mot parmi :"
     },
     "media_settings": {
         "enabled": "Activé",
@@ -56,15 +59,16 @@
         "alerts": "Alertes",
         "media": "Médias",
         "auction": "Enchères",
-        "maption": "Carte"
+        "maption": "Cartographie",
+        "fighter": "Combattant"
     },
     "messages": {
         "title": "Derniers messages"
     },
     "message": {
-        "skip": "Ignorer",
+        "skip": "Passer",
         "replay": "Rejouer",
-        "donate": "faire un don"
+        "donate": "Faire un don"
     },
     "settings": {
         "title": "Paramètres",
@@ -73,11 +77,11 @@
         "black_list": "Liste noire",
         "remove_links": "Supprimer les liens",
         "language": "Langue",
-        "sec": "Sec."
+        "sec": "Sec"
     },
     "wheel": {
         "normal": "Normal",
-        "dropout": "Abandon",
+        "dropout": "Élimination",
         "spin": "Tourner",
         "speed": "Vitesse de la roue"
     },
@@ -87,7 +91,21 @@
         "reset": "Réinitialiser",
         "add_time": "Ajouter du temps",
         "reduce_time": "Réduire le temps",
-        "add_timex2": "Ajouter temps x2"
+        "add_timex2": "Ajouter du temps x2"
+    },
+    "fighter": {
+        "title": "Combattant",
+        "match": "Match",
+        "final": "Finale",
+        "game": "Jeu",
+        "cancel": "Annuler le jeu",
+        "winner": "Gagnant",
+        "settings": "Paramètres",
+        "create_game": "Créer un jeu à partir des lots",
+        "start": "Démarrer",
+        "pause": "Pause",
+        "rematch": "Revanche",
+        "resume": "Reprendre"
     },
     "lot": {
         "name": "Nom",
@@ -96,7 +114,7 @@
     },
     "bid": {
         "delete": "Supprimer",
-        "to_lot": "Au lot",
+        "to_lot": "Vers le lot",
         "new": "Nouveau",
         "add_to_random_slot": "Ajouter à un lot aléatoire"
     },
@@ -110,10 +128,14 @@
         "new_lot": "Nouveau lot",
         "new_donation": "Nouveau don",
         "show_odds": "Afficher les cotes",
-        "show_total_sum": "Afficher la somme totale",
-        "greater_timer_adding_time": "Temps d'ajout du minuteur plus grand",
+        "show_total_sum": "Afficher le montant total",
+        "greater_timer_adding_time": "Ajouter plus de temps",
         "not_add_time_if": "Ne pas ajouter de temps si",
         "adding_time": "Temps"
+    },
+    "auc_fighter_settings": {
+        "round_duration": "Durée du tour",
+        "add_players": "Ajouter des joueurs"
     },
     "alerts": {
         "title": "Alertes",
@@ -126,7 +148,7 @@
         "title": "Titre",
         "message": "Message"
     },
-    "save": "Sauvegarder",
+    "save": "Enregistrer",
     "back": "Retour",
     "widget": {
         "copy": "Copier",
@@ -142,7 +164,7 @@
     },
     "text": {
         "font": "Police",
-        "font_size": "Taille de police",
+        "font_size": "Taille de la police",
         "text_color": "Couleur du texte",
         "bold": "Gras",
         "italics": "Italique",

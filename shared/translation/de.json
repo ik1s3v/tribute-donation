@@ -1,162 +1,184 @@
 {
-    "on": "An",
-    "off": "Aus",
-    "select": "Auswählen",
-    "success": "Erfolg",
-    "sound_volume": "Lautstärke",
-    "skip_media": "Medien überspringen (Tastenkürzel)",
-    "skip_alert": "Benachrichtigung überspringen (Tastenkürzel)",
+    "on": "Activé",
+    "off": "Désactivé",
+    "select": "Sélectionner",
+    "success": "Succès",
+    "sound_volume": "Volume sonore",
+    "skip_media": "Raccourci ignorer média",
+    "skip_alert": "Raccourci ignorer alerte",
     "authorization": {
-        "title": "Autorisierung",
-        "code": "Code anfordern",
-        "sign_in": "Anmelden",
-        "phone": "Telefonnummer",
-        "telegram_code": "Code von Telegram",
-        "your_code": "Ihr Code",
-        "2fa_password": "2FA-Passwort",
-        "password": "Passwort"
+        "title": "Autorisation",
+        "code": "Demander un code",
+        "sign_in": "Se connecter",
+        "phone": "Numéro de téléphone",
+        "telegram_code": "Code de Telegram",
+        "your_code": "Votre code",
+        "2fa_password": "Mot de passe 2FA",
+        "password": "Mot de passe"
     },
     "updater": {
-        "title": "Update",
-        "description": "Eine neue Version der App ist verfügbar. Möchten Sie aktualisieren?",
-        "update": "Aktualisieren",
-        "later": "Später",
-        "downloading": "Lädt herunter..."
+        "title": "Mise à jour",
+        "description": "Une nouvelle version de l'application est disponible. Voulez-vous mettre à jour ?",
+        "update": "Mettre à jour",
+        "later": "Plus tard",
+        "downloading": "Téléchargement..."
     },
     "media": {
-        "title": "Medien",
-        "youtube": "Youtube",
+        "title": "Médias",
+        "youtube": "YouTube",
         "twitch": "Twitch",
         "tiktok": "TikTok"
     },
+    "integration": {
+        "tribute": "Afficher les messages d’hommage"
+    },
     "auction": {
-        "lots": "Lose",
-        "wheel": "Rad",
-        "settings": "Einstellungen"
+        "lots": "Lots",
+        "wheel": "Roue",
+        "settings": "Paramètres"
     },
     "maption": {
-        "set_point": "Punkt setzen",
-        "meter_price": "Preis pro Meter",
-        "amount": "Betrag",
-        "finish": "Beenden",
-        "lat_error": "Breitengrad muss zwischen -90 und 90 liegen",
-        "lng_error": "Längengrad muss zwischen -180 und 180 liegen",
-        "rules": "Damit sich der Zeiger automatisch in der Nachricht bewegt, sollte nur ein Wort enthalten sein von:"
+        "set_point": "Définir un point",
+        "meter_price": "Prix pour 1 mètre",
+        "amount": "Montant",
+        "finish": "Terminer",
+        "lat_error": "La latitude doit être comprise entre -90 et 90",
+        "lng_error": "La longitude doit être comprise entre -180 et 180",
+        "rules": "Pour que le pointeur change automatiquement de position dans le message, il ne doit y avoir qu’un mot parmi :"
     },
     "media_settings": {
-        "enabled": "Aktiviert",
-        "min_amount_eur": "Mindestbetrag EUR",
-        "min_amount_rub": "Mindestbetrag RUB",
-        "video_volume": "Video-Lautstärke",
-        "min_views": "Mindestaufrufe"
+        "enabled": "Activé",
+        "min_amount_eur": "Montant min EUR",
+        "min_amount_rub": "Montant min RUB",
+        "video_volume": "Volume vidéo",
+        "min_views": "Vues min"
     },
     "dashboard": {
-        "messages": "Nachrichten",
-        "settings": "Einstellungen",
-        "alerts": "Benachrichtigungen",
-        "media": "Medien",
-        "auction": "Auktion",
-        "maption": "Karte"
+        "messages": "Messages",
+        "settings": "Paramètres",
+        "alerts": "Alertes",
+        "media": "Médias",
+        "auction": "Enchères",
+        "maption": "Carte",
+        "fighter": "Combattant"
     },
     "messages": {
-        "title": "Letzte Nachrichten"
+        "title": "Derniers messages"
     },
     "message": {
-        "skip": "Überspringen",
-        "replay": "Wiederholen",
-        "donate": "spenden"
+        "skip": "Ignorer",
+        "replay": "Rejouer",
+        "donate": "donner"
     },
     "settings": {
-        "title": "Einstellungen",
-        "pause": "Benachrichtigungen pausieren",
-        "moderation_duration": "Moderationsdauer",
-        "black_list": "Schwarze Liste",
-        "remove_links": "Links entfernen",
-        "language": "Sprache",
-        "sec": "Sek."
+        "title": "Paramètres",
+        "pause": "Mettre en pause les alertes",
+        "moderation_duration": "Durée de modération",
+        "black_list": "Liste noire",
+        "remove_links": "Supprimer les liens",
+        "language": "Langue",
+        "sec": "Sec"
     },
     "wheel": {
         "normal": "Normal",
-        "dropout": "Ausfall",
-        "spin": "Drehen",
-        "speed": "Rad-Geschwindigkeit"
+        "dropout": "Élimination",
+        "spin": "Tourner",
+        "speed": "Vitesse de la roue"
     },
     "timer": {
-        "continue": "Fortsetzen",
-        "pause": "Pausieren",
-        "reset": "Zurücksetzen",
-        "add_time": "Zeit hinzufügen",
-        "reduce_time": "Zeit reduzieren",
-        "add_timex2": "Zeit x2 hinzufügen"
+        "continue": "Continuer",
+        "pause": "Pause",
+        "reset": "Réinitialiser",
+        "add_time": "Ajouter du temps",
+        "reduce_time": "Réduire le temps",
+        "add_timex2": "Ajouter du temps x2"
+    },
+    "fighter": {
+        "title": "Combattant",
+        "match": "Match",
+        "final": "Finale",
+        "game": "Jeu",
+        "cancel": "Annuler le jeu",
+        "winner": "Vainqueur",
+        "settings": "Paramètres",
+        "create_game": "Créer un jeu à partir de lots",
+        "start": "Démarrer",
+        "pause": "Pause",
+        "rematch": "Revanche",
+        "resume": "Reprendre"
     },
     "lot": {
-        "name": "Name",
-        "delete": "Löschen",
-        "add": "Betrag hinzufügen"
+        "name": "Nom",
+        "delete": "Supprimer",
+        "add": "Ajouter un montant"
     },
     "bid": {
-        "delete": "Löschen",
-        "to_lot": "Zum Los",
-        "new": "Neu",
-        "add_to_random_slot": "Zu zufälligem Los hinzufügen"
+        "delete": "Supprimer",
+        "to_lot": "Vers le lot",
+        "new": "Nouveau",
+        "add_to_random_slot": "Ajouter à un lot aléatoire"
     },
     "lots": {
-        "add": "Hinzufügen",
-        "new_lot_name": "Name des neuen Loses",
-        "search": "Los suchen"
+        "add": "Ajouter",
+        "new_lot_name": "Nouveau nom de lot",
+        "search": "Rechercher un lot"
     },
     "auction_settings": {
-        "leader_change": "Führungswechsel",
-        "new_lot": "Neues Los",
-        "new_donation": "Neue Spende",
-        "show_odds": "Chancen anzeigen",
-        "show_total_sum": "Gesamtsumme anzeigen",
-        "greater_timer_adding_time": "Zeit bei größerem Timer hinzufügen",
-        "not_add_time_if": "Keine Zeit hinzufügen wenn",
-        "adding_time": "Zeit"
+        "leader_change": "Changement de leader",
+        "new_lot": "Nouveau lot",
+        "new_donation": "Nouveau don",
+        "show_odds": "Afficher les cotes",
+        "show_total_sum": "Afficher le total",
+        "greater_timer_adding_time": "Plus grand temps ajouté",
+        "not_add_time_if": "Ne pas ajouter de temps si",
+        "adding_time": "Temps"
+    },
+    "auc_fighter_settings": {
+        "round_duration": "Durée du round",
+        "add_players": "Ajouter des joueurs"
     },
     "alerts": {
-        "title": "Benachrichtigungen",
-        "group": "Gruppe"
+        "title": "Alertes",
+        "group": "Groupe"
     },
     "alert": {
-        "image": "Bild",
+        "image": "Image",
         "audio": "Audio",
-        "view": "Ansicht",
-        "title": "Titel",
-        "message": "Nachricht"
+        "view": "Vue",
+        "title": "Titre",
+        "message": "Message"
     },
-    "save": "Speichern",
-    "back": "Zurück",
+    "save": "Enregistrer",
+    "back": "Retour",
     "widget": {
-        "copy": "Kopieren",
-        "launch": "Starten",
-        "url": "Widget-URL"
+        "copy": "Copier",
+        "launch": "Lancer",
+        "url": "URL du widget"
     },
     "view": {
-        "top": "Bild oben, Text unten",
-        "bottom": "Bild unten, Text oben",
-        "left": "Bild links, Text rechts",
-        "right": "Bild rechts, Text links",
-        "overlay": "Text über Bild"
+        "top": "Image en haut, texte en bas",
+        "bottom": "Image en bas, texte en haut",
+        "left": "Image à gauche, texte à droite",
+        "right": "Image à droite, texte à gauche",
+        "overlay": "Texte superposé à l’image"
     },
     "text": {
-        "font": "Schrift",
-        "font_size": "Schriftgröße",
-        "text_color": "Textfarbe",
-        "bold": "Fett",
-        "italics": "Kursiv",
-        "underline": "Unterstrichen",
+        "font": "Police",
+        "font_size": "Taille de police",
+        "text_color": "Couleur du texte",
+        "bold": "Gras",
+        "italics": "Italique",
+        "underline": "Souligné",
         "transformation": "Transformation",
-        "letter_spacing": "Buchstabenabstand",
-        "word_spacing": "Wortabstand",
-        "horizontal_alignment": "Horizontale Ausrichtung",
-        "vertical_alignment": "Vertikale Ausrichtung",
-        "text_preview": "Das ist eine Vorschau!",
-        "name": "Name"
+        "letter_spacing": "Espacement des lettres",
+        "word_spacing": "Espacement des mots",
+        "horizontal_alignment": "Alignement horizontal",
+        "vertical_alignment": "Alignement vertical",
+        "text_preview": "Ceci est un aperçu !",
+        "name": "Nom"
     },
     "audio": {
-        "play": "Abspielen",
-        "stop": "Stoppen"
+        "play": "Lire",
+        "stop": "Arrêter"
     }
 }
