@@ -1,6 +1,5 @@
-import { AppEvent } from "../../shared/enums";
-import Subscriptions from "../../shared/services/subscriptions";
 import HotReload from "../../shared/services/hotReload";
+import Subscriptions from "../../shared/services/subscriptions";
 import type { IEventMessage } from "../../shared/types";
 
 export class WebSocketService extends Subscriptions {
@@ -19,10 +18,6 @@ export class WebSocketService extends Subscriptions {
 		if (!this.socket || this.socket.readyState !== WebSocket.OPEN) {
 			this.socket = new WebSocket(this.url);
 			this.hotReload = new HotReload(this.socket);
-
-			// this.socket.onopen = () => {
-
-			// };
 
 			this.socket.onmessage = (message) => {
 				const websocketMessage: IEventMessage<unknown> = JSON.parse(

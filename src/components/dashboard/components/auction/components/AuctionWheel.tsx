@@ -25,7 +25,7 @@ const Container = styled("div")(({ theme }) => ({
 	gap: 10,
 	[theme.breakpoints.up("xl")]: {
 		gridTemplate: `"lots wheel controls"`,
-		gridTemplateColumns: "1fr 1fr 1fr",
+		gridTemplateColumns: "1fr 1fr auto",
 	},
 	[theme.breakpoints.down("xl")]: {
 		placeItems: "center",

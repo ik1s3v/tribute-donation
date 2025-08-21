@@ -6,19 +6,14 @@
     "main"
   ],
   "permissions": [
-    {
-      "identifier": "fs:allow-write-file",
-      "allow": [
-        {
-          "path": "$APPLOCALDATA/static/*"
-        }
-      ]
-    },
     "global-shortcut:allow-is-registered",
     "global-shortcut:allow-register",
     "global-shortcut:allow-unregister",
     "core:default",
-    "fs:default",
+    "fs:allow-applocaldata-read-recursive",
+    "fs:allow-applocaldata-write-recursive",
+    "fs:allow-applocaldata-meta-recursive",
+    "fs:scope-applocaldata-recursive",
     "dialog:default",
     "log:default"
   ]

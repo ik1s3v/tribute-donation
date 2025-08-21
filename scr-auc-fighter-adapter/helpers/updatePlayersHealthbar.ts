@@ -8,11 +8,12 @@ const updatePlayersHealthbar = ({
 	match: IAucFighterMatch;
 	oldMatch?: IAucFighterMatch;
 }) => {
+	const gameMatch = game_.getMatch();
+	if (!gameMatch) return;
 	const teamA = match.teams[0];
 	const teamB = match.teams[1];
 
-	game_
-		.getMatch()
+	gameMatch
 		.getTeamA()
 		.getHealthbar()
 		.change(
@@ -23,8 +24,7 @@ const updatePlayersHealthbar = ({
 				oldAmount: oldMatch?.teams[0].amount,
 			}),
 		);
-	game_
-		.getMatch()
+	gameMatch
 		.getTeamB()
 		.getHealthbar()
 		.change(
