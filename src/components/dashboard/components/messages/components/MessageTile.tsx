@@ -1,22 +1,26 @@
-import { useTranslation } from "react-i18next";
+import ReplayIcon from "@mui/icons-material/Replay";
 import { Box, Button, Card, IconButton, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import type { IMessage } from "../../../../../../shared/types";
 import getCurrencySymbol from "../../../../../../shared/utils/getCurrencySymbol";
-import ReplayIcon from "@mui/icons-material/Replay";
-import getColorByMediaType from "../../../../../utils/getColorByMediaType";
-import MediaTile from "./MediaTile";
-import MessageDate from "./MessageDate";
-import { useReplayMediaMutation } from "../../../../../api/mediaApi";
 import {
 	useReplayAlertMutation,
 	useSkipAlertMutation,
 } from "../../../../../api/alertsApi";
+import { useReplayMediaMutation } from "../../../../../api/mediaApi";
+import getColorByMediaType from "../../../../../utils/getColorByMediaType";
+import MediaTile from "./MediaTile";
+import MessageDate from "./MessageDate";
 
 const MessageTile = ({
 	message,
 	isAlertPlaying,
 	isMediaPlaying,
-}: { message: IMessage; isAlertPlaying: boolean; isMediaPlaying: boolean }) => {
+}: {
+	message: IMessage;
+	isAlertPlaying: boolean;
+	isMediaPlaying: boolean;
+}) => {
 	const { t } = useTranslation();
 	const [replayMedia] = useReplayMediaMutation();
 	const [replayAlert] = useReplayAlertMutation();
@@ -77,7 +81,7 @@ const MessageTile = ({
 							{message.amount}
 						</Typography>
 					</div>
-					<div>
+					<div style={{ wordBreak: "break-word" }}>
 						<span>{message.text}</span>
 					</div>
 
