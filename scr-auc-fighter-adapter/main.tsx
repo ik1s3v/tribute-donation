@@ -1,4 +1,4 @@
-import React from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { AppEvent } from "../shared/enums";
@@ -57,9 +57,9 @@ HitSystem.prototype.register = function (details: HitDetails) {
 
 	if (state.fighterTimerState.time === 0 && details.PlayerID === winnerId) {
 		if (winnerIndex === 0) {
-			match.getTeamB().getHealthbar().change(100);
+			match.getTeamB().getHealthbar().change(1000);
 		} else {
-			match.getTeamA().getHealthbar().change(100);
+			match.getTeamA().getHealthbar().change(1000);
 		}
 	}
 };
@@ -199,9 +199,9 @@ document.addEventListener("keydown", function (event) {
 ReactDOM.createRoot(
 	document.getElementById("auc-fighter-adapter") as HTMLElement,
 ).render(
-	<React.StrictMode>
+	<StrictMode>
 		<Provider store={store}>
 			<App />
 		</Provider>
-	</React.StrictMode>,
+	</StrictMode>,
 );
