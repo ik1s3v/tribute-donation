@@ -66,6 +66,7 @@ listenerService.subscribe<string>(AppEvent.MediaPlaying, (id) => {
 listenerService.subscribe<string>(AppEvent.MediaPaused, (id) => {
 	store.dispatch(setPausedMediaId(id));
 });
+
 listenerService.subscribe<string>(AppEvent.AlertConnected, (group_id) => {
 	store.dispatch(addConnectedAlert(group_id));
 });

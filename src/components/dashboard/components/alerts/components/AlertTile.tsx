@@ -1,11 +1,31 @@
-import { Card, IconButton, useTheme } from "@mui/material";
-import type { IAlert } from "../../../../../../shared/types";
-import { useNavigate } from "react-router";
+import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { Card, IconButton, Tooltip, useTheme } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
+import { Currency } from "../../../../../../shared/enums";
+import type { IAlert } from "../../../../../../shared/types";
+import { useTestAlertMutation } from "../../../../../api/alertsApi";
 
 const AlertTile = ({ alert }: { alert: IAlert }) => {
+	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const theme = useTheme();
+	const [testAlert] = useTestAlertMutation();
+	const handleTestAlert = () => {
+		testAlert({
+			message: {
+				id: crypto.randomUUID(),
+				telegram_message_id: crypto.randomUUID(),
+				amount: 100,
+				user_name: t("alert.test_name"),
+				played: false,
+				text: t("alert.test_text"),
+				currency: Currency.EUR,
+				created_at: Math.round(new Date().getTime() / 1000),
+			},
+		});
+	};
 
 	return (
 		<>
@@ -22,11 +42,22 @@ const AlertTile = ({ alert }: { alert: IAlert }) => {
 			>
 				<div
 					style={{
+						display: "flex",
+						placeItems: "center",
 						width: "3rem",
 						background: theme.palette.background.default,
 						minHeight: "100%",
 					}}
-				/>
+				>
+					<Tooltip
+						children={
+							<IconButton onClick={handleTestAlert}>
+								<ReportProblemIcon />
+							</IconButton>
+						}
+						title={t("alert.test_name")}
+					></Tooltip>
+				</div>
 				<div
 					style={{
 						display: "flex",

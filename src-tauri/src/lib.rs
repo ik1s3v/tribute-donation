@@ -47,6 +47,7 @@ pub fn run() {
             replay_alert,
             get_alert_by_id,
             get_alerts,
+            test_alert,
             get_settings,
             update_alert_settings,
             update_settings,

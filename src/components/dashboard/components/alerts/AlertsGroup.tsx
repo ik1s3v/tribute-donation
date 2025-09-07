@@ -1,16 +1,11 @@
 import { Card } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
 import type { IAlertsGroup } from "../../../../../shared/types";
-import type { AppState } from "../../../../store";
 import AlertTile from "./components/AlertTile";
 import WidgetUrl from "./components/WidgetUrl";
 
 const AlertsGroup = ({ alertsGroup }: { alertsGroup: IAlertsGroup }) => {
 	const widgetUrl = `http://localhost:12553/alert?group_id=${alertsGroup.group_id}`;
-	const { connectedAlerts } = useSelector(
-		(state: AppState) => state.alertsState,
-	);
 	const { t } = useTranslation();
 
 	return (
@@ -23,22 +18,10 @@ const AlertsGroup = ({ alertsGroup }: { alertsGroup: IAlertsGroup }) => {
 			}}
 		>
 			<>
-				<div
-					style={{
-						top: 10,
-						right: 10,
-						height: 10,
-						width: 10,
-						background: connectedAlerts.includes(alertsGroup.group_id)
-							? "green"
-							: undefined,
-						position: "absolute",
-						borderRadius: 50,
-					}}
-				/>
 				<h3>
 					{t("alerts.group")} {alertsGroup.group_id.toUpperCase()}
 				</h3>
+
 				<WidgetUrl widgetUrl={widgetUrl} />
 				<div style={{ display: "flex" }}>
 					{alertsGroup.items.map((alert) => (

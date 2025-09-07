@@ -153,7 +153,9 @@
 		"audio": "Audio",
 		"view": "View",
 		"title": "Title",
-		"message": "Message"
+		"message": "Message",
+		"test_name": "Test",
+		"test_text": "This is a test alert!"
 	},
 	"save": "Save",
 	"back": "Back",
