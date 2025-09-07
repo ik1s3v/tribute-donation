@@ -9,6 +9,7 @@ import TabPanel from "../../../TabPanel";
 import AuctionSettings from "./components/AuctionSettings";
 import AuctionWheel from "./components/AuctionWheel";
 import Lots from "./components/Lots";
+import LotsOptionsMenu from "./components/LotsOptionsMenu";
 import WheelIcon from "./components/WheelIcon";
 
 const Auction = () => {

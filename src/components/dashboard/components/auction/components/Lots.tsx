@@ -30,6 +30,7 @@ import { AlertSeverity } from "../../../../../../shared/enums";
 import { auctionTimerSlice } from "../../../../../../shared/slices/timerSlice";
 import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
 import Integrations from "./Integrations";
+import LotsOptionsMenu from "./LotsOptionsMenu";
 
 const Lots = () => {
 	const { lots, searchPattern } = useSelector(
@@ -68,144 +69,149 @@ const Lots = () => {
 	}, [messages]);
 
 	return (
-		<DndContext
-			modifiers={[restrictToWindowEdges]}
-			sensors={sensors}
-			onDragStart={({ active }) => {
-				setActiveMessageId(active.id);
-			}}
-			onDragEnd={({ over, active }) => {
-				if (over) {
-					dispatch(removeMessage(active.data.current as IMessage));
+		<>
+			<DndContext
+				modifiers={[restrictToWindowEdges]}
+				sensors={sensors}
+				onDragStart={({ active }) => {
+					setActiveMessageId(active.id);
+				}}
+				onDragEnd={({ over, active }) => {
+					if (over) {
+						dispatch(removeMessage(active.data.current as IMessage));
 
-					const selectedLot = lots.find((lot) => lot.fastId === over?.id);
+						const selectedLot = lots.find((lot) => lot.fastId === over?.id);
 
-					if (selectedLot) {
-						const messageAmount = (active.data.current as { amount: number })
-							.amount;
-						dispatch(
-							updateLot({
-								...selectedLot,
-								amount: messageAmount + (selectedLot.amount ?? 0),
-							}),
-						);
-						dispatch(
-							showSnackBar({
-								message: `+${messageAmount}      #${selectedLot.fastId}`,
-								alertSeverity: AlertSeverity.success,
-							}),
-						);
+						if (selectedLot) {
+							const messageAmount = (active.data.current as { amount: number })
+								.amount;
+							dispatch(
+								updateLot({
+									...selectedLot,
+									amount: messageAmount + (selectedLot.amount ?? 0),
+								}),
+							);
+							dispatch(
+								showSnackBar({
+									message: `+${messageAmount}      #${selectedLot.fastId}`,
+									alertSeverity: AlertSeverity.success,
+								}),
+							);
+						}
 					}
-				}
-				setActiveMessageId(undefined);
-			}}
-		>
-			<div
-				style={{
-					display: "grid",
-					gap: 20,
-					gridAutoFlow: "column",
-					gridTemplateColumns: "1fr auto",
+					setActiveMessageId(undefined);
 				}}
 			>
-				<div style={{ display: "flex", gap: 20, flexDirection: "column" }}>
-					<div>
+				<div
+					style={{
+						display: "grid",
+						gap: 20,
+						gridAutoFlow: "column",
+						gridTemplateColumns: "1fr auto",
+					}}
+				>
+					<div style={{ display: "flex", gap: 20, flexDirection: "column" }}>
+						<div>
+							<div
+								style={{
+									display: "flex",
+									gap: 20,
+								}}
+							>
+								<NewLotForm />
+								<LotSearch />
+							</div>
+						</div>
 						<div
 							style={{
-								display: "flex",
-								gap: 20,
+								height: `calc(100vh - ${15 + 73 + 20 + 56 + 20 + 50}px - 20px)`,
 							}}
 						>
-							<NewLotForm />
-							<LotSearch />
+							<AutoSizer>
+								{({ height, width }) => (
+									<List
+										style={{ paddingRight: "10px" }}
+										width={width}
+										height={height}
+										rowCount={filteredLots.length}
+										rowHeight={58}
+										rowRenderer={({ key, index, style }) => {
+											return (
+												<div key={key} style={style}>
+													<LotCard
+														lot={filteredLots[index]}
+														index={index + 1}
+														isShowOdds={auctionSettings?.is_show_odds}
+													/>
+												</div>
+											);
+										}}
+									/>
+								)}
+							</AutoSizer>
 						</div>
 					</div>
-					<div
-						style={{
-							height: `calc(100vh - ${15 + 73 + 20 + 56 + 20}px - 20px)`,
-						}}
-					>
-						<AutoSizer>
-							{({ height, width }) => (
-								<List
-									style={{ paddingRight: "10px" }}
-									width={width}
-									height={height}
-									rowCount={filteredLots.length}
-									rowHeight={58}
-									rowRenderer={({ key, index, style }) => {
-										return (
-											<div key={key} style={style}>
-												<LotCard
-													lot={filteredLots[index]}
-													index={index + 1}
-													isShowOdds={auctionSettings?.is_show_odds}
-												/>
-											</div>
-										);
-									}}
-								/>
-							)}
-						</AutoSizer>
-					</div>
-				</div>
-				<div>
-					<Timer
-						timerSlice={auctionTimerSlice}
-						timerStateName="auctionTimerState"
-					/>
-					<Integrations></Integrations>
-					<div
-						style={{
-							height: `calc(100vh - ${15 + 73 + 20 + 56 + 20}px - 190px)`,
-						}}
-					>
-						<AutoSizer>
-							{({ height, width }) => (
-								<List
-									style={{
-										overflowY: activeMessageId ? "hidden" : "auto",
-										overflowX: "hidden",
-									}}
-									width={width}
-									height={height}
-									rowCount={messages.length}
-									rowHeight={cacheRef.current.rowHeight}
-									deferredMeasurementCache={cacheRef.current}
-									rowRenderer={({ key, index, style, parent }) => {
-										return (
-											<CellMeasurer
-												key={key}
-												cache={cacheRef.current}
-												parent={parent}
-												columnIndex={0}
-												rowIndex={index}
-											>
-												<div style={style}>
-													<DraggableMessageCard message={messages[index]} />
-												</div>
-											</CellMeasurer>
-										);
-									}}
-								/>
-							)}
-						</AutoSizer>
+					<div>
+						<Timer
+							timerSlice={auctionTimerSlice}
+							timerStateName="auctionTimerState"
+						/>
+						<Integrations></Integrations>
+						<div
+							style={{
+								height: `calc(100vh - ${15 + 73 + 20 + 56 + 20 + 20}px - 190px)`,
+							}}
+						>
+							<AutoSizer>
+								{({ height, width }) => (
+									<List
+										style={{
+											overflowY: activeMessageId ? "hidden" : "auto",
+											overflowX: "hidden",
+										}}
+										width={width}
+										height={height}
+										rowCount={messages.length}
+										rowHeight={cacheRef.current.rowHeight}
+										deferredMeasurementCache={cacheRef.current}
+										rowRenderer={({ key, index, style, parent }) => {
+											return (
+												<CellMeasurer
+													key={key}
+													cache={cacheRef.current}
+													parent={parent}
+													columnIndex={0}
+													rowIndex={index}
+												>
+													<div style={style}>
+														<DraggableMessageCard message={messages[index]} />
+													</div>
+												</CellMeasurer>
+											);
+										}}
+									/>
+								)}
+							</AutoSizer>
 
-						<DragOverlay>
-							{activeMessageId ? (
-								<AuctionMessageCard
-									message={
-										messages.find(
-											(message) => message.id === activeMessageId,
-										) as IMessage
-									}
-								/>
-							) : null}
-						</DragOverlay>
+							<DragOverlay>
+								{activeMessageId ? (
+									<AuctionMessageCard
+										message={
+											messages.find(
+												(message) => message.id === activeMessageId,
+											) as IMessage
+										}
+									/>
+								) : null}
+							</DragOverlay>
+						</div>
 					</div>
 				</div>
+			</DndContext>
+			<div style={{ display: "flex", placeContent: "center", marginTop: 10 }}>
+				<LotsOptionsMenu />
 			</div>
-		</DndContext>
+		</>
 	);
 };
 export default Lots;

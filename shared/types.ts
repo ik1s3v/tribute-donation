@@ -150,3 +150,11 @@ export interface IAucFighterSettings {
 	round_duration: number;
 	is_add_players: boolean;
 }
+export interface IImportedLot {
+	fastId: number;
+	id: string;
+	extra: number | null;
+	amount: number | null;
+	name: string;
+	investors: [];
+}

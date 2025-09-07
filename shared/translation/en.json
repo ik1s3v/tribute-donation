@@ -16,6 +16,9 @@
 		"2fa_password": "2fa Password",
 		"password": "Password"
 	},
+	"error": {
+		"wrong_lots_format": "Wrong lots format"
+	},
 	"updater": {
 		"title": "Update",
 		"description": "A new version of the app is available. Do you want to update?",
@@ -132,6 +135,10 @@
 		"greater_timer_adding_time": "Greater timer adding time",
 		"not_add_time_if": "Not add time if",
 		"adding_time": "Time"
+	},
+	"lots_options": {
+		"import_lots": "Import lots",
+		"clear_lots": "Clear lots"
 	},
 	"auc_fighter_settings": {
 		"round_duration": "Round duration",

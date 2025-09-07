@@ -25,9 +25,8 @@ impl TTSService {
             Some(language) => language.iso_code_639_1().to_string(),
             None => "en".to_string(),
         };
-        
-        for text_parts in self.split_text(text, 100) {
 
+        for text_parts in self.split_text(text, 100) {
             let encoded_text = urlencoding::encode(&text_parts);
 
             let url = format!(
