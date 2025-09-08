@@ -155,7 +155,9 @@
 		"title": "Title",
 		"message": "Message",
 		"test_name": "Test",
-		"test_text": "This is a test alert!"
+		"test_text": "This is a test alert!",
+		"configure": "Configure",
+		"test": "Test"
 	},
 	"save": "Save",
 	"back": "Back",

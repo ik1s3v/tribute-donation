@@ -1,6 +1,6 @@
-import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { Card, IconButton, Tooltip, useTheme } from "@mui/material";
+import { Card, IconButton, Menu, MenuItem, useTheme } from "@mui/material";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { AppEvent, Currency } from "../../../../../../shared/enums";
@@ -8,6 +8,14 @@ import useWebSocket from "../../../../../../shared/hooks/useWebSocket";
 import type { IAlert } from "../../../../../../shared/types";
 
 const AlertTile = ({ alert }: { alert: IAlert }) => {
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+	const open = Boolean(anchorEl);
+	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+		setAnchorEl(event.currentTarget);
+	};
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
 	const websocketService = useWebSocket();
 	const { t } = useTranslation();
 	const navigate = useNavigate();
@@ -49,16 +57,7 @@ const AlertTile = ({ alert }: { alert: IAlert }) => {
 						background: theme.palette.background.default,
 						minHeight: "100%",
 					}}
-				>
-					<Tooltip
-						children={
-							<IconButton onClick={handleTestAlert}>
-								<ReportProblemIcon />
-							</IconButton>
-						}
-						title={t("alert.test_name")}
-					></Tooltip>
-				</div>
+				></div>
 				<div
 					style={{
 						display: "flex",
@@ -71,13 +70,19 @@ const AlertTile = ({ alert }: { alert: IAlert }) => {
 					<span>{alert.name}</span>
 
 					<div style={{ alignSelf: "center", justifySelf: "end" }}>
-						<IconButton
-							onClick={() => {
-								navigate(`/dashboard/alerts/${alert.id}`);
-							}}
-						>
+						<IconButton onClick={handleClick}>
 							<SettingsIcon />
 						</IconButton>
+						<Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+							<MenuItem
+								onClick={() => {
+									navigate(`/dashboard/alerts/${alert.id}`);
+								}}
+							>
+								{t("alert.configure")}
+							</MenuItem>
+							<MenuItem onClick={handleTestAlert}>{t("alert.test")}</MenuItem>
+						</Menu>
 					</div>
 				</div>
 			</Card>
