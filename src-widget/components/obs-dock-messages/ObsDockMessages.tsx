@@ -8,6 +8,7 @@ const ObsDockMessages = () => {
 			sx={{
 				background: (theme) => theme.palette.background.default,
 				padding: "5px",
+				minHeight: "100vh",
 			}}
 		>
 			<InfiniteMessages

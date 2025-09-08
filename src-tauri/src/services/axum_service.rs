@@ -59,7 +59,7 @@ impl AxumService {
         let static_path = self.static_path.clone();
         let auc_fighter_path = self.auc_fighter_path.clone();
         let cors =
-            CorsLayer::new().allow_origin("http://127.0.0.1:12553".parse::<HeaderValue>().unwrap());
+            CorsLayer::new().allow_origin("http://localhost:12553".parse::<HeaderValue>().unwrap());
 
         let axum_router: Router = Router::new()
             .route("/ws", get(AxumService::websocket_handler))

@@ -34030,7 +34030,8 @@ const jh = Qq({
   {
     sx: {
       background: (n) => n.palette.background.default,
-      padding: "5px"
+      padding: "5px",
+      minHeight: "100vh"
     },
     children: /* @__PURE__ */ Ue.jsxDEV(
       oq,
@@ -34041,7 +34042,7 @@ const jh = Qq({
       !1,
       {
         fileName: "D:/projects/tribute-donation/src-widget/components/obs-dock-messages/ObsDockMessages.tsx",
-        lineNumber: 13,
+        lineNumber: 14,
         columnNumber: 4
       },
       void 0
