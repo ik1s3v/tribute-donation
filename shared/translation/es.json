@@ -3,9 +3,9 @@
     "off": "Apagado",
     "select": "Seleccionar",
     "success": "Éxito",
-    "sound_volume": "Volumen de sonido",
-    "skip_media": "Omitir medios",
-    "skip_alert": "Omitir alerta",
+    "sound_volume": "Volumen del sonido",
+    "skip_media": "Atajo para omitir medios",
+    "skip_alert": "Atajo para omitir alerta",
     "authorization": {
         "title": "Autorización",
         "code": "Solicitar código",
@@ -13,8 +13,11 @@
         "phone": "Número de teléfono",
         "telegram_code": "Código de Telegram",
         "your_code": "Tu código",
-        "2fa_password": "Contraseña de 2FA",
+        "2fa_password": "Contraseña 2FA",
         "password": "Contraseña"
+    },
+    "error": {
+        "wrong_lots_format": "Formato de lotes incorrecto"
     },
     "updater": {
         "title": "Actualización",
@@ -50,7 +53,7 @@
         "enabled": "Habilitado",
         "min_amount_eur": "Cantidad mínima EUR",
         "min_amount_rub": "Cantidad mínima RUB",
-        "video_volume": "Volumen de video",
+        "video_volume": "Volumen del video",
         "min_views": "Vistas mínimas"
     },
     "dashboard": {
@@ -59,7 +62,7 @@
         "alerts": "Alertas",
         "media": "Medios",
         "auction": "Subasta",
-        "maption": "Mapeo",
+        "maption": "Maption",
         "fighter": "Luchador"
     },
     "messages": {
@@ -73,7 +76,7 @@
     "settings": {
         "title": "Configuraciones",
         "pause": "Pausar mensajes de alerta",
-        "moderation_duration": "Duración de moderación",
+        "moderation_duration": "Duración de la moderación",
         "black_list": "Lista negra",
         "remove_links": "Eliminar enlaces",
         "language": "Idioma",
@@ -81,7 +84,7 @@
     },
     "wheel": {
         "normal": "Normal",
-        "dropout": "Eliminación",
+        "dropout": "Abandono",
         "spin": "Girar",
         "speed": "Velocidad de la rueda"
     },
@@ -120,7 +123,7 @@
     },
     "lots": {
         "add": "Agregar",
-        "new_lot_name": "Nombre de nuevo lote",
+        "new_lot_name": "Nombre de lote nuevo",
         "search": "Buscar lote"
     },
     "auction_settings": {
@@ -129,9 +132,13 @@
         "new_donation": "Nueva donación",
         "show_odds": "Mostrar probabilidades",
         "show_total_sum": "Mostrar suma total",
-        "greater_timer_adding_time": "Agregar tiempo mayor",
+        "greater_timer_adding_time": "Mayor tiempo para agregar al temporizador",
         "not_add_time_if": "No agregar tiempo si",
         "adding_time": "Tiempo"
+    },
+    "lots_options": {
+        "import_lots": "Importar lotes",
+        "clear_lots": "Limpiar lotes"
     },
     "auc_fighter_settings": {
         "round_duration": "Duración de la ronda",
@@ -144,16 +151,21 @@
     "alert": {
         "image": "Imagen",
         "audio": "Audio",
-        "view": "Vista",
+        "view": "Ver",
         "title": "Título",
-        "message": "Mensaje"
+        "message": "Mensaje",
+        "test_name": "Prueba",
+        "test_text": "¡Esta es una alerta de prueba!",
+        "configure": "Configurar",
+        "test": "Probar"
     },
     "save": "Guardar",
     "back": "Volver",
     "widget": {
         "copy": "Copiar",
         "launch": "Lanzar",
-        "url": "URL del widget"
+        "url": "URL del widget",
+        "obs_dock_url": "URL del dock de OBS"
     },
     "view": {
         "top": "Imagen arriba, texto abajo",
@@ -165,7 +177,7 @@
     "text": {
         "font": "Fuente",
         "font_size": "Tamaño de fuente",
-        "text_color": "Color de texto",
+        "text_color": "Color del texto",
         "bold": "Negrita",
         "italics": "Cursiva",
         "underline": "Subrayado",
@@ -174,7 +186,7 @@
         "word_spacing": "Espaciado de palabras",
         "horizontal_alignment": "Alineación horizontal",
         "vertical_alignment": "Alineación vertical",
-        "text_preview": "¡Esto es una vista previa!",
+        "text_preview": "¡Esta es una vista previa!",
         "name": "Nombre"
     },
     "audio": {

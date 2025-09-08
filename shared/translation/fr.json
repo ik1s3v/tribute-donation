@@ -4,8 +4,8 @@
     "select": "Sélectionner",
     "success": "Succès",
     "sound_volume": "Volume sonore",
-    "skip_media": "Passer les médias",
-    "skip_alert": "Passer l'alerte",
+    "skip_media": "Raccourci pour passer les médias",
+    "skip_alert": "Raccourci pour passer l'alerte",
     "authorization": {
         "title": "Autorisation",
         "code": "Demander un code",
@@ -15,6 +15,9 @@
         "your_code": "Votre code",
         "2fa_password": "Mot de passe 2FA",
         "password": "Mot de passe"
+    },
+    "error": {
+        "wrong_lots_format": "Format des lots incorrect"
     },
     "updater": {
         "title": "Mise à jour",
@@ -59,7 +62,7 @@
         "alerts": "Alertes",
         "media": "Médias",
         "auction": "Enchères",
-        "maption": "Cartographie",
+        "maption": "Maption",
         "fighter": "Combattant"
     },
     "messages": {
@@ -81,7 +84,7 @@
     },
     "wheel": {
         "normal": "Normal",
-        "dropout": "Élimination",
+        "dropout": "Abandon",
         "spin": "Tourner",
         "speed": "Vitesse de la roue"
     },
@@ -96,7 +99,7 @@
     "fighter": {
         "title": "Combattant",
         "match": "Match",
-        "final": "Finale",
+        "final": "Final",
         "game": "Jeu",
         "cancel": "Annuler le jeu",
         "winner": "Gagnant",
@@ -128,10 +131,14 @@
         "new_lot": "Nouveau lot",
         "new_donation": "Nouveau don",
         "show_odds": "Afficher les cotes",
-        "show_total_sum": "Afficher le montant total",
-        "greater_timer_adding_time": "Ajouter plus de temps",
+        "show_total_sum": "Afficher la somme totale",
+        "greater_timer_adding_time": "Ajouter plus de temps au minuteur",
         "not_add_time_if": "Ne pas ajouter de temps si",
         "adding_time": "Temps"
+    },
+    "lots_options": {
+        "import_lots": "Importer des lots",
+        "clear_lots": "Effacer les lots"
     },
     "auc_fighter_settings": {
         "round_duration": "Durée du tour",
@@ -144,16 +151,21 @@
     "alert": {
         "image": "Image",
         "audio": "Audio",
-        "view": "Vue",
+        "view": "Voir",
         "title": "Titre",
-        "message": "Message"
+        "message": "Message",
+        "test_name": "Test",
+        "test_text": "Ceci est une alerte de test !",
+        "configure": "Configurer",
+        "test": "Tester"
     },
     "save": "Enregistrer",
     "back": "Retour",
     "widget": {
         "copy": "Copier",
         "launch": "Lancer",
-        "url": "URL du widget"
+        "url": "URL du widget",
+        "obs_dock_url": "URL du dock OBS"
     },
     "view": {
         "top": "Image en haut, texte en bas",
@@ -178,7 +190,7 @@
         "name": "Nom"
     },
     "audio": {
-        "play": "Lire",
+        "play": "Jouer",
         "stop": "Arrêter"
     }
 }

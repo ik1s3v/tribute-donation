@@ -16,8 +16,11 @@
         "2fa_password": "Senha 2FA",
         "password": "Senha"
     },
+    "error": {
+        "wrong_lots_format": "Formato de lotes incorreto"
+    },
     "updater": {
-        "title": "Atualização",
+        "title": "Atualizar",
         "description": "Uma nova versão do aplicativo está disponível. Deseja atualizar?",
         "update": "Atualizar",
         "later": "Mais tarde",
@@ -30,7 +33,7 @@
         "tiktok": "TikTok"
     },
     "integration": {
-        "tribute": "Mostrar mensagens de tributo"
+        "tribute": "Mostrar mensagens de homenagem"
     },
     "auction": {
         "lots": "Lotes",
@@ -40,7 +43,7 @@
     "maption": {
         "set_point": "Definir ponto",
         "meter_price": "Preço por metro",
-        "amount": "Quantia",
+        "amount": "Quantidade",
         "finish": "Finalizar",
         "lat_error": "A latitude deve estar entre -90 e 90",
         "lng_error": "A longitude deve estar entre -180 e 180",
@@ -59,7 +62,7 @@
         "alerts": "Alertas",
         "media": "Mídia",
         "auction": "Leilão",
-        "maption": "Mapeamento",
+        "maption": "Mapa",
         "fighter": "Lutador"
     },
     "messages": {
@@ -77,11 +80,11 @@
         "black_list": "Lista negra",
         "remove_links": "Remover links",
         "language": "Idioma",
-        "sec": "Seg"
+        "sec": "Seg."
     },
     "wheel": {
         "normal": "Normal",
-        "dropout": "Eliminação",
+        "dropout": "Desistência",
         "spin": "Girar",
         "speed": "Velocidade da roda"
     },
@@ -91,7 +94,7 @@
         "reset": "Redefinir",
         "add_time": "Adicionar tempo",
         "reduce_time": "Reduzir tempo",
-        "add_timex2": "Adicionar tempo x2"
+        "add_timex2": "Adicionar tempo ×2"
     },
     "fighter": {
         "title": "Lutador",
@@ -104,24 +107,24 @@
         "create_game": "Criar jogo a partir de lotes",
         "start": "Iniciar",
         "pause": "Pausar",
-        "rematch": "Revancha",
+        "rematch": "Revanche",
         "resume": "Retomar"
     },
     "lot": {
         "name": "Nome",
         "delete": "Excluir",
-        "add": "Adicionar quantia"
+        "add": "Adicionar quantidade"
     },
     "bid": {
         "delete": "Excluir",
         "to_lot": "Para o lote",
         "new": "Novo",
-        "add_to_random_slot": "Adicionar a um lote aleatório"
+        "add_to_random_slot": "Adicionar a lote aleatório"
     },
     "lots": {
         "add": "Adicionar",
         "new_lot_name": "Nome do novo lote",
-        "search": "Buscar lote"
+        "search": "Procurar lote"
     },
     "auction_settings": {
         "leader_change": "Mudança de líder",
@@ -129,9 +132,13 @@
         "new_donation": "Nova doação",
         "show_odds": "Mostrar probabilidades",
         "show_total_sum": "Mostrar soma total",
-        "greater_timer_adding_time": "Adicionar mais tempo",
+        "greater_timer_adding_time": "Adicionar mais tempo ao cronômetro",
         "not_add_time_if": "Não adicionar tempo se",
         "adding_time": "Tempo"
+    },
+    "lots_options": {
+        "import_lots": "Importar lotes",
+        "clear_lots": "Limpar lotes"
     },
     "auc_fighter_settings": {
         "round_duration": "Duração da rodada",
@@ -144,20 +151,25 @@
     "alert": {
         "image": "Imagem",
         "audio": "Áudio",
-        "view": "Visualização",
+        "view": "Visualizar",
         "title": "Título",
-        "message": "Mensagem"
+        "message": "Mensagem",
+        "test_name": "Teste",
+        "test_text": "Este é um alerta de teste!",
+        "configure": "Configurar",
+        "test": "Teste"
     },
     "save": "Salvar",
     "back": "Voltar",
     "widget": {
         "copy": "Copiar",
-        "launch": "Lançar",
-        "url": "URL do widget"
+        "launch": "Iniciar",
+        "url": "URL do widget",
+        "obs_dock_url": "URL do dock OBS"
     },
     "view": {
-        "top": "Imagem no topo, texto na parte inferior",
-        "bottom": "Imagem na parte inferior, texto no topo",
+        "top": "Imagem em cima, texto embaixo",
+        "bottom": "Imagem embaixo, texto em cima",
         "left": "Imagem à esquerda, texto à direita",
         "right": "Imagem à direita, texto à esquerda",
         "overlay": "Texto sobre a imagem"
@@ -174,7 +186,7 @@
         "word_spacing": "Espaçamento entre palavras",
         "horizontal_alignment": "Alinhamento horizontal",
         "vertical_alignment": "Alinhamento vertical",
-        "text_preview": "Esta é uma prévia!",
+        "text_preview": "Isto é uma prévia!",
         "name": "Nome"
     },
     "audio": {

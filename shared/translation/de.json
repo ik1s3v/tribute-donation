@@ -1,184 +1,196 @@
 {
-    "on": "Activé",
-    "off": "Désactivé",
-    "select": "Sélectionner",
-    "success": "Succès",
-    "sound_volume": "Volume sonore",
-    "skip_media": "Raccourci ignorer média",
-    "skip_alert": "Raccourci ignorer alerte",
+    "on": "Ein",
+    "off": "Aus",
+    "select": "Auswählen",
+    "success": "Erfolg",
+    "sound_volume": "Lautstärke",
+    "skip_media": "Medien überspringen",
+    "skip_alert": "Warnung überspringen",
     "authorization": {
-        "title": "Autorisation",
-        "code": "Demander un code",
-        "sign_in": "Se connecter",
-        "phone": "Numéro de téléphone",
-        "telegram_code": "Code de Telegram",
-        "your_code": "Votre code",
-        "2fa_password": "Mot de passe 2FA",
-        "password": "Mot de passe"
+        "title": "Autorisierung",
+        "code": "Code anfordern",
+        "sign_in": "Anmelden",
+        "phone": "Telefonnummer",
+        "telegram_code": "Code von Telegram",
+        "your_code": "Ihr Code",
+        "2fa_password": "2FA-Passwort",
+        "password": "Passwort"
+    },
+    "error": {
+        "wrong_lots_format": "Falsches Losformat"
     },
     "updater": {
-        "title": "Mise à jour",
-        "description": "Une nouvelle version de l'application est disponible. Voulez-vous mettre à jour ?",
-        "update": "Mettre à jour",
-        "later": "Plus tard",
-        "downloading": "Téléchargement..."
+        "title": "Update",
+        "description": "Eine neue Version der App ist verfügbar. Möchten Sie aktualisieren?",
+        "update": "Aktualisieren",
+        "later": "Später",
+        "downloading": "Wird heruntergeladen..."
     },
     "media": {
-        "title": "Médias",
+        "title": "Medien",
         "youtube": "YouTube",
         "twitch": "Twitch",
         "tiktok": "TikTok"
     },
     "integration": {
-        "tribute": "Afficher les messages d’hommage"
+        "tribute": "Tributnachrichten anzeigen"
     },
     "auction": {
-        "lots": "Lots",
-        "wheel": "Roue",
-        "settings": "Paramètres"
+        "lots": "Lose",
+        "wheel": "Rad",
+        "settings": "Einstellungen"
     },
     "maption": {
-        "set_point": "Définir un point",
-        "meter_price": "Prix pour 1 mètre",
-        "amount": "Montant",
-        "finish": "Terminer",
-        "lat_error": "La latitude doit être comprise entre -90 et 90",
-        "lng_error": "La longitude doit être comprise entre -180 et 180",
-        "rules": "Pour que le pointeur change automatiquement de position dans le message, il ne doit y avoir qu’un mot parmi :"
+        "set_point": "Punkt setzen",
+        "meter_price": "Preis pro Meter",
+        "amount": "Menge",
+        "finish": "Fertigstellen",
+        "lat_error": "Breitengrad muss zwischen -90 und 90 liegen",
+        "lng_error": "Längengrad muss zwischen -180 und 180 liegen",
+        "rules": "Damit der Zeiger automatisch die Position in der Nachricht ändert, sollte nur ein Wort aus folgendem enthalten sein:"
     },
     "media_settings": {
-        "enabled": "Activé",
-        "min_amount_eur": "Montant min EUR",
-        "min_amount_rub": "Montant min RUB",
-        "video_volume": "Volume vidéo",
-        "min_views": "Vues min"
+        "enabled": "Aktiviert",
+        "min_amount_eur": "Mindestbetrag EUR",
+        "min_amount_rub": "Mindestbetrag RUB",
+        "video_volume": "Videolautstärke",
+        "min_views": "Mindestaufrufe"
     },
     "dashboard": {
-        "messages": "Messages",
-        "settings": "Paramètres",
-        "alerts": "Alertes",
-        "media": "Médias",
-        "auction": "Enchères",
-        "maption": "Carte",
-        "fighter": "Combattant"
+        "messages": "Nachrichten",
+        "settings": "Einstellungen",
+        "alerts": "Warnungen",
+        "media": "Medien",
+        "auction": "Auktion",
+        "maption": "Maption",
+        "fighter": "Kämpfer"
     },
     "messages": {
-        "title": "Derniers messages"
+        "title": "Letzte Nachrichten"
     },
     "message": {
-        "skip": "Ignorer",
-        "replay": "Rejouer",
-        "donate": "donner"
+        "skip": "Überspringen",
+        "replay": "Wiederholen",
+        "donate": "Spenden"
     },
     "settings": {
-        "title": "Paramètres",
-        "pause": "Mettre en pause les alertes",
-        "moderation_duration": "Durée de modération",
-        "black_list": "Liste noire",
-        "remove_links": "Supprimer les liens",
-        "language": "Langue",
-        "sec": "Sec"
+        "title": "Einstellungen",
+        "pause": "Warnnachrichten pausieren",
+        "moderation_duration": "Moderationsdauer",
+        "black_list": "Schwarze Liste",
+        "remove_links": "Links entfernen",
+        "language": "Sprache",
+        "sec": "Sek"
     },
     "wheel": {
         "normal": "Normal",
-        "dropout": "Élimination",
-        "spin": "Tourner",
-        "speed": "Vitesse de la roue"
+        "dropout": "Ausfall",
+        "spin": "Drehen",
+        "speed": "Raddrehgeschwindigkeit"
     },
     "timer": {
-        "continue": "Continuer",
-        "pause": "Pause",
-        "reset": "Réinitialiser",
-        "add_time": "Ajouter du temps",
-        "reduce_time": "Réduire le temps",
-        "add_timex2": "Ajouter du temps x2"
+        "continue": "Fortfahren",
+        "pause": "Pausieren",
+        "reset": "Zurücksetzen",
+        "add_time": "Zeit hinzufügen",
+        "reduce_time": "Zeit reduzieren",
+        "add_timex2": "Zeit x2 hinzufügen"
     },
     "fighter": {
-        "title": "Combattant",
-        "match": "Match",
+        "title": "Kämpfer",
+        "match": "Spiel",
         "final": "Finale",
-        "game": "Jeu",
-        "cancel": "Annuler le jeu",
-        "winner": "Vainqueur",
-        "settings": "Paramètres",
-        "create_game": "Créer un jeu à partir de lots",
-        "start": "Démarrer",
-        "pause": "Pause",
-        "rematch": "Revanche",
-        "resume": "Reprendre"
+        "game": "Spiel",
+        "cancel": "Spiel abbrechen",
+        "winner": "Gewinner",
+        "settings": "Einstellungen",
+        "create_game": "Spiel aus Losen erstellen",
+        "start": "Starten",
+        "pause": "Pausieren",
+        "rematch": "Rückspiel",
+        "resume": "Fortsetzen"
     },
     "lot": {
-        "name": "Nom",
-        "delete": "Supprimer",
-        "add": "Ajouter un montant"
+        "name": "Name",
+        "delete": "Löschen",
+        "add": "Betrag hinzufügen"
     },
     "bid": {
-        "delete": "Supprimer",
-        "to_lot": "Vers le lot",
-        "new": "Nouveau",
-        "add_to_random_slot": "Ajouter à un lot aléatoire"
+        "delete": "Löschen",
+        "to_lot": "Zum Los",
+        "new": "Neu",
+        "add_to_random_slot": "Zu zufälligem Los hinzufügen"
     },
     "lots": {
-        "add": "Ajouter",
-        "new_lot_name": "Nouveau nom de lot",
-        "search": "Rechercher un lot"
+        "add": "Hinzufügen",
+        "new_lot_name": "Neuer Losname",
+        "search": "Los suchen"
     },
     "auction_settings": {
-        "leader_change": "Changement de leader",
-        "new_lot": "Nouveau lot",
-        "new_donation": "Nouveau don",
-        "show_odds": "Afficher les cotes",
-        "show_total_sum": "Afficher le total",
-        "greater_timer_adding_time": "Plus grand temps ajouté",
-        "not_add_time_if": "Ne pas ajouter de temps si",
-        "adding_time": "Temps"
+        "leader_change": "Führungswechsel",
+        "new_lot": "Neues Los",
+        "new_donation": "Neue Spende",
+        "show_odds": "Quoten anzeigen",
+        "show_total_sum": "Gesamtsumme anzeigen",
+        "greater_timer_adding_time": "Größere Zeit für Timer hinzufügen",
+        "not_add_time_if": "Keine Zeit hinzufügen, wenn",
+        "adding_time": "Zeit"
+    },
+    "lots_options": {
+        "import_lots": "Lose importieren",
+        "clear_lots": "Lose löschen"
     },
     "auc_fighter_settings": {
-        "round_duration": "Durée du round",
-        "add_players": "Ajouter des joueurs"
+        "round_duration": "Rundendauer",
+        "add_players": "Spieler hinzufügen"
     },
     "alerts": {
-        "title": "Alertes",
-        "group": "Groupe"
+        "title": "Warnungen",
+        "group": "Gruppe"
     },
     "alert": {
-        "image": "Image",
+        "image": "Bild",
         "audio": "Audio",
-        "view": "Vue",
-        "title": "Titre",
-        "message": "Message"
+        "view": "Anzeigen",
+        "title": "Titel",
+        "message": "Nachricht",
+        "test_name": "Test",
+        "test_text": "Dies ist eine Testwarnung!",
+        "configure": "Konfigurieren",
+        "test": "Testen"
     },
-    "save": "Enregistrer",
-    "back": "Retour",
+    "save": "Speichern",
+    "back": "Zurück",
     "widget": {
-        "copy": "Copier",
-        "launch": "Lancer",
-        "url": "URL du widget"
+        "copy": "Kopieren",
+        "launch": "Starten",
+        "url": "Widget-URL",
+        "obs_dock_url": "OBS-Dock-URL"
     },
     "view": {
-        "top": "Image en haut, texte en bas",
-        "bottom": "Image en bas, texte en haut",
-        "left": "Image à gauche, texte à droite",
-        "right": "Image à droite, texte à gauche",
-        "overlay": "Texte superposé à l’image"
+        "top": "Bild oben, Text unten",
+        "bottom": "Bild unten, Text oben",
+        "left": "Bild links, Text rechts",
+        "right": "Bild rechts, Text links",
+        "overlay": "Text über Bild"
     },
     "text": {
-        "font": "Police",
-        "font_size": "Taille de police",
-        "text_color": "Couleur du texte",
-        "bold": "Gras",
-        "italics": "Italique",
-        "underline": "Souligné",
+        "font": "Schriftart",
+        "font_size": "Schriftgröße",
+        "text_color": "Textfarbe",
+        "bold": "Fett",
+        "italics": "Kursiv",
+        "underline": "Unterstrichen",
         "transformation": "Transformation",
-        "letter_spacing": "Espacement des lettres",
-        "word_spacing": "Espacement des mots",
-        "horizontal_alignment": "Alignement horizontal",
-        "vertical_alignment": "Alignement vertical",
-        "text_preview": "Ceci est un aperçu !",
-        "name": "Nom"
+        "letter_spacing": "Buchstabenabstand",
+        "word_spacing": "Wortabstand",
+        "horizontal_alignment": "Horizontale Ausrichtung",
+        "vertical_alignment": "Vertikale Ausrichtung",
+        "text_preview": "Dies ist eine Vorschau!",
+        "name": "Name"
     },
     "audio": {
-        "play": "Lire",
-        "stop": "Arrêter"
+        "play": "Abspielen",
+        "stop": "Stoppen"
     }
 }
