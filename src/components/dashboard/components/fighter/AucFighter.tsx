@@ -15,7 +15,10 @@ const AucFighter = () => {
 	return (
 		<>
 			<h1>{t("fighter.title")}</h1>
-			<WidgetUrl widgetUrl={"http://localhost:12553/auc-fighter/default.htm"} />
+			<WidgetUrl
+				widgetUrl={"http://localhost:12553/auc-fighter/default.htm"}
+				text={t("widget.url")}
+			/>
 			<Box
 				sx={{
 					borderBottom: 1,

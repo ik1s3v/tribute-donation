@@ -1,28 +1,29 @@
-import { AppSnackBar } from "./components/AppSnackBar";
-import { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
-import Dashboard from "./components/dashboard/Dashboard";
-import Authorization from "./components/authorization/Authorization";
-import { Route, Routes, useNavigate } from "react-router";
-import { showSnackBar } from "./store/slices/snackBarSlice";
-import { AlertSeverity } from "../shared/enums";
 import { CircularProgress } from "@mui/material";
+import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import UpdaterDialog from "./components/UpdaterDialog";
-import { useInitQuery, useIsAuthorizedQuery } from "./api/authApi";
+import { useDispatch } from "react-redux";
+import { Route, Routes, useNavigate } from "react-router";
+import { AlertSeverity } from "../shared/enums";
+import useWebSocket from "../shared/hooks/useWebSocket";
+import { showSnackBar } from "../shared/slices/snackBarSlice";
+import { useInitMutation, useIsAuthorizedQuery } from "./api/authApi";
 import { useGetSettingsQuery } from "./api/settingsApi";
+import { AppSnackBar } from "./components/AppSnackBar";
+import Authorization from "./components/authorization/Authorization";
+import Dashboard from "./components/dashboard/Dashboard";
+import UpdaterDialog from "./components/UpdaterDialog";
 import { setSettings } from "./store/slices/settingsSlice";
 
 function App() {
+	const websocketService = useWebSocket();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { i18n } = useTranslation();
 	const hasNavigated = useRef(false);
-	const {
-		error: initError,
-		isSuccess: initIsSuccess,
-		isLoading: initIsLoading,
-	} = useInitQuery();
+	const [
+		init,
+		{ error: initError, isSuccess: initIsSuccess, isLoading: initIsLoading },
+	] = useInitMutation();
 	const {
 		data: isAuthorized,
 		error: isAuthorizedError,
@@ -39,6 +40,12 @@ function App() {
 		refetchOnFocus: true,
 		refetchOnReconnect: true,
 	});
+
+	useEffect(() => {
+		init().then(() => {
+			websocketService.connect();
+		});
+	}, []);
 
 	useEffect(() => {
 		if (settings) {

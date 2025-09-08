@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { IAlert, ITextStyle } from "../../../shared/types";
+import { IAlert, ITextStyle } from "../types";
+
 interface AlertsState {
 	alert: IAlert | null;
 	playingAlertId: string;

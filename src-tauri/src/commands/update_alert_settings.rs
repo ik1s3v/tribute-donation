@@ -23,12 +23,9 @@ pub async fn update_alert_settings(
         .map_err(|e| e.to_string())?;
     let websocket_broadcaster = app.state::<WebSocketBroadcaster>();
     websocket_broadcaster
-        .broadcast_event_message(
-            &EventMessage {
-                event: AppEvent::Alerts,
-                data: alerts,
-            },
-            &app,
-        )
+        .broadcast_event_message(&EventMessage {
+            event: AppEvent::Alerts,
+            data: alerts,
+        })
         .await
 }

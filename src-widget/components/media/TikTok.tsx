@@ -1,12 +1,16 @@
 import { useCallback, useEffect, useRef } from "react";
-import type { IMediaPlatformSettings, IMessage } from "../../../shared/types";
 import { AppEvent } from "../../../shared/enums";
-import { websocketService } from "../../services/websocketService";
+import useWebSocket from "../../../shared/hooks/useWebSocket";
+import type { IMediaPlatformSettings, IMessage } from "../../../shared/types";
 
 const TikTok = ({
 	message,
 	mediaPlatformSettings,
-}: { message: IMessage; mediaPlatformSettings: IMediaPlatformSettings }) => {
+}: {
+	message: IMessage;
+	mediaPlatformSettings: IMediaPlatformSettings;
+}) => {
+	const websocketService = useWebSocket();
 	const tiktokRef = useRef<HTMLIFrameElement>(null);
 	const tiktokListener = useCallback(
 		// biome-ignore lint/suspicious/noExplicitAny: <explanation>

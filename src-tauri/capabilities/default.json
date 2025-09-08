@@ -11,12 +11,10 @@
       "allow": [
         {
           "url": "https://tauri.app"
-        },
-        {
-          "url": "custom:*"
         }
       ]
     },
+    "websocket:default",
     "global-shortcut:allow-is-registered",
     "global-shortcut:allow-register",
     "global-shortcut:allow-unregister",

@@ -1,9 +1,23 @@
 import { AppEvent } from "../../shared/enums";
 import HotReload from "../../shared/services/hotReload";
 import Subscriptions from "../../shared/services/subscriptions";
-import type { IEventMessage } from "../../shared/types";
+import { setPlayingAlertId } from "../../shared/slices/alertsSlice";
+import {
+	setPausedMediaId,
+	setPlayingMediaId,
+} from "../../shared/slices/mediaSlice";
+import type {
+	IEventMessage,
+	IMessage,
+	IWebsocketService,
+} from "../../shared/types";
+import { messagesApi } from "../api/messagesApi";
+import { store } from "../store";
 
-export class WebSocketService extends Subscriptions {
+export class WebSocketService
+	extends Subscriptions
+	implements IWebsocketService
+{
 	socket: WebSocket | null;
 	url: string;
 	hotReload: HotReload | null;
@@ -40,6 +54,43 @@ export class WebSocketService extends Subscriptions {
 			this.socket.onclose = () => {
 				setTimeout(() => this.connect(), 1000);
 			};
+
+			this.subscribe<IMessage>(AppEvent.Message, (message) => {
+				store.dispatch(
+					messagesApi.util.updateQueryData(
+						"getMessages",
+						undefined,
+						(draft) => {
+							draft.pages[0].unshift(message);
+							const lastPageParam = draft.pageParams.at(-1);
+							if (lastPageParam) {
+								lastPageParam.offset = lastPageParam.offset + 1;
+							}
+						},
+					),
+				);
+			});
+
+			this.subscribe<string>(AppEvent.AlertPlaying, (id) => {
+				store.dispatch(setPlayingAlertId(id));
+			});
+
+			this.subscribe<string>(AppEvent.MediaPlaying, (id) => {
+				store.dispatch(setPausedMediaId(""));
+				store.dispatch(setPlayingMediaId(id));
+			});
+
+			this.subscribe<string>(AppEvent.MediaPaused, (id) => {
+				store.dispatch(setPausedMediaId(id));
+			});
+
+			this.subscribe<string>(AppEvent.AlertPlayed, (_) => {
+				store.dispatch(setPlayingAlertId(""));
+			});
+			this.subscribe<string>(AppEvent.MediaPlayed, (_) => {
+				store.dispatch(setPlayingMediaId(""));
+				store.dispatch(setPausedMediaId(""));
+			});
 		}
 	}
 
@@ -59,5 +110,3 @@ export class WebSocketService extends Subscriptions {
 		}
 	}
 }
-
-export const websocketService = new WebSocketService("ws://localhost:12553/ws");

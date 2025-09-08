@@ -1,9 +1,9 @@
-import type { Action as UnknownAction, Middleware } from "@reduxjs/toolkit";
-import type { AppState } from "..";
-import { auctionMessagesSlice } from "../slices/messagesSlice";
-import { updateLot } from "../slices/lotsSlice";
-import { showSnackBar } from "../slices/snackBarSlice";
+import type { Middleware, Action as UnknownAction } from "@reduxjs/toolkit";
 import { AlertSeverity } from "../../../shared/enums";
+import { showSnackBar } from "../../../shared/slices/snackBarSlice";
+import type { AppState } from "..";
+import { updateLot } from "../slices/lotsSlice";
+import { auctionMessagesSlice } from "../slices/messagesSlice";
 
 const { removeMessage } = auctionMessagesSlice.actions;
 

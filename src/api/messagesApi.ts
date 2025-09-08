@@ -1,5 +1,5 @@
-import { api } from ".";
 import type { IMessage, IPageParm } from "../../shared/types";
+import { api } from ".";
 
 export const messagesApi = api.injectEndpoints({
 	endpoints: (builder) => ({

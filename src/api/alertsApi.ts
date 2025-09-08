@@ -1,4 +1,4 @@
-import type { IAlert, IMessage } from "../../shared/types";
+import type { IAlert } from "../../shared/types";
 import { api } from ".";
 
 export const alertsApi = api.injectEndpoints({
@@ -20,31 +20,10 @@ export const alertsApi = api.injectEndpoints({
 				args,
 			}),
 		}),
-		replayAlert: builder.mutation<void, { message: IMessage }>({
-			query: (args) => ({
-				command: "replay_alert",
-				args,
-			}),
-		}),
-		skipAlert: builder.mutation<void, { id: string }>({
-			query: (args) => ({
-				command: "skip_alert",
-				args,
-			}),
-		}),
-		testAlert: builder.mutation<void, { message: IMessage }>({
-			query: (args) => ({
-				command: "test_alert",
-				args,
-			}),
-		}),
 	}),
 });
 export const {
 	useGetAlertsQuery,
 	useGetAlertByIdQuery,
 	useUpdateAlertSettingsMutation,
-	useReplayAlertMutation,
-	useSkipAlertMutation,
-	useTestAlertMutation,
 } = alertsApi;

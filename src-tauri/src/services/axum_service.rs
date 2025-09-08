@@ -1,23 +1,37 @@
 use crate::constants::HTTP_WIDGET_PORT;
 use crate::enums::AppEvent;
 use crate::repositories::{
-    AlertsRepository, AucFighterSettingsRepository, MediaSettingsRepository, SettingsRepository,
+    AlertsRepository, AucFighterSettingsRepository, MediaSettingsRepository, MessagesRepository,
+    SettingsRepository,
 };
 use crate::services::{DatabaseService, EventMessage, WebSocketBroadcaster};
 use axum::extract::ws::{Message, WebSocket};
+use axum::extract::Query;
+use axum::http::HeaderValue;
+use axum::Json;
 use axum::{
     extract::{State, WebSocketUpgrade},
     response::Response,
     routing::get,
     Router,
 };
+use entity::message::Model;
 use futures::{sink::SinkExt, stream::StreamExt};
+use reqwest::StatusCode;
+use serde::Deserialize;
 use std::path::PathBuf;
 use tauri::{AppHandle, Manager};
 use tokio::sync::mpsc;
 use tokio::sync::mpsc::error::SendError;
+use tower_http::cors::CorsLayer;
 use tower_http::services::{ServeDir, ServeFile};
 type Tx = mpsc::UnboundedSender<Message>;
+
+#[derive(Debug, Deserialize)]
+pub struct MessagesQuery {
+    pub limit: u64,
+    pub offset: u64,
+}
 
 #[derive(Clone)]
 struct AxumState {
@@ -44,9 +58,12 @@ impl AxumService {
         let widget_path = self.widget_path.clone();
         let static_path = self.static_path.clone();
         let auc_fighter_path = self.auc_fighter_path.clone();
+        let cors =
+            CorsLayer::new().allow_origin("http://127.0.0.1:12553".parse::<HeaderValue>().unwrap());
 
         let axum_router: Router = Router::new()
             .route("/ws", get(AxumService::websocket_handler))
+            .route("/api/messages", get(AxumService::get_messages))
             .nest_service("/static", ServeDir::new(&static_path))
             .nest_service(
                 "/auc-fighter",
@@ -57,6 +74,7 @@ impl AxumService {
                 ServeDir::new(&widget_path)
                     .fallback(ServeFile::new(widget_path.join("index.html"))),
             )
+            .layer(cors)
             .with_state(AxumState { app: app.clone() });
 
         let listener = match tokio::net::TcpListener::bind(("127.0.0.1", HTTP_WIDGET_PORT)).await {
@@ -76,6 +94,19 @@ impl AxumService {
         });
 
         Ok(())
+    }
+
+    async fn get_messages(
+        Query(params): Query<MessagesQuery>,
+        State(state): State<AxumState>,
+    ) -> Result<Json<Vec<Model>>, StatusCode> {
+        let database_service = state.app.state::<DatabaseService>();
+        let messages = database_service
+            .get_messages(params.limit, params.offset)
+            .await
+            .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+
+        Ok(Json(messages))
     }
 
     async fn websocket_handler(
@@ -118,10 +149,6 @@ impl AxumService {
         while let Some(msg) = receiver.next().await {
             match msg {
                 Ok(Message::Text(text)) => {
-                    websocket_broadcaster
-                        .broadcast_event(text.to_string(), &app_handle.clone())
-                        .await
-                        .unwrap();
                     if let Err(e) = websocket_broadcaster.broadcast_text(text).await {
                         log::error!("Broadcast error: {}", e);
                     }

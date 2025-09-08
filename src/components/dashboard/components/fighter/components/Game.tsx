@@ -3,12 +3,8 @@ import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { AutoSizer, List } from "react-virtualized";
-import {
-	useCancelAucFighterMatchMutation,
-	usePauseAucFighterMatchMutation,
-	useResumeAucFighterMatchMutation,
-	useStartAucFighterMatchMutation,
-} from "../../../../../api/aucFighterApi";
+import { AppEvent } from "../../../../../../shared/enums";
+import useWebSocket from "../../../../../../shared/hooks/useWebSocket";
 import fighterGameFromLots from "../../../../../helpers/fighterGameFromLots";
 import type { AppState } from "../../../../../store";
 import {
@@ -20,13 +16,11 @@ import GameWinner from "./GameWinner";
 import MatchCard from "./MatchCard";
 
 const AucFighter = () => {
+	const websocketService = useWebSocket();
 	const { lots } = useSelector((state: AppState) => state.lotsState);
 	const { game, pausedMatchId, playingMatchId, isGameStarted, gameWinner } =
 		useSelector((state: AppState) => state.aucFighterState);
-	const [startAucFighterMatch] = useStartAucFighterMatchMutation();
-	const [pauseAucFighterMatch] = usePauseAucFighterMatchMutation();
-	const [resumeAucFighterMatch] = useResumeAucFighterMatchMutation();
-	const [cancelAucFighterMatch] = useCancelAucFighterMatchMutation();
+
 	const dispatch = useDispatch();
 	const { t } = useTranslation();
 	const lostWithAmount = lots.filter((lot) => lot.amount);
@@ -52,7 +46,8 @@ const AucFighter = () => {
 					<Button
 						onClick={() => {
 							dispatch(setIsGameStarted(true));
-							startAucFighterMatch({
+							websocketService.send({
+								event: AppEvent.StartAucFighterMatch,
 								data: game.matches[0],
 							});
 						}}
@@ -63,7 +58,10 @@ const AucFighter = () => {
 				{isGameStarted && (
 					<Button
 						onClick={() => {
-							cancelAucFighterMatch({ id: playingMatchId });
+							websocketService.send({
+								event: AppEvent.CancelAucFighterMatch,
+								data: playingMatchId,
+							});
 							dispatch(setIsGameStarted(false));
 							dispatch(setAucFighterGame(null));
 							dispatch(setGameWinner(null));
@@ -74,14 +72,24 @@ const AucFighter = () => {
 				)}
 				<Button
 					disabled={!isGameStarted}
-					onClick={() => pauseAucFighterMatch({ id: playingMatchId })}
+					onClick={() => {
+						websocketService.send({
+							event: AppEvent.PauseAucFighterMatch,
+							data: playingMatchId,
+						});
+					}}
 				>
 					{t("fighter.pause")}
 				</Button>
 
 				<Button
 					disabled={!isGameStarted}
-					onClick={() => resumeAucFighterMatch({ id: pausedMatchId })}
+					onClick={() => {
+						websocketService.send({
+							event: AppEvent.ResumeAucFighterMatch,
+							data: pausedMatchId,
+						});
+					}}
 				>
 					{t("fighter.resume")}
 				</Button>

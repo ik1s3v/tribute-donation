@@ -1,14 +1,11 @@
 import ReplayIcon from "@mui/icons-material/Replay";
 import { Box, Button, Card, IconButton, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import type { IMessage } from "../../../../../../shared/types";
-import getCurrencySymbol from "../../../../../../shared/utils/getCurrencySymbol";
-import {
-	useReplayAlertMutation,
-	useSkipAlertMutation,
-} from "../../../../../api/alertsApi";
-import { useReplayMediaMutation } from "../../../../../api/mediaApi";
-import getColorByMediaType from "../../../../../utils/getColorByMediaType";
+import { AppEvent } from "../enums";
+import useWebSocket from "../hooks/useWebSocket";
+import type { IMessage } from "../types";
+import getColorByMediaType from "../utils/getColorByMediaType";
+import getCurrencySymbol from "../utils/getCurrencySymbol";
 import MediaTile from "./MediaTile";
 import MessageDate from "./MessageDate";
 
@@ -22,9 +19,7 @@ const MessageTile = ({
 	isMediaPlaying: boolean;
 }) => {
 	const { t } = useTranslation();
-	const [replayMedia] = useReplayMediaMutation();
-	const [replayAlert] = useReplayAlertMutation();
-	const [skipAlert] = useSkipAlertMutation();
+	const websocketService = useWebSocket();
 
 	return (
 		<>
@@ -38,7 +33,7 @@ const MessageTile = ({
 					borderColor: isAlertPlaying
 						? theme.palette.primary.main
 						: theme.palette.background.default,
-					marginBottom: "1rem",
+					marginBottom: "5px",
 					minHeight: "5.3rem",
 					overflow: "hidden",
 				})}
@@ -58,7 +53,10 @@ const MessageTile = ({
 					{message.media && !isMediaPlaying && !isAlertPlaying && (
 						<IconButton
 							onClick={() => {
-								replayMedia({ message });
+								websocketService.send({
+									event: AppEvent.ReplayMedia,
+									data: message,
+								});
 							}}
 						>
 							<ReplayIcon />
@@ -96,7 +94,10 @@ const MessageTile = ({
 									fontSize: 12,
 								}}
 								onClick={() => {
-									replayAlert({ message });
+									websocketService.send({
+										event: AppEvent.ReplayAlert,
+										data: message,
+									});
 								}}
 							>
 								{t("message.replay")}
@@ -110,7 +111,10 @@ const MessageTile = ({
 								fontSize: 12,
 							}}
 							onClick={() => {
-								skipAlert({ id: message.id });
+								websocketService.send({
+									event: AppEvent.SkipAlert,
+									data: message.id,
+								});
 							}}
 						>
 							{t("message.skip")}

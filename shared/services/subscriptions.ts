@@ -1,6 +1,6 @@
-import type { ISubscriber, EventCallback } from "../types";
+import type { EventCallback, ISubscriber, ISubscriptions } from "../types";
 
-export default class Subscriptions {
+export default class Subscriptions implements ISubscriptions {
 	subscribers: ISubscriber[];
 
 	constructor() {

@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import { NumericFormat } from "react-number-format";
 import { useDispatch, useSelector } from "react-redux";
 import { AlertSeverity } from "../../../../../../shared/enums";
+import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
 import { maptionTimerSlice } from "../../../../../../shared/slices/timerSlice";
 import { useGetMaptionSettingsQuery } from "../../../../../api/maptionApi";
 import calculateMaptionDistance from "../../../../../helpers/calculateMaptionDistance";
@@ -25,7 +26,6 @@ import {
 	undoLastStep,
 	up,
 } from "../../../../../store/slices/maptionSlice";
-import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
 import InputSwitch from "../../../../InputSwitch";
 import OnOffSwitch from "../../../../OnOffSwitch";
 import Timer from "../../auction/components/Timer";

@@ -3,14 +3,14 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
-import { useNavigate } from "react-router";
-import { showSnackBar } from "../../../store/slices/snackBarSlice";
-import { AlertSeverity } from "../../../../shared/enums";
-import { useDispatch } from "react-redux";
 import { styled } from "@mui/material/styles";
+import type { SerializedError } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import { AlertSeverity } from "../../../../shared/enums";
+import { showSnackBar } from "../../../../shared/slices/snackBarSlice";
 import { useRequestLoginCodeMutation } from "../../../api/authApi";
 import AuthButton from "./AuthButton";
-import type { SerializedError } from "@reduxjs/toolkit";
 
 const StyledPhoneInput = styled(PhoneInput)`
   .country-list .country.highlight {

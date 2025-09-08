@@ -1,13 +1,13 @@
 import { TextField } from "@mui/material";
+import type { SerializedError } from "@reduxjs/toolkit";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { AlertSeverity } from "../../../../shared/enums";
-import { showSnackBar } from "../../../store/slices/snackBarSlice";
+import { showSnackBar } from "../../../../shared/slices/snackBarSlice";
 import { useCheckPasswordMutation } from "../../../api/authApi";
 import AuthButton from "./AuthButton";
-import type { SerializedError } from "@reduxjs/toolkit";
 
 const Password = () => {
 	const navigate = useNavigate();

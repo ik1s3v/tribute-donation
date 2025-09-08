@@ -1,11 +1,11 @@
-import type { IAlert, IMessage } from "../types";
-import getGridTemplateAreas from "../utils/getGridTemplateAreas";
-import getGridAutoRows from "../utils/getGridAutoRows";
-import getGridAutoColumns from "../utils/getGridAutoColumns";
-import computePXSize from "../utils/computePXSize";
-import { ViewType } from "../enums";
-import getCurrencySymbol from "../utils/getCurrencySymbol";
 import { useTranslation } from "react-i18next";
+import { ViewType } from "../enums";
+import type { IAlert, IMessage } from "../types";
+import computePXSize from "../utils/computePXSize";
+import getCurrencySymbol from "../utils/getCurrencySymbol";
+import getGridAutoColumns from "../utils/getGridAutoColumns";
+import getGridAutoRows from "../utils/getGridAutoRows";
+import getGridTemplateAreas from "../utils/getGridTemplateAreas";
 
 const AlertView = ({
 	alert,

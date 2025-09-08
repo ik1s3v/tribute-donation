@@ -1,27 +1,27 @@
-import { Box, Button, Tab, Tabs } from "@mui/material";
-import TabPanel from "../../../TabPanel";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import ImageSettings from "./components/ImageSettings";
-import AudioSettings from "./components/AudioSettings";
-import { useNavigate, useParams } from "react-router";
-import ImageIcon from "@mui/icons-material/Image";
 import AudiotrackIcon from "@mui/icons-material/Audiotrack";
+import ImageIcon from "@mui/icons-material/Image";
 import TitleIcon from "@mui/icons-material/Title";
 import ViewCarouselIcon from "@mui/icons-material/ViewCarousel";
-import ViewSettings from "./components/ViewSettings";
+import { Box, Button, Tab, Tabs } from "@mui/material";
+import type { SerializedError } from "@reduxjs/toolkit";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { showSnackBar } from "../../../../store/slices/snackBarSlice";
+import { useNavigate, useParams } from "react-router";
 import { AlertSeverity } from "../../../../../shared/enums";
-import TitleStyle from "./components/TitleStyle";
-import MessageStyle from "./components/MessageStyle";
+import { setAlert } from "../../../../../shared/slices/alertsSlice";
+import { showSnackBar } from "../../../../../shared/slices/snackBarSlice";
 import {
 	useGetAlertByIdQuery,
 	useUpdateAlertSettingsMutation,
 } from "../../../../api/alertsApi";
 import type { AppState } from "../../../../store";
-import { setAlert } from "../../../../store/slices/alertsSlice";
-import type { SerializedError } from "@reduxjs/toolkit";
+import TabPanel from "../../../TabPanel";
+import AudioSettings from "./components/AudioSettings";
+import ImageSettings from "./components/ImageSettings";
+import MessageStyle from "./components/MessageStyle";
+import TitleStyle from "./components/TitleStyle";
+import ViewSettings from "./components/ViewSettings";
 
 const AlertSettings = () => {
 	const navigate = useNavigate();

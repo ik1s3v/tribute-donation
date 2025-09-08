@@ -1,80 +1,24 @@
-import { Skeleton } from "@mui/material";
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import InfiniteScroll from "react-infinite-scroller";
-import { useDispatch, useSelector } from "react-redux";
-import { AlertSeverity } from "../../../../../shared/enums";
+import InfiniteMessages from "../../../../../shared/components/InfiniteMessages";
 import { useGetMessagesInfiniteQuery } from "../../../../api/messagesApi";
-import type { AppState } from "../../../../store";
-import { showSnackBar } from "../../../../store/slices/snackBarSlice";
-import MessageTile from "./components/MessageTile";
+import WidgetUrl from "../alerts/components/WidgetUrl";
 
 const Messages = () => {
 	const { t } = useTranslation();
-	const { playingAlertId } = useSelector(
-		(state: AppState) => state.alertsState,
-	);
-	const { playingMediaId } = useSelector((state: AppState) => state.mediaState);
-	const { data, fetchNextPage, hasNextPage, isFetchingNextPage, error } =
-		useGetMessagesInfiniteQuery(undefined, {
-			refetchOnFocus: false,
-			refetchOnMountOrArgChange: false,
-			refetchOnReconnect: false,
-		});
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		if (error) {
-			dispatch(
-				showSnackBar({
-					message: error.message as string,
-					alertSeverity: AlertSeverity.error,
-				}),
-			);
-		}
-	}, [error, dispatch]);
 
 	return (
 		<>
 			<h1>{t("messages.title")}</h1>
+			<WidgetUrl
+				widgetUrl={"http://127.0.0.1:12553/obs-dock-messages"}
+				text={t("widget.obs_dock_url")}
+			/>
 			<div>{t("skip_alert")} - ctrl+F1</div>
 			<div>{t("skip_media")} - ctrl+F2</div>
 
-			{!data?.pages[0].length ? (
-				<Skeleton
-					variant="rectangular"
-					sx={{
-						display: "flex",
-						borderRadius: 3,
-						boxSizing: "border-box",
-						marginBottom: "1rem",
-						minHeight: "5.3rem",
-						overflow: "hidden",
-					}}
-				/>
-			) : (
-				<InfiniteScroll
-					loadMore={() => fetchNextPage()}
-					hasMore={!isFetchingNextPage && hasNextPage}
-					initialLoad={false}
-					useWindow={true}
-					threshold={50}
-					loader={<div key="loader">{t("loading")}</div>}
-				>
-					<div>
-						{data.pages.map((page) =>
-							page.map((message) => (
-								<MessageTile
-									message={message}
-									isAlertPlaying={message.id === playingAlertId}
-									isMediaPlaying={message.id === playingMediaId}
-									key={message.id}
-								/>
-							)),
-						)}
-					</div>
-				</InfiniteScroll>
-			)}
+			<InfiniteMessages
+				useGetMessagesInfiniteQuery={useGetMessagesInfiniteQuery}
+			></InfiniteMessages>
 		</>
 	);
 };

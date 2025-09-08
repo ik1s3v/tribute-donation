@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { websocketService } from "../services/websocketService";
 import { AppEvent } from "../../shared/enums";
+import useWebSocket from "../../shared/hooks/useWebSocket";
 import type { IAlert, IMessage, ISettings } from "../../shared/types";
 import getAlertByMessage from "../utils/getAlertByMessage";
 
 const usePlayAlert = () => {
+	const websocketService = useWebSocket();
 	const alertAudioRef = useRef<HTMLAudioElement>(new Audio());
 	const messageAudioRef = useRef<HTMLAudioElement>(new Audio());
 	const alertsRef = useRef<IAlert[]>([]);
@@ -18,7 +19,10 @@ const usePlayAlert = () => {
 		({
 			message,
 			skip = false,
-		}: { message: IMessage | undefined; skip?: boolean }) => {
+		}: {
+			message: IMessage | undefined;
+			skip?: boolean;
+		}) => {
 			messageAudioRef.current.pause();
 			alertAudioRef.current.pause();
 			setTimeout(

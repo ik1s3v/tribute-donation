@@ -23,6 +23,11 @@ export interface IEventMessage<T> {
 	data: T;
 }
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+export interface ISubscriptions {
+	subscribers: ISubscriber[];
+	notifySubscribers: <T>(id: string, data: T) => void;
+	subscribe: <T>(id: string, callback: EventCallback<T>) => () => void;
+}
 export interface ISubscriber<T = any> {
 	id: string;
 	callback: EventCallback<T>;
@@ -157,4 +162,10 @@ export interface IImportedLot {
 	amount: number | null;
 	name: string;
 	investors: [];
+}
+export interface IWebsocketService extends ISubscriptions {
+	constructor: Function;
+	connect: () => void;
+	disconnect: () => void;
+	send: <T>(message: IEventMessage<T>) => void;
 }

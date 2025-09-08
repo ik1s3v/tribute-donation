@@ -5,13 +5,13 @@ import { useTranslation } from "react-i18next";
 import { NumericFormat } from "react-number-format";
 import { useDispatch, useSelector } from "react-redux";
 import { AlertSeverity } from "../../../../../../shared/enums";
+import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
 import {
 	useGetAucFighterSettingsQuery,
 	useUpdateAucFighterSettingsMutation,
 } from "../../../../../api/aucFighterApi";
 import { AppState } from "../../../../../store";
 import { setAucFighterSettings } from "../../../../../store/slices/aucFighterSlice";
-import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
 import OnOffSwitch from "../../../../OnOffSwitch";
 import styles from "../../settings/Settings.module.css";
 

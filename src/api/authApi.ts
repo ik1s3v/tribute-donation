@@ -2,7 +2,7 @@ import { api } from ".";
 
 export const authApi = api.injectEndpoints({
 	endpoints: (builder) => ({
-		init: builder.query<void, void>({
+		init: builder.mutation<void, void>({
 			query: () => ({
 				command: "init",
 			}),
@@ -49,7 +49,7 @@ export const authApi = api.injectEndpoints({
 });
 export const {
 	useIsAuthorizedQuery,
-	useInitQuery,
+	useInitMutation,
 	useRequestLoginCodeMutation,
 	useSignInMutation,
 	useCheckPasswordMutation,

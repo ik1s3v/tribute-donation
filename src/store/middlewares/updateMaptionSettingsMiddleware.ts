@@ -3,11 +3,11 @@ import type {
 	SerializedError,
 	UnknownAction,
 } from "@reduxjs/toolkit";
+import { AlertSeverity } from "../../../shared/enums";
+import { showSnackBar } from "../../../shared/slices/snackBarSlice";
+import { maptionApi } from "../../api/maptionApi";
 import type { AppDispatch, AppState } from "..";
 import { maptionSlice } from "../slices/maptionSlice";
-import { maptionApi } from "../../api/maptionApi";
-import { showSnackBar } from "../slices/snackBarSlice";
-import { AlertSeverity } from "../../../shared/enums";
 
 const updateMaptionSettingsMiddleware: Middleware<unknown, AppState> =
 	(store) => (next) => (action) => {

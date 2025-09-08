@@ -1,4 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { alertsSlice } from "../../shared/slices/alertsSlice";
+import { mediaSlice } from "../../shared/slices/mediaSlice";
+import { snackBarSlice } from "../../shared/slices/snackBarSlice";
 import {
 	auctionTimerSlice,
 	maptionTimerSlice,
@@ -12,19 +15,16 @@ import newDonationUpdateLotMiddleware from "./middlewares/newDonationUpdateLotMi
 import newDonationUpdateMaptionPositionMiddleware from "./middlewares/newDonationUpdateMaptionPositionMiddleware";
 import newLotAddAuctionTimeMiddleware from "./middlewares/newLotAddAuctionTimeMiddleware";
 import updateMaptionSettingsMiddleware from "./middlewares/updateMaptionSettingsMiddleware";
-import { alertsSlice } from "./slices/alertsSlice";
 import { aucFighterSlice } from "./slices/aucFighterSlice";
 import { auctionSlice } from "./slices/auctionSlice";
 import { lotsSlice } from "./slices/lotsSlice";
 import { mainSlice } from "./slices/mainSlice";
 import { maptionSlice } from "./slices/maptionSlice";
-import { mediaSlice } from "./slices/mediaSlice";
 import {
 	auctionMessagesSlice,
 	maptionMessagesSlice,
 } from "./slices/messagesSlice";
 import { settingsSlice } from "./slices/settingsSlice";
-import { snackBarSlice } from "./slices/snackBarSlice";
 
 export const rootReducer = combineReducers({
 	snackBarState: snackBarSlice.reducer,

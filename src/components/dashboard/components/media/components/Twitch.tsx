@@ -1,5 +1,5 @@
+import { setTwitchSettings } from "../../../../../../shared/slices/mediaSlice";
 import type { IMediaSettings } from "../../../../../../shared/types";
-import { setTwitchSettings } from "../../../../../store/slices/mediaSlice";
 import MediaPlatformSettings from "./MediaPlatformSettings";
 
 const Twitch = ({ mediaSettings }: { mediaSettings: IMediaSettings }) => {

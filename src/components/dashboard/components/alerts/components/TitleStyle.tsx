@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
+import { setTitleStyle } from "../../../../../../shared/slices/alertsSlice";
 import type { AppState } from "../../../../../store";
-import { setTitleStyle } from "../../../../../store/slices/alertsSlice";
 import TextStyle from "./TextStyle";
 
 const TitleStyle = () => {

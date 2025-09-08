@@ -33,8 +33,17 @@
     "shared/utils/getGridAutoColumns.ts",
     "shared/translation",
     "shared/slices",
+    "shared/hooks",
+    "shared/contexts",
+    "shared/providers",
     "shared/i18n",
-    "scr-auc-fighter-adapter"
+    "scr-auc-fighter-adapter",
+    "shared/components/InfiniteMessages.tsx",
+    "shared/components/MediaTile.tsx",
+    "shared/components/MessageDate.tsx",
+    "shared/components/MessageTile.tsx",
+    "shared/utils/getColorByMediaType.ts",
+    "shared/dayjs"
   ],
   "references": [
     {

@@ -1,13 +1,17 @@
-import YouTube, { type YouTubePlayer } from "react-youtube";
-import type { IMediaPlatformSettings, IMessage } from "../../../shared/types";
 import { useEffect, useState } from "react";
-import { websocketService } from "../../services/websocketService";
+import YouTube, { type YouTubePlayer } from "react-youtube";
 import { AppEvent } from "../../../shared/enums";
+import useWebSocket from "../../../shared/hooks/useWebSocket";
+import type { IMediaPlatformSettings, IMessage } from "../../../shared/types";
 
 const Youtube = ({
 	message,
 	mediaPlatformSettings,
-}: { message: IMessage; mediaPlatformSettings: IMediaPlatformSettings }) => {
+}: {
+	message: IMessage;
+	mediaPlatformSettings: IMediaPlatformSettings;
+}) => {
+	const websocketService = useWebSocket();
 	const [player, setPlayer] = useState<YouTubePlayer>();
 	const opts = {
 		height: window.innerHeight,

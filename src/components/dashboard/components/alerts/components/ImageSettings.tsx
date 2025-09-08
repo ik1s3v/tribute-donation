@@ -2,8 +2,8 @@ import { convertFileSrc } from "@tauri-apps/api/core";
 import { open } from "@tauri-apps/plugin-dialog";
 import { BaseDirectory, readFile, writeFile } from "@tauri-apps/plugin-fs";
 import { useDispatch, useSelector } from "react-redux";
+import { setAlert } from "../../../../../../shared/slices/alertsSlice";
 import type { AppState } from "../../../../../store";
-import { setAlert } from "../../../../../store/slices/alertsSlice";
 import getFilenameFromPath from "../../../../../utils/getFilenameFromPath";
 
 const ImageSettings = () => {

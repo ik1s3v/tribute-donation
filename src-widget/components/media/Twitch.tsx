@@ -1,13 +1,18 @@
 import { useEffect, useRef } from "react";
-import type { IMediaPlatformSettings, IMessage } from "../../../shared/types";
 import { AppEvent } from "../../../shared/enums";
-import { websocketService } from "../../services/websocketService";
+import useWebSocket from "../../../shared/hooks/useWebSocket";
+import type { IMediaPlatformSettings, IMessage } from "../../../shared/types";
 
 const Twitch = ({
 	message,
 	mediaPlatformSettings,
-}: { message: IMessage; mediaPlatformSettings: IMediaPlatformSettings }) => {
+}: {
+	message: IMessage;
+	mediaPlatformSettings: IMediaPlatformSettings;
+}) => {
 	const videoRef = useRef<HTMLVideoElement | null>(null);
+	const websocketService = useWebSocket();
+
 	useEffect(() => {
 		if (!videoRef.current) return;
 		videoRef.current.volume = mediaPlatformSettings.video_volume / 100;

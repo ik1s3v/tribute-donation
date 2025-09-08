@@ -1,10 +1,10 @@
-import type { Action as UnknownAction, Middleware } from "@reduxjs/toolkit";
-import type { AppState } from "..";
-import { showSnackBar } from "../slices/snackBarSlice";
+import type { Middleware, Action as UnknownAction } from "@reduxjs/toolkit";
 import { AlertSeverity } from "../../../shared/enums";
-import { maptionMessagesSlice } from "../slices/messagesSlice";
-import { down, left, right, up } from "../slices/maptionSlice";
+import { showSnackBar } from "../../../shared/slices/snackBarSlice";
 import calculateMaptionDistance from "../../helpers/calculateMaptionDistance";
+import type { AppState } from "..";
+import { down, left, right, up } from "../slices/maptionSlice";
+import { maptionMessagesSlice } from "../slices/messagesSlice";
 
 const newDonationUpdateMaptionPositionMiddleware: Middleware<
 	unknown,

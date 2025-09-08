@@ -1,23 +1,18 @@
-import SkipNextIcon from "@mui/icons-material/SkipNext";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
-import type { IMessage } from "../../../../../../shared/types";
-import getColorByMediaType from "../../../../../utils/getColorByMediaType";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import SkipNextIcon from "@mui/icons-material/SkipNext";
 import { IconButton } from "@mui/material";
-import MessageDate from "./MessageDate";
 import { useSelector } from "react-redux";
-import type { AppState } from "../../../../../store";
-import {
-	usePauseMediaMutation,
-	usePlayMediaMutation,
-	useSkipMediaMutation,
-} from "../../../../../api/mediaApi";
+import type { AppState } from "../../src/store";
+import { AppEvent } from "../enums";
+import useWebSocket from "../hooks/useWebSocket";
+import type { IMessage } from "../types";
+import getColorByMediaType from "../utils/getColorByMediaType";
+import MessageDate from "./MessageDate";
 
 const MediaTile = ({ message }: { message: IMessage }) => {
 	const { pausedMediaId } = useSelector((state: AppState) => state.mediaState);
-	const [skipMedia] = useSkipMediaMutation();
-	const [playMedia] = usePlayMediaMutation();
-	const [pauseMedia] = usePauseMediaMutation();
+	const websocketService = useWebSocket();
 
 	return (
 		<>
@@ -57,9 +52,15 @@ const MediaTile = ({ message }: { message: IMessage }) => {
 						<IconButton
 							onClick={() => {
 								if (pausedMediaId === message.id) {
-									playMedia({ id: message.id });
+									websocketService.send({
+										event: AppEvent.PlayMedia,
+										data: message.id,
+									});
 								} else {
-									pauseMedia({ id: message.id });
+									websocketService.send({
+										event: AppEvent.PauseMedia,
+										data: message.id,
+									});
 								}
 							}}
 						>
@@ -78,7 +79,10 @@ const MediaTile = ({ message }: { message: IMessage }) => {
 								left: 70,
 							}}
 							onClick={() => {
-								skipMedia({ id: message.id });
+								websocketService.send({
+									event: AppEvent.SkipMedia,
+									data: message.id,
+								});
 							}}
 						>
 							<SkipNextIcon />

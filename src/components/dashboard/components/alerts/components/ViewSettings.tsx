@@ -1,10 +1,10 @@
 import { Box, FormControlLabel, Radio, RadioGroup } from "@mui/material";
-import { ViewType } from "../../../../../../shared/enums";
-import View from "./View";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+import { ViewType } from "../../../../../../shared/enums";
+import { setAlert } from "../../../../../../shared/slices/alertsSlice";
 import type { AppState } from "../../../../../store";
-import { setAlert } from "../../../../../store/slices/alertsSlice";
+import View from "./View";
 
 const ViewSettings = () => {
 	const { alert } = useSelector((state: AppState) => state.alertsState);

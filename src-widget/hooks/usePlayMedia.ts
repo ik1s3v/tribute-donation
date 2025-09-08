@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { websocketService } from "../services/websocketService";
-import type { IMediaSettings, IMessage, ISettings } from "../../shared/types";
 import { AppEvent } from "../../shared/enums";
+import useWebSocket from "../../shared/hooks/useWebSocket";
+import type { IMediaSettings, IMessage, ISettings } from "../../shared/types";
 
 const usePlayMedia = () => {
+	const websocketService = useWebSocket();
 	const mediaSettingsRef = useRef<IMediaSettings | null>(null);
 	const settingsRef = useRef<ISettings | null>(null);
 	const messagesRef = useRef<IMessage[]>([]);
@@ -75,7 +76,7 @@ const usePlayMedia = () => {
 
 	useEffect(() => {
 		const unsubscribe = websocketService.subscribe<IMessage>(
-			AppEvent.Message,
+			AppEvent.MediaMessage,
 			handleNewMessage,
 		);
 

@@ -3,18 +3,19 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { Card, IconButton, Tooltip, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import { Currency } from "../../../../../../shared/enums";
+import { AppEvent, Currency } from "../../../../../../shared/enums";
+import useWebSocket from "../../../../../../shared/hooks/useWebSocket";
 import type { IAlert } from "../../../../../../shared/types";
-import { useTestAlertMutation } from "../../../../../api/alertsApi";
 
 const AlertTile = ({ alert }: { alert: IAlert }) => {
+	const websocketService = useWebSocket();
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const theme = useTheme();
-	const [testAlert] = useTestAlertMutation();
 	const handleTestAlert = () => {
-		testAlert({
-			message: {
+		websocketService.send({
+			event: AppEvent.Message,
+			data: {
 				id: crypto.randomUUID(),
 				telegram_message_id: crypto.randomUUID(),
 				amount: 100,

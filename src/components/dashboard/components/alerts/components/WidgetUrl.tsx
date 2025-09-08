@@ -1,9 +1,13 @@
-import { Box, IconButton } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-const WidgetUrl = ({ widgetUrl }: { widgetUrl: string }) => {
-	const { t } = useTranslation();
+import { Box, IconButton } from "@mui/material";
 
+const WidgetUrl = ({
+	widgetUrl,
+	text,
+}: {
+	widgetUrl: string;
+	text: string;
+}) => {
 	return (
 		<>
 			<div
@@ -14,7 +18,7 @@ const WidgetUrl = ({ widgetUrl }: { widgetUrl: string }) => {
 					placeItems: "center",
 				}}
 			>
-				<span>{t("widget.url")}:</span>
+				<span>{text}:</span>
 				<Box
 					sx={(theme) => ({
 						color: theme.palette.primary.main,

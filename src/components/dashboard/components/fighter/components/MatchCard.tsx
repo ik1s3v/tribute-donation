@@ -1,7 +1,8 @@
 import { Button, Card } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { AppEvent } from "../../../../../../shared/enums";
+import useWebSocket from "../../../../../../shared/hooks/useWebSocket";
 import { IAucFighterMatch } from "../../../../../../shared/types";
-import { useStartAucFighterMatchMutation } from "../../../../../api/aucFighterApi";
 import TeamTile from "../../auction/components/TeamTile";
 
 const MatchCard = ({
@@ -13,8 +14,8 @@ const MatchCard = ({
 	matchNumber: number;
 	isAucFighterPlaying: boolean;
 }) => {
+	const websocketService = useWebSocket();
 	const { t } = useTranslation();
-	const [startAucFighterMatch] = useStartAucFighterMatchMutation();
 	return (
 		<Card
 			sx={(theme) => ({
@@ -45,7 +46,12 @@ const MatchCard = ({
 				{match.is_ended && (
 					<Button
 						size="small"
-						onClick={() => startAucFighterMatch({ data: match })}
+						onClick={() => {
+							websocketService.send({
+								event: AppEvent.StartAucFighterMatch,
+								data: match,
+							});
+						}}
 					>
 						{t("fighter.rematch")}
 					</Button>

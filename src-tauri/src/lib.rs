@@ -11,7 +11,9 @@ use utils::register_shortcuts;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    let mut builder = tauri::Builder::default().plugin(tauri_plugin_opener::init());
+    let mut builder = tauri::Builder::default()
+        .plugin(tauri_plugin_websocket::init())
+        .plugin(tauri_plugin_opener::init());
 
     #[cfg(debug_assertions)]
     {
@@ -43,30 +45,18 @@ pub fn run() {
             request_login_code,
             get_messages,
             sign_in,
-            skip_alert,
-            replay_alert,
             get_alert_by_id,
             get_alerts,
-            test_alert,
             get_settings,
             update_alert_settings,
             update_settings,
             check_password,
             get_media_settings,
             update_media_settings,
-            skip_media,
-            pause_media,
-            play_media,
-            replay_media,
             get_auction_settings,
             get_maption_settings,
             update_auction_settings,
             update_maption_settings,
-            start_auc_fighter_match,
-            pause_auc_fighter_match,
-            resume_auc_fighter_match,
-            update_auc_fighter_match,
-            cancel_auc_fighter_match,
             get_auc_fighter_settings,
             update_auc_fighter_settings,
             init

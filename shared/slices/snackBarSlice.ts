@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AlertSeverity } from "../../../shared/enums";
+import { AlertSeverity } from "../enums";
 
 interface SnackBarState {
 	isShowSnackBar: boolean;

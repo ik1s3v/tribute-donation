@@ -162,7 +162,8 @@
 	"widget": {
 		"copy": "Copy",
 		"launch": "Launch",
-		"url": "Widget url"
+		"url": "Widget url",
+		"obs_dock_url": "Obs dock url"
 	},
 	"view": {
 		"top": "Image top, text bottom",

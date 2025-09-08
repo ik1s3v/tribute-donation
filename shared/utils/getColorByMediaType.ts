@@ -1,4 +1,4 @@
-import { MediaType } from "../../shared/enums";
+import { MediaType } from "../enums";
 
 const getColorByMediaType = (mediaType: MediaType) => {
 	switch (mediaType) {

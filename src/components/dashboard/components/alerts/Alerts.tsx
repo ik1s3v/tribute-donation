@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { AlertSeverity } from "../../../../../shared/enums";
+import { showSnackBar } from "../../../../../shared/slices/snackBarSlice";
 import { useGetAlertsQuery } from "../../../../api/alertsApi";
-import { showSnackBar } from "../../../../store/slices/snackBarSlice";
 import groupAlertsByGroupId from "../../../../utils/groupAlertsByGroupId";
 import AlertsGroup from "./AlertsGroup";
 

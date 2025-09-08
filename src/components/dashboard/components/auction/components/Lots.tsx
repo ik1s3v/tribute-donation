@@ -27,8 +27,8 @@ import Timer from "./Timer";
 import "react-virtualized/styles.css";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AlertSeverity } from "../../../../../../shared/enums";
+import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
 import { auctionTimerSlice } from "../../../../../../shared/slices/timerSlice";
-import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
 import Integrations from "./Integrations";
 import LotsOptionsMenu from "./LotsOptionsMenu";
 

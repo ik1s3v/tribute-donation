@@ -163,7 +163,7 @@ impl TelegramService {
                                     };
 
                                     websocket_broadcaster
-                                        .broadcast_event_message(&ws_message, &app)
+                                        .broadcast_event_message(&ws_message)
                                         .await
                                         .unwrap();
                                     None
@@ -182,7 +182,7 @@ impl TelegramService {
                             telegram_message_id,
                             played: false,
                             created_at: Utc::now().timestamp(),
-                            media,
+                            media: media.clone(),
                         };
                         database_service
                             .save_message(alert_message.clone())
@@ -191,13 +191,25 @@ impl TelegramService {
 
                         let event_message = EventMessage {
                             event: AppEvent::Message,
-                            data: alert_message,
+                            data: alert_message.clone(),
                         };
 
                         websocket_broadcaster
-                            .broadcast_event_message(&event_message, &app)
+                            .broadcast_event_message(&event_message)
                             .await
                             .unwrap();
+
+                        if let Some(_) = media {
+                            let event_message = EventMessage {
+                                event: AppEvent::MediaMessage,
+                                data: alert_message,
+                            };
+
+                            websocket_broadcaster
+                                .broadcast_event_message(&event_message)
+                                .await
+                                .unwrap();
+                        }
                     }
                     _ => {}
                 }

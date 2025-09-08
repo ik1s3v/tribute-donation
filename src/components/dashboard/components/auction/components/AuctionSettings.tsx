@@ -5,13 +5,13 @@ import { useTranslation } from "react-i18next";
 import { NumericFormat } from "react-number-format";
 import { useDispatch, useSelector } from "react-redux";
 import { AlertSeverity } from "../../../../../../shared/enums";
+import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
 import {
 	useGetAuctionSettingsQuery,
 	useUpdateAuctionSettingsMutation,
 } from "../../../../../api/auctionApi";
 import type { AppState } from "../../../../../store";
 import { setAuctionSettings } from "../../../../../store/slices/auctionSlice";
-import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
 import InputSwitch from "../../../../InputSwitch";
 import OnOffSwitch from "../../../../OnOffSwitch";
 import styles from "../../settings/Settings.module.css";

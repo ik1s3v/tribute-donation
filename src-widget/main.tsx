@@ -1,17 +1,31 @@
+import { CssBaseline } from "@mui/material";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import { BrowserRouter } from "react-router";
-import { websocketService } from "./services/websocketService";
-import { CssBaseline } from "@mui/material";
+import App from "./App";
+import { WebSocketService } from "./services/websocketService";
 import "../shared/i18n/i18n";
-websocketService.connect();
+import { Provider } from "react-redux";
+import { WebsocketContext } from "../shared/contexts/WebsocketContext";
+import WebsocketProvider from "../shared/providers/WebsocketProvider";
+import { store } from "./store";
+
+const webSocketService = new WebSocketService("ws://localhost:12553/ws");
+
+webSocketService.connect();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
-		<BrowserRouter>
-			<CssBaseline />
-			<App />
-		</BrowserRouter>
+		<WebsocketProvider
+			context={WebsocketContext}
+			webSocketService={webSocketService}
+		>
+			<Provider store={store}>
+				<BrowserRouter>
+					<CssBaseline />
+					<App />
+				</BrowserRouter>
+			</Provider>
+		</WebsocketProvider>
 	</React.StrictMode>,
 );

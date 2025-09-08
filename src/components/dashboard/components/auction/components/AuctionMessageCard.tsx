@@ -15,12 +15,12 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { findBestMatch } from "string-similarity";
 import { AlertSeverity } from "../../../../../../shared/enums";
+import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
 import type { ILot, IMessage } from "../../../../../../shared/types";
 import getRandomColor from "../../../../../helpers/getRandomColor";
 import type { AppState } from "../../../../../store";
 import { addLot, updateLot } from "../../../../../store/slices/lotsSlice";
 import { auctionMessagesSlice } from "../../../../../store/slices/messagesSlice";
-import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
 
 const AuctionMessageCard = ({ message }: { message: IMessage }) => {
 	const { t } = useTranslation();

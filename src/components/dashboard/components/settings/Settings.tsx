@@ -1,19 +1,19 @@
-import { useTranslation } from "react-i18next";
 import { Button, MenuItem, Select, TextField } from "@mui/material";
-import styles from "./Settings.module.css";
-import OnOffSwitch from "../../../OnOffSwitch";
+import type { SerializedError } from "@reduxjs/toolkit";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { showSnackBar } from "../../../../store/slices/snackBarSlice";
 import { AlertSeverity } from "../../../../../shared/enums";
-import InputSlider from "../../../InputSlider";
+import { languages } from "../../../../../shared/i18n/languages";
+import { showSnackBar } from "../../../../../shared/slices/snackBarSlice";
+import { useUpdateSettingsMutation } from "../../../../api/settingsApi";
 import type { AppState } from "../../../../store";
 import {
 	setDuration,
 	setSettings,
 } from "../../../../store/slices/settingsSlice";
-import { languages } from "../../../../../shared/i18n/languages";
-import { useUpdateSettingsMutation } from "../../../../api/settingsApi";
-import type { SerializedError } from "@reduxjs/toolkit";
+import InputSlider from "../../../InputSlider";
+import OnOffSwitch from "../../../OnOffSwitch";
+import styles from "./Settings.module.css";
 
 const Settings = () => {
 	const { t, i18n } = useTranslation();

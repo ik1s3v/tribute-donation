@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { setMessageStyle } from "../../../../../store/slices/alertsSlice";
-import TextStyle from "./TextStyle";
+import { setMessageStyle } from "../../../../../../shared/slices/alertsSlice";
 import type { AppState } from "../../../../../store";
+import TextStyle from "./TextStyle";
 
 const MessageStyle = () => {
 	const { alert } = useSelector((state: AppState) => state.alertsState);

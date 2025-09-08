@@ -6,11 +6,11 @@ import { readTextFile } from "@tauri-apps/plugin-fs";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { AlertSeverity } from "../../../../../../shared/enums";
+import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
 import { IImportedLot, ILot } from "../../../../../../shared/types";
 import getRandomColor from "../../../../../helpers/getRandomColor";
 import { AppState } from "../../../../../store";
 import { setLots } from "../../../../../store/slices/lotsSlice";
-import { showSnackBar } from "../../../../../store/slices/snackBarSlice";
 
 const LotsOptionsMenu = () => {
 	const { colors } = useSelector((state: AppState) => state.mainState);

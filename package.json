@@ -30,6 +30,7 @@
     "@tauri-apps/plugin-opener": "^2.5.0",
     "@tauri-apps/plugin-process": "^2.2.1",
     "@tauri-apps/plugin-updater": "^2.6.1",
+    "@tauri-apps/plugin-websocket": "^2.4.0",
     "@vis.gl/react-google-maps": "^1.5.4",
     "cross-env": "^7.0.3",
     "dayjs": "^1.11.13",

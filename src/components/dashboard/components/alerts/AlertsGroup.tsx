@@ -22,7 +22,7 @@ const AlertsGroup = ({ alertsGroup }: { alertsGroup: IAlertsGroup }) => {
 					{t("alerts.group")} {alertsGroup.group_id.toUpperCase()}
 				</h3>
 
-				<WidgetUrl widgetUrl={widgetUrl} />
+				<WidgetUrl widgetUrl={widgetUrl} text={t("widget.url")} />
 				<div style={{ display: "flex" }}>
 					{alertsGroup.items.map((alert) => (
 						<AlertTile alert={alert} key={alert.id} />

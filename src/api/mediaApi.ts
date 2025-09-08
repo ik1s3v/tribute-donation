@@ -1,5 +1,5 @@
+import type { IMediaSettings } from "../../shared/types";
 import { api } from ".";
-import type { IMediaSettings, IMessage } from "../../shared/types";
 
 export const mediaApi = api.injectEndpoints({
 	endpoints: (builder) => ({
@@ -17,37 +17,7 @@ export const mediaApi = api.injectEndpoints({
 				args,
 			}),
 		}),
-		replayMedia: builder.mutation<void, { message: IMessage }>({
-			query: (args) => ({
-				command: "replay_media",
-				args,
-			}),
-		}),
-		playMedia: builder.mutation<void, { id: string }>({
-			query: (args) => ({
-				command: "play_media",
-				args,
-			}),
-		}),
-		pauseMedia: builder.mutation<void, { id: string }>({
-			query: (args) => ({
-				command: "pause_media",
-				args,
-			}),
-		}),
-		skipMedia: builder.mutation<void, { id: string }>({
-			query: (args) => ({
-				command: "skip_media",
-				args,
-			}),
-		}),
 	}),
 });
-export const {
-	useGetMediaSettingsQuery,
-	useUpdateMediaSettingsMutation,
-	useReplayMediaMutation,
-	usePauseMediaMutation,
-	usePlayMediaMutation,
-	useSkipMediaMutation,
-} = mediaApi;
+export const { useGetMediaSettingsQuery, useUpdateMediaSettingsMutation } =
+	mediaApi;

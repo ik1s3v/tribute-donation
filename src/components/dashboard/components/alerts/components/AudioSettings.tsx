@@ -1,17 +1,18 @@
-import { Button } from "@mui/material";
-import { open } from "@tauri-apps/plugin-dialog";
-import { readFile, writeFile, BaseDirectory } from "@tauri-apps/plugin-fs";
-import type { AppState } from "../../../../../store";
-import { convertFileSrc } from "@tauri-apps/api/core";
-import { useDispatch, useSelector } from "react-redux";
-import getFilenameFromPath from "../../../../../utils/getFilenameFromPath";
-import { useEffect, useRef, useState } from "react";
+import StopIcon from "@mui/icons-material/Stop";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import { Button } from "@mui/material";
+import { convertFileSrc } from "@tauri-apps/api/core";
+import { open } from "@tauri-apps/plugin-dialog";
+import { BaseDirectory, readFile, writeFile } from "@tauri-apps/plugin-fs";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { setAlert } from "../../../../../../shared/slices/alertsSlice";
+import type { AppState } from "../../../../../store";
+import getFilenameFromPath from "../../../../../utils/getFilenameFromPath";
 import InputSlider from "../../../../InputSlider";
 import styles from "../../settings/Settings.module.css";
-import { setAlert } from "../../../../../store/slices/alertsSlice";
-import StopIcon from "@mui/icons-material/Stop";
+
 const AudioSettings = () => {
 	const [isPlaying, setIsPlaying] = useState(false);
 	const { alert } = useSelector((state: AppState) => state.alertsState);

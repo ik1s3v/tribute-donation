@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { AlertSeverity } from "../../../../../shared/enums";
+import { setMediaSettings } from "../../../../../shared/slices/mediaSlice";
+import { showSnackBar } from "../../../../../shared/slices/snackBarSlice";
 import {
 	useGetMediaSettingsQuery,
 	useUpdateMediaSettingsMutation,
 } from "../../../../api/mediaApi";
 import type { AppState } from "../../../../store";
-import { setMediaSettings } from "../../../../store/slices/mediaSlice";
-import { showSnackBar } from "../../../../store/slices/snackBarSlice";
 import TabPanel from "../../../TabPanel";
 import WidgetUrl from "../alerts/components/WidgetUrl";
 import TikTokIcon from "./components/TikTokIcon";
@@ -51,7 +51,10 @@ const Media = () => {
 		mediaSettings && (
 			<>
 				<h1>{t("media.title")}</h1>
-				<WidgetUrl widgetUrl={"http://localhost:12553/media"} />
+				<WidgetUrl
+					widgetUrl={"http://localhost:12553/media"}
+					text={t("widget.url")}
+				/>
 				<Box
 					sx={{
 						borderBottom: 1,

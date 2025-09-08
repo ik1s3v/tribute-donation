@@ -24,13 +24,10 @@ pub fn register_shortcuts(app: &mut App) -> Result<(), Box<dyn std::error::Error
                                     let websocket_broadcaster =
                                         app_handle.state::<WebSocketBroadcaster>();
                                     websocket_broadcaster
-                                        .broadcast_event_message(
-                                            &EventMessage {
-                                                event: AppEvent::SkipPlayingAlert,
-                                                data: None::<String>,
-                                            },
-                                            &app_handle,
-                                        )
+                                        .broadcast_event_message(&EventMessage {
+                                            event: AppEvent::SkipPlayingAlert,
+                                            data: None::<String>,
+                                        })
                                         .await
                                         .unwrap();
                                 });
@@ -44,13 +41,10 @@ pub fn register_shortcuts(app: &mut App) -> Result<(), Box<dyn std::error::Error
                                     let websocket_broadcaster =
                                         app_handle.state::<WebSocketBroadcaster>();
                                     websocket_broadcaster
-                                        .broadcast_event_message(
-                                            &EventMessage {
-                                                event: AppEvent::SkipPlayingMedia,
-                                                data: None::<String>,
-                                            },
-                                            &app_handle,
-                                        )
+                                        .broadcast_event_message(&EventMessage {
+                                            event: AppEvent::SkipPlayingMedia,
+                                            data: None::<String>,
+                                        })
                                         .await
                                         .unwrap();
                                 });
