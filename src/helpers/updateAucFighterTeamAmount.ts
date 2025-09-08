@@ -1,9 +1,13 @@
+import { AppEvent } from "../../shared/enums";
 import { IMessage } from "../../shared/types";
-import { aucFighterApi } from "../api/aucFighterApi";
+import { WebSocketService } from "../services/websocketService";
 import { AppState, store } from "../store";
 import { updateMatches } from "../store/slices/aucFighterSlice";
 
-const updateAucFighterTeamAmount = (message: IMessage) => {
+const updateAucFighterTeamAmount = (
+	message: IMessage,
+	websocketService: WebSocketService,
+) => {
 	const state = store.getState() as AppState;
 	const ids = message.text?.split("#");
 
@@ -58,11 +62,10 @@ const updateAucFighterTeamAmount = (message: IMessage) => {
 				(match) => match.id === playingMatchId,
 			);
 			if (updatedMatch) {
-				store.dispatch(
-					aucFighterApi.endpoints.updateAucFighterMatch.initiate({
-						data: updatedMatch,
-					}),
-				);
+				websocketService.send({
+					event: AppEvent.UpdateAucFighterMatch,
+					data: updatedMatch,
+				});
 			}
 		}
 	}
