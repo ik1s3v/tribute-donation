@@ -61,7 +61,7 @@ export class WebSocketService
 				if (isShowTributeMessages) {
 					store.dispatch(addAuctionMessage(message));
 				}
-				updateAucFighterTeamAmount(message);
+				updateAucFighterTeamAmount(message, this);
 				store.dispatch(addMaptionMessage(message));
 				store.dispatch(
 					messagesApi.util.updateQueryData(
