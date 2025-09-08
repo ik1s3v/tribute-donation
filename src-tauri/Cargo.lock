@@ -8196,7 +8196,7 @@ dependencies = [
 
 [[package]]
 name = "tribute-donation"
-version = "0.1.7"
+version = "0.1.8"
 dependencies = [
  "async-trait",
  "axum 0.8.4",

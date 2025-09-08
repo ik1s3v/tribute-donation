@@ -76,7 +76,7 @@ jobs:
         with:
           tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
           releaseName: "v__VERSION__"
-          releaseBody: "Add auc fighter"
+          releaseBody: "Add obs dock widget for messages, add test alert, add import for lots and refactor code."
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
@@ -92,7 +92,7 @@ jobs:
         with:
           tagName: latest # the action automatically replaces \_\_VERSION\_\_ with the app version.
           releaseName: "latest"
-          releaseBody: "Add auc fighter"
+          releaseBody: "Add obs dock widget for messages, add test alert, add import for lots and refactor code."
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
