@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router";
 import { AlertSeverity } from "../../../shared/enums";
 import { showSnackBar } from "../../../shared/slices/snackBarSlice";
-import { useCreateAlertMutation } from "../../api/alertsApi";
+import { useCreateAlertMutation, useGetAlertsQuery } from "../../api/alertsApi";
 import { dashboardRouts } from "../../routes/dashboardRouts";
 import { AppState } from "../../store";
 import AlertSettings from "./components/alerts/AlertSettings";
 import CreatedAlertSettings from "./components/alerts/CreatedAlertSettings";
 
 const DashboardArticle = () => {
+	const { refetch } = useGetAlertsQuery();
 	const { t } = useTranslation();
 	const [createAlert] = useCreateAlertMutation();
 	const { alert } = useSelector((state: AppState) => state.alertsState);
@@ -38,6 +39,7 @@ const DashboardArticle = () => {
 									if (!alert) return;
 									try {
 										await createAlert({ alert }).unwrap();
+										refetch();
 										dispatch(
 											showSnackBar({
 												message: t("success"),
