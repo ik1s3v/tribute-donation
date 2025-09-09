@@ -8,6 +8,8 @@ pub trait AlertsRepository: Send + Sync {
     async fn get_alerts(&self) -> Result<Vec<Model>, DbErr>;
     async fn get_alert_by_id(&self, id: String) -> Result<Option<Model>, DbErr>;
     async fn update_alert_settings(&self, alert: Model) -> Result<(), DbErr>;
+    async fn create_alert(&self, alert: Model) -> Result<(), DbErr>;
+    async fn delete_alert_by_id(&self, id: String) -> Result<(), DbErr>;
 }
 
 #[async_trait]
@@ -24,6 +26,9 @@ impl AlertsRepository for DatabaseService {
             audio: Set(alert.audio),
             image: Set(alert.image),
             name: Set(alert.name),
+            status: Set(alert.status),
+            amount: Set(alert.amount),
+            variation_conditions: Set(alert.variation_conditions),
             group_id: Set(alert.group_id),
             audio_volume: Set(alert.audio_volume),
             view_type: Set(alert.view_type),
@@ -32,6 +37,29 @@ impl AlertsRepository for DatabaseService {
         })
         .exec(&self.connection)
         .await?;
+        Ok(())
+    }
+    async fn create_alert(&self, alert: Model) -> Result<(), DbErr> {
+        Entity::insert(ActiveModel {
+            id: Set(alert.id),
+            audio: Set(alert.audio),
+            image: Set(alert.image),
+            name: Set(alert.name),
+            status: Set(alert.status),
+            amount: Set(alert.amount),
+            variation_conditions: Set(alert.variation_conditions),
+            group_id: Set(alert.group_id),
+            audio_volume: Set(alert.audio_volume),
+            view_type: Set(alert.view_type),
+            title_style: Set(alert.title_style),
+            message_style: Set(alert.message_style),
+        })
+        .exec(&self.connection)
+        .await?;
+        Ok(())
+    }
+    async fn delete_alert_by_id(&self, id: String) -> Result<(), DbErr> {
+        Entity::delete_by_id(id).exec(&self.connection).await?;
         Ok(())
     }
 }

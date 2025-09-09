@@ -39,7 +39,6 @@ export enum AppEvent {
 	MakeAudioError = "MakeAudioError",
 	Settings = "Settings",
 	MediaSettings = "MediaSettings",
-	AlertConnected = "AlertConnected",
 	StartAucFighterMatch = "StartAucFighterMatch",
 	AucFighterMatchEnd = "AucFighterMatchEnd",
 	PauseAucFighterMatch = "PauseAucFighterMatch",
@@ -49,6 +48,7 @@ export enum AppEvent {
 	UpdateAucFighterMatch = "UpdateAucFighterMatch",
 	CancelAucFighterMatch = "CancelAucFighterMatch",
 	AucFighterSettings = "AucFighterSettings",
+	TestAlert = "TestAlert",
 }
 
 export enum ViewType {
@@ -72,4 +72,9 @@ export enum MediaType {
 export enum WheelVariant {
 	normal = "normal",
 	dropout = "dropout",
+}
+export enum AlertVariationConditions {
+	Random = "Random",
+	AmountIsGreater = "AmountIsGreater",
+	AmountIsEqual = "AmountIsEqual",
 }

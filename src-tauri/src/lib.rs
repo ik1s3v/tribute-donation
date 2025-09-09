@@ -49,6 +49,8 @@ pub fn run() {
             get_alerts,
             get_settings,
             update_alert_settings,
+            create_alert,
+            delete_alert_by_id,
             update_settings,
             check_password,
             get_media_settings,

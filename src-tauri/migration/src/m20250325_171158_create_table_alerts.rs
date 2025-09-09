@@ -33,7 +33,7 @@ impl MigrationTrait for Migration {
 }
 
 #[derive(DeriveIden)]
-enum Alerts {
+pub enum Alerts {
     Table,
     Id,
     Audio,

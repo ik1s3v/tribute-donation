@@ -1,4 +1,10 @@
-import type { AppEvent, Currency, MediaType, ViewType } from "./enums";
+import type {
+	AlertVariationConditions,
+	AppEvent,
+	Currency,
+	MediaType,
+	ViewType,
+} from "./enums";
 
 export interface IMessage {
 	id: string;
@@ -42,6 +48,9 @@ export interface IAlert {
 	image: string;
 	group_id: string;
 	name: string;
+	variation_conditions: AlertVariationConditions;
+	status: boolean;
+	amount: number;
 	title_style: ITextStyle;
 	message_style: ITextStyle;
 }

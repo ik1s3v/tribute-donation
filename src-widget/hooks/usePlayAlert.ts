@@ -1,10 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AppEvent } from "../../shared/enums";
+import { useTranslation } from "react-i18next";
+import {
+	AlertVariationConditions,
+	AppEvent,
+	Currency,
+} from "../../shared/enums";
 import useWebSocket from "../../shared/hooks/useWebSocket";
 import type { IAlert, IMessage, ISettings } from "../../shared/types";
 import getAlertByMessage from "../utils/getAlertByMessage";
 
 const usePlayAlert = () => {
+	const { t } = useTranslation();
 	const websocketService = useWebSocket();
 	const alertAudioRef = useRef<HTMLAudioElement>(new Audio());
 	const messageAudioRef = useRef<HTMLAudioElement>(new Audio());
@@ -55,13 +61,15 @@ const usePlayAlert = () => {
 		if (settingsRef.current && !settingsRef.current.alert_paused) {
 			setTimeout(() => {
 				if (settingsRef.current && messagesRef.current.length) {
-					websocketService.send({
-						event: AppEvent.AlertPlaying,
-						data: message.id,
-					});
 					const alert = getAlertByMessage({
 						alerts: alertsRef.current,
 						message,
+					});
+
+					if (!alert) return;
+					websocketService.send({
+						event: AppEvent.AlertPlaying,
+						data: message.id,
 					});
 
 					if (message.audio) {
@@ -76,6 +84,40 @@ const usePlayAlert = () => {
 					setCurrentAlert(alert);
 				}
 			}, settingsRef.current.moderation_duration);
+		}
+	}, []);
+
+	const testAlert = useCallback((id: string) => {
+		const alert = alertsRef.current.find((alert) => alert.id === id);
+		if (!alert) return;
+		const message: IMessage = {
+			id: crypto.randomUUID(),
+			telegram_message_id: crypto.randomUUID(),
+			amount:
+				alert.variation_conditions === AlertVariationConditions.AmountIsEqual
+					? alert.amount
+					: alert.amount + 1,
+			user_name: t("alert.test_name"),
+			played: false,
+			text: t("alert.test_text"),
+			currency: Currency.EUR,
+			created_at: Math.round(new Date().getTime() / 1000),
+		};
+		if (!messagesRef.current.length && settingsRef.current) {
+			websocketService.send({
+				event: AppEvent.AlertPlaying,
+				data: message.id,
+			});
+
+			if (message.audio) {
+				messageAudioRef.current.src = `static/${message.audio}`;
+				messageAudioRef.current.volume = settingsRef.current.tts_volume / 100;
+			}
+			alertAudioRef.current.src = `static/${alert.audio}`;
+			alertAudioRef.current.volume = alert.audio_volume / 100;
+			alertAudioRef.current.play();
+			setCurrentMessage(message);
+			setCurrentAlert(alert);
 		}
 	}, []);
 
@@ -175,6 +217,17 @@ const usePlayAlert = () => {
 
 		return () => unsubscribe();
 	}, [skipMessage]);
+
+	useEffect(() => {
+		const unsubscribe = websocketService.subscribe<string>(
+			AppEvent.TestAlert,
+			(id) => {
+				testAlert(id);
+			},
+		);
+
+		return () => unsubscribe();
+	}, [testAlert]);
 
 	useEffect(() => {
 		const unsubscribe = websocketService.subscribe<null>(

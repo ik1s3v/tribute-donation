@@ -1,4 +1,5 @@
 import { AppEvent } from "../../shared/enums";
+import i18n from "../../shared/i18n/i18n";
 import HotReload from "../../shared/services/hotReload";
 import Subscriptions from "../../shared/services/subscriptions";
 import { setPlayingAlertId } from "../../shared/slices/alertsSlice";
@@ -9,6 +10,7 @@ import {
 import type {
 	IEventMessage,
 	IMessage,
+	ISettings,
 	IWebsocketService,
 } from "../../shared/types";
 import { messagesApi } from "../api/messagesApi";
@@ -33,15 +35,6 @@ export class WebSocketService
 		if (!this.socket || this.socket.readyState !== WebSocket.OPEN) {
 			this.socket = new WebSocket(this.url);
 			this.hotReload = new HotReload(this.socket);
-
-			this.socket.onopen = () => {
-				const url = new URL(location.href);
-				const groupId = url.searchParams.get("group_id");
-				this.send({
-					event: AppEvent.AlertConnected,
-					data: groupId,
-				});
-			};
 
 			this.socket.onmessage = (message) => {
 				const websocketMessage: IEventMessage<unknown> = JSON.parse(
@@ -90,6 +83,10 @@ export class WebSocketService
 			this.subscribe<string>(AppEvent.MediaPlayed, (_) => {
 				store.dispatch(setPlayingMediaId(""));
 				store.dispatch(setPausedMediaId(""));
+			});
+
+			this.subscribe<ISettings>(AppEvent.Settings, (settings) => {
+				i18n.changeLanguage(settings.language);
 			});
 		}
 	}

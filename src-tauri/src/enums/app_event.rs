@@ -23,7 +23,6 @@ pub enum AppEvent {
     MakeAudioError,
     Settings,
     MediaSettings,
-    AlertConnected,
     StartAucFighterMatch,
     PauseAucFighterMatch,
     ResumeAucFighterMatch,
@@ -33,6 +32,7 @@ pub enum AppEvent {
     UpdateAucFighterMatch,
     CancelAucFighterMatch,
     AucFighterSettings,
+    TestAlert,
 }
 impl AppEvent {
     pub fn as_str(e: AppEvent) -> &'static str {
@@ -56,7 +56,6 @@ impl AppEvent {
             AppEvent::MakeAudioError => "MakeAudioError",
             AppEvent::Alerts => "Alerts",
             AppEvent::ReplayAlert => "AlertsSettings",
-            AppEvent::AlertConnected => "AlertConnected",
             AppEvent::Settings => "Settings",
             AppEvent::MediaSettings => "MediaSettings",
             AppEvent::StartAucFighterMatch => "StartAucFighterMatch",
@@ -68,6 +67,7 @@ impl AppEvent {
             AppEvent::UpdateAucFighterMatch => "UpdateAucFighterMatch",
             AppEvent::CancelAucFighterMatch => "CancelAucFighterMatch",
             AppEvent::AucFighterSettings => "AucFighterSettings",
+            AppEvent::TestAlert => "TestAlert",
         }
     }
 }

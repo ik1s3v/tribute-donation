@@ -20,10 +20,24 @@ export const alertsApi = api.injectEndpoints({
 				args,
 			}),
 		}),
+		createAlert: builder.mutation<void, { alert: IAlert }>({
+			query: (args) => ({
+				command: "create_alert",
+				args,
+			}),
+		}),
+		deleteAlertById: builder.mutation<void, { id: string }>({
+			query: (args) => ({
+				command: "delete_alert_by_id",
+				args,
+			}),
+		}),
 	}),
 });
 export const {
 	useGetAlertsQuery,
 	useGetAlertByIdQuery,
 	useUpdateAlertSettingsMutation,
+	useCreateAlertMutation,
+	useDeleteAlertByIdMutation,
 } = alertsApi;

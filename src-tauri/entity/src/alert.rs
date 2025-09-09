@@ -11,6 +11,9 @@ pub struct Model {
     pub group_id: String,
     pub name: String,
     pub view_type: ViewType,
+    pub status: bool,
+    pub amount: u32,
+    pub variation_conditions: AlertVariationConditions,
     #[sea_orm(column_type = "Text")]
     pub title_style: TextStyle,
     #[sea_orm(column_type = "Text")]
@@ -35,6 +38,17 @@ pub enum ViewType {
     Right,
     #[sea_orm(string_value = "Overlay")]
     Overlay,
+}
+
+#[derive(Debug, Clone, PartialEq, EnumIter, DeriveActiveEnum, Eq, Deserialize, Serialize)]
+#[sea_orm(rs_type = "String", db_type = "Text")]
+pub enum AlertVariationConditions {
+    #[sea_orm(string_value = "Random")]
+    Random,
+    #[sea_orm(string_value = "AmountIsGreater")]
+    AmountIsGreater,
+    #[sea_orm(string_value = "AmountIsEqual")]
+    AmountIsEqual,
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, Eq, FromJsonQueryResult)]

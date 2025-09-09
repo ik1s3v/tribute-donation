@@ -1,4 +1,6 @@
 pub mod check_password;
+pub mod create_alert;
+pub mod delete_alert_by_id;
 pub mod get_alert_by_id;
 pub mod get_alerts;
 pub mod get_auc_fighter_settings;
@@ -19,6 +21,8 @@ pub mod update_media_settings;
 pub mod update_settings;
 
 pub use check_password::*;
+pub use create_alert::*;
+pub use delete_alert_by_id::*;
 pub use get_alert_by_id::*;
 pub use get_alerts::*;
 pub use get_auc_fighter_settings::*;

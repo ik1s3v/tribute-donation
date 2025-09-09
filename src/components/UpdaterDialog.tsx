@@ -7,8 +7,8 @@ import {
 	DialogTitle,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import useUpdater from "../hooks/useUpdater";
 import { useTranslation } from "react-i18next";
+import useUpdater from "../hooks/useUpdater";
 
 const UpdaterDialog = () => {
 	const [open, setOpen] = useState(false);

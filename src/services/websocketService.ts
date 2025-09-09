@@ -1,10 +1,7 @@
 import WebSocket from "@tauri-apps/plugin-websocket";
 import { AppEvent } from "../../shared/enums";
 import Subscriptions from "../../shared/services/subscriptions";
-import {
-	addConnectedAlert,
-	setPlayingAlertId,
-} from "../../shared/slices/alertsSlice";
+import { setPlayingAlertId } from "../../shared/slices/alertsSlice";
 import {
 	setPausedMediaId,
 	setPlayingMediaId,
@@ -38,6 +35,7 @@ export class WebSocketService
 {
 	socket: WebSocket | null;
 	url: string;
+	connected: boolean = false;
 
 	constructor(url: string) {
 		super();
@@ -46,7 +44,8 @@ export class WebSocketService
 	}
 
 	async connect() {
-		if (!this.socket) {
+		if (!this.socket && !this.connected) {
+			this.connected = true;
 			this.socket = await WebSocket.connect(this.url);
 			this.socket.addListener((message) => {
 				const websocketMessage: IEventMessage<unknown> = JSON.parse(
@@ -55,6 +54,7 @@ export class WebSocketService
 
 				this.notifySubscribers(websocketMessage.event, websocketMessage.data);
 			});
+
 			this.subscribe<IMessage>(AppEvent.Message, (message) => {
 				const state = store.getState() as AppState;
 				const { isShowTributeMessages } = state.auctionState;
@@ -88,10 +88,6 @@ export class WebSocketService
 
 			this.subscribe<string>(AppEvent.MediaPaused, (id) => {
 				store.dispatch(setPausedMediaId(id));
-			});
-
-			this.subscribe<string>(AppEvent.AlertConnected, (group_id) => {
-				store.dispatch(addConnectedAlert(group_id));
 			});
 
 			this.subscribe<string>(AppEvent.AlertPlayed, (_) => {
@@ -165,6 +161,7 @@ export class WebSocketService
 		if (this.socket) {
 			await this.socket.disconnect();
 			this.socket = null;
+			this.connected = false;
 		}
 	}
 

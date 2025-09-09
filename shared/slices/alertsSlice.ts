@@ -4,29 +4,17 @@ import { IAlert, ITextStyle } from "../types";
 interface AlertsState {
 	alert: IAlert | null;
 	playingAlertId: string;
-	connectedAlerts: string[];
 }
 
 const initialState: AlertsState = {
 	alert: null,
 	playingAlertId: "",
-	connectedAlerts: [],
 };
 
 export const alertsSlice = createSlice({
 	name: "alerts",
 	initialState,
 	reducers: {
-		addConnectedAlert: (
-			state,
-			action: {
-				payload: string;
-			},
-		) => {
-			if (!state.connectedAlerts.includes(action.payload)) {
-				state.connectedAlerts.push(action.payload);
-			}
-		},
 		setAlert: (
 			state,
 			action: {
@@ -66,10 +54,5 @@ export const alertsSlice = createSlice({
 	},
 });
 
-export const {
-	setAlert,
-	setTitleStyle,
-	setMessageStyle,
-	setPlayingAlertId,
-	addConnectedAlert,
-} = alertsSlice.actions;
+export const { setAlert, setTitleStyle, setMessageStyle, setPlayingAlertId } =
+	alertsSlice.actions;
