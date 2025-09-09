@@ -1,23 +1,25 @@
 {
-    "on": "Ein",
+    "on": "An",
     "off": "Aus",
     "select": "Auswählen",
     "success": "Erfolg",
+    "ok": "Ok",
+    "cancel": "Abbrechen",
     "sound_volume": "Lautstärke",
     "skip_media": "Medien überspringen",
-    "skip_alert": "Warnung überspringen",
+    "skip_alert": "Alarm überspringen",
     "authorization": {
-        "title": "Autorisierung",
+        "title": "Anmeldung",
         "code": "Code anfordern",
         "sign_in": "Anmelden",
         "phone": "Telefonnummer",
         "telegram_code": "Code von Telegram",
-        "your_code": "Ihr Code",
+        "your_code": "Dein Code",
         "2fa_password": "2FA-Passwort",
         "password": "Passwort"
     },
     "error": {
-        "wrong_lots_format": "Falsches Losformat"
+        "wrong_lots_format": "Falsches Lots-Format"
     },
     "updater": {
         "title": "Update",
@@ -33,7 +35,7 @@
         "tiktok": "TikTok"
     },
     "integration": {
-        "tribute": "Tributnachrichten anzeigen"
+        "tribute": "Dankesnachrichten anzeigen"
     },
     "auction": {
         "lots": "Lose",
@@ -43,26 +45,26 @@
     "maption": {
         "set_point": "Punkt setzen",
         "meter_price": "Preis pro Meter",
-        "amount": "Menge",
-        "finish": "Fertigstellen",
+        "amount": "Betrag",
+        "finish": "Beenden",
         "lat_error": "Breitengrad muss zwischen -90 und 90 liegen",
         "lng_error": "Längengrad muss zwischen -180 und 180 liegen",
-        "rules": "Damit der Zeiger automatisch die Position in der Nachricht ändert, sollte nur ein Wort aus folgendem enthalten sein:"
+        "rules": "Damit der Zeiger die Position in der Nachricht automatisch ändert, darf nur ein Wort enthalten sein aus:"
     },
     "media_settings": {
         "enabled": "Aktiviert",
         "min_amount_eur": "Mindestbetrag EUR",
         "min_amount_rub": "Mindestbetrag RUB",
         "video_volume": "Videolautstärke",
-        "min_views": "Mindestaufrufe"
+        "min_views": "Mindestanzahl Aufrufe"
     },
     "dashboard": {
         "messages": "Nachrichten",
         "settings": "Einstellungen",
-        "alerts": "Warnungen",
+        "alerts": "Alarme",
         "media": "Medien",
         "auction": "Auktion",
-        "maption": "Maption",
+        "maption": "Karte",
         "fighter": "Kämpfer"
     },
     "messages": {
@@ -75,22 +77,22 @@
     },
     "settings": {
         "title": "Einstellungen",
-        "pause": "Warnnachrichten pausieren",
+        "pause": "Alarmnachrichten pausieren",
         "moderation_duration": "Moderationsdauer",
         "black_list": "Schwarze Liste",
         "remove_links": "Links entfernen",
         "language": "Sprache",
-        "sec": "Sek"
+        "sec": "Sek."
     },
     "wheel": {
         "normal": "Normal",
-        "dropout": "Ausfall",
+        "dropout": "Ausstieg",
         "spin": "Drehen",
         "speed": "Raddrehgeschwindigkeit"
     },
     "timer": {
-        "continue": "Fortfahren",
-        "pause": "Pausieren",
+        "continue": "Fortsetzen",
+        "pause": "Pause",
         "reset": "Zurücksetzen",
         "add_time": "Zeit hinzufügen",
         "reduce_time": "Zeit reduzieren",
@@ -98,15 +100,15 @@
     },
     "fighter": {
         "title": "Kämpfer",
-        "match": "Spiel",
+        "match": "Match",
         "final": "Finale",
         "game": "Spiel",
         "cancel": "Spiel abbrechen",
-        "winner": "Gewinner",
+        "winner": "Sieger",
         "settings": "Einstellungen",
         "create_game": "Spiel aus Losen erstellen",
-        "start": "Starten",
-        "pause": "Pausieren",
+        "start": "Start",
+        "pause": "Pause",
         "rematch": "Rückspiel",
         "resume": "Fortsetzen"
     },
@@ -132,7 +134,7 @@
         "new_donation": "Neue Spende",
         "show_odds": "Quoten anzeigen",
         "show_total_sum": "Gesamtsumme anzeigen",
-        "greater_timer_adding_time": "Größere Zeit für Timer hinzufügen",
+        "greater_timer_adding_time": "Größere Timer-Zeit hinzufügen",
         "not_add_time_if": "Keine Zeit hinzufügen, wenn",
         "adding_time": "Zeit"
     },
@@ -145,19 +147,32 @@
         "add_players": "Spieler hinzufügen"
     },
     "alerts": {
-        "title": "Warnungen",
+        "title": "Alarme",
         "group": "Gruppe"
     },
     "alert": {
         "image": "Bild",
         "audio": "Audio",
-        "view": "Anzeigen",
+        "view": "Ansehen",
         "title": "Titel",
         "message": "Nachricht",
         "test_name": "Test",
-        "test_text": "Dies ist eine Testwarnung!",
+        "test_text": "Dies ist ein Testalarm!",
         "configure": "Konfigurieren",
-        "test": "Testen"
+        "test": "Test",
+        "add_new_variant": "Neue Variante hinzufügen",
+        "general": "Allgemeine Einstellungen",
+        "new_variant": "Neue Variante",
+        "variant_title": "Variantentitel",
+        "variant_group": "Variantengruppe",
+        "status": "Status",
+        "variation_condition": "Variationsbedingung",
+        "group": "Gruppe",
+        "Random": "Zufällig",
+        "AmountIsGreater": "Betrag ist größer",
+        "AmountIsEqual": "Betrag ist gleich",
+        "delete": "Löschen",
+        "sure_delete": "Sind Sie sicher, dass Sie diese Variante löschen möchten?"
     },
     "save": "Speichern",
     "back": "Zurück",
@@ -180,7 +195,7 @@
         "text_color": "Textfarbe",
         "bold": "Fett",
         "italics": "Kursiv",
-        "underline": "Unterstrichen",
+        "underline": "Unterstreichen",
         "transformation": "Transformation",
         "letter_spacing": "Buchstabenabstand",
         "word_spacing": "Wortabstand",
@@ -191,6 +206,6 @@
     },
     "audio": {
         "play": "Abspielen",
-        "stop": "Stoppen"
+        "stop": "Stopp"
     }
 }

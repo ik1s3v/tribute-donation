@@ -1,23 +1,25 @@
 {
     "on": "تشغيل",
     "off": "إيقاف",
-    "select": "اختيار",
+    "select": "اختر",
     "success": "نجاح",
+    "ok": "موافق",
+    "cancel": "إلغاء",
     "sound_volume": "مستوى الصوت",
-    "skip_media": "اختصار تخطي الوسائط",
-    "skip_alert": "اختصار تخطي التنبيه",
+    "skip_media": "تخطي الوسائط",
+    "skip_alert": "تخطي التنبيه",
     "authorization": {
-        "title": "التفويض",
-        "code": "طلب الرمز",
+        "title": "تسجيل الدخول",
+        "code": "طلب رمز",
         "sign_in": "تسجيل الدخول",
         "phone": "رقم الهاتف",
-        "telegram_code": "الرمز من تيليجرام",
+        "telegram_code": "رمز من تيليغرام",
         "your_code": "رمزك",
-        "2fa_password": "كلمة مرور التوثيق الثنائي",
+        "2fa_password": "كلمة مرور التحقق الثنائي",
         "password": "كلمة المرور"
     },
     "error": {
-        "wrong_lots_format": "تنسيق القرعة غير صحيح"
+        "wrong_lots_format": "تنسيق الحزم غير صحيح"
     },
     "updater": {
         "title": "تحديث",
@@ -27,32 +29,32 @@
         "downloading": "جارٍ التنزيل..."
     },
     "media": {
-        "title": "الوسائط",
+        "title": "وسائط",
         "youtube": "يوتيوب",
         "twitch": "تويتش",
         "tiktok": "تيك توك"
     },
     "integration": {
-        "tribute": "إظهار رسائل التكريم"
+        "tribute": "إظهار رسائل الشكر"
     },
     "auction": {
-        "lots": "القرع",
-        "wheel": "العجلة",
+        "lots": "حزم",
+        "wheel": "عجلة",
         "settings": "الإعدادات"
     },
     "maption": {
         "set_point": "تحديد النقطة",
         "meter_price": "السعر لكل متر",
-        "amount": "الكمية",
+        "amount": "المبلغ",
         "finish": "إنهاء",
-        "lat_error": "يجب أن يكون خط العرض بين -90 و90",
-        "lng_error": "يجب أن يكون خط الطول بين -180 و180",
-        "rules": "ليتغير موضع المؤشر تلقائيًا في الرسالة، يجب أن تحتوي على كلمة واحدة فقط من:"
+        "lat_error": "يجب أن تكون دائرة العرض بين -90 و 90",
+        "lng_error": "يجب أن يكون خط الطول بين -180 و 180",
+        "rules": "لكي يتغير موضع المؤشر تلقائيًا في الرسالة يجب أن تحتوي فقط على كلمة واحدة من:"
     },
     "media_settings": {
         "enabled": "مفعل",
-        "min_amount_eur": "الحد الأدنى باليورو",
-        "min_amount_rub": "الحد الأدنى بالروبل",
+        "min_amount_eur": "الحد الأدنى بالمبلغ باليورو",
+        "min_amount_rub": "الحد الأدنى بالمبلغ بالروبل",
         "video_volume": "مستوى صوت الفيديو",
         "min_views": "الحد الأدنى للمشاهدات"
     },
@@ -60,17 +62,17 @@
         "messages": "الرسائل",
         "settings": "الإعدادات",
         "alerts": "التنبيهات",
-        "media": "الوسائط",
-        "auction": "المزاد",
-        "maption": "مابشن",
-        "fighter": "المقاتل"
+        "media": "وسائط",
+        "auction": "مزاد",
+        "maption": "الخريطة",
+        "fighter": "مقاتل"
     },
     "messages": {
         "title": "آخر الرسائل"
     },
     "message": {
         "skip": "تخطي",
-        "replay": "إعادة تشغيل",
+        "replay": "إعادة",
         "donate": "تبرع"
     },
     "settings": {
@@ -84,61 +86,61 @@
     },
     "wheel": {
         "normal": "عادي",
-        "dropout": "التسرب",
-        "spin": "تدوير",
+        "dropout": "انسحاب",
+        "spin": "دوران",
         "speed": "سرعة العجلة"
     },
     "timer": {
         "continue": "متابعة",
         "pause": "إيقاف مؤقت",
-        "reset": "إعادة تعيين",
+        "reset": "إعادة ضبط",
         "add_time": "إضافة وقت",
         "reduce_time": "تقليل الوقت",
         "add_timex2": "إضافة وقت ×2"
     },
     "fighter": {
-        "title": "المقاتل",
-        "match": "المباراة",
-        "final": "النهائي",
-        "game": "اللعبة",
+        "title": "مقاتل",
+        "match": "مباراة",
+        "final": "نهائي",
+        "game": "لعبة",
         "cancel": "إلغاء اللعبة",
         "winner": "الفائز",
         "settings": "الإعدادات",
-        "create_game": "إنشاء لعبة من القرع",
+        "create_game": "إنشاء لعبة من الحزم",
         "start": "بدء",
         "pause": "إيقاف مؤقت",
-        "rematch": "إعادة المباراة",
+        "rematch": "إعادة مباراة",
         "resume": "استئناف"
     },
     "lot": {
         "name": "الاسم",
         "delete": "حذف",
-        "add": "إضافة كمية"
+        "add": "إضافة مبلغ"
     },
     "bid": {
         "delete": "حذف",
-        "to_lot": "إلى القرعة",
+        "to_lot": "إلى الحزمة",
         "new": "جديد",
-        "add_to_random_slot": "إضافة إلى قرعة عشوائية"
+        "add_to_random_slot": "إضافة إلى حزمة عشوائية"
     },
     "lots": {
         "add": "إضافة",
-        "new_lot_name": "اسم القرعة الجديدة",
-        "search": "البحث عن قرعة"
+        "new_lot_name": "اسم الحزمة الجديدة",
+        "search": "بحث عن حزمة"
     },
     "auction_settings": {
         "leader_change": "تغيير القائد",
-        "new_lot": "قرعة جديدة",
+        "new_lot": "حزمة جديدة",
         "new_donation": "تبرع جديد",
         "show_odds": "إظهار الاحتمالات",
-        "show_total_sum": "إظهار المبلغ الإجمالي",
-        "greater_timer_adding_time": "إضافة وقت للمؤقت الأكبر",
-        "not_add_time_if": "عدم إضافة وقت إذا",
+        "show_total_sum": "إظهار المجموع الكلي",
+        "greater_timer_adding_time": "زيادة وقت المؤقت الكبير",
+        "not_add_time_if": "لا تضف وقت إذا",
         "adding_time": "الوقت"
     },
     "lots_options": {
-        "import_lots": "استيراد القرع",
-        "clear_lots": "مسح القرع"
+        "import_lots": "استيراد الحزم",
+        "clear_lots": "مسح الحزم"
     },
     "auc_fighter_settings": {
         "round_duration": "مدة الجولة",
@@ -149,44 +151,57 @@
         "group": "المجموعة"
     },
     "alert": {
-        "image": "الصورة",
-        "audio": "الصوت",
+        "image": "صورة",
+        "audio": "صوت",
         "view": "عرض",
         "title": "العنوان",
         "message": "الرسالة",
         "test_name": "اختبار",
-        "test_text": "هذا تنبيه اختباري!",
-        "configure": "تهيئة",
-        "test": "اختبار"
+        "test_text": "هذا تنبيه تجريبي!",
+        "configure": "إعداد",
+        "test": "اختبار",
+        "add_new_variant": "إضافة نسخة جديدة",
+        "general": "الإعدادات العامة",
+        "new_variant": "نسخة جديدة",
+        "variant_title": "عنوان النسخة",
+        "variant_group": "مجموعة النسخة",
+        "status": "الحالة",
+        "variation_condition": "شرط النسخة",
+        "group": "المجموعة",
+        "Random": "عشوائي",
+        "AmountIsGreater": "المبلغ أكبر",
+        "AmountIsEqual": "المبلغ مساوي",
+        "delete": "حذف",
+        "sure_delete": "هل أنت متأكد أنك تريد حذف هذه النسخة؟"
     },
     "save": "حفظ",
     "back": "رجوع",
     "widget": {
         "copy": "نسخ",
         "launch": "تشغيل",
-        "url": "رابط الويدجت",
-        "obs_dock_url": "رابط أوبس دوك"
+        "url": "رابط الودجت",
+        "obs_dock_url": "رابط OBS dock"
     },
     "view": {
-        "top": "الصورة أعلى، النص أسفل",
-        "bottom": "الصورة أسفل، النص أعلى",
-        "left": "الصورة يسار، النص يمين",
-        "right": "الصورة يمين، النص يسار",
+        "top": "الصورة في الأعلى، النص في الأسفل",
+        "bottom": "الصورة في الأسفل، النص في الأعلى",
+        "left": "الصورة على اليسار، النص على اليمين",
+        "right": "الصورة على اليمين، النص على اليسار",
         "overlay": "النص فوق الصورة"
     },
     "text": {
         "font": "الخط",
         "font_size": "حجم الخط",
         "text_color": "لون النص",
-        "bold": "غامق",
+        "bold": "عريض",
         "italics": "مائل",
-        "underline": "تسطير",
-        "transformation": "التحويل",
-        "letter_spacing": "تباعد الحروف",
+        "underline": "مسطر",
+        "transformation": "تحويل",
+        "letter_spacing": "تباعد الأحرف",
         "word_spacing": "تباعد الكلمات",
         "horizontal_alignment": "المحاذاة الأفقية",
         "vertical_alignment": "المحاذاة العمودية",
-        "text_preview": "هذا معاينة!",
+        "text_preview": "هذه معاينة!",
         "name": "الاسم"
     },
     "audio": {

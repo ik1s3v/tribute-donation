@@ -1,11 +1,13 @@
 {
-    "on": "Activé",
-    "off": "Désactivé",
+    "on": "Activer",
+    "off": "Désactiver",
     "select": "Sélectionner",
     "success": "Succès",
+    "ok": "Ok",
+    "cancel": "Annuler",
     "sound_volume": "Volume sonore",
-    "skip_media": "Raccourci pour passer les médias",
-    "skip_alert": "Raccourci pour passer l'alerte",
+    "skip_media": "Ignorer les médias",
+    "skip_alert": "Ignorer l’alerte",
     "authorization": {
         "title": "Autorisation",
         "code": "Demander un code",
@@ -17,14 +19,14 @@
         "password": "Mot de passe"
     },
     "error": {
-        "wrong_lots_format": "Format des lots incorrect"
+        "wrong_lots_format": "Format de lots incorrect"
     },
     "updater": {
         "title": "Mise à jour",
-        "description": "Une nouvelle version de l'application est disponible. Voulez-vous mettre à jour ?",
+        "description": "Une nouvelle version de l’application est disponible. Voulez-vous mettre à jour ?",
         "update": "Mettre à jour",
         "later": "Plus tard",
-        "downloading": "Téléchargement en cours..."
+        "downloading": "Téléchargement..."
     },
     "media": {
         "title": "Médias",
@@ -33,7 +35,7 @@
         "tiktok": "TikTok"
     },
     "integration": {
-        "tribute": "Afficher les messages d'hommage"
+        "tribute": "Afficher les messages de remerciement"
     },
     "auction": {
         "lots": "Lots",
@@ -47,7 +49,7 @@
         "finish": "Terminer",
         "lat_error": "La latitude doit être comprise entre -90 et 90",
         "lng_error": "La longitude doit être comprise entre -180 et 180",
-        "rules": "Pour que le pointeur change automatiquement de position dans le message, il ne doit contenir qu'un seul mot parmi :"
+        "rules": "Pour que le pointeur change automatiquement de position dans le message, il ne doit y avoir qu’un seul mot parmi :"
     },
     "media_settings": {
         "enabled": "Activé",
@@ -62,25 +64,25 @@
         "alerts": "Alertes",
         "media": "Médias",
         "auction": "Enchères",
-        "maption": "Maption",
+        "maption": "Carte",
         "fighter": "Combattant"
     },
     "messages": {
         "title": "Derniers messages"
     },
     "message": {
-        "skip": "Passer",
+        "skip": "Ignorer",
         "replay": "Rejouer",
-        "donate": "Faire un don"
+        "donate": "Donner"
     },
     "settings": {
         "title": "Paramètres",
-        "pause": "Mettre en pause les messages d'alerte",
+        "pause": "Mettre en pause les messages d’alerte",
         "moderation_duration": "Durée de modération",
         "black_list": "Liste noire",
         "remove_links": "Supprimer les liens",
         "language": "Langue",
-        "sec": "Sec"
+        "sec": "Sec."
     },
     "wheel": {
         "normal": "Normal",
@@ -99,10 +101,10 @@
     "fighter": {
         "title": "Combattant",
         "match": "Match",
-        "final": "Final",
+        "final": "Finale",
         "game": "Jeu",
         "cancel": "Annuler le jeu",
-        "winner": "Gagnant",
+        "winner": "Vainqueur",
         "settings": "Paramètres",
         "create_game": "Créer un jeu à partir des lots",
         "start": "Démarrer",
@@ -117,7 +119,7 @@
     },
     "bid": {
         "delete": "Supprimer",
-        "to_lot": "Vers le lot",
+        "to_lot": "Au lot",
         "new": "Nouveau",
         "add_to_random_slot": "Ajouter à un lot aléatoire"
     },
@@ -132,7 +134,7 @@
         "new_donation": "Nouveau don",
         "show_odds": "Afficher les cotes",
         "show_total_sum": "Afficher la somme totale",
-        "greater_timer_adding_time": "Ajouter plus de temps au minuteur",
+        "greater_timer_adding_time": "Temps supplémentaire plus long",
         "not_add_time_if": "Ne pas ajouter de temps si",
         "adding_time": "Temps"
     },
@@ -141,7 +143,7 @@
         "clear_lots": "Effacer les lots"
     },
     "auc_fighter_settings": {
-        "round_duration": "Durée du tour",
+        "round_duration": "Durée du round",
         "add_players": "Ajouter des joueurs"
     },
     "alerts": {
@@ -155,9 +157,22 @@
         "title": "Titre",
         "message": "Message",
         "test_name": "Test",
-        "test_text": "Ceci est une alerte de test !",
+        "test_text": "Ceci est une alerte test !",
         "configure": "Configurer",
-        "test": "Tester"
+        "test": "Test",
+        "add_new_variant": "Ajouter une nouvelle variante",
+        "general": "Paramètres généraux",
+        "new_variant": "Nouvelle variante",
+        "variant_title": "Titre de la variante",
+        "variant_group": "Groupe de la variante",
+        "status": "Statut",
+        "variation_condition": "Condition de variation",
+        "group": "Groupe",
+        "Random": "Aléatoire",
+        "AmountIsGreater": "Montant supérieur",
+        "AmountIsEqual": "Montant égal",
+        "delete": "Supprimer",
+        "sure_delete": "Êtes-vous sûr de vouloir supprimer cette variante ?"
     },
     "save": "Enregistrer",
     "back": "Retour",
@@ -165,18 +180,18 @@
         "copy": "Copier",
         "launch": "Lancer",
         "url": "URL du widget",
-        "obs_dock_url": "URL du dock OBS"
+        "obs_dock_url": "URL OBS dock"
     },
     "view": {
         "top": "Image en haut, texte en bas",
         "bottom": "Image en bas, texte en haut",
         "left": "Image à gauche, texte à droite",
         "right": "Image à droite, texte à gauche",
-        "overlay": "Texte superposé à l'image"
+        "overlay": "Texte superposé à l’image"
     },
     "text": {
         "font": "Police",
-        "font_size": "Taille de la police",
+        "font_size": "Taille de police",
         "text_color": "Couleur du texte",
         "bold": "Gras",
         "italics": "Italique",
@@ -190,7 +205,7 @@
         "name": "Nom"
     },
     "audio": {
-        "play": "Jouer",
+        "play": "Lire",
         "stop": "Arrêter"
     }
 }

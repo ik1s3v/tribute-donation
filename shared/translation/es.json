@@ -3,9 +3,11 @@
     "off": "Apagado",
     "select": "Seleccionar",
     "success": "Éxito",
-    "sound_volume": "Volumen del sonido",
-    "skip_media": "Atajo para omitir medios",
-    "skip_alert": "Atajo para omitir alerta",
+    "ok": "Ok",
+    "cancel": "Cancelar",
+    "sound_volume": "Volumen de sonido",
+    "skip_media": "Saltar medios",
+    "skip_alert": "Saltar alerta",
     "authorization": {
         "title": "Autorización",
         "code": "Solicitar código",
@@ -20,8 +22,8 @@
         "wrong_lots_format": "Formato de lotes incorrecto"
     },
     "updater": {
-        "title": "Actualización",
-        "description": "Hay una nueva versión de la aplicación disponible. ¿Deseas actualizar?",
+        "title": "Actualizar",
+        "description": "Hay una nueva versión de la aplicación disponible. ¿Quieres actualizar?",
         "update": "Actualizar",
         "later": "Más tarde",
         "downloading": "Descargando..."
@@ -33,12 +35,12 @@
         "tiktok": "TikTok"
     },
     "integration": {
-        "tribute": "Mostrar mensajes de homenaje"
+        "tribute": "Mostrar mensajes de agradecimiento"
     },
     "auction": {
         "lots": "Lotes",
-        "wheel": "Rueda",
-        "settings": "Configuraciones"
+        "wheel": "Ruleta",
+        "settings": "Configuración"
     },
     "maption": {
         "set_point": "Establecer punto",
@@ -51,62 +53,62 @@
     },
     "media_settings": {
         "enabled": "Habilitado",
-        "min_amount_eur": "Cantidad mínima EUR",
-        "min_amount_rub": "Cantidad mínima RUB",
-        "video_volume": "Volumen del video",
-        "min_views": "Vistas mínimas"
+        "min_amount_eur": "Monto mínimo EUR",
+        "min_amount_rub": "Monto mínimo RUB",
+        "video_volume": "Volumen de video",
+        "min_views": "Mínimo de visualizaciones"
     },
     "dashboard": {
         "messages": "Mensajes",
-        "settings": "Configuraciones",
+        "settings": "Configuración",
         "alerts": "Alertas",
         "media": "Medios",
         "auction": "Subasta",
-        "maption": "Maption",
+        "maption": "Mapa",
         "fighter": "Luchador"
     },
     "messages": {
         "title": "Últimos mensajes"
     },
     "message": {
-        "skip": "Omitir",
+        "skip": "Saltar",
         "replay": "Repetir",
         "donate": "Donar"
     },
     "settings": {
-        "title": "Configuraciones",
+        "title": "Configuración",
         "pause": "Pausar mensajes de alerta",
         "moderation_duration": "Duración de la moderación",
         "black_list": "Lista negra",
         "remove_links": "Eliminar enlaces",
         "language": "Idioma",
-        "sec": "Seg"
+        "sec": "Seg."
     },
     "wheel": {
         "normal": "Normal",
-        "dropout": "Abandono",
+        "dropout": "Deserción",
         "spin": "Girar",
-        "speed": "Velocidad de la rueda"
+        "speed": "Velocidad de la ruleta"
     },
     "timer": {
         "continue": "Continuar",
-        "pause": "Pausar",
-        "reset": "Restablecer",
+        "pause": "Pausa",
+        "reset": "Reiniciar",
         "add_time": "Agregar tiempo",
         "reduce_time": "Reducir tiempo",
         "add_timex2": "Agregar tiempo x2"
     },
     "fighter": {
         "title": "Luchador",
-        "match": "Partido",
+        "match": "Combate",
         "final": "Final",
         "game": "Juego",
         "cancel": "Cancelar juego",
         "winner": "Ganador",
-        "settings": "Configuraciones",
-        "create_game": "Crear juego desde lotes",
+        "settings": "Configuración",
+        "create_game": "Crear juego a partir de lotes",
         "start": "Iniciar",
-        "pause": "Pausar",
+        "pause": "Pausa",
         "rematch": "Revancha",
         "resume": "Reanudar"
     },
@@ -117,13 +119,13 @@
     },
     "bid": {
         "delete": "Eliminar",
-        "to_lot": "A lote",
+        "to_lot": "Al lote",
         "new": "Nuevo",
         "add_to_random_slot": "Agregar a lote aleatorio"
     },
     "lots": {
         "add": "Agregar",
-        "new_lot_name": "Nombre de lote nuevo",
+        "new_lot_name": "Nombre del nuevo lote",
         "search": "Buscar lote"
     },
     "auction_settings": {
@@ -132,16 +134,16 @@
         "new_donation": "Nueva donación",
         "show_odds": "Mostrar probabilidades",
         "show_total_sum": "Mostrar suma total",
-        "greater_timer_adding_time": "Mayor tiempo para agregar al temporizador",
+        "greater_timer_adding_time": "Mayor tiempo adicional en el temporizador",
         "not_add_time_if": "No agregar tiempo si",
         "adding_time": "Tiempo"
     },
     "lots_options": {
         "import_lots": "Importar lotes",
-        "clear_lots": "Limpiar lotes"
+        "clear_lots": "Borrar lotes"
     },
     "auc_fighter_settings": {
-        "round_duration": "Duración de la ronda",
+        "round_duration": "Duración del asalto",
         "add_players": "Agregar jugadores"
     },
     "alerts": {
@@ -157,27 +159,40 @@
         "test_name": "Prueba",
         "test_text": "¡Esta es una alerta de prueba!",
         "configure": "Configurar",
-        "test": "Probar"
+        "test": "Prueba",
+        "add_new_variant": "Agregar nueva variante",
+        "general": "Configuración general",
+        "new_variant": "Nueva variante",
+        "variant_title": "Título de la variante",
+        "variant_group": "Grupo de la variante",
+        "status": "Estado",
+        "variation_condition": "Condición de variación",
+        "group": "Grupo",
+        "Random": "Aleatorio",
+        "AmountIsGreater": "Cantidad es mayor",
+        "AmountIsEqual": "Cantidad es igual",
+        "delete": "Eliminar",
+        "sure_delete": "¿Estás seguro de que quieres eliminar esta variante?"
     },
     "save": "Guardar",
-    "back": "Volver",
+    "back": "Atrás",
     "widget": {
         "copy": "Copiar",
-        "launch": "Lanzar",
+        "launch": "Iniciar",
         "url": "URL del widget",
-        "obs_dock_url": "URL del dock de OBS"
+        "obs_dock_url": "URL de OBS dock"
     },
     "view": {
         "top": "Imagen arriba, texto abajo",
         "bottom": "Imagen abajo, texto arriba",
-        "left": "Imagen a la izquierda, texto a la derecha",
-        "right": "Imagen a la derecha, texto a la izquierda",
+        "left": "Imagen izquierda, texto derecha",
+        "right": "Imagen derecha, texto izquierda",
         "overlay": "Texto sobre la imagen"
     },
     "text": {
         "font": "Fuente",
         "font_size": "Tamaño de fuente",
-        "text_color": "Color del texto",
+        "text_color": "Color de texto",
         "bold": "Negrita",
         "italics": "Cursiva",
         "underline": "Subrayado",
@@ -186,7 +201,7 @@
         "word_spacing": "Espaciado de palabras",
         "horizontal_alignment": "Alineación horizontal",
         "vertical_alignment": "Alineación vertical",
-        "text_preview": "¡Esta es una vista previa!",
+        "text_preview": "¡Esto es una vista previa!",
         "name": "Nombre"
     },
     "audio": {
