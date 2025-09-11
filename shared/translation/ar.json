@@ -1,7 +1,7 @@
 {
     "on": "تشغيل",
     "off": "إيقاف",
-    "select": "اختر",
+    "select": "اختيار",
     "success": "نجاح",
     "ok": "موافق",
     "cancel": "إلغاء",
@@ -9,24 +9,24 @@
     "skip_media": "تخطي الوسائط",
     "skip_alert": "تخطي التنبيه",
     "authorization": {
-        "title": "تسجيل الدخول",
+        "title": "تفويض",
         "code": "طلب رمز",
         "sign_in": "تسجيل الدخول",
         "phone": "رقم الهاتف",
-        "telegram_code": "رمز من تيليغرام",
+        "telegram_code": "رمز من تيليجرام",
         "your_code": "رمزك",
         "2fa_password": "كلمة مرور التحقق الثنائي",
         "password": "كلمة المرور"
     },
     "error": {
-        "wrong_lots_format": "تنسيق الحزم غير صحيح"
+        "wrong_lots_format": "تنسيق خاطئ للعروض"
     },
     "updater": {
         "title": "تحديث",
-        "description": "يتوفر إصدار جديد من التطبيق. هل تريد التحديث؟",
+        "description": "يتوفر إصدار جديد من التطبيق. هل ترغب في التحديث؟",
         "update": "تحديث",
         "later": "لاحقًا",
-        "downloading": "جارٍ التنزيل..."
+        "downloading": "جاري التنزيل..."
     },
     "media": {
         "title": "وسائط",
@@ -35,26 +35,26 @@
         "tiktok": "تيك توك"
     },
     "integration": {
-        "tribute": "إظهار رسائل الشكر"
+        "tribute": "إظهار رسائل التقدير"
     },
     "auction": {
-        "lots": "حزم",
+        "lots": "عروض",
         "wheel": "عجلة",
-        "settings": "الإعدادات"
+        "settings": "إعدادات"
     },
     "maption": {
-        "set_point": "تحديد النقطة",
+        "set_point": "تعيين نقطة",
         "meter_price": "السعر لكل متر",
         "amount": "المبلغ",
         "finish": "إنهاء",
-        "lat_error": "يجب أن تكون دائرة العرض بين -90 و 90",
-        "lng_error": "يجب أن يكون خط الطول بين -180 و 180",
-        "rules": "لكي يتغير موضع المؤشر تلقائيًا في الرسالة يجب أن تحتوي فقط على كلمة واحدة من:"
+        "lat_error": "خط العرض يجب أن يكون بين -90 و 90",
+        "lng_error": "خط الطول يجب أن يكون بين -180 و 180",
+        "rules": "لتغيير موضع المؤشر تلقائيًا في الرسالة يجب أن تحتوي فقط على كلمة واحدة من:"
     },
     "media_settings": {
         "enabled": "مفعل",
-        "min_amount_eur": "الحد الأدنى بالمبلغ باليورو",
-        "min_amount_rub": "الحد الأدنى بالمبلغ بالروبل",
+        "min_amount_eur": "الحد الأدنى باليورو",
+        "min_amount_rub": "الحد الأدنى بالروبل",
         "video_volume": "مستوى صوت الفيديو",
         "min_views": "الحد الأدنى للمشاهدات"
     },
@@ -63,9 +63,10 @@
         "settings": "الإعدادات",
         "alerts": "التنبيهات",
         "media": "وسائط",
-        "auction": "مزاد",
+        "goals": "الأهداف",
+        "auction": "المزاد",
         "maption": "الخريطة",
-        "fighter": "مقاتل"
+        "fighter": "المقاتل"
     },
     "messages": {
         "title": "آخر الرسائل"
@@ -105,8 +106,8 @@
         "game": "لعبة",
         "cancel": "إلغاء اللعبة",
         "winner": "الفائز",
-        "settings": "الإعدادات",
-        "create_game": "إنشاء لعبة من الحزم",
+        "settings": "إعدادات",
+        "create_game": "إنشاء لعبة من العروض",
         "start": "بدء",
         "pause": "إيقاف مؤقت",
         "rematch": "إعادة مباراة",
@@ -119,28 +120,28 @@
     },
     "bid": {
         "delete": "حذف",
-        "to_lot": "إلى الحزمة",
+        "to_lot": "إلى العرض",
         "new": "جديد",
-        "add_to_random_slot": "إضافة إلى حزمة عشوائية"
+        "add_to_random_slot": "إضافة إلى عرض عشوائي"
     },
     "lots": {
         "add": "إضافة",
-        "new_lot_name": "اسم الحزمة الجديدة",
-        "search": "بحث عن حزمة"
+        "new_lot_name": "اسم عرض جديد",
+        "search": "بحث عن عرض"
     },
     "auction_settings": {
         "leader_change": "تغيير القائد",
-        "new_lot": "حزمة جديدة",
+        "new_lot": "عرض جديد",
         "new_donation": "تبرع جديد",
-        "show_odds": "إظهار الاحتمالات",
-        "show_total_sum": "إظهار المجموع الكلي",
-        "greater_timer_adding_time": "زيادة وقت المؤقت الكبير",
-        "not_add_time_if": "لا تضف وقت إذا",
+        "show_odds": "عرض الاحتمالات",
+        "show_total_sum": "عرض المجموع الكلي",
+        "greater_timer_adding_time": "زيادة وقت المؤقت الأكبر",
+        "not_add_time_if": "لا تضف وقتًا إذا",
         "adding_time": "الوقت"
     },
     "lots_options": {
-        "import_lots": "استيراد الحزم",
-        "clear_lots": "مسح الحزم"
+        "import_lots": "استيراد العروض",
+        "clear_lots": "مسح العروض"
     },
     "auc_fighter_settings": {
         "round_duration": "مدة الجولة",
@@ -148,31 +149,66 @@
     },
     "alerts": {
         "title": "التنبيهات",
-        "group": "المجموعة"
+        "group": "مجموعة"
     },
     "alert": {
         "image": "صورة",
         "audio": "صوت",
         "view": "عرض",
         "title": "العنوان",
-        "message": "الرسالة",
+        "message": "رسالة",
         "test_name": "اختبار",
         "test_text": "هذا تنبيه تجريبي!",
         "configure": "إعداد",
         "test": "اختبار",
-        "add_new_variant": "إضافة نسخة جديدة",
-        "general": "الإعدادات العامة",
-        "new_variant": "نسخة جديدة",
-        "variant_title": "عنوان النسخة",
-        "variant_group": "مجموعة النسخة",
+        "add_new_variant": "إضافة خيار جديد",
+        "new_variant": "خيار جديد",
+        "variant_title": "عنوان الخيار",
+        "variant_group": "مجموعة الخيار",
         "status": "الحالة",
-        "variation_condition": "شرط النسخة",
-        "group": "المجموعة",
+        "variation_condition": "شرط التغيير",
+        "group": "مجموعة",
         "Random": "عشوائي",
         "AmountIsGreater": "المبلغ أكبر",
-        "AmountIsEqual": "المبلغ مساوي",
+        "AmountIsEqual": "المبلغ يساوي",
         "delete": "حذف",
-        "sure_delete": "هل أنت متأكد أنك تريد حذف هذه النسخة؟"
+        "sure_delete": "هل أنت متأكد أنك تريد حذف هذا الخيار؟"
+    },
+    "general": "عام",
+    "goals": {
+        "title": "الأهداف",
+        "create": "إنشاء هدف جديد"
+    },
+    "goal": {
+        "new": "هدف جديد",
+        "goal": "عرض",
+        "elements": "عناصر",
+        "progress": "التقدم",
+        "goal_title": "عنوان الهدف",
+        "amount_raise": "المبلغ المطلوب جمعه",
+        "start_raising": "بدء الجمع من",
+        "end_date": "تاريخ انتهاء الهدف",
+        "bar_height": "ارتفاع الشريط",
+        "rounding_radius": "نصف قطر الاستدارة",
+        "bar_stroke_thickness": "سماكة خط الشريط",
+        "background_bar_color": "لون شريط الخلفية",
+        "progress_bar_color": "لون شريط التقدم",
+        "goal_progress_bar": "شريط تقدم الهدف",
+        "progress_bar_layout": "تخطيط شريط التقدم",
+        "remaining_time": "الوقت المتبقي",
+        "goal_amount_limits": "حدود مبلغ الهدف",
+        "widget_background": "خلفية الودجت",
+        "background_color": "لون الخلفية",
+        "OnTop": "في الأعلى",
+        "Inside": "في الداخل",
+        "Below": "في الأسفل",
+        "DoNotDisplay": "لا تعرض",
+        "title": "العنوان",
+        "limits": "الحدود",
+        "raised": "تم جمعه",
+        "days_left": "الأيام المتبقية",
+        "finish_goal": "إنهاء الهدف",
+        "sure_finish": "هل أنت متأكد أنك تريد إنهاء هذا الهدف؟"
     },
     "save": "حفظ",
     "back": "رجوع",
@@ -180,7 +216,7 @@
         "copy": "نسخ",
         "launch": "تشغيل",
         "url": "رابط الودجت",
-        "obs_dock_url": "رابط OBS dock"
+        "obs_dock_url": "رابط Obs dock"
     },
     "view": {
         "top": "الصورة في الأعلى، النص في الأسفل",
@@ -195,12 +231,12 @@
         "text_color": "لون النص",
         "bold": "عريض",
         "italics": "مائل",
-        "underline": "مسطر",
+        "underline": "تحته خط",
         "transformation": "تحويل",
         "letter_spacing": "تباعد الأحرف",
         "word_spacing": "تباعد الكلمات",
-        "horizontal_alignment": "المحاذاة الأفقية",
-        "vertical_alignment": "المحاذاة العمودية",
+        "horizontal_alignment": "محاذاة أفقية",
+        "vertical_alignment": "محاذاة عمودية",
         "text_preview": "هذه معاينة!",
         "name": "الاسم"
     },

@@ -1,36 +1,36 @@
 {
-    "on": "开启",
-    "off": "关闭",
+    "on": "开",
+    "off": "关",
     "select": "选择",
     "success": "成功",
-    "ok": "确定",
+    "ok": "好的",
     "cancel": "取消",
     "sound_volume": "音量",
-    "skip_media": "跳过媒体",
-    "skip_alert": "跳过提醒",
+    "skip_media": "跳过媒体快捷方式",
+    "skip_alert": "跳过提醒快捷方式",
     "authorization": {
         "title": "授权",
-        "code": "请求验证码",
+        "code": "请求代码",
         "sign_in": "登录",
-        "phone": "手机号",
+        "phone": "电话号码",
         "telegram_code": "来自 Telegram 的验证码",
-        "your_code": "您的验证码",
+        "your_code": "你的验证码",
         "2fa_password": "双重验证密码",
         "password": "密码"
     },
     "error": {
-        "wrong_lots_format": "错误的拍卖批次格式"
+        "wrong_lots_format": "批次格式错误"
     },
     "updater": {
         "title": "更新",
-        "description": "有新版本可用。是否要更新？",
+        "description": "有新版本可用。你要更新吗？",
         "update": "更新",
         "later": "稍后",
         "downloading": "正在下载..."
     },
     "media": {
         "title": "媒体",
-        "youtube": "YouTube",
+        "youtube": "优酷",
         "twitch": "Twitch",
         "tiktok": "抖音"
     },
@@ -38,23 +38,23 @@
         "tribute": "显示致谢消息"
     },
     "auction": {
-        "lots": "拍卖批次",
+        "lots": "拍品",
         "wheel": "转盘",
         "settings": "设置"
     },
     "maption": {
         "set_point": "设置点",
         "meter_price": "每米价格",
-        "amount": "金额",
+        "amount": "数量",
         "finish": "完成",
         "lat_error": "纬度必须在 -90 到 90 之间",
         "lng_error": "经度必须在 -180 到 180 之间",
-        "rules": "为了让指针自动更改位置，消息中只能包含以下单词之一："
+        "rules": "要使指针在消息中自动更改位置，消息中应只包含以下词之一："
     },
     "media_settings": {
         "enabled": "启用",
-        "min_amount_eur": "最低金额（欧元）",
-        "min_amount_rub": "最低金额（卢布）",
+        "min_amount_eur": "最小金额 欧元",
+        "min_amount_rub": "最小金额 卢布",
         "video_volume": "视频音量",
         "min_views": "最少观看次数"
     },
@@ -63,9 +63,10 @@
         "settings": "设置",
         "alerts": "提醒",
         "media": "媒体",
+        "goals": "目标",
         "auction": "拍卖",
-        "maption": "地图选项",
-        "fighter": "格斗"
+        "maption": "地图",
+        "fighter": "战斗"
     },
     "messages": {
         "title": "最新消息"
@@ -77,7 +78,7 @@
     },
     "settings": {
         "title": "设置",
-        "pause": "暂停提醒",
+        "pause": "暂停提醒消息",
         "moderation_duration": "审核时长",
         "black_list": "黑名单",
         "remove_links": "移除链接",
@@ -85,7 +86,7 @@
         "sec": "秒"
     },
     "wheel": {
-        "normal": "普通",
+        "normal": "正常",
         "dropout": "淘汰",
         "spin": "旋转",
         "speed": "转盘速度"
@@ -99,14 +100,14 @@
         "add_timex2": "增加时间 x2"
     },
     "fighter": {
-        "title": "格斗",
-        "match": "对战",
+        "title": "战斗",
+        "match": "比赛",
         "final": "决赛",
         "game": "游戏",
         "cancel": "取消游戏",
-        "winner": "胜者",
+        "winner": "获胜者",
         "settings": "设置",
-        "create_game": "从批次创建游戏",
+        "create_game": "从拍品创建游戏",
         "start": "开始",
         "pause": "暂停",
         "rematch": "重赛",
@@ -115,32 +116,32 @@
     "lot": {
         "name": "名称",
         "delete": "删除",
-        "add": "增加金额"
+        "add": "添加数量"
     },
     "bid": {
         "delete": "删除",
-        "to_lot": "到批次",
+        "to_lot": "到拍品",
         "new": "新的",
-        "add_to_random_slot": "添加到随机批次"
+        "add_to_random_slot": "添加到随机拍品"
     },
     "lots": {
         "add": "添加",
-        "new_lot_name": "新批次名称",
-        "search": "搜索批次"
+        "new_lot_name": "新拍品名称",
+        "search": "搜索拍品"
     },
     "auction_settings": {
-        "leader_change": "领导者更换",
-        "new_lot": "新批次",
+        "leader_change": "领导更换",
+        "new_lot": "新拍品",
         "new_donation": "新捐赠",
         "show_odds": "显示赔率",
         "show_total_sum": "显示总金额",
-        "greater_timer_adding_time": "更多时间增加",
-        "not_add_time_if": "若满足条件则不增加时间",
+        "greater_timer_adding_time": "更长的计时增加时间",
+        "not_add_time_if": "如果...不增加时间",
         "adding_time": "时间"
     },
     "lots_options": {
-        "import_lots": "导入批次",
-        "clear_lots": "清空批次"
+        "import_lots": "导入拍品",
+        "clear_lots": "清除拍品"
     },
     "auc_fighter_settings": {
         "round_duration": "回合时长",
@@ -153,7 +154,7 @@
     "alert": {
         "image": "图片",
         "audio": "音频",
-        "view": "查看",
+        "view": "视图",
         "title": "标题",
         "message": "消息",
         "test_name": "测试",
@@ -161,7 +162,6 @@
         "configure": "配置",
         "test": "测试",
         "add_new_variant": "添加新变体",
-        "general": "通用设置",
         "new_variant": "新变体",
         "variant_title": "变体标题",
         "variant_group": "变体分组",
@@ -172,21 +172,57 @@
         "AmountIsGreater": "金额大于",
         "AmountIsEqual": "金额等于",
         "delete": "删除",
-        "sure_delete": "确定要删除此变体吗？"
+        "sure_delete": "你确定要删除这个变体吗？"
+    },
+    "general": "通用",
+    "goals": {
+        "title": "目标",
+        "create": "创建新目标"
+    },
+    "goal": {
+        "new": "新目标",
+        "goal": "查看",
+        "elements": "元素",
+        "progress": "进度",
+        "goal_title": "目标标题",
+        "amount_raise": "筹集金额",
+        "start_raising": "开始筹集自",
+        "end_date": "目标结束日期",
+        "bar_height": "进度条高度",
+        "rounding_radius": "圆角半径",
+        "bar_stroke_thickness": "进度条粗细",
+        "background_bar_color": "背景条颜色",
+        "progress_bar_color": "进度条颜色",
+        "goal_progress_bar": "目标进度条",
+        "progress_bar_layout": "进度条布局",
+        "remaining_time": "剩余时间",
+        "goal_amount_limits": "目标金额限制",
+        "widget_background": "小部件背景",
+        "background_color": "背景颜色",
+        "OnTop": "顶部",
+        "Inside": "内部",
+        "Below": "底部",
+        "DoNotDisplay": "不显示",
+        "title": "标题",
+        "limits": "限制",
+        "raised": "已筹集",
+        "days_left": "剩余天数",
+        "finish_goal": "完成目标",
+        "sure_finish": "你确定要完成这个目标吗？"
     },
     "save": "保存",
     "back": "返回",
     "widget": {
         "copy": "复制",
         "launch": "启动",
-        "url": "挂件链接",
-        "obs_dock_url": "OBS Dock 链接"
+        "url": "小部件网址",
+        "obs_dock_url": "OBS 停靠网址"
     },
     "view": {
-        "top": "图片上方，文字下方",
-        "bottom": "图片下方，文字上方",
-        "left": "图片左侧，文字右侧",
-        "right": "图片右侧，文字左侧",
+        "top": "图片上，文字下",
+        "bottom": "图片下，文字上",
+        "left": "图片左，文字右",
+        "right": "图片右，文字左",
         "overlay": "文字覆盖图片"
     },
     "text": {
@@ -201,7 +237,7 @@
         "word_spacing": "单词间距",
         "horizontal_alignment": "水平对齐",
         "vertical_alignment": "垂直对齐",
-        "text_preview": "这是预览！",
+        "text_preview": "这是一个预览！",
         "name": "名称"
     },
     "audio": {

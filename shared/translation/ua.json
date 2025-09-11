@@ -1,8 +1,8 @@
 {
-    "on": "Увімкнути",
-    "off": "Вимкнути",
+    "on": "Увімкнено",
+    "off": "Вимкнено",
     "select": "Вибрати",
-    "success": "Успішно",
+    "success": "Успіх",
     "ok": "Ок",
     "cancel": "Скасувати",
     "sound_volume": "Гучність звуку",
@@ -13,13 +13,13 @@
         "code": "Запросити код",
         "sign_in": "Увійти",
         "phone": "Номер телефону",
-        "telegram_code": "Код з Telegram",
+        "telegram_code": "Код із Telegram",
         "your_code": "Ваш код",
         "2fa_password": "Пароль 2FA",
         "password": "Пароль"
     },
     "error": {
-        "wrong_lots_format": "Неправильний формат лотів"
+        "wrong_lots_format": "Невірний формат лотів"
     },
     "updater": {
         "title": "Оновлення",
@@ -35,7 +35,7 @@
         "tiktok": "TikTok"
     },
     "integration": {
-        "tribute": "Показувати подячні повідомлення"
+        "tribute": "Показувати повідомлення-подяки"
     },
     "auction": {
         "lots": "Лоти",
@@ -47,9 +47,9 @@
         "meter_price": "Ціна за метр",
         "amount": "Сума",
         "finish": "Завершити",
-        "lat_error": "Широта має бути між -90 і 90",
-        "lng_error": "Довгота має бути між -180 і 180",
-        "rules": "Щоб вказівник автоматично змінював позицію в повідомленні, там має бути лише одне слово з:"
+        "lat_error": "Широта має бути від -90 до 90",
+        "lng_error": "Довгота має бути від -180 до 180",
+        "rules": "Щоб вказівник автоматично змінював позицію у повідомленні, має бути лише одне слово з:"
     },
     "media_settings": {
         "enabled": "Увімкнено",
@@ -63,6 +63,7 @@
         "settings": "Налаштування",
         "alerts": "Сповіщення",
         "media": "Медіа",
+        "goals": "Цілі",
         "auction": "Аукціон",
         "maption": "Maption",
         "fighter": "Боєць"
@@ -72,21 +73,21 @@
     },
     "message": {
         "skip": "Пропустити",
-        "replay": "Повторити",
+        "replay": "Повтор",
         "donate": "Пожертвувати"
     },
     "settings": {
         "title": "Налаштування",
-        "pause": "Призупинити сповіщення",
+        "pause": "Пауза сповіщень",
         "moderation_duration": "Тривалість модерації",
         "black_list": "Чорний список",
         "remove_links": "Видаляти посилання",
         "language": "Мова",
-        "sec": "Сек."
+        "sec": "Сек"
     },
     "wheel": {
         "normal": "Звичайний",
-        "dropout": "Виліт",
+        "dropout": "Вибування",
         "spin": "Крутити",
         "speed": "Швидкість колеса"
     },
@@ -121,7 +122,7 @@
         "delete": "Видалити",
         "to_lot": "До лота",
         "new": "Новий",
-        "add_to_random_slot": "Додати у випадковий лот"
+        "add_to_random_slot": "Додати в випадковий лот"
     },
     "lots": {
         "add": "Додати",
@@ -134,7 +135,7 @@
         "new_donation": "Нове пожертвування",
         "show_odds": "Показати шанси",
         "show_total_sum": "Показати загальну суму",
-        "greater_timer_adding_time": "Більше додавання часу",
+        "greater_timer_adding_time": "Більший час додавання",
         "not_add_time_if": "Не додавати час, якщо",
         "adding_time": "Час"
     },
@@ -161,18 +162,53 @@
         "configure": "Налаштувати",
         "test": "Тест",
         "add_new_variant": "Додати новий варіант",
-        "general": "Загальні налаштування",
         "new_variant": "Новий варіант",
-        "variant_title": "Назва варіанту",
-        "variant_group": "Група варіанту",
+        "variant_title": "Заголовок варіанта",
+        "variant_group": "Група варіанта",
         "status": "Статус",
         "variation_condition": "Умова варіації",
         "group": "Група",
-        "Random": "Випадково",
+        "Random": "Випадковий",
         "AmountIsGreater": "Сума більша",
         "AmountIsEqual": "Сума дорівнює",
         "delete": "Видалити",
         "sure_delete": "Ви впевнені, що хочете видалити цей варіант?"
+    },
+    "general": "Загальне",
+    "goals": {
+        "title": "Цілі",
+        "create": "Створити нову ціль"
+    },
+    "goal": {
+        "new": "Нова ціль",
+        "goal": "Перегляд",
+        "elements": "Елементи",
+        "progress": "Прогрес",
+        "goal_title": "Назва цілі",
+        "amount_raise": "Сума для збору",
+        "start_raising": "Почати збір з",
+        "end_date": "Дата завершення",
+        "bar_height": "Висота шкали",
+        "rounding_radius": "Радіус заокруглення",
+        "bar_stroke_thickness": "Товщина шкали",
+        "background_bar_color": "Колір фону шкали",
+        "progress_bar_color": "Колір прогресу",
+        "goal_progress_bar": "Шкала прогресу цілі",
+        "progress_bar_layout": "Розташування шкали прогресу",
+        "remaining_time": "Залишковий час",
+        "goal_amount_limits": "Ліміти суми цілі",
+        "widget_background": "Фон віджета",
+        "background_color": "Колір фону",
+        "OnTop": "Зверху",
+        "Inside": "Всередині",
+        "Below": "Знизу",
+        "DoNotDisplay": "Не відображати",
+        "title": "Заголовок",
+        "limits": "Ліміти",
+        "raised": "Зібрано",
+        "days_left": "Залишилося днів",
+        "finish_goal": "Завершити ціль",
+        "sure_finish": "Ви впевнені, що хочете завершити цю ціль?"
     },
     "save": "Зберегти",
     "back": "Назад",
@@ -180,7 +216,7 @@
         "copy": "Копіювати",
         "launch": "Запустити",
         "url": "URL віджета",
-        "obs_dock_url": "URL OBS дока"
+        "obs_dock_url": "OBS Dock URL"
     },
     "view": {
         "top": "Зображення зверху, текст знизу",
@@ -196,16 +232,16 @@
         "bold": "Жирний",
         "italics": "Курсив",
         "underline": "Підкреслений",
-        "transformation": "Перетворення",
+        "transformation": "Трансформація",
         "letter_spacing": "Міжлітерний інтервал",
         "word_spacing": "Інтервал між словами",
         "horizontal_alignment": "Горизонтальне вирівнювання",
         "vertical_alignment": "Вертикальне вирівнювання",
         "text_preview": "Це попередній перегляд!",
-        "name": "Назва"
+        "name": "Ім'я"
     },
     "audio": {
         "play": "Відтворити",
-        "stop": "Стоп"
+        "stop": "Зупинити"
     }
 }

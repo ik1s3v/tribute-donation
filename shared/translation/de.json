@@ -9,7 +9,7 @@
     "skip_media": "Medien überspringen",
     "skip_alert": "Alarm überspringen",
     "authorization": {
-        "title": "Anmeldung",
+        "title": "Autorisierung",
         "code": "Code anfordern",
         "sign_in": "Anmelden",
         "phone": "Telefonnummer",
@@ -19,10 +19,10 @@
         "password": "Passwort"
     },
     "error": {
-        "wrong_lots_format": "Falsches Lots-Format"
+        "wrong_lots_format": "Falsches Los-Format"
     },
     "updater": {
-        "title": "Update",
+        "title": "Aktualisierung",
         "description": "Eine neue Version der App ist verfügbar. Möchten Sie aktualisieren?",
         "update": "Aktualisieren",
         "later": "Später",
@@ -35,7 +35,7 @@
         "tiktok": "TikTok"
     },
     "integration": {
-        "tribute": "Dankesnachrichten anzeigen"
+        "tribute": "Tributnachrichten anzeigen"
     },
     "auction": {
         "lots": "Lose",
@@ -46,23 +46,24 @@
         "set_point": "Punkt setzen",
         "meter_price": "Preis pro Meter",
         "amount": "Betrag",
-        "finish": "Beenden",
+        "finish": "Fertigstellen",
         "lat_error": "Breitengrad muss zwischen -90 und 90 liegen",
         "lng_error": "Längengrad muss zwischen -180 und 180 liegen",
-        "rules": "Damit der Zeiger die Position in der Nachricht automatisch ändert, darf nur ein Wort enthalten sein aus:"
+        "rules": "Damit der Zeiger automatisch die Position ändert, sollte die Nachricht nur ein Wort enthalten aus:"
     },
     "media_settings": {
         "enabled": "Aktiviert",
         "min_amount_eur": "Mindestbetrag EUR",
         "min_amount_rub": "Mindestbetrag RUB",
         "video_volume": "Videolautstärke",
-        "min_views": "Mindestanzahl Aufrufe"
+        "min_views": "Mindestaufrufe"
     },
     "dashboard": {
         "messages": "Nachrichten",
         "settings": "Einstellungen",
         "alerts": "Alarme",
         "media": "Medien",
+        "goals": "Ziele",
         "auction": "Auktion",
         "maption": "Karte",
         "fighter": "Kämpfer"
@@ -77,7 +78,7 @@
     },
     "settings": {
         "title": "Einstellungen",
-        "pause": "Alarmnachrichten pausieren",
+        "pause": "Alarmmeldungen pausieren",
         "moderation_duration": "Moderationsdauer",
         "black_list": "Schwarze Liste",
         "remove_links": "Links entfernen",
@@ -86,16 +87,16 @@
     },
     "wheel": {
         "normal": "Normal",
-        "dropout": "Ausstieg",
+        "dropout": "Ausfall",
         "spin": "Drehen",
-        "speed": "Raddrehgeschwindigkeit"
+        "speed": "Radgeschwindigkeit"
     },
     "timer": {
         "continue": "Fortsetzen",
         "pause": "Pause",
         "reset": "Zurücksetzen",
         "add_time": "Zeit hinzufügen",
-        "reduce_time": "Zeit reduzieren",
+        "reduce_time": "Zeit verkürzen",
         "add_timex2": "Zeit x2 hinzufügen"
     },
     "fighter": {
@@ -107,9 +108,9 @@
         "winner": "Sieger",
         "settings": "Einstellungen",
         "create_game": "Spiel aus Losen erstellen",
-        "start": "Start",
+        "start": "Starten",
         "pause": "Pause",
-        "rematch": "Rückspiel",
+        "rematch": "Revanche",
         "resume": "Fortsetzen"
     },
     "lot": {
@@ -134,7 +135,7 @@
         "new_donation": "Neue Spende",
         "show_odds": "Quoten anzeigen",
         "show_total_sum": "Gesamtsumme anzeigen",
-        "greater_timer_adding_time": "Größere Timer-Zeit hinzufügen",
+        "greater_timer_adding_time": "Mehr Zeit hinzufügen",
         "not_add_time_if": "Keine Zeit hinzufügen, wenn",
         "adding_time": "Zeit"
     },
@@ -161,7 +162,6 @@
         "configure": "Konfigurieren",
         "test": "Test",
         "add_new_variant": "Neue Variante hinzufügen",
-        "general": "Allgemeine Einstellungen",
         "new_variant": "Neue Variante",
         "variant_title": "Variantentitel",
         "variant_group": "Variantengruppe",
@@ -173,6 +173,42 @@
         "AmountIsEqual": "Betrag ist gleich",
         "delete": "Löschen",
         "sure_delete": "Sind Sie sicher, dass Sie diese Variante löschen möchten?"
+    },
+    "general": "Allgemein",
+    "goals": {
+        "title": "Ziele",
+        "create": "Neues Ziel erstellen"
+    },
+    "goal": {
+        "new": "Neues Ziel",
+        "goal": "Ansehen",
+        "elements": "Elemente",
+        "progress": "Fortschritt",
+        "goal_title": "Zieltitel",
+        "amount_raise": "Zu sammelnder Betrag",
+        "start_raising": "Startbetrag",
+        "end_date": "Enddatum",
+        "bar_height": "Balkenhöhe",
+        "rounding_radius": "Abrundungsradius",
+        "bar_stroke_thickness": "Balkenstrichstärke",
+        "background_bar_color": "Hintergrundbalkenfarbe",
+        "progress_bar_color": "Fortschrittsbalkenfarbe",
+        "goal_progress_bar": "Ziel-Fortschrittsbalken",
+        "progress_bar_layout": "Fortschrittsbalken-Layout",
+        "remaining_time": "Verbleibende Zeit",
+        "goal_amount_limits": "Zielbetragsgrenzen",
+        "widget_background": "Widget-Hintergrund",
+        "background_color": "Hintergrundfarbe",
+        "OnTop": "Oben",
+        "Inside": "Innen",
+        "Below": "Unten",
+        "DoNotDisplay": "Nicht anzeigen",
+        "title": "Titel",
+        "limits": "Grenzen",
+        "raised": "Gesammelt",
+        "days_left": "Verbleibende Tage",
+        "finish_goal": "Ziel beenden",
+        "sure_finish": "Sind Sie sicher, dass Sie dieses Ziel beenden möchten?"
     },
     "save": "Speichern",
     "back": "Zurück",
@@ -197,7 +233,7 @@
         "italics": "Kursiv",
         "underline": "Unterstreichen",
         "transformation": "Transformation",
-        "letter_spacing": "Buchstabenabstand",
+        "letter_spacing": "Zeichenabstand",
         "word_spacing": "Wortabstand",
         "horizontal_alignment": "Horizontale Ausrichtung",
         "vertical_alignment": "Vertikale Ausrichtung",

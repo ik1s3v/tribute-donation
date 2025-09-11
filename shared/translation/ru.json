@@ -1,8 +1,8 @@
 {
-    "on": "Включить",
-    "off": "Выключить",
+    "on": "Вкл",
+    "off": "Выкл",
     "select": "Выбрать",
-    "success": "Успешно",
+    "success": "Успех",
     "ok": "Ок",
     "cancel": "Отмена",
     "sound_volume": "Громкость звука",
@@ -13,7 +13,7 @@
         "code": "Запросить код",
         "sign_in": "Войти",
         "phone": "Номер телефона",
-        "telegram_code": "Код из Telegram",
+        "telegram_code": "Код Telegram",
         "your_code": "Ваш код",
         "2fa_password": "Пароль 2FA",
         "password": "Пароль"
@@ -35,7 +35,7 @@
         "tiktok": "TikTok"
     },
     "integration": {
-        "tribute": "Показывать благодарственные сообщения"
+        "tribute": "Показ сообщений с благодарностью"
     },
     "auction": {
         "lots": "Лоты",
@@ -47,8 +47,8 @@
         "meter_price": "Цена за метр",
         "amount": "Сумма",
         "finish": "Завершить",
-        "lat_error": "Широта должна быть между -90 и 90",
-        "lng_error": "Долгота должна быть между -180 и 180",
+        "lat_error": "Широта должна быть в пределах -90 и 90",
+        "lng_error": "Долгота должна быть в пределах -180 и 180",
         "rules": "Чтобы указатель автоматически менял позицию в сообщении, должно быть только одно слово из:"
     },
     "media_settings": {
@@ -63,6 +63,7 @@
         "settings": "Настройки",
         "alerts": "Оповещения",
         "media": "Медиа",
+        "goals": "Цели",
         "auction": "Аукцион",
         "maption": "Maption",
         "fighter": "Боец"
@@ -72,21 +73,21 @@
     },
     "message": {
         "skip": "Пропустить",
-        "replay": "Повторить",
+        "replay": "Повтор",
         "donate": "Пожертвовать"
     },
     "settings": {
         "title": "Настройки",
-        "pause": "Приостановить оповещения",
-        "moderation_duration": "Длительность модерации",
-        "black_list": "Черный список",
+        "pause": "Пауза оповещений",
+        "moderation_duration": "Время модерации",
+        "black_list": "Чёрный список",
         "remove_links": "Удалять ссылки",
         "language": "Язык",
-        "sec": "Сек."
+        "sec": "Сек"
     },
     "wheel": {
         "normal": "Обычный",
-        "dropout": "Вылет",
+        "dropout": "Выбывание",
         "spin": "Крутить",
         "speed": "Скорость колеса"
     },
@@ -134,9 +135,9 @@
         "new_donation": "Новое пожертвование",
         "show_odds": "Показать шансы",
         "show_total_sum": "Показать общую сумму",
-        "greater_timer_adding_time": "Большее добавление времени",
-        "not_add_time_if": "Не добавлять время если",
-        "adding_time": "Время"
+        "greater_timer_adding_time": "Большее добавляемое время",
+        "not_add_time_if": "Не добавлять время, если",
+        "adding_time": "Добавляемое время"
     },
     "lots_options": {
         "import_lots": "Импортировать лоты",
@@ -159,20 +160,55 @@
         "test_name": "Тест",
         "test_text": "Это тестовое оповещение!",
         "configure": "Настроить",
-        "test": "Тест",
+        "test": "Тестировать",
         "add_new_variant": "Добавить новый вариант",
-        "general": "Общие настройки",
         "new_variant": "Новый вариант",
-        "variant_title": "Название варианта",
+        "variant_title": "Заголовок варианта",
         "variant_group": "Группа варианта",
         "status": "Статус",
         "variation_condition": "Условие вариации",
         "group": "Группа",
-        "Random": "Случайно",
+        "Random": "Случайный",
         "AmountIsGreater": "Сумма больше",
         "AmountIsEqual": "Сумма равна",
         "delete": "Удалить",
         "sure_delete": "Вы уверены, что хотите удалить этот вариант?"
+    },
+    "general": "Общее",
+    "goals": {
+        "title": "Цели",
+        "create": "Создать новую цель"
+    },
+    "goal": {
+        "new": "Новая цель",
+        "goal": "Просмотр",
+        "elements": "Элементы",
+        "progress": "Прогресс",
+        "goal_title": "Название цели",
+        "amount_raise": "Сумма для сбора",
+        "start_raising": "Начать сбор с",
+        "end_date": "Дата окончания",
+        "bar_height": "Высота шкалы",
+        "rounding_radius": "Радиус скругления",
+        "bar_stroke_thickness": "Толщина шкалы",
+        "background_bar_color": "Цвет фона шкалы",
+        "progress_bar_color": "Цвет прогресса",
+        "goal_progress_bar": "Шкала прогресса цели",
+        "progress_bar_layout": "Расположение шкалы прогресса",
+        "remaining_time": "Оставшееся время",
+        "goal_amount_limits": "Ограничения суммы цели",
+        "widget_background": "Фон виджета",
+        "background_color": "Цвет фона",
+        "OnTop": "Сверху",
+        "Inside": "Внутри",
+        "Below": "Снизу",
+        "DoNotDisplay": "Не отображать",
+        "title": "Заголовок",
+        "limits": "Ограничения",
+        "raised": "Собрано",
+        "days_left": "Осталось дней",
+        "finish_goal": "Завершить цель",
+        "sure_finish": "Вы уверены, что хотите завершить эту цель?"
     },
     "save": "Сохранить",
     "back": "Назад",
@@ -180,7 +216,7 @@
         "copy": "Копировать",
         "launch": "Запустить",
         "url": "URL виджета",
-        "obs_dock_url": "URL OBS дока"
+        "obs_dock_url": "OBS Dock URL"
     },
     "view": {
         "top": "Изображение сверху, текст снизу",
@@ -195,17 +231,17 @@
         "text_color": "Цвет текста",
         "bold": "Жирный",
         "italics": "Курсив",
-        "underline": "Подчеркнутый",
-        "transformation": "Преобразование",
+        "underline": "Подчёркнутый",
+        "transformation": "Трансформация",
         "letter_spacing": "Межбуквенный интервал",
         "word_spacing": "Интервал между словами",
         "horizontal_alignment": "Горизонтальное выравнивание",
         "vertical_alignment": "Вертикальное выравнивание",
         "text_preview": "Это предпросмотр!",
-        "name": "Название"
+        "name": "Имя"
     },
     "audio": {
         "play": "Воспроизвести",
-        "stop": "Стоп"
+        "stop": "Остановить"
     }
 }

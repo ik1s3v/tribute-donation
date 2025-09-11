@@ -1,6 +1,6 @@
 {
-    "on": "Ligar",
-    "off": "Desligar",
+    "on": "Ligado",
+    "off": "Desligado",
     "select": "Selecionar",
     "success": "Sucesso",
     "ok": "Ok",
@@ -25,7 +25,7 @@
         "title": "Atualização",
         "description": "Uma nova versão do aplicativo está disponível. Deseja atualizar?",
         "update": "Atualizar",
-        "later": "Depois",
+        "later": "Mais tarde",
         "downloading": "Baixando..."
     },
     "media": {
@@ -35,11 +35,11 @@
         "tiktok": "TikTok"
     },
     "integration": {
-        "tribute": "Mostrar mensagens de agradecimento"
+        "tribute": "Mostrar mensagens de tributo"
     },
     "auction": {
         "lots": "Lotes",
-        "wheel": "Roleta",
+        "wheel": "Roda",
         "settings": "Configurações"
     },
     "maption": {
@@ -49,20 +49,21 @@
         "finish": "Finalizar",
         "lat_error": "A latitude deve estar entre -90 e 90",
         "lng_error": "A longitude deve estar entre -180 e 180",
-        "rules": "Para que o ponteiro mude automaticamente de posição na mensagem, deve haver apenas uma palavra de:"
+        "rules": "Para o ponteiro mudar automaticamente de posição na mensagem, deve haver apenas uma palavra de:"
     },
     "media_settings": {
         "enabled": "Ativado",
-        "min_amount_eur": "Valor mínimo em EUR",
-        "min_amount_rub": "Valor mínimo em RUB",
+        "min_amount_eur": "Valor mínimo EUR",
+        "min_amount_rub": "Valor mínimo RUB",
         "video_volume": "Volume do vídeo",
-        "min_views": "Mínimo de visualizações"
+        "min_views": "Visualizações mínimas"
     },
     "dashboard": {
         "messages": "Mensagens",
         "settings": "Configurações",
         "alerts": "Alertas",
         "media": "Mídia",
+        "goals": "Metas",
         "auction": "Leilão",
         "maption": "Maption",
         "fighter": "Lutador"
@@ -82,13 +83,13 @@
         "black_list": "Lista negra",
         "remove_links": "Remover links",
         "language": "Idioma",
-        "sec": "Segundos"
+        "sec": "Seg."
     },
     "wheel": {
         "normal": "Normal",
-        "dropout": "Excluir",
+        "dropout": "Eliminação",
         "spin": "Girar",
-        "speed": "Velocidade da roleta"
+        "speed": "Velocidade da roda"
     },
     "timer": {
         "continue": "Continuar",
@@ -119,14 +120,14 @@
     },
     "bid": {
         "delete": "Excluir",
-        "to_lot": "Para o lote",
+        "to_lot": "Para lote",
         "new": "Novo",
         "add_to_random_slot": "Adicionar a lote aleatório"
     },
     "lots": {
         "add": "Adicionar",
         "new_lot_name": "Nome do novo lote",
-        "search": "Procurar lote"
+        "search": "Pesquisar lote"
     },
     "auction_settings": {
         "leader_change": "Mudança de líder",
@@ -134,7 +135,7 @@
         "new_donation": "Nova doação",
         "show_odds": "Mostrar probabilidades",
         "show_total_sum": "Mostrar soma total",
-        "greater_timer_adding_time": "Tempo extra maior",
+        "greater_timer_adding_time": "Maior tempo de acréscimo",
         "not_add_time_if": "Não adicionar tempo se",
         "adding_time": "Tempo"
     },
@@ -143,7 +144,7 @@
         "clear_lots": "Limpar lotes"
     },
     "auc_fighter_settings": {
-        "round_duration": "Duração da rodada",
+        "round_duration": "Duração do round",
         "add_players": "Adicionar jogadores"
     },
     "alerts": {
@@ -159,28 +160,63 @@
         "test_name": "Teste",
         "test_text": "Este é um alerta de teste!",
         "configure": "Configurar",
-        "test": "Teste",
-        "add_new_variant": "Adicionar nova variação",
-        "general": "Configurações gerais",
-        "new_variant": "Nova variação",
-        "variant_title": "Título da variação",
-        "variant_group": "Grupo da variação",
+        "test": "Testar",
+        "add_new_variant": "Adicionar nova variante",
+        "new_variant": "Nova variante",
+        "variant_title": "Título da variante",
+        "variant_group": "Grupo da variante",
         "status": "Status",
         "variation_condition": "Condição da variação",
         "group": "Grupo",
         "Random": "Aleatório",
-        "AmountIsGreater": "Quantia maior que",
-        "AmountIsEqual": "Quantia igual",
+        "AmountIsGreater": "Valor é maior",
+        "AmountIsEqual": "Valor é igual",
         "delete": "Excluir",
-        "sure_delete": "Tem certeza que deseja excluir esta variação?"
+        "sure_delete": "Tem certeza de que deseja excluir esta variante?"
+    },
+    "general": "Geral",
+    "goals": {
+        "title": "Metas",
+        "create": "Criar nova meta"
+    },
+    "goal": {
+        "new": "Nova meta",
+        "goal": "Visualizar",
+        "elements": "Elementos",
+        "progress": "Progresso",
+        "goal_title": "Título da meta",
+        "amount_raise": "Quantia a arrecadar",
+        "start_raising": "Começar a arrecadar de",
+        "end_date": "Data final",
+        "bar_height": "Altura da barra",
+        "rounding_radius": "Raio do arredondamento",
+        "bar_stroke_thickness": "Espessura da barra",
+        "background_bar_color": "Cor da barra de fundo",
+        "progress_bar_color": "Cor da barra de progresso",
+        "goal_progress_bar": "Barra de progresso da meta",
+        "progress_bar_layout": "Layout da barra de progresso",
+        "remaining_time": "Tempo restante",
+        "goal_amount_limits": "Limites da quantia da meta",
+        "widget_background": "Fundo do widget",
+        "background_color": "Cor de fundo",
+        "OnTop": "No topo",
+        "Inside": "Dentro",
+        "Below": "Abaixo",
+        "DoNotDisplay": "Não exibir",
+        "title": "Título",
+        "limits": "Limites",
+        "raised": "Arrecadado",
+        "days_left": "Dias restantes",
+        "finish_goal": "Finalizar meta",
+        "sure_finish": "Tem certeza de que deseja finalizar esta meta?"
     },
     "save": "Salvar",
     "back": "Voltar",
     "widget": {
         "copy": "Copiar",
-        "launch": "Iniciar",
+        "launch": "Lançar",
         "url": "URL do widget",
-        "obs_dock_url": "URL do OBS dock"
+        "obs_dock_url": "URL do dock OBS"
     },
     "view": {
         "top": "Imagem em cima, texto embaixo",
@@ -201,7 +237,7 @@
         "word_spacing": "Espaçamento entre palavras",
         "horizontal_alignment": "Alinhamento horizontal",
         "vertical_alignment": "Alinhamento vertical",
-        "text_preview": "Isto é uma pré-visualização!",
+        "text_preview": "Este é um pré-visualização!",
         "name": "Nome"
     },
     "audio": {
