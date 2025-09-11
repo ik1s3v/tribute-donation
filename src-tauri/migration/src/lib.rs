@@ -14,6 +14,7 @@ mod m20250717_152358_add_default_maption_settings;
 mod m20250819_113411_create_table_auc_fighter_settings;
 mod m20250819_113447_add_default_auc_fighter_settings;
 mod m20250909_130535_add_alert_columns;
+mod m20250911_130555_create_table_goals;
 
 pub struct Migrator;
 
@@ -35,6 +36,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20250819_113411_create_table_auc_fighter_settings::Migration),
             Box::new(m20250819_113447_add_default_auc_fighter_settings::Migration),
             Box::new(m20250909_130535_add_alert_columns::Migration),
+            Box::new(m20250911_130555_create_table_goals::Migration),
         ]
     }
 }

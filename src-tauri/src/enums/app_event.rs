@@ -33,6 +33,7 @@ pub enum AppEvent {
     CancelAucFighterMatch,
     AucFighterSettings,
     TestAlert,
+    Goal,
 }
 impl AppEvent {
     pub fn as_str(e: AppEvent) -> &'static str {
@@ -68,6 +69,7 @@ impl AppEvent {
             AppEvent::CancelAucFighterMatch => "CancelAucFighterMatch",
             AppEvent::AucFighterSettings => "AucFighterSettings",
             AppEvent::TestAlert => "TestAlert",
+            AppEvent::Goal => "Goal",
         }
     }
 }

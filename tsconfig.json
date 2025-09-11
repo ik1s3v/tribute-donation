@@ -38,10 +38,7 @@
     "shared/providers",
     "shared/i18n",
     "scr-auc-fighter-adapter",
-    "shared/components/InfiniteMessages.tsx",
-    "shared/components/MediaTile.tsx",
-    "shared/components/MessageDate.tsx",
-    "shared/components/MessageTile.tsx",
+    "shared/components/*.tsx",
     "shared/utils/getColorByMediaType.ts",
     "shared/dayjs"
   ],

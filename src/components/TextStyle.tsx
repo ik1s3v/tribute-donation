@@ -1,15 +1,11 @@
 import type { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { convertFileSrc } from "@tauri-apps/api/core";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import AlertView from "../../../../../../shared/components/AlertView";
-import { Currency } from "../../../../../../shared/enums";
-import type { IAlert, ITextStyle } from "../../../../../../shared/types";
-import type { AppState } from "../../../../../store";
-import ColorPicker from "../../../../ColorPicker";
-import InputSlider from "../../../../InputSlider";
-import OnOffSwitch from "../../../../OnOffSwitch";
-import styles from "../../settings/Settings.module.css";
+import { useDispatch } from "react-redux";
+import type { ITextStyle } from "../../shared/types";
+import ColorPicker from "./ColorPicker";
+import styles from "./dashboard/components/settings/Settings.module.css";
+import InputSlider from "./InputSlider";
+import OnOffSwitch from "./OnOffSwitch";
 
 const TextStyle = ({
 	textStyle,
@@ -18,19 +14,19 @@ const TextStyle = ({
 	textStyle: ITextStyle;
 	setTextStyle:
 		| ActionCreatorWithPayload<ITextStyle, "alerts/setTitleStyle">
-		| ActionCreatorWithPayload<ITextStyle, "alerts/setMessageStyle">;
+		| ActionCreatorWithPayload<ITextStyle, "alerts/setMessageStyle">
+		| ActionCreatorWithPayload<ITextStyle, "goals/setTitleStyle">
+		| ActionCreatorWithPayload<ITextStyle, "goals/setProgressStyle">
+		| ActionCreatorWithPayload<ITextStyle, "goals/setLimitsStyle">;
 }) => {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
-	const { alert } = useSelector((state: AppState) => state.alertsState);
-	const { appDataDir } = useSelector((state: AppState) => state.mainState);
 
 	return (
 		<div
 			style={{
-				display: "grid",
-
-				placeItems: "center",
+				display: "flex",
+				placeContent: "center",
 			}}
 		>
 			<div className={styles.settingsContainer}>
@@ -138,25 +134,6 @@ const TextStyle = ({
 						adornmentText={"%"}
 					/>
 				</div>
-			</div>
-			<div style={{ margin: 20 }}>
-				<AlertView
-					width={400}
-					height={300}
-					alert={alert as IAlert}
-					backgroundColor="green"
-					message={{
-						id: "1",
-						user_name: t("text.name"),
-						amount: 100,
-						text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis",
-						telegram_message_id: "1",
-						created_at: 1,
-						played: false,
-						currency: Currency.EUR,
-					}}
-					imageSrc={convertFileSrc(`${appDataDir}/static/${alert?.image}`)}
-				/>
 			</div>
 		</div>
 	);

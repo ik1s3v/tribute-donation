@@ -8,17 +8,7 @@ import {
 	ViewType,
 } from "../../../../../../shared/enums";
 import { setAlert } from "../../../../../../shared/slices/alertsSlice";
-import { ITextStyle } from "../../../../../../shared/types";
-
-const TEXT_STYLE: ITextStyle = {
-	font_size: 60,
-	text_color: "rgb(255,255,255,1)",
-	bold: true,
-	italics: false,
-	underline: false,
-	letter_spacing: 0,
-	word_spacing: 0,
-};
+import { TEXT_STYLE } from "../../../../../constants";
 
 const AddNewAlertVariantButton = ({ group_id }: { group_id: string }) => {
 	const { t } = useTranslation();
@@ -46,7 +36,7 @@ const AddNewAlertVariantButton = ({ group_id }: { group_id: string }) => {
 						amount: 100,
 					}),
 				);
-				navigate("/dashboard/new/alert");
+				navigate("/dashboard/alerts/new/alert");
 			}}
 		>
 			{t("alert.add_new_variant")}

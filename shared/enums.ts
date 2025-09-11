@@ -49,6 +49,7 @@ export enum AppEvent {
 	CancelAucFighterMatch = "CancelAucFighterMatch",
 	AucFighterSettings = "AucFighterSettings",
 	TestAlert = "TestAlert",
+	Goal = "Goal",
 }
 
 export enum ViewType {
@@ -77,4 +78,17 @@ export enum AlertVariationConditions {
 	Random = "Random",
 	AmountIsGreater = "AmountIsGreater",
 	AmountIsEqual = "AmountIsEqual",
+}
+export enum GoalTextPosition {
+	OnTop = "OnTop",
+	Inside = "Inside",
+	Below = "Below",
+	DoNotDisplay = "DoNotDisplay",
+}
+export enum GoalProgressLayout {
+	Percent = "Percent",
+	CurrentAmount = "CurrentAmount",
+	CurrentAmountPercent = "CurrentAmountPercent",
+	CurrentAmountRemainingAmount = "CurrentAmountRemainingAmount",
+	CurrentAmountRemainingAmountPercent = "CurrentAmountRemainingAmountPercent",
 }

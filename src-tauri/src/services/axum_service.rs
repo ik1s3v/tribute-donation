@@ -1,8 +1,8 @@
 use crate::constants::HTTP_WIDGET_PORT;
 use crate::enums::AppEvent;
 use crate::repositories::{
-    AlertsRepository, AucFighterSettingsRepository, MediaSettingsRepository, MessagesRepository,
-    SettingsRepository,
+    AlertsRepository, AucFighterSettingsRepository, GoalsRepository, MediaSettingsRepository,
+    MessagesRepository, SettingsRepository,
 };
 use crate::services::{DatabaseService, EventMessage, WebSocketBroadcaster};
 use axum::extract::ws::{Message, WebSocket};
@@ -242,6 +242,21 @@ impl AxumService {
             (&serde_json::to_string(&EventMessage {
                 event: AppEvent::AucFighterSettings,
                 data: auc_fighter_settings,
+            })
+            .unwrap())
+                .into(),
+        ))?;
+        let goal = database_service
+            .get_not_ended_goal()
+            .await
+            .map_err(|e| {
+                log::error!("Get not ended goal error: {}", e);
+            })
+            .unwrap();
+        tx.send(Message::Text(
+            (&serde_json::to_string(&EventMessage {
+                event: AppEvent::Goal,
+                data: goal,
             })
             .unwrap())
                 .into(),

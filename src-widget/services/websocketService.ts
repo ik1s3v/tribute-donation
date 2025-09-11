@@ -29,6 +29,43 @@ export class WebSocketService
 		this.url = url;
 		this.socket = null;
 		this.hotReload = null;
+
+		this.subscribe<IMessage>(AppEvent.Message, (message) => {
+			store.dispatch(
+				messagesApi.util.updateQueryData("getMessages", undefined, (draft) => {
+					draft.pages[0].unshift(message);
+					const lastPageParam = draft.pageParams.at(-1);
+					if (lastPageParam) {
+						lastPageParam.offset = lastPageParam.offset + 1;
+					}
+				}),
+			);
+		});
+
+		this.subscribe<string>(AppEvent.AlertPlaying, (id) => {
+			store.dispatch(setPlayingAlertId(id));
+		});
+
+		this.subscribe<string>(AppEvent.MediaPlaying, (id) => {
+			store.dispatch(setPausedMediaId(""));
+			store.dispatch(setPlayingMediaId(id));
+		});
+
+		this.subscribe<string>(AppEvent.MediaPaused, (id) => {
+			store.dispatch(setPausedMediaId(id));
+		});
+
+		this.subscribe<string>(AppEvent.AlertPlayed, (_) => {
+			store.dispatch(setPlayingAlertId(""));
+		});
+		this.subscribe<string>(AppEvent.MediaPlayed, (_) => {
+			store.dispatch(setPlayingMediaId(""));
+			store.dispatch(setPausedMediaId(""));
+		});
+
+		this.subscribe<ISettings>(AppEvent.Settings, (settings) => {
+			i18n.changeLanguage(settings.language);
+		});
 	}
 
 	connect() {
@@ -47,47 +84,6 @@ export class WebSocketService
 			this.socket.onclose = () => {
 				setTimeout(() => this.connect(), 1000);
 			};
-
-			this.subscribe<IMessage>(AppEvent.Message, (message) => {
-				store.dispatch(
-					messagesApi.util.updateQueryData(
-						"getMessages",
-						undefined,
-						(draft) => {
-							draft.pages[0].unshift(message);
-							const lastPageParam = draft.pageParams.at(-1);
-							if (lastPageParam) {
-								lastPageParam.offset = lastPageParam.offset + 1;
-							}
-						},
-					),
-				);
-			});
-
-			this.subscribe<string>(AppEvent.AlertPlaying, (id) => {
-				store.dispatch(setPlayingAlertId(id));
-			});
-
-			this.subscribe<string>(AppEvent.MediaPlaying, (id) => {
-				store.dispatch(setPausedMediaId(""));
-				store.dispatch(setPlayingMediaId(id));
-			});
-
-			this.subscribe<string>(AppEvent.MediaPaused, (id) => {
-				store.dispatch(setPausedMediaId(id));
-			});
-
-			this.subscribe<string>(AppEvent.AlertPlayed, (_) => {
-				store.dispatch(setPlayingAlertId(""));
-			});
-			this.subscribe<string>(AppEvent.MediaPlayed, (_) => {
-				store.dispatch(setPlayingMediaId(""));
-				store.dispatch(setPausedMediaId(""));
-			});
-
-			this.subscribe<ISettings>(AppEvent.Settings, (settings) => {
-				i18n.changeLanguage(settings.language);
-			});
 		}
 	}
 

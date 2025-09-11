@@ -1,7 +1,7 @@
 use super::{DatabaseService, MediaService, TTSService, WebSocketBroadcaster};
 use crate::{
     app_event::AppEvent,
-    repositories::{MessagesRepository, SettingsRepository},
+    repositories::{GoalsRepository, MessagesRepository, SettingsRepository},
     utils::{parse_message_to_tribute_donate_message, remove_black_listed_words, remove_links},
 };
 use chrono::Utc;
@@ -186,6 +186,11 @@ impl TelegramService {
                         };
                         database_service
                             .save_message(alert_message.clone())
+                            .await
+                            .unwrap();
+
+                        database_service
+                            .update_goal_amount(donate_message.amount as u32)
                             .await
                             .unwrap();
 

@@ -1,3 +1,5 @@
+import { ITextStyle } from "../shared/types";
+
 export const MENU_WIDTH = 260;
 export const MENU_WIDTH_MD = 64;
 export const DEFAULT_TIMER_DURATION = 600 * 1000;
@@ -9,4 +11,13 @@ export const CHARACTERS = {
 	SAGAT: 10,
 	MBISON: 14,
 	AKUMA: 13,
+};
+export const TEXT_STYLE: ITextStyle = {
+	font_size: 60,
+	text_color: "rgb(255,255,255,1)",
+	bold: true,
+	italics: false,
+	underline: false,
+	letter_spacing: 0,
+	word_spacing: 0,
 };

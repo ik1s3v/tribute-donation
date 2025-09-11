@@ -25,6 +25,7 @@ import {
 	maptionMessagesSlice,
 } from "./slices/messagesSlice";
 import { settingsSlice } from "./slices/settingsSlice";
+import { goalsSlice } from "./slices/goalsSlice";
 
 export const rootReducer = combineReducers({
 	snackBarState: snackBarSlice.reducer,
@@ -40,6 +41,7 @@ export const rootReducer = combineReducers({
 	maptionMessagesState: maptionMessagesSlice.reducer,
 	maptionState: maptionSlice.reducer,
 	aucFighterState: aucFighterSlice.reducer,
+	goalsState: goalsSlice.reducer,
 	[api.reducerPath]: api.reducer,
 });
 

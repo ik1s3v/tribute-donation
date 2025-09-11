@@ -61,6 +61,12 @@ pub fn run() {
             update_maption_settings,
             get_auc_fighter_settings,
             update_auc_fighter_settings,
+            create_goal,
+            update_goal_settings,
+            get_goals,
+            get_goal_by_id,
+            get_not_ended_goal,
+            finish_goal,
             init
         ])
         .run(tauri::generate_context!())

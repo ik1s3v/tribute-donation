@@ -8,7 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { AlertSeverity } from "../../../../../../shared/enums";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
 import { IImportedLot, ILot } from "../../../../../../shared/types";
+import calculateLotProbability from "../../../../../helpers/calculateLotProbability";
+import findLotsMinMaxAmount from "../../../../../helpers/findLotsMinMaxAmount";
 import getRandomColor from "../../../../../helpers/getRandomColor";
+import lotsTotalAmount from "../../../../../helpers/lotsTotalAmount";
 import { AppState } from "../../../../../store";
 import { setLots } from "../../../../../store/slices/lotsSlice";
 
@@ -38,7 +41,28 @@ const LotsOptionsMenu = () => {
 				}
 				return acc;
 			}, [] as ILot[]);
-			dispatch(setLots(lots));
+
+			const totalAmount = lotsTotalAmount(lots);
+
+			const { max, min } = findLotsMinMaxAmount(lots);
+
+			dispatch(
+				setLots(
+					lots
+						.map((lot) => {
+							return {
+								...lot,
+								...calculateLotProbability({
+									amount: lot.amount,
+									totalAmount,
+									maxAmount: max?.amount,
+									minAmount: min?.amount,
+								}),
+							};
+						})
+						.sort((a, b) => (b.amount ?? 0) - (a.amount ?? 0)),
+				),
+			);
 		} catch (error) {
 			dispatch(
 				showSnackBar({

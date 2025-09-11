@@ -14,7 +14,7 @@ import {
 import type { AppState } from "../../../../store";
 import AlertSettings from "./AlertSettings";
 
-const CreatedAlertSettings = () => {
+const UpdateAlertSettings = () => {
 	const { refetch } = useGetAlertsQuery();
 	const { t } = useTranslation();
 	const { id } = useParams();
@@ -72,4 +72,4 @@ const CreatedAlertSettings = () => {
 		)
 	);
 };
-export default CreatedAlertSettings;
+export default UpdateAlertSettings;

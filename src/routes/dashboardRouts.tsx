@@ -8,6 +8,8 @@ import Alerts from "../components/dashboard/components/alerts/Alerts";
 import Auction from "../components/dashboard/components/auction/Auction";
 import AuctionIcon from "../components/dashboard/components/auction/components/AuctionIcon";
 import AucFighter from "../components/dashboard/components/fighter/AucFighter";
+import GoalIcon from "../components/dashboard/components/goals/components/GoalIcon";
+import Goals from "../components/dashboard/components/goals/Goals";
 import Maption from "../components/dashboard/components/maption/Maption";
 import Media from "../components/dashboard/components/media/Media";
 import Messages from "../components/dashboard/components/messages/Messages";
@@ -32,6 +34,12 @@ export const dashboardRouts = [
 		element: <Alerts />,
 		icon: <CampaignIcon />,
 		name: "alerts",
+	},
+	{
+		path: "goals",
+		element: <Goals />,
+		icon: <GoalIcon />,
+		name: "goals",
 	},
 	{
 		path: "media",

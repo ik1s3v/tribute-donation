@@ -2,6 +2,8 @@ import type {
 	AlertVariationConditions,
 	AppEvent,
 	Currency,
+	GoalProgressLayout,
+	GoalTextPosition,
 	MediaType,
 	ViewType,
 } from "./enums";
@@ -173,8 +175,32 @@ export interface IImportedLot {
 	investors: [];
 }
 export interface IWebsocketService extends ISubscriptions {
-	constructor: Function;
 	connect: () => void;
 	disconnect: () => void;
 	send: <T>(message: IEventMessage<T>) => void;
+}
+export interface IGoal {
+	id: string;
+	title: string;
+	amount_raise: number;
+	start_raising: number;
+	current_amount: number;
+	end_date: number;
+	start_date: number;
+	ended: boolean;
+	bar_height: number;
+	rounding_radius: number;
+	bar_stroke_thickness: number;
+	background_bar_color: string;
+	progress_bar_color: string;
+	goal_title_type: GoalTextPosition;
+	goal_progress_bar: GoalTextPosition;
+	remaining_time: GoalTextPosition;
+	progress_bar_layout: GoalProgressLayout;
+	goal_amount_limits: boolean;
+	widget_background: boolean;
+	widget_background_color: string;
+	title_style: ITextStyle;
+	progress_style: ITextStyle;
+	limits_style: ITextStyle;
 }
