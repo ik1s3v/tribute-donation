@@ -36,7 +36,7 @@ const fighterGameFromLots = (lots: ILot[]): IAucFighterGame => {
 					},
 				],
 			});
-			prevAmount = teamAAmount + teamBAmount;
+			prevAmount = teamAAmount >= teamBAmount ? teamAAmount : teamBAmount;
 		} else {
 			const teamAAmount = lots[index - 1].amount ?? 0;
 			matches.push({
@@ -62,7 +62,7 @@ const fighterGameFromLots = (lots: ILot[]): IAucFighterGame => {
 					},
 				],
 			});
-			prevAmount = prevAmount + teamAAmount;
+			prevAmount = teamAAmount >= prevAmount ? teamAAmount : prevAmount;
 		}
 	}
 	return {
