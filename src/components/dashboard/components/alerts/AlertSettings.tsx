@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import AlertView from "../../../../../shared/components/AlertView";
-import { Currency } from "../../../../../shared/enums";
+import { Currency, Platform } from "../../../../../shared/enums";
 import type { IAlert } from "../../../../../shared/types";
 import type { AppState } from "../../../../store";
 import TabPanel from "../../../TabPanel";
@@ -125,8 +125,9 @@ const AlertSettings = ({
 								user_name: t("text.name"),
 								amount: 100,
 								text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis",
-								telegram_message_id: "1",
+								platform_message_id: "1",
 								created_at: 1,
+								platform: Platform.Telegram,
 								played: false,
 								currency: Currency.EUR,
 							}}

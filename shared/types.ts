@@ -5,18 +5,20 @@ import type {
 	GoalProgressLayout,
 	GoalTextPosition,
 	MediaType,
+	Platform,
 	ViewType,
 } from "./enums";
 
 export interface IMessage {
 	id: string;
-	telegram_message_id: string;
+	platform_message_id: string;
 	amount: number;
 	user_name: string;
 	text?: string;
 	audio?: string;
 	media?: IMedia;
 	played: boolean;
+	platform: Platform;
 	currency: Currency;
 	created_at: number;
 }

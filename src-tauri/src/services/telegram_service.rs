@@ -5,7 +5,7 @@ use crate::{
     utils::{parse_message_to_tribute_donate_message, remove_black_listed_words, remove_links},
 };
 use chrono::Utc;
-use entity::message::{Currency, Model as Message};
+use entity::message::{Currency, Model as Message, Platform};
 use grammers_client::{
     session::Session,
     types::{LoginToken, PasswordToken},
@@ -140,7 +140,7 @@ impl TelegramService {
                         let telegram_message_id = message.id().to_string();
 
                         if let Ok(Some(_)) = database_service
-                            .get_message_by_telegram_id(telegram_message_id.clone())
+                            .get_message_by_platform_message_id(telegram_message_id.clone())
                             .await
                         {
                             continue;
@@ -179,7 +179,8 @@ impl TelegramService {
                             text,
                             audio,
                             currency: donate_message.currency,
-                            telegram_message_id,
+                            platform: Platform::Telegram,
+                            platform_message_id: telegram_message_id,
                             played: false,
                             created_at: Utc::now().timestamp(),
                             media: media.clone(),

@@ -10,7 +10,7 @@ use sea_orm::{
 pub trait MessagesRepository: Send + Sync {
     async fn save_message(&self, alert_message: Model) -> Result<(), DbErr>;
     async fn get_messages(&self, limit: u64, offset: u64) -> Result<Vec<Model>, DbErr>;
-    async fn get_message_by_telegram_id(
+    async fn get_message_by_platform_message_id(
         &self,
         telegram_message_id: String,
     ) -> Result<Option<Model>, DbErr>;
@@ -21,11 +21,12 @@ impl MessagesRepository for DatabaseService {
     async fn save_message(&self, alert_message: Model) -> Result<(), DbErr> {
         Entity::insert(ActiveModel {
             id: Set(alert_message.id),
-            telegram_message_id: Set(alert_message.telegram_message_id),
+            platform_message_id: Set(alert_message.platform_message_id),
             amount: Set(alert_message.amount),
             user_name: Set(alert_message.user_name),
             text: Set(alert_message.text),
             audio: Set(alert_message.audio),
+            platform: Set(alert_message.platform),
             currency: Set(alert_message.currency),
             created_at: Set(alert_message.created_at),
             played: Set(alert_message.played),
@@ -37,18 +38,18 @@ impl MessagesRepository for DatabaseService {
     }
     async fn get_messages(&self, limit: u64, offset: u64) -> Result<Vec<Model>, DbErr> {
         Entity::find()
-            .order_by_desc(Column::TelegramMessageId)
+            .order_by_desc(Column::CreatedAt)
             .limit(limit)
             .offset(offset)
             .all(&self.connection)
             .await
     }
-    async fn get_message_by_telegram_id(
+    async fn get_message_by_platform_message_id(
         &self,
-        telegram_message_id: String,
+        platform_message_id: String,
     ) -> Result<Option<Model>, DbErr> {
         Entity::find()
-            .filter(Column::TelegramMessageId.eq(telegram_message_id))
+            .filter(Column::PlatformMessageId.eq(platform_message_id))
             .one(&self.connection)
             .await
     }

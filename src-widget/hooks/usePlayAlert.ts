@@ -92,7 +92,7 @@ const usePlayAlert = () => {
 		if (!alert) return;
 		const message: IMessage = {
 			id: crypto.randomUUID(),
-			telegram_message_id: crypto.randomUUID(),
+			platform_message_id: crypto.randomUUID(),
 			amount:
 				alert.variation_conditions === AlertVariationConditions.AmountIsEqual
 					? alert.amount
