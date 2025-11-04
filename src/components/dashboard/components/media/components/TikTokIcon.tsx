@@ -1,6 +1,7 @@
 const TikTokIcon = () => {
 	return (
 		// biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
+		// biome-ignore lint/correctness/useUniqueElementIds: <explanation>
 		<svg
 			fill="currentColor"
 			style={{ paddingRight: "8px" }}

@@ -67,7 +67,7 @@ const Youtube = ({
 		);
 
 		return () => unsubscribe();
-	}, [message, player]);
+	}, [message, player, websocketService]);
 
 	useEffect(() => {
 		const unsubscribe = websocketService.subscribe<string>(
@@ -80,7 +80,7 @@ const Youtube = ({
 		);
 
 		return () => unsubscribe();
-	}, [message, player]);
+	}, [message, player, websocketService]);
 
 	return (
 		<YouTube

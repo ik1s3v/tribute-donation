@@ -93,65 +93,59 @@ const AlertSettings = ({
 							)}
 						</Tabs>
 					</Box>
-					<>
-						<div style={{ marginTop: 20 }}>
-							<TabPanel index={0} value={value}>
-								<ViewSettings />
-							</TabPanel>
-							<TabPanel index={1} value={value}>
-								<ImageSettings />
-							</TabPanel>
-							<TabPanel index={2} value={value}>
-								<AudioSettings />
-							</TabPanel>
+					<div style={{ marginTop: 20 }}>
+						<TabPanel index={0} value={value}>
+							<ViewSettings />
+						</TabPanel>
+						<TabPanel index={1} value={value}>
+							<ImageSettings />
+						</TabPanel>
+						<TabPanel index={2} value={value}>
+							<AudioSettings />
+						</TabPanel>
 
-							<TabPanel index={3} value={value}>
-								<TitleStyle />
-							</TabPanel>
-							<TabPanel index={4} value={value}>
-								<MessageStyle />
-							</TabPanel>
-							<TabPanel index={5} value={value}>
-								<GeneralSettings />
-							</TabPanel>
-						</div>
-						<div
-							style={{ margin: 20, display: "grid", placeContent: "center" }}
-						>
-							<AlertView
-								width={400}
-								height={300}
-								alert={alert as IAlert}
-								backgroundColor="green"
-								message={{
-									id: "1",
-									user_name: t("text.name"),
-									amount: 100,
-									text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis",
-									telegram_message_id: "1",
-									created_at: 1,
-									played: false,
-									currency: Currency.EUR,
-								}}
-								imageSrc={convertFileSrc(
-									`${appDataDir}/static/${alert?.image}`,
-								)}
-							/>
-						</div>
-						<div
-							style={{
-								display: "flex",
-								gap: 20,
-								justifyContent: "center",
-								marginTop: 20,
+						<TabPanel index={3} value={value}>
+							<TitleStyle />
+						</TabPanel>
+						<TabPanel index={4} value={value}>
+							<MessageStyle />
+						</TabPanel>
+						<TabPanel index={5} value={value}>
+							<GeneralSettings />
+						</TabPanel>
+					</div>
+					<div style={{ margin: 20, display: "grid", placeContent: "center" }}>
+						<AlertView
+							width={400}
+							height={300}
+							alert={alert as IAlert}
+							backgroundColor="green"
+							message={{
+								id: "1",
+								user_name: t("text.name"),
+								amount: 100,
+								text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis",
+								telegram_message_id: "1",
+								created_at: 1,
+								played: false,
+								currency: Currency.EUR,
 							}}
-						>
-							<Button variant="contained" onClick={onSave}>
-								{t("save")}
-							</Button>
-							<Button onClick={() => navigate(-1)}>{t("back")}</Button>
-						</div>
-					</>
+							imageSrc={convertFileSrc(`${appDataDir}/static/${alert?.image}`)}
+						/>
+					</div>
+					<div
+						style={{
+							display: "flex",
+							gap: 20,
+							justifyContent: "center",
+							marginTop: 20,
+						}}
+					>
+						<Button variant="contained" onClick={onSave}>
+							{t("save")}
+						</Button>
+						<Button onClick={() => navigate(-1)}>{t("back")}</Button>
+					</div>
 				</>
 			)}
 		</>

@@ -1,5 +1,6 @@
 const GoalIcon = () => {
 	return (
+		// biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
 		<svg
 			width="24px"
 			height="24px"

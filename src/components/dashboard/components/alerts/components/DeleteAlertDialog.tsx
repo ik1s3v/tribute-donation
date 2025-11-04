@@ -37,39 +37,37 @@ const DeleteAlertDialog = ({
 	return (
 		<Dialog open={open} onClose={handleClose}>
 			<DialogTitle>{t("alert.delete")}</DialogTitle>
-			<>
-				<DialogContent>
-					<DialogContentText>{t("alert.sure_delete")}</DialogContentText>
-				</DialogContent>
-				<DialogActions>
-					<Button
-						onClick={async () => {
-							try {
-								await deleteAlertById({ id: alertId }).unwrap();
-								dispatch(
-									showSnackBar({
-										message: t("success"),
-										alertSeverity: AlertSeverity.success,
-									}),
-								);
-								refetch();
-							} catch (error) {
-								const err = error as SerializedError;
-								dispatch(
-									showSnackBar({
-										message: err.message as string,
-										alertSeverity: AlertSeverity.error,
-									}),
-								);
-							}
-							handleClose();
-						}}
-					>
-						{t("ok")}
-					</Button>
-					<Button onClick={handleClose}>{t("cancel")}</Button>
-				</DialogActions>
-			</>
+			<DialogContent>
+				<DialogContentText>{t("alert.sure_delete")}</DialogContentText>
+			</DialogContent>
+			<DialogActions>
+				<Button
+					onClick={async () => {
+						try {
+							await deleteAlertById({ id: alertId }).unwrap();
+							dispatch(
+								showSnackBar({
+									message: t("success"),
+									alertSeverity: AlertSeverity.success,
+								}),
+							);
+							refetch();
+						} catch (error) {
+							const err = error as SerializedError;
+							dispatch(
+								showSnackBar({
+									message: err.message as string,
+									alertSeverity: AlertSeverity.error,
+								}),
+							);
+						}
+						handleClose();
+					}}
+				>
+					{t("ok")}
+				</Button>
+				<Button onClick={handleClose}>{t("cancel")}</Button>
+			</DialogActions>
 		</Dialog>
 	);
 };

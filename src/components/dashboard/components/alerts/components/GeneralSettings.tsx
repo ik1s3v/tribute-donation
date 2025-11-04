@@ -42,7 +42,7 @@ const GeneralSettings = () => {
 									const group_id = String(index + 1);
 									return (
 										<MenuItem
-											key={index}
+											key={group_id}
 											value={group_id}
 											onClick={() => {
 												dispatch(setAlert({ ...alert, group_id }));

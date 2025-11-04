@@ -9,32 +9,30 @@ const WidgetUrl = ({
 	text: string;
 }) => {
 	return (
-		<>
-			<div
-				style={{
-					display: "flex",
-					gap: 10,
+		<div
+			style={{
+				display: "flex",
+				gap: 10,
 
-					placeItems: "center",
+				placeItems: "center",
+			}}
+		>
+			<span>{text}:</span>
+			<Box
+				sx={(theme) => ({
+					color: theme.palette.primary.main,
+				})}
+			>
+				{widgetUrl}
+			</Box>
+			<IconButton
+				onClick={() => {
+					navigator.clipboard.writeText(widgetUrl);
 				}}
 			>
-				<span>{text}:</span>
-				<Box
-					sx={(theme) => ({
-						color: theme.palette.primary.main,
-					})}
-				>
-					{widgetUrl}
-				</Box>
-				<IconButton
-					onClick={() => {
-						navigator.clipboard.writeText(widgetUrl);
-					}}
-				>
-					<ContentCopyIcon />
-				</IconButton>
-			</div>
-		</>
+				<ContentCopyIcon />
+			</IconButton>
+		</div>
 	);
 };
 export default WidgetUrl;

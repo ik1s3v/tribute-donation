@@ -69,7 +69,7 @@ const TikTok = ({
 					break;
 			}
 		},
-		[message, mediaPlatformSettings],
+		[message, mediaPlatformSettings, websocketService],
 	);
 	useEffect(() => {
 		window.addEventListener("message", tiktokListener);
@@ -93,7 +93,7 @@ const TikTok = ({
 		);
 
 		return () => unsubscribe();
-	}, [message]);
+	}, [message, websocketService]);
 
 	useEffect(() => {
 		const unsubscribe = websocketService.subscribe<string>(
@@ -109,7 +109,7 @@ const TikTok = ({
 		);
 
 		return () => unsubscribe();
-	}, [message]);
+	}, [message, websocketService]);
 	return (
 		<iframe
 			ref={tiktokRef}

@@ -9,25 +9,23 @@ export const AppSnackBar = () => {
 	);
 	const dispatch = useDispatch<AppDispatch>();
 	return (
-		<>
-			<Snackbar
-				open={isShowSnackBar}
-				autoHideDuration={6000}
-				onClose={() => dispatch(hideSnackBar())}
-				sx={{ zIndex: 999 }}
+		<Snackbar
+			open={isShowSnackBar}
+			autoHideDuration={6000}
+			onClose={() => dispatch(hideSnackBar())}
+			sx={{ zIndex: 999 }}
+		>
+			<Alert
+				variant="filled"
+				severity={alertSeverity}
+				sx={{
+					width: "100%",
+					fontSize: "14px",
+					fontFamily: `"Roboto","Helvetica","Arial",sans-serif`,
+				}}
 			>
-				<Alert
-					variant="filled"
-					severity={alertSeverity}
-					sx={{
-						width: "100%",
-						fontSize: "14px",
-						fontFamily: `"Roboto","Helvetica","Arial",sans-serif`,
-					}}
-				>
-					{snackBarMessage}
-				</Alert>
-			</Snackbar>
-		</>
+				{snackBarMessage}
+			</Alert>
+		</Snackbar>
 	);
 };

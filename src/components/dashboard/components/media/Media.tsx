@@ -90,53 +90,50 @@ const Media = () => {
 						/>
 					</Tabs>
 				</Box>
-
-				<>
-					<div style={{ marginTop: 20 }}>
-						<TabPanel index={0} value={value}>
-							<Youtube mediaSettings={mediaSettings} />
-						</TabPanel>
-						<TabPanel index={1} value={value}>
-							<Twitch mediaSettings={mediaSettings} />
-						</TabPanel>
-						<TabPanel index={2} value={value}>
-							<Tiktok mediaSettings={mediaSettings} />
-						</TabPanel>
-					</div>
-					<div
-						style={{
-							display: "flex",
-							gap: 20,
-							justifyContent: "center",
-							marginTop: 20,
+				<div style={{ marginTop: 20 }}>
+					<TabPanel index={0} value={value}>
+						<Youtube mediaSettings={mediaSettings} />
+					</TabPanel>
+					<TabPanel index={1} value={value}>
+						<Twitch mediaSettings={mediaSettings} />
+					</TabPanel>
+					<TabPanel index={2} value={value}>
+						<Tiktok mediaSettings={mediaSettings} />
+					</TabPanel>
+				</div>
+				<div
+					style={{
+						display: "flex",
+						gap: 20,
+						justifyContent: "center",
+						marginTop: 20,
+					}}
+				>
+					<Button
+						variant="contained"
+						onClick={async () => {
+							try {
+								await updateMediaSettings({ mediaSettings }).unwrap();
+								dispatch(
+									showSnackBar({
+										message: t("success"),
+										alertSeverity: AlertSeverity.success,
+									}),
+								);
+							} catch (error) {
+								const err = error as SerializedError;
+								dispatch(
+									showSnackBar({
+										message: err.message as string,
+										alertSeverity: AlertSeverity.error,
+									}),
+								);
+							}
 						}}
 					>
-						<Button
-							variant="contained"
-							onClick={async () => {
-								try {
-									await updateMediaSettings({ mediaSettings }).unwrap();
-									dispatch(
-										showSnackBar({
-											message: t("success"),
-											alertSeverity: AlertSeverity.success,
-										}),
-									);
-								} catch (error) {
-									const err = error as SerializedError;
-									dispatch(
-										showSnackBar({
-											message: err.message as string,
-											alertSeverity: AlertSeverity.error,
-										}),
-									);
-								}
-							}}
-						>
-							{t("save")}
-						</Button>
-					</div>
-				</>
+						{t("save")}
+					</Button>
+				</div>
 			</>
 		)
 	);

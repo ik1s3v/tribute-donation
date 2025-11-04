@@ -63,7 +63,7 @@ const LotsOptionsMenu = () => {
 						.sort((a, b) => (b.amount ?? 0) - (a.amount ?? 0)),
 				),
 			);
-		} catch (error) {
+		} catch {
 			dispatch(
 				showSnackBar({
 					alertSeverity: AlertSeverity.error,
@@ -77,22 +77,16 @@ const LotsOptionsMenu = () => {
 	};
 	return (
 		<>
-			<Tooltip
-				children={
-					<IconButton onClick={importLotsHandler}>
-						<UploadFileIcon />
-					</IconButton>
-				}
-				title={t("lots_options.import_lots")}
-			></Tooltip>
-			<Tooltip
-				children={
-					<IconButton onClick={deleteLotsHandler}>
-						<DeleteSweepIcon />
-					</IconButton>
-				}
-				title={t("lots_options.clear_lots")}
-			></Tooltip>
+			<Tooltip title={t("lots_options.import_lots")}>
+				<IconButton onClick={importLotsHandler}>
+					<UploadFileIcon />
+				</IconButton>
+			</Tooltip>
+			<Tooltip title={t("lots_options.clear_lots")}>
+				<IconButton onClick={deleteLotsHandler}>
+					<DeleteSweepIcon />
+				</IconButton>
+			</Tooltip>
 		</>
 	);
 };

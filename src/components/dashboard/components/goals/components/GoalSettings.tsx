@@ -82,59 +82,57 @@ const GoalSettings = ({ onSave }: { onSave: () => void }) => {
 							/>
 						</Tabs>
 					</Box>
-					<>
-						<div style={{ marginTop: 20 }}>
-							<TabPanel index={0} value={value}>
-								<GoalGeneralSettings />
-							</TabPanel>
-							<TabPanel index={1} value={value}>
-								<GoalElementsSettings />
-							</TabPanel>
-							<TabPanel index={2} value={value}>
-								<GoalProgressSettings />
-							</TabPanel>
-							<TabPanel index={3} value={value}>
-								<TItleStyle />
-							</TabPanel>
-							<TabPanel index={4} value={value}>
-								<ProgressStyle />
-							</TabPanel>
-							<TabPanel index={5} value={value}>
-								<LimitsStyle />
-							</TabPanel>
-						</div>
+					<div style={{ marginTop: 20 }}>
+						<TabPanel index={0} value={value}>
+							<GoalGeneralSettings />
+						</TabPanel>
+						<TabPanel index={1} value={value}>
+							<GoalElementsSettings />
+						</TabPanel>
+						<TabPanel index={2} value={value}>
+							<GoalProgressSettings />
+						</TabPanel>
+						<TabPanel index={3} value={value}>
+							<TItleStyle />
+						</TabPanel>
+						<TabPanel index={4} value={value}>
+							<ProgressStyle />
+						</TabPanel>
+						<TabPanel index={5} value={value}>
+							<LimitsStyle />
+						</TabPanel>
+					</div>
 
-						{goal && (
-							<div
-								style={{
-									display: "grid",
-									placeContent: "center",
-									marginTop: 20,
-								}}
-							>
-								<GoalView
-									goal={goal}
-									width={400}
-									height={300}
-									backgroundColor="green"
-									currentAmount={Math.floor(goal.amount_raise / 2)}
-								/>
-							</div>
-						)}
+					{goal && (
 						<div
 							style={{
-								display: "flex",
-								gap: 20,
-								justifyContent: "center",
+								display: "grid",
+								placeContent: "center",
 								marginTop: 20,
 							}}
 						>
-							<Button variant="contained" onClick={onSave}>
-								{t("save")}
-							</Button>
-							<Button onClick={() => navigate(-1)}>{t("back")}</Button>
+							<GoalView
+								goal={goal}
+								width={400}
+								height={300}
+								backgroundColor="green"
+								currentAmount={Math.floor(goal.amount_raise / 2)}
+							/>
 						</div>
-					</>
+					)}
+					<div
+						style={{
+							display: "flex",
+							gap: 20,
+							justifyContent: "center",
+							marginTop: 20,
+						}}
+					>
+						<Button variant="contained" onClick={onSave}>
+							{t("save")}
+						</Button>
+						<Button onClick={() => navigate(-1)}>{t("back")}</Button>
+					</div>
 				</>
 			)}
 		</>

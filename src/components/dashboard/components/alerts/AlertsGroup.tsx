@@ -19,19 +19,17 @@ const AlertsGroup = ({ alertsGroup }: { alertsGroup: IAlertsGroup }) => {
 				marginBottom: "10px",
 			}}
 		>
-			<>
-				<h3>
-					{t("alerts.group")} {alertsGroup.group_id.toUpperCase()}
-				</h3>
+			<h3>
+				{t("alerts.group")} {alertsGroup.group_id.toUpperCase()}
+			</h3>
 
-				<WidgetUrl widgetUrl={widgetUrl} text={t("widget.url")} />
-				<div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-					{alertsGroup.items.map((alert) => (
-						<AlertTile alert={alert} key={alert.id} />
-					))}
-					<AddNewAlertVariantButton group_id={alertsGroup.group_id} />
-				</div>
-			</>
+			<WidgetUrl widgetUrl={widgetUrl} text={t("widget.url")} />
+			<div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+				{alertsGroup.items.map((alert) => (
+					<AlertTile alert={alert} key={alert.id} />
+				))}
+				<AddNewAlertVariantButton group_id={alertsGroup.group_id} />
+			</div>
 		</Card>
 	);
 };

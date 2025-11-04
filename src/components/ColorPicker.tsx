@@ -4,7 +4,10 @@ import { type ColorResult, SketchPicker } from "react-color";
 const ColorPicker = ({
 	initialColor,
 	onChange,
-}: { initialColor: string; onChange: (color: string) => void }) => {
+}: {
+	initialColor: string;
+	onChange: (color: string) => void;
+}) => {
 	const [displayColorPicker, setDisplayColorPicker] = useState(false);
 	const [color, setColor] = useState(initialColor);
 
@@ -25,6 +28,7 @@ const ColorPicker = ({
 	return (
 		<div>
 			{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+			{/** biome-ignore lint/a11y/noStaticElementInteractions: <explanation> */}
 			<div
 				style={{
 					padding: "10px",
@@ -53,6 +57,7 @@ const ColorPicker = ({
 					}}
 				>
 					{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+					{/** biome-ignore lint/a11y/noStaticElementInteractions: <explanation> */}
 					<div
 						style={{
 							position: "fixed",

@@ -52,7 +52,7 @@ const Twitch = ({
 			videoRef.current.onpause = null;
 			videoRef.current.onerror = null;
 		};
-	}, [message]);
+	}, [message, websocketService]);
 
 	useEffect(() => {
 		const unsubscribe = websocketService.subscribe<string>(
@@ -65,7 +65,7 @@ const Twitch = ({
 		);
 
 		return () => unsubscribe();
-	}, [message]);
+	}, [message, websocketService]);
 
 	useEffect(() => {
 		const unsubscribe = websocketService.subscribe<string>(
@@ -78,7 +78,7 @@ const Twitch = ({
 		);
 
 		return () => unsubscribe();
-	}, [message]);
+	}, [message, websocketService]);
 
 	return (
 		<>

@@ -22,107 +22,103 @@ const MessageTile = ({
 	const websocketService = useWebSocket();
 
 	return (
-		<>
-			<Card
+		<Card
+			sx={(theme) => ({
+				display: "flex",
+				position: "relative",
+				border: "2px solid",
+				borderRadius: 3,
+				boxSizing: "border-box",
+				borderColor: isAlertPlaying
+					? theme.palette.primary.main
+					: theme.palette.background.default,
+				marginBottom: "5px",
+				minHeight: "5.3rem",
+				overflow: "hidden",
+			})}
+		>
+			{isMediaPlaying && <MediaTile message={message} />}
+			<Box
 				sx={(theme) => ({
-					display: "flex",
-					position: "relative",
-					border: "2px solid",
-					borderRadius: 3,
-					boxSizing: "border-box",
-					borderColor: isAlertPlaying
-						? theme.palette.primary.main
-						: theme.palette.background.default,
-					marginBottom: "5px",
-					minHeight: "5.3rem",
-					overflow: "hidden",
+					width: "3rem",
+					display: "grid",
+					placeItems: "center",
+					background: message.media
+						? getColorByMediaType(message.media.media_type)
+						: theme.palette.background.paper,
+					minHeight: "100%",
 				})}
 			>
-				{isMediaPlaying && <MediaTile message={message} />}
-				<Box
-					sx={(theme) => ({
-						width: "3rem",
-						display: "grid",
-						placeItems: "center",
-						background: message.media
-							? getColorByMediaType(message.media.media_type)
-							: theme.palette.background.paper,
-						minHeight: "100%",
-					})}
-				>
-					{message.media && !isMediaPlaying && !isAlertPlaying && (
-						<IconButton
-							onClick={() => {
-								websocketService.send({
-									event: AppEvent.ReplayMedia,
-									data: message,
-								});
-							}}
-						>
-							<ReplayIcon />
-						</IconButton>
-					)}
-				</Box>
-
-				<div style={{ width: "100%", padding: 15 }}>
-					<div style={{ float: "right" }}>
-						<MessageDate message={message} />
-					</div>
-					<div>
-						<Typography
-							sx={(theme) => ({
-								color: theme.palette.primary.main,
-							})}
-						>
-							{message.user_name} {t("message.donate")}{" "}
-							{getCurrencySymbol(message.currency)}
-							{message.amount}
-						</Typography>
-					</div>
-					<div style={{ wordBreak: "break-word" }}>
-						<span>{message.text}</span>
-					</div>
-
-					<div
-						style={{ display: "grid", gridAutoFlow: "column", marginTop: 10 }}
+				{message.media && !isMediaPlaying && !isAlertPlaying && (
+					<IconButton
+						onClick={() => {
+							websocketService.send({
+								event: AppEvent.ReplayMedia,
+								data: message,
+							});
+						}}
 					>
-						{!isAlertPlaying && (
-							<Button
-								size="small"
-								sx={{
-									justifySelf: "start",
-									fontSize: 12,
-								}}
-								onClick={() => {
-									websocketService.send({
-										event: AppEvent.ReplayAlert,
-										data: message,
-									});
-								}}
-							>
-								{t("message.replay")}
-							</Button>
-						)}
+						<ReplayIcon />
+					</IconButton>
+				)}
+			</Box>
 
+			<div style={{ width: "100%", padding: 15 }}>
+				<div style={{ float: "right" }}>
+					<MessageDate message={message} />
+				</div>
+				<div>
+					<Typography
+						sx={(theme) => ({
+							color: theme.palette.primary.main,
+						})}
+					>
+						{message.user_name} {t("message.donate")}{" "}
+						{getCurrencySymbol(message.currency)}
+						{message.amount}
+					</Typography>
+				</div>
+				<div style={{ wordBreak: "break-word" }}>
+					<span>{message.text}</span>
+				</div>
+
+				<div style={{ display: "grid", gridAutoFlow: "column", marginTop: 10 }}>
+					{!isAlertPlaying && (
 						<Button
 							size="small"
 							sx={{
-								justifySelf: "end",
+								justifySelf: "start",
 								fontSize: 12,
 							}}
 							onClick={() => {
 								websocketService.send({
-									event: AppEvent.SkipAlert,
-									data: message.id,
+									event: AppEvent.ReplayAlert,
+									data: message,
 								});
 							}}
 						>
-							{t("message.skip")}
+							{t("message.replay")}
 						</Button>
-					</div>
+					)}
+
+					<Button
+						size="small"
+						sx={{
+							justifySelf: "end",
+							fontSize: 12,
+						}}
+						onClick={() => {
+							websocketService.send({
+								event: AppEvent.SkipAlert,
+								data: message.id,
+							});
+						}}
+					>
+						{t("message.skip")}
+					</Button>
 				</div>
-			</Card>
-		</>
+			</div>
+		</Card>
 	);
 };
 export default MessageTile;
