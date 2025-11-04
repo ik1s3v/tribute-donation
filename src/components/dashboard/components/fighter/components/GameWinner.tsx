@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { IAucFighterTeam } from "../../../../../../shared/types";
+import type { IAucFighterTeam } from "../../../../../../shared/types";
 
 const GameWinner = ({ gameWinner }: { gameWinner: IAucFighterTeam | null }) => {
 	const { t } = useTranslation();

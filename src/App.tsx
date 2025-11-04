@@ -24,12 +24,8 @@ function App() {
 		init,
 		{ error: initError, isSuccess: initIsSuccess, isLoading: initIsLoading },
 	] = useInitMutation();
-	const {
-		data: isAuthorized,
-		error: isAuthorizedError,
-		isLoading: isAuthorizedLoading,
-		isSuccess: isAuthorizedSuccess,
-	} = useIsAuthorizedQuery(undefined, { skip: !initIsSuccess });
+	const { error: isAuthorizedError, isLoading: isAuthorizedLoading } =
+		useIsAuthorizedQuery(undefined, { skip: !initIsSuccess });
 	const {
 		data: settings,
 		error: settingsError,
@@ -45,7 +41,7 @@ function App() {
 		init().then(() => {
 			websocketService.connect();
 		});
-	}, []);
+	}, [init, websocketService]);
 
 	useEffect(() => {
 		if (settings) {
@@ -88,15 +84,11 @@ function App() {
 	}, [dispatch, isAuthorizedError]);
 
 	useEffect(() => {
-		if (isAuthorizedSuccess && !hasNavigated.current) {
+		if (!hasNavigated.current) {
 			hasNavigated.current = true;
-			if (isAuthorized) {
-				navigate("/dashboard/messages");
-			} else {
-				navigate("/authorization/request-code");
-			}
+			navigate("/dashboard/messages");
 		}
-	}, [navigate, isAuthorizedSuccess, isAuthorized]);
+	}, [navigate]);
 
 	return (
 		<main style={{ display: "grid", height: "100dvh" }}>

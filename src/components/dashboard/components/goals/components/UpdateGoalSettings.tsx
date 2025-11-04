@@ -10,7 +10,7 @@ import {
 	useGetNotEndedGoalQuery,
 	useUpdateGoalSettingsMutation,
 } from "../../../../../api/goalsApi";
-import { AppState } from "../../../../../store";
+import type { AppState } from "../../../../../store";
 import { setGoal } from "../../../../../store/slices/goalsSlice";
 import GoalSettings from "./GoalSettings";
 

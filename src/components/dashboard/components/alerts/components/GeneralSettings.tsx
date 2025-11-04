@@ -4,7 +4,7 @@ import { NumericFormat } from "react-number-format";
 import { useDispatch, useSelector } from "react-redux";
 import { AlertVariationConditions } from "../../../../../../shared/enums";
 import { setAlert } from "../../../../../../shared/slices/alertsSlice";
-import { AppState } from "../../../../../store";
+import type { AppState } from "../../../../../store";
 import OnOffSwitch from "../../../../OnOffSwitch";
 import styles from "../../settings/Settings.module.css";
 

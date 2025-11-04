@@ -2,13 +2,13 @@ import { TextField } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { Dayjs } from "dayjs";
+import type { Dayjs } from "dayjs";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NumericFormat } from "react-number-format";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "../../../../../../shared/dayjs";
-import { AppState } from "../../../../../store";
+import type { AppState } from "../../../../../store";
 import { setGoal } from "../../../../../store/slices/goalsSlice";
 import styles from "../../settings/Settings.module.css";
 

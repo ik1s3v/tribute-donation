@@ -1,5 +1,5 @@
-import { Context, ReactNode } from "react";
-import { IWebsocketService } from "../types";
+import type { Context, ReactNode } from "react";
+import type { IWebsocketService } from "../types";
 
 const WebsocketProvider = ({
 	children,

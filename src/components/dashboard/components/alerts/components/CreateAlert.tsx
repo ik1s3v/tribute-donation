@@ -1,4 +1,4 @@
-import { SerializedError } from "@reduxjs/toolkit";
+import type { SerializedError } from "@reduxjs/toolkit";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { AlertSeverity } from "../../../../../../shared/enums";
@@ -7,7 +7,7 @@ import {
 	useCreateAlertMutation,
 	useGetAlertsQuery,
 } from "../../../../../api/alertsApi";
-import { AppState } from "../../../../../store";
+import type { AppState } from "../../../../../store";
 import AlertSettings from "../AlertSettings";
 
 const CreateAlert = () => {

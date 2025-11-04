@@ -1,9 +1,9 @@
+import { useMediaQuery, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Route, Routes } from "react-router";
+import Password from "./components/Password";
 import RequestCode from "./components/RequestCode";
 import SignIn from "./components/SignIn";
-import { useMediaQuery, useTheme } from "@mui/material";
-import Password from "./components/Password";
 
 const Authorization = () => {
 	const { t } = useTranslation();

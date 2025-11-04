@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { AppEvent } from "../shared/enums";
 import { fighterTimerSlice } from "../shared/slices/timerSlice";
-import {
+import type {
 	IAucFighterMatch,
 	IAucFighterMatchWinner,
 	IAucFighterSettings,
@@ -14,7 +14,7 @@ import updatePlayersHealthbar from "./helpers/updatePlayersHealthbar";
 import updateRoundWinnerIndex from "./helpers/updateRoundWinnerIndex";
 import updateTeamsPlayers from "./helpers/updateTeamsPlayers";
 import { websocketService } from "./services/websocketService";
-import { AppState, store } from "./store";
+import { type AppState, store } from "./store";
 import {
 	setAucFighterMatch,
 	setAucFighterSettings,
@@ -23,7 +23,7 @@ import {
 	setIsShowAnnouncer,
 	updateAucFighterMatch,
 } from "./store/slices/mainSlice";
-import { HitDetails } from "./types/types";
+import type { HitDetails } from "./types/types";
 
 const STAGES = [
 	"ryu",
@@ -183,13 +183,13 @@ websocketService.subscribe<IAucFighterSettings>(
 	},
 );
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener("keydown", (event) => {
 	if (event.ctrlKey && event.key === "1") {
 		event.preventDefault();
 		game_.getMatch()?.getTeamA().getPlayer(0).Ai.release();
 	}
 });
-document.addEventListener("keydown", function (event) {
+document.addEventListener("keydown", (event) => {
 	if (event.ctrlKey && event.key === "2") {
 		event.preventDefault();
 		game_.getMatch()?.getTeamA().getPlayer(0).enableAI();

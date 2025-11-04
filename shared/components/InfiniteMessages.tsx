@@ -1,13 +1,13 @@
 import { Skeleton } from "@mui/material";
-import { type TypedUseInfiniteQuery } from "@reduxjs/toolkit/query/react";
+import type { TypedUseInfiniteQuery } from "@reduxjs/toolkit/query/react";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroller";
 import { useDispatch, useSelector } from "react-redux";
-import { AppState } from "../../src/store";
+import type { AppState } from "../../src/store";
 import { AlertSeverity } from "../enums";
 import { showSnackBar } from "../slices/snackBarSlice";
-import { IMessage } from "../types";
+import type { IMessage } from "../types";
 import MessageTile from "./MessageTile";
 
 const InfiniteMessages = ({

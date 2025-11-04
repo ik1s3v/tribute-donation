@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import GoalView from "../../../../../../shared/components/GoalView";
-import { AppState } from "../../../../../store";
+import type { AppState } from "../../../../../store";
 import TabPanel from "../../../../TabPanel";
 import GoalElementsSettings from "./GoalElementsSettings";
 import GoalGeneralSettings from "./GoalGeneralSettings";

@@ -1,5 +1,5 @@
 import { Button, InputAdornment, TextField } from "@mui/material";
-import { SerializedError } from "@reduxjs/toolkit";
+import type { SerializedError } from "@reduxjs/toolkit";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { NumericFormat } from "react-number-format";
@@ -10,7 +10,7 @@ import {
 	useGetAucFighterSettingsQuery,
 	useUpdateAucFighterSettingsMutation,
 } from "../../../../../api/aucFighterApi";
-import { AppState } from "../../../../../store";
+import type { AppState } from "../../../../../store";
 import { setAucFighterSettings } from "../../../../../store/slices/aucFighterSlice";
 import OnOffSwitch from "../../../../OnOffSwitch";
 import styles from "../../settings/Settings.module.css";

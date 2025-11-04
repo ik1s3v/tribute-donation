@@ -18,7 +18,8 @@
 			"recommended": true
 		},
 		"includes": [
-			"!**/*/*.js"
+			"!**/*/*.js",
+			"**/*/*.tsx"
 		]
 	},
 	"javascript": {

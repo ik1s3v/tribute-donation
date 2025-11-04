@@ -23,7 +23,7 @@ const AucFighter = () => {
 
 	const dispatch = useDispatch();
 	const { t } = useTranslation();
-	const lostWithAmount = lots.filter((lot) => lot.amount);
+	const lotsWithAmount = lots.filter((lot) => lot.amount);
 	const playingMatchIndex = useMemo(() => {
 		return game?.matches.findIndex((match) => match.id === playingMatchId);
 	}, [game, playingMatchId]);
@@ -34,9 +34,9 @@ const AucFighter = () => {
 		>
 			<div>
 				<Button
-					disabled={isGameStarted || lostWithAmount.length < 2}
+					disabled={isGameStarted || lotsWithAmount.length < 2}
 					onClick={() => {
-						const game = fighterGameFromLots(lostWithAmount);
+						const game = fighterGameFromLots(lotsWithAmount);
 						dispatch(setAucFighterGame(game));
 					}}
 				>

@@ -1,6 +1,6 @@
-import { CSSProperties } from "react";
+import type { CSSProperties } from "react";
 import { useSelector } from "react-redux";
-import { AppState } from "../store";
+import type { AppState } from "../store";
 
 const style: CSSProperties = {
 	fontSize: 41,

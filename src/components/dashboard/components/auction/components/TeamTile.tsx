@@ -1,5 +1,5 @@
 import { Box, Chip } from "@mui/material";
-import { IAucFighterTeam } from "../../../../../../shared/types";
+import type { IAucFighterTeam } from "../../../../../../shared/types";
 
 const TeamTile = ({ team }: { team: IAucFighterTeam }) => {
 	return (

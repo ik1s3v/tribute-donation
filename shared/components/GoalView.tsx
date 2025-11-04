@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import type { CSSProperties } from "react";
 import getProgressBarLayoutText from "../../src/helpers/getProgressBarLayoutText";
 import { GoalTextPosition } from "../enums";
 import type { IGoal } from "../types";

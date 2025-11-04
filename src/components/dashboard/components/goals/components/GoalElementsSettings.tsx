@@ -6,7 +6,7 @@ import {
 	GoalTextPosition,
 } from "../../../../../../shared/enums";
 import getProgressBarLayoutText from "../../../../../helpers/getProgressBarLayoutText";
-import { AppState } from "../../../../../store";
+import type { AppState } from "../../../../../store";
 import { setGoal } from "../../../../../store/slices/goalsSlice";
 import OnOffSwitch from "../../../../OnOffSwitch";
 import styles from "../../settings/Settings.module.css";

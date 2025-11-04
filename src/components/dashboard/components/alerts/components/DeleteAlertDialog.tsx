@@ -6,8 +6,8 @@ import {
 	DialogContentText,
 	DialogTitle,
 } from "@mui/material";
-import { SerializedError } from "@reduxjs/toolkit";
-import { Dispatch, SetStateAction } from "react";
+import type { SerializedError } from "@reduxjs/toolkit";
+import type { Dispatch, SetStateAction } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { AlertSeverity } from "../../../../../../shared/enums";

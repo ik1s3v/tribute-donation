@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "lint": "npx @biomejs/biome lint --write",
+    "format": "npx @biomejs/biome format --write",
     "build": "tsc && vite build",
     "build:production": "npm run auc-fighter-adapter:build && npm run widget:build && tauri build",
     "widget:dev": "cross-env NODE_ENV=development vite build -c vite.config.widget.ts --watch",

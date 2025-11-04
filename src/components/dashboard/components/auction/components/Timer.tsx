@@ -9,7 +9,7 @@ import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "../../../../../../shared/dayjs";
-import { TimerSlice } from "../../../../../../shared/slices/timerSlice";
+import type { TimerSlice } from "../../../../../../shared/slices/timerSlice";
 import { DEFAULT_TIME, DEFAULT_TIMER_DURATION } from "../../../../../constants";
 import type { AppState } from "../../../../../store";
 

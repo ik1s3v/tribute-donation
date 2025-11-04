@@ -2,7 +2,7 @@ import { Button, Card } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { AppEvent } from "../../../../../../shared/enums";
 import useWebSocket from "../../../../../../shared/hooks/useWebSocket";
-import { IAucFighterMatch } from "../../../../../../shared/types";
+import type { IAucFighterMatch } from "../../../../../../shared/types";
 import TeamTile from "../../auction/components/TeamTile";
 
 const MatchCard = ({
