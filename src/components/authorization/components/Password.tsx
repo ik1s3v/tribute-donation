@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { AlertSeverity } from "../../../../shared/enums";
 import { showSnackBar } from "../../../../shared/slices/snackBarSlice";
-import { useCheckPasswordMutation } from "../../../api/authApi";
+import { useCheckPasswordMutation } from "../../../api/telegramApi";
 import AuthButton from "./AuthButton";
 
 const Password = () => {

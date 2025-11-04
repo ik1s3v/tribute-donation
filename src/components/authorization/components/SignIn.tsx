@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { AlertSeverity } from "../../../../shared/enums";
 import { showSnackBar } from "../../../../shared/slices/snackBarSlice";
-import { useSignInMutation } from "../../../api/authApi";
+import { useSignInMutation } from "../../../api/telegramApi";
 import AuthButton from "./AuthButton";
 
 const SignIn = () => {

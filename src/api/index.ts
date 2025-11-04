@@ -1,6 +1,6 @@
 import type { SerializedError } from "@reduxjs/toolkit";
 import { type BaseQueryFn, createApi } from "@reduxjs/toolkit/query/react";
-import { invoke, type InvokeArgs } from "@tauri-apps/api/core";
+import { type InvokeArgs, invoke } from "@tauri-apps/api/core";
 
 const tauriBaseQuery =
 	(): BaseQueryFn<
@@ -24,5 +24,13 @@ const tauriBaseQuery =
 export const api = createApi({
 	reducerPath: "api",
 	baseQuery: tauriBaseQuery(),
-	endpoints: () => ({}),
+	endpoints: (builder) => ({
+		init: builder.mutation<void, void>({
+			query: () => ({
+				command: "init",
+			}),
+		}),
+	}),
 });
+
+export const { useInitMutation } = api;

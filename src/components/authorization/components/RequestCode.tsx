@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { AlertSeverity } from "../../../../shared/enums";
 import { showSnackBar } from "../../../../shared/slices/snackBarSlice";
-import { useRequestLoginCodeMutation } from "../../../api/authApi";
+import { useRequestLoginCodeMutation } from "../../../api/telegramApi";
 import AuthButton from "./AuthButton";
 
 const StyledPhoneInput = styled(PhoneInput)`

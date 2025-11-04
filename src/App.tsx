@@ -6,10 +6,10 @@ import { Route, Routes, useNavigate } from "react-router";
 import { AlertSeverity } from "../shared/enums";
 import useWebSocket from "../shared/hooks/useWebSocket";
 import { showSnackBar } from "../shared/slices/snackBarSlice";
-import { useInitMutation, useIsAuthorizedQuery } from "./api/authApi";
+import { useInitMutation } from "./api";
 import { useGetSettingsQuery } from "./api/settingsApi";
 import { AppSnackBar } from "./components/AppSnackBar";
-import Authorization from "./components/authorization/Authorization";
+import TelegramAuthorization from "./components/authorization/TelegramAuthorization";
 import Dashboard from "./components/dashboard/Dashboard";
 import UpdaterDialog from "./components/UpdaterDialog";
 import { setSettings } from "./store/slices/settingsSlice";
@@ -24,8 +24,7 @@ function App() {
 		init,
 		{ error: initError, isSuccess: initIsSuccess, isLoading: initIsLoading },
 	] = useInitMutation();
-	const { error: isAuthorizedError, isLoading: isAuthorizedLoading } =
-		useIsAuthorizedQuery(undefined, { skip: !initIsSuccess });
+
 	const {
 		data: settings,
 		error: settingsError,
@@ -73,17 +72,6 @@ function App() {
 	}, [dispatch, initError]);
 
 	useEffect(() => {
-		if (isAuthorizedError) {
-			dispatch(
-				showSnackBar({
-					message: isAuthorizedError.message as string,
-					alertSeverity: AlertSeverity.error,
-				}),
-			);
-		}
-	}, [dispatch, isAuthorizedError]);
-
-	useEffect(() => {
 		if (!hasNavigated.current) {
 			hasNavigated.current = true;
 			navigate("/dashboard/messages");
@@ -94,11 +82,14 @@ function App() {
 		<main style={{ display: "grid", height: "100dvh" }}>
 			{settings && <UpdaterDialog />}
 			<AppSnackBar />
-			{settingsIsLoading || isAuthorizedLoading || initIsLoading ? (
+			{settingsIsLoading || initIsLoading ? (
 				<CircularProgress sx={{ placeSelf: "center" }} />
 			) : (
 				<Routes>
-					<Route path="/authorization/*" element={<Authorization />} />
+					<Route
+						path="/telegram-authorization/*"
+						element={<TelegramAuthorization />}
+					/>
 					<Route path="/dashboard/*" element={<Dashboard />} />
 				</Routes>
 			)}

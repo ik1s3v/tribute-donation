@@ -1,12 +1,7 @@
 import { api } from ".";
 
-export const authApi = api.injectEndpoints({
+export const telegramApi = api.injectEndpoints({
 	endpoints: (builder) => ({
-		init: builder.mutation<void, void>({
-			query: () => ({
-				command: "init",
-			}),
-		}),
 		isAuthorized: builder.query<boolean, void>({
 			query: () => ({
 				command: "is_authorized",
@@ -49,8 +44,7 @@ export const authApi = api.injectEndpoints({
 });
 export const {
 	useIsAuthorizedQuery,
-	useInitMutation,
 	useRequestLoginCodeMutation,
 	useSignInMutation,
 	useCheckPasswordMutation,
-} = authApi;
+} = telegramApi;

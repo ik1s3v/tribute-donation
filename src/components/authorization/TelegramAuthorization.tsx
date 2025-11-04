@@ -5,7 +5,7 @@ import Password from "./components/Password";
 import RequestCode from "./components/RequestCode";
 import SignIn from "./components/SignIn";
 
-const Authorization = () => {
+const TelegramAuthorization = () => {
 	const { t } = useTranslation();
 	const theme = useTheme();
 	const matches = useMediaQuery(theme.breakpoints.down("sm"));
@@ -40,4 +40,4 @@ const Authorization = () => {
 	);
 };
 
-export default Authorization;
+export default TelegramAuthorization;
