@@ -1,247 +1,247 @@
 {
-    "on": "Вкл",
-    "off": "Выкл",
-    "select": "Выбрать",
-    "success": "Успех",
-    "ok": "Ок",
-    "cancel": "Отмена",
-    "sound_volume": "Громкость звука",
-    "skip_media": "Пропустить медиа",
-    "skip_alert": "Пропустить оповещение",
-    "authorization": {
-        "title": "Авторизация",
-        "code": "Запросить код",
-        "sign_in": "Войти",
-        "phone": "Номер телефона",
-        "telegram_code": "Код Telegram",
-        "your_code": "Ваш код",
-        "2fa_password": "Пароль 2FA",
-        "password": "Пароль"
-    },
-    "error": {
-        "wrong_lots_format": "Неверный формат лотов"
-    },
-    "updater": {
-        "title": "Обновление",
-        "description": "Доступна новая версия приложения. Хотите обновить?",
-        "update": "Обновить",
-        "later": "Позже",
-        "downloading": "Загрузка..."
-    },
-    "media": {
-        "title": "Медиа",
-        "youtube": "YouTube",
-        "twitch": "Twitch",
-        "tiktok": "TikTok"
-    },
-    "integration": {
-        "tribute": "Показ сообщений с благодарностью"
-    },
-    "auction": {
-        "lots": "Лоты",
-        "wheel": "Колесо",
-        "settings": "Настройки"
-    },
-    "maption": {
-        "set_point": "Задать точку",
-        "meter_price": "Цена за метр",
-        "amount": "Сумма",
-        "finish": "Завершить",
-        "lat_error": "Широта должна быть в пределах -90 и 90",
-        "lng_error": "Долгота должна быть в пределах -180 и 180",
-        "rules": "Чтобы указатель автоматически менял позицию в сообщении, должно быть только одно слово из:"
-    },
-    "media_settings": {
-        "enabled": "Включено",
-        "min_amount_eur": "Мин. сумма EUR",
-        "min_amount_rub": "Мин. сумма RUB",
-        "video_volume": "Громкость видео",
-        "min_views": "Мин. просмотров"
-    },
-    "dashboard": {
-        "messages": "Сообщения",
-        "settings": "Настройки",
-        "alerts": "Оповещения",
-        "media": "Медиа",
-        "goals": "Цели",
-        "auction": "Аукцион",
-        "maption": "Maption",
-        "fighter": "Боец"
-    },
-    "messages": {
-        "title": "Последние сообщения"
-    },
-    "message": {
-        "skip": "Пропустить",
-        "replay": "Повтор",
-        "donate": "Пожертвовать"
-    },
-    "settings": {
-        "title": "Настройки",
-        "pause": "Пауза оповещений",
-        "moderation_duration": "Время модерации",
-        "black_list": "Чёрный список",
-        "remove_links": "Удалять ссылки",
-        "language": "Язык",
-        "sec": "Сек"
-    },
-    "wheel": {
-        "normal": "Обычный",
-        "dropout": "Выбывание",
-        "spin": "Крутить",
-        "speed": "Скорость колеса"
-    },
-    "timer": {
-        "continue": "Продолжить",
-        "pause": "Пауза",
-        "reset": "Сброс",
-        "add_time": "Добавить время",
-        "reduce_time": "Уменьшить время",
-        "add_timex2": "Добавить время x2"
-    },
-    "fighter": {
-        "title": "Боец",
-        "match": "Матч",
-        "final": "Финал",
-        "game": "Игра",
-        "cancel": "Отменить игру",
-        "winner": "Победитель",
-        "settings": "Настройки",
-        "create_game": "Создать игру из лотов",
-        "start": "Старт",
-        "pause": "Пауза",
-        "rematch": "Реванш",
-        "resume": "Продолжить"
-    },
-    "lot": {
-        "name": "Название",
-        "delete": "Удалить",
-        "add": "Добавить сумму"
-    },
-    "bid": {
-        "delete": "Удалить",
-        "to_lot": "К лоту",
-        "new": "Новый",
-        "add_to_random_slot": "Добавить в случайный лот"
-    },
-    "lots": {
-        "add": "Добавить",
-        "new_lot_name": "Название нового лота",
-        "search": "Поиск лота"
-    },
-    "auction_settings": {
-        "leader_change": "Смена лидера",
-        "new_lot": "Новый лот",
-        "new_donation": "Новое пожертвование",
-        "show_odds": "Показать шансы",
-        "show_total_sum": "Показать общую сумму",
-        "greater_timer_adding_time": "Большее добавляемое время",
-        "not_add_time_if": "Не добавлять время, если",
-        "adding_time": "Добавляемое время"
-    },
-    "lots_options": {
-        "import_lots": "Импортировать лоты",
-        "clear_lots": "Очистить лоты"
-    },
-    "auc_fighter_settings": {
-        "round_duration": "Длительность раунда",
-        "add_players": "Добавить игроков"
-    },
-    "alerts": {
-        "title": "Оповещения",
-        "group": "Группа"
-    },
-    "alert": {
-        "image": "Изображение",
-        "audio": "Аудио",
-        "view": "Просмотр",
-        "title": "Заголовок",
-        "message": "Сообщение",
-        "test_name": "Тест",
-        "test_text": "Это тестовое оповещение!",
-        "configure": "Настроить",
-        "test": "Тестировать",
-        "add_new_variant": "Добавить новый вариант",
-        "new_variant": "Новый вариант",
-        "variant_title": "Заголовок варианта",
-        "variant_group": "Группа варианта",
-        "status": "Статус",
-        "variation_condition": "Условие вариации",
-        "group": "Группа",
-        "Random": "Случайный",
-        "AmountIsGreater": "Сумма больше",
-        "AmountIsEqual": "Сумма равна",
-        "delete": "Удалить",
-        "sure_delete": "Вы уверены, что хотите удалить этот вариант?"
-    },
-    "general": "Общее",
-    "goals": {
-        "title": "Цели",
-        "create": "Создать новую цель"
-    },
-    "goal": {
-        "new": "Новая цель",
-        "goal": "Просмотр",
-        "elements": "Элементы",
-        "progress": "Прогресс",
-        "goal_title": "Название цели",
-        "amount_raise": "Сумма для сбора",
-        "start_raising": "Начать сбор с",
-        "end_date": "Дата окончания",
-        "bar_height": "Высота шкалы",
-        "rounding_radius": "Радиус скругления",
-        "bar_stroke_thickness": "Толщина шкалы",
-        "background_bar_color": "Цвет фона шкалы",
-        "progress_bar_color": "Цвет прогресса",
-        "goal_progress_bar": "Шкала прогресса цели",
-        "progress_bar_layout": "Расположение шкалы прогресса",
-        "remaining_time": "Оставшееся время",
-        "goal_amount_limits": "Ограничения суммы цели",
-        "widget_background": "Фон виджета",
-        "background_color": "Цвет фона",
-        "OnTop": "Сверху",
-        "Inside": "Внутри",
-        "Below": "Снизу",
-        "DoNotDisplay": "Не отображать",
-        "title": "Заголовок",
-        "limits": "Ограничения",
-        "raised": "Собрано",
-        "days_left": "Осталось дней",
-        "finish_goal": "Завершить цель",
-        "sure_finish": "Вы уверены, что хотите завершить эту цель?"
-    },
-    "save": "Сохранить",
-    "back": "Назад",
-    "widget": {
-        "copy": "Копировать",
-        "launch": "Запустить",
-        "url": "URL виджета",
-        "obs_dock_url": "OBS Dock URL"
-    },
-    "view": {
-        "top": "Изображение сверху, текст снизу",
-        "bottom": "Изображение снизу, текст сверху",
-        "left": "Изображение слева, текст справа",
-        "right": "Изображение справа, текст слева",
-        "overlay": "Текст поверх изображения"
-    },
-    "text": {
-        "font": "Шрифт",
-        "font_size": "Размер шрифта",
-        "text_color": "Цвет текста",
-        "bold": "Жирный",
-        "italics": "Курсив",
-        "underline": "Подчёркнутый",
-        "transformation": "Трансформация",
-        "letter_spacing": "Межбуквенный интервал",
-        "word_spacing": "Интервал между словами",
-        "horizontal_alignment": "Горизонтальное выравнивание",
-        "vertical_alignment": "Вертикальное выравнивание",
-        "text_preview": "Это предпросмотр!",
-        "name": "Имя"
-    },
-    "audio": {
-        "play": "Воспроизвести",
-        "stop": "Остановить"
-    }
+	"on": "Вкл",
+	"off": "Выкл",
+	"select": "Выбрать",
+	"success": "Успех",
+	"ok": "Ок",
+	"cancel": "Отмена",
+	"sound_volume": "Громкость звука",
+	"skip_media": "Пропустить медиа",
+	"skip_alert": "Пропустить оповещение",
+	"authorization": {
+		"title": "Авторизация",
+		"code": "Запросить код",
+		"sign_in": "Войти",
+		"phone": "Номер телефона",
+		"telegram_code": "Код Telegram",
+		"your_code": "Ваш код",
+		"2fa_password": "Пароль 2FA",
+		"password": "Пароль"
+	},
+	"error": {
+		"wrong_lots_format": "Неверный формат лотов"
+	},
+	"updater": {
+		"title": "Обновление",
+		"description": "Доступна новая версия приложения. Хотите обновить?",
+		"update": "Обновить",
+		"later": "Позже",
+		"downloading": "Загрузка..."
+	},
+	"media": {
+		"title": "Медиа",
+		"youtube": "YouTube",
+		"twitch": "Twitch",
+		"tiktok": "TikTok"
+	},
+	"integration": {
+		"tribute": "Показ сообщений с благодарностью"
+	},
+	"auction": {
+		"lots": "Лоты",
+		"wheel": "Колесо",
+		"settings": "Настройки"
+	},
+	"maption": {
+		"set_point": "Задать точку",
+		"meter_price": "Цена за метр",
+		"amount": "Сумма",
+		"finish": "Завершить",
+		"lat_error": "Широта должна быть в пределах -90 и 90",
+		"lng_error": "Долгота должна быть в пределах -180 и 180",
+		"rules": "Чтобы указатель автоматически менял позицию в сообщении, должно быть только одно слово из:"
+	},
+	"media_settings": {
+		"enabled": "Включено",
+		"min_amount_eur": "Мин. сумма EUR",
+		"min_amount_rub": "Мин. сумма RUB",
+		"video_volume": "Громкость видео",
+		"min_views": "Мин. просмотров"
+	},
+	"dashboard": {
+		"messages": "Сообщения",
+		"settings": "Настройки",
+		"alerts": "Оповещения",
+		"media": "Медиа",
+		"goals": "Цели",
+		"auction": "Аукцион",
+		"maption": "Maption",
+		"fighter": "Боец"
+	},
+	"messages": {
+		"title": "Последние сообщения"
+	},
+	"message": {
+		"skip": "Пропустить",
+		"replay": "Повтор",
+		"donate": "Пожертвовать"
+	},
+	"settings": {
+		"title": "Настройки",
+		"pause": "Пауза оповещений",
+		"moderation_duration": "Время модерации",
+		"black_list": "Чёрный список",
+		"remove_links": "Удалять ссылки",
+		"language": "Язык",
+		"sec": "Сек"
+	},
+	"wheel": {
+		"normal": "Обычный",
+		"dropout": "Выбывание",
+		"spin": "Крутить",
+		"speed": "Скорость колеса"
+	},
+	"timer": {
+		"continue": "Продолжить",
+		"pause": "Пауза",
+		"reset": "Сброс",
+		"add_time": "Добавить время",
+		"reduce_time": "Уменьшить время",
+		"add_timex2": "Добавить время x2"
+	},
+	"fighter": {
+		"title": "Боец",
+		"match": "Матч",
+		"final": "Финал",
+		"game": "Игра",
+		"cancel": "Отменить игру",
+		"winner": "Победитель",
+		"settings": "Настройки",
+		"create_game": "Создать игру из лотов",
+		"start": "Старт",
+		"pause": "Пауза",
+		"rematch": "Реванш",
+		"resume": "Продолжить"
+	},
+	"lot": {
+		"name": "Название",
+		"delete": "Удалить",
+		"add": "Добавить сумму"
+	},
+	"bid": {
+		"delete": "Удалить",
+		"to_lot": "К лоту",
+		"new": "Новый",
+		"add_to_random_slot": "Добавить в случайный лот"
+	},
+	"lots": {
+		"add": "Добавить",
+		"new_lot_name": "Название нового лота",
+		"search": "Поиск лота"
+	},
+	"auction_settings": {
+		"leader_change": "Смена лидера",
+		"new_lot": "Новый лот",
+		"new_donation": "Новое пожертвование",
+		"show_odds": "Показать шансы",
+		"show_total_sum": "Показать общую сумму",
+		"greater_timer_adding_time": "Большее добавляемое время",
+		"not_add_time_if": "Не добавлять время, если",
+		"adding_time": "Добавляемое время"
+	},
+	"lots_options": {
+		"import_lots": "Импортировать лоты",
+		"clear_lots": "Очистить лоты"
+	},
+	"auc_fighter_settings": {
+		"round_duration": "Длительность раунда",
+		"add_players": "Добавить игроков"
+	},
+	"alerts": {
+		"title": "Оповещения",
+		"group": "Группа"
+	},
+	"alert": {
+		"image": "Изображение",
+		"audio": "Аудио",
+		"view": "Просмотр",
+		"title": "Заголовок",
+		"message": "Сообщение",
+		"test_name": "Тест",
+		"test_text": "Это тестовое оповещение!",
+		"configure": "Настроить",
+		"test": "Тестировать",
+		"add_new_variant": "Добавить новый вариант",
+		"new_variant": "Новый вариант",
+		"variant_title": "Заголовок варианта",
+		"variant_group": "Группа варианта",
+		"status": "Статус",
+		"variation_condition": "Условие вариации",
+		"group": "Группа",
+		"Random": "Случайный",
+		"AmountIsGreater": "Сумма больше",
+		"AmountIsEqual": "Сумма равна",
+		"delete": "Удалить",
+		"sure_delete": "Вы уверены, что хотите удалить этот вариант?"
+	},
+	"general": "Общее",
+	"goals": {
+		"title": "Цели",
+		"create": "Создать новую цель"
+	},
+	"goal": {
+		"new": "Новая цель",
+		"goal": "Просмотр",
+		"elements": "Элементы",
+		"progress": "Прогресс",
+		"goal_title": "Название цели",
+		"amount_raise": "Сумма для сбора",
+		"start_raising": "Начать сбор с",
+		"end_date": "Дата окончания",
+		"bar_height": "Высота шкалы",
+		"rounding_radius": "Радиус скругления",
+		"bar_stroke_thickness": "Толщина шкалы",
+		"background_bar_color": "Цвет фона шкалы",
+		"progress_bar_color": "Цвет прогресса",
+		"goal_progress_bar": "Шкала прогресса цели",
+		"progress_bar_layout": "Расположение шкалы прогресса",
+		"remaining_time": "Оставшееся время",
+		"goal_amount_limits": "Ограничения суммы цели",
+		"widget_background": "Фон виджета",
+		"background_color": "Цвет фона",
+		"OnTop": "Сверху",
+		"Inside": "Внутри",
+		"Below": "Снизу",
+		"DoNotDisplay": "Не отображать",
+		"title": "Заголовок",
+		"limits": "Ограничения",
+		"raised": "Собрано",
+		"days_left": "Осталось дней",
+		"finish_goal": "Завершить цель",
+		"sure_finish": "Вы уверены, что хотите завершить эту цель?"
+	},
+	"save": "Сохранить",
+	"back": "Назад",
+	"widget": {
+		"copy": "Копировать",
+		"launch": "Запустить",
+		"url": "URL виджета",
+		"obs_dock_url": "OBS Dock URL"
+	},
+	"view": {
+		"top": "Изображение сверху, текст снизу",
+		"bottom": "Изображение снизу, текст сверху",
+		"left": "Изображение слева, текст справа",
+		"right": "Изображение справа, текст слева",
+		"overlay": "Текст поверх изображения"
+	},
+	"text": {
+		"font": "Шрифт",
+		"font_size": "Размер шрифта",
+		"text_color": "Цвет текста",
+		"bold": "Жирный",
+		"italics": "Курсив",
+		"underline": "Подчёркнутый",
+		"transformation": "Трансформация",
+		"letter_spacing": "Межбуквенный интервал",
+		"word_spacing": "Интервал между словами",
+		"horizontal_alignment": "Горизонтальное выравнивание",
+		"vertical_alignment": "Вертикальное выравнивание",
+		"text_preview": "Это предпросмотр!",
+		"name": "Имя"
+	},
+	"audio": {
+		"play": "Воспроизвести",
+		"stop": "Остановить"
+	}
 }

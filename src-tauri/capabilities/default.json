@@ -1,29 +1,27 @@
 {
-  "$schema": "../gen/schemas/desktop-schema.json",
-  "identifier": "default",
-  "description": "Capability for the main window",
-  "windows": [
-    "main"
-  ],
-  "permissions": [
-    {
-      "identifier": "opener:allow-open-url",
-      "allow": [
-        {
-          "url": "https://tauri.app"
-        }
-      ]
-    },
-    "websocket:default",
-    "global-shortcut:allow-is-registered",
-    "global-shortcut:allow-register",
-    "global-shortcut:allow-unregister",
-    "core:default",
-    "fs:allow-applocaldata-read-recursive",
-    "fs:allow-applocaldata-write-recursive",
-    "fs:allow-applocaldata-meta-recursive",
-    "fs:scope-applocaldata-recursive",
-    "dialog:default",
-    "log:default"
-  ]
+	"$schema": "../gen/schemas/desktop-schema.json",
+	"identifier": "default",
+	"description": "Capability for the main window",
+	"windows": ["main"],
+	"permissions": [
+		{
+			"identifier": "opener:allow-open-url",
+			"allow": [
+				{
+					"url": "https://tauri.app"
+				}
+			]
+		},
+		"websocket:default",
+		"global-shortcut:allow-is-registered",
+		"global-shortcut:allow-register",
+		"global-shortcut:allow-unregister",
+		"core:default",
+		"fs:allow-applocaldata-read-recursive",
+		"fs:allow-applocaldata-write-recursive",
+		"fs:allow-applocaldata-meta-recursive",
+		"fs:scope-applocaldata-recursive",
+		"dialog:default",
+		"log:default"
+	]
 }

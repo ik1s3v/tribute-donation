@@ -9,8 +9,8 @@ import { showSnackBar } from "../shared/slices/snackBarSlice";
 import { useInitMutation } from "./api";
 import { useGetSettingsQuery } from "./api/settingsApi";
 import { AppSnackBar } from "./components/AppSnackBar";
-import TelegramAuthorization from "./components/authorization/TelegramAuthorization";
 import Dashboard from "./components/dashboard/Dashboard";
+import TelegramAuthorization from "./components/telegram-authorization/TelegramAuthorization";
 import UpdaterDialog from "./components/UpdaterDialog";
 import { setSettings } from "./store/slices/settingsSlice";
 

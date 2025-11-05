@@ -5,7 +5,11 @@ const AuthButton = ({
 	onClick,
 	isPending = false,
 	children,
-}: { onClick?: () => void; isPending?: boolean; children: ReactNode }) => {
+}: {
+	onClick?: () => void;
+	isPending?: boolean;
+	children: ReactNode;
+}) => {
 	return (
 		<Button
 			variant="contained"

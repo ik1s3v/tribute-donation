@@ -7,7 +7,10 @@ import Youtube from "../components/media/Youtube";
 const getElementByMediaType = ({
 	message,
 	mediaSettings,
-}: { message: IMessage; mediaSettings: IMediaSettings }) => {
+}: {
+	message: IMessage;
+	mediaSettings: IMediaSettings;
+}) => {
 	switch (message.media?.media_type) {
 		case MediaType.Twitch:
 			return (

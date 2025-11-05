@@ -17,10 +17,7 @@
 		"rules": {
 			"recommended": true
 		},
-		"includes": [
-			"!**/*/*.js",
-			"**/*/*.tsx"
-		]
+		"includes": ["!**/*/*.js", "**/*/*.tsx"]
 	},
 	"javascript": {
 		"formatter": {

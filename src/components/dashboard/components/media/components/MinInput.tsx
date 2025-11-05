@@ -4,7 +4,10 @@ import { NumericFormat } from "react-number-format";
 const MinInput = ({
 	value,
 	onChange,
-}: { value: number; onChange: (value: number) => void }) => {
+}: {
+	value: number;
+	onChange: (value: number) => void;
+}) => {
 	return (
 		<NumericFormat
 			style={{ width: 100 }}

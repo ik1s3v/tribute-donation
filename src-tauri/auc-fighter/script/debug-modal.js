@@ -1,16 +1,32 @@
 var QuickMatchConfiguratorWindow = function (fn) {
-	var team1Container = window.document.querySelector("#pnlTeam1PlayerSelectors");
-	var team2Container = window.document.querySelector("#pnlTeam2PlayerSelectors");
-	var stageSelectContainer = window.document.querySelector(".debug-qm-stage-selector");
-	var cmdAddPlayerSelectorTeam1 = window.document.querySelector("#cmdAddPlayerSelectorTeam1");
-	var cmdAddPlayerSelectorTeam2 = window.document.querySelector("#cmdAddPlayerSelectorTeam2");
-	var cmdRemovePlayerSelectorTeam1 = window.document.querySelector("#cmdRemovePlayerSelectorTeam1");
-	var cmdRemovePlayerSelectorTeam2 = window.document.querySelector("#cmdRemovePlayerSelectorTeam2");
+	var team1Container = window.document.querySelector(
+		"#pnlTeam1PlayerSelectors",
+	);
+	var team2Container = window.document.querySelector(
+		"#pnlTeam2PlayerSelectors",
+	);
+	var stageSelectContainer = window.document.querySelector(
+		".debug-qm-stage-selector",
+	);
+	var cmdAddPlayerSelectorTeam1 = window.document.querySelector(
+		"#cmdAddPlayerSelectorTeam1",
+	);
+	var cmdAddPlayerSelectorTeam2 = window.document.querySelector(
+		"#cmdAddPlayerSelectorTeam2",
+	);
+	var cmdRemovePlayerSelectorTeam1 = window.document.querySelector(
+		"#cmdRemovePlayerSelectorTeam1",
+	);
+	var cmdRemovePlayerSelectorTeam2 = window.document.querySelector(
+		"#cmdRemovePlayerSelectorTeam2",
+	);
 	var team1Desc = window.document.querySelector("#team1Desc");
 	var team2Desc = window.document.querySelector("#team2Desc");
 	var stageDesc = window.document.querySelector("#stageDesc");
 	var cmdStartQuickMatch = window.document.querySelector("#cmdStartQuickMatch");
-	var cmdStartPracticeMatch = window.document.querySelector("#cmdStartPracticeMatch");
+	var cmdStartPracticeMatch = window.document.querySelector(
+		"#cmdStartPracticeMatch",
+	);
 	var stageSelector;
 	var closeModalFn = fn;
 
@@ -24,17 +40,32 @@ var QuickMatchConfiguratorWindow = function (fn) {
 		CHARACTERS.KEN,
 		CHARACTERS.SAGAT,
 		CHARACTERS.MBISON,
-		CHARACTERS.AKUMA
+		CHARACTERS.AKUMA,
 	];
-	var stages = ["guy", "ken", "ryu", "sodom", "akuma", "sagat", "chunli", "dramatic_battle"];
+	var stages = [
+		"guy",
+		"ken",
+		"ryu",
+		"sodom",
+		"akuma",
+		"sagat",
+		"chunli",
+		"dramatic_battle",
+	];
 	var getCharName = function (charId) {
 		switch (+charId) {
-			case CHARACTERS.AKUMA: return "AKUMA";
-			case CHARACTERS.MBISON: return "MBISON";
-			case CHARACTERS.SAGAT: return "SAGAT";
-			case CHARACTERS.KEN: return "KEN";
-			case CHARACTERS.RYU: return "RYU";
-			default: return "--";
+			case CHARACTERS.AKUMA:
+				return "AKUMA";
+			case CHARACTERS.MBISON:
+				return "MBISON";
+			case CHARACTERS.SAGAT:
+				return "SAGAT";
+			case CHARACTERS.KEN:
+				return "KEN";
+			case CHARACTERS.RYU:
+				return "RYU";
+			default:
+				return "--";
 		}
 	};
 
@@ -53,7 +84,9 @@ var QuickMatchConfiguratorWindow = function (fn) {
 		}
 
 		stageSelectContainer.appendChild(stageSelector);
-		stageSelector.addEventListener("change", function () { self.handleQuickMatchChanged(); });
+		stageSelector.addEventListener("change", function () {
+			self.handleQuickMatchChanged();
+		});
 
 		// add the player selectors
 		this.addPlayerSelect(team1Container, CHARACTERS.KEN);
@@ -62,14 +95,26 @@ var QuickMatchConfiguratorWindow = function (fn) {
 		stageSelector.selectedIndex = 7;
 
 		// set the button click handlers
-		cmdAddPlayerSelectorTeam1.addEventListener("click", function () { self.addPlayerSelect(team1Container, CHARACTERS.RYU); });
-		cmdAddPlayerSelectorTeam2.addEventListener("click", function () { self.addPlayerSelect(team2Container, CHARACTERS.KEN); });
+		cmdAddPlayerSelectorTeam1.addEventListener("click", function () {
+			self.addPlayerSelect(team1Container, CHARACTERS.RYU);
+		});
+		cmdAddPlayerSelectorTeam2.addEventListener("click", function () {
+			self.addPlayerSelect(team2Container, CHARACTERS.KEN);
+		});
 
-		cmdRemovePlayerSelectorTeam1.addEventListener("click", function () { self.removePlayerSelect(team1Container); });
-		cmdRemovePlayerSelectorTeam2.addEventListener("click", function () { self.removePlayerSelect(team2Container); });
+		cmdRemovePlayerSelectorTeam1.addEventListener("click", function () {
+			self.removePlayerSelect(team1Container);
+		});
+		cmdRemovePlayerSelectorTeam2.addEventListener("click", function () {
+			self.removePlayerSelect(team2Container);
+		});
 
-		cmdStartQuickMatch.addEventListener("click", function () { self.startQuickMatch(true); });
-		cmdStartPracticeMatch.addEventListener("click", function () { self.startQuickMatch(false); });
+		cmdStartQuickMatch.addEventListener("click", function () {
+			self.startQuickMatch(true);
+		});
+		cmdStartPracticeMatch.addEventListener("click", function () {
+			self.startQuickMatch(false);
+		});
 
 		this.handleQuickMatchChanged();
 	};
@@ -88,7 +133,7 @@ var QuickMatchConfiguratorWindow = function (fn) {
 		}
 
 		closeModalFn();
-	}
+	};
 
 	/**
 	 * Injects a player selector into the passed in target
@@ -127,7 +172,9 @@ var QuickMatchConfiguratorWindow = function (fn) {
 			target.selectedIndex = selectedIndex;
 		}
 
-		playerSelect.addEventListener("change", function () { self.handleQuickMatchChanged() });
+		playerSelect.addEventListener("change", function () {
+			self.handleQuickMatchChanged();
+		});
 
 		this.handleQuickMatchChanged();
 	};
@@ -163,18 +210,19 @@ var QuickMatchConfiguratorWindow = function (fn) {
 		var isAI = !myTeam;
 		for (var i = 0; i < playerSelectContainer.children.length; i += 1) {
 			var select = playerSelectContainer.children[i];
-			var selectedOption = select.options[select.selectedIndex]
+			var selectedOption = select.options[select.selectedIndex];
 			var charId = +selectedOption.value;
 			var color = +selectedOption.getAttribute("data-alt") || 0;
-			teamPlayers.push({A: charId, B: color, C: isAI && enableAI});
+			teamPlayers.push({ A: charId, B: color, C: isAI && enableAI });
 			isAI = true;
 			teamDesc += getCharName(charId) + ", ";
 		}
 		return {
 			teamPlayers: teamPlayers,
-			desc: teamDesc.length > 1 ? teamDesc.substr(0, teamDesc.length - 2) : "???"
+			desc:
+				teamDesc.length > 1 ? teamDesc.substr(0, teamDesc.length - 2) : "???",
 		};
-	}
+	};
 
 	/**
 	 * Any change will trigger this method. It will update the quick match params
@@ -186,15 +234,16 @@ var QuickMatchConfiguratorWindow = function (fn) {
 		team1Desc.innerText = t1.desc;
 		selectedTeam1 = t1.teamPlayers;
 
-			// get team 2
+		// get team 2
 		var t2 = getTeam(team2Container, false, !!enableAI);
 		team2Desc.innerText = t2.desc;
 		selectedTeam2 = t2.teamPlayers;
 
-		var selectedStageOption = stageSelector.options[stageSelector.selectedIndex];
+		var selectedStageOption =
+			stageSelector.options[stageSelector.selectedIndex];
 		selectedStage = selectedStageOption ? selectedStageOption.value : "guy";
-		stageDesc.innerText =  "(stage: " + selectedStage + ")";
-	}
+		stageDesc.innerText = "(stage: " + selectedStage + ")";
+	};
 
 	this.init();
 };
@@ -205,18 +254,34 @@ var ProjectileEditorWindow = function () {
 	var ddlProjectiles = window.document.querySelector("#ddlProjectiles");
 	var txtProjectileName = window.document.querySelector("#txtProjectileName");
 	var chkCanJuggle = window.document.querySelector("#chkCanJuggle");
-	var txtProjectileMaxHits = window.document.querySelector("#txtProjectileMaxHits");
-	var txtProjectileHitDelay = window.document.querySelector("#txtProjectileHitDelay");
-	var txtProjectileComboFlags = window.document.querySelector("#txtProjectileComboFlags");
-	var txtProjectileXSpeed = window.document.querySelector("#txtProjectileXSpeed");
-	var txtProjectileYSpeed = window.document.querySelector("#txtProjectileYSpeed");
-	var cmdSaveProjectileData = window.document.querySelector("#cmdSaveProjectileData");
+	var txtProjectileMaxHits = window.document.querySelector(
+		"#txtProjectileMaxHits",
+	);
+	var txtProjectileHitDelay = window.document.querySelector(
+		"#txtProjectileHitDelay",
+	);
+	var txtProjectileComboFlags = window.document.querySelector(
+		"#txtProjectileComboFlags",
+	);
+	var txtProjectileXSpeed = window.document.querySelector(
+		"#txtProjectileXSpeed",
+	);
+	var txtProjectileYSpeed = window.document.querySelector(
+		"#txtProjectileYSpeed",
+	);
+	var cmdSaveProjectileData = window.document.querySelector(
+		"#cmdSaveProjectileData",
+	);
 
 	var chkProjectileFlag2 = window.document.querySelector("#chkProjectileFlag2");
 	var chkProjectileFlag4 = window.document.querySelector("#chkProjectileFlag4");
 	var chkProjectileFlag8 = window.document.querySelector("#chkProjectileFlag8");
-	var chkProjectileFlag16 = window.document.querySelector("#chkProjectileFlag16");
-	var chkProjectileFlag32 = window.document.querySelector("#chkProjectileFlag32");
+	var chkProjectileFlag16 = window.document.querySelector(
+		"#chkProjectileFlag16",
+	);
+	var chkProjectileFlag32 = window.document.querySelector(
+		"#chkProjectileFlag32",
+	);
 
 	this.selectedProjectileIndex = null;
 	this.charId = null;
@@ -242,12 +307,12 @@ var ProjectileEditorWindow = function () {
 		var p1 = debug_.p1();
 		self.charId = p1.Name;
 
-		if(!p1) {
+		if (!p1) {
 			return;
 		}
 
 		// clear out what ever is there now
-		while(!!ddlProjectiles.children[0]) {
+		while (!!ddlProjectiles.children[0]) {
 			ddlProjectiles.removeChild(ddlProjectiles.children[0]);
 		}
 
@@ -258,7 +323,7 @@ var ProjectileEditorWindow = function () {
 		ddlProjectiles.appendChild(defaultOption);
 
 		// add each projectile into the select
-		for(var i = 0; i < p1.Projectiles.length; ++i) {
+		for (var i = 0; i < p1.Projectiles.length; ++i) {
 			var projectionOption = window.document.createElement("option");
 			projectionOption.value = i;
 			projectionOption.text = p1.Projectiles[i].Animation.BaseAnimation.Name;
@@ -282,20 +347,39 @@ var ProjectileEditorWindow = function () {
 	 */
 	this.loadProjectileData = function () {
 		pnlProjectileData.style.display = "none";
-		var projectileIndex = +ddlProjectiles.options[ddlProjectiles.selectedIndex].value;
+		var projectileIndex =
+			+ddlProjectiles.options[ddlProjectiles.selectedIndex].value;
 		if (!isNaN(projectileIndex) && projectileIndex > -1) {
 			var p1 = debug_.p1();
-			txtProjectileName.innerHTML = p1.Projectiles[projectileIndex].Animation.BaseAnimation.Name;
+			txtProjectileName.innerHTML =
+				p1.Projectiles[projectileIndex].Animation.BaseAnimation.Name;
 			chkCanJuggle.checked = p1.Projectiles[projectileIndex].CanJuggle;
 			txtProjectileMaxHits.value = p1.Projectiles[projectileIndex].MaxHits;
-			txtProjectileHitDelay.value = p1.Projectiles[projectileIndex].DefaultLocalHitStop;
-			txtProjectileComboFlags.value = p1.Projectiles[projectileIndex].Params.Combo || "";
+			txtProjectileHitDelay.value =
+				p1.Projectiles[projectileIndex].DefaultLocalHitStop;
+			txtProjectileComboFlags.value =
+				p1.Projectiles[projectileIndex].Params.Combo || "";
 
-			chkProjectileFlag2.checked = hasFlag(COMBO_FLAGS.BLUE_FIRE_ON_FIRST_HIT, +txtProjectileComboFlags.value);
-			chkProjectileFlag4.checked = hasFlag(COMBO_FLAGS.RED_FIRE_ON_MAX_HIT, +txtProjectileComboFlags.value);
-			chkProjectileFlag8.checked = hasFlag(COMBO_FLAGS.RED_FIRE_SOUND_ON_MAX_HIT, +txtProjectileComboFlags.value);
-			chkProjectileFlag16.checked = hasFlag(COMBO_FLAGS.SHORT_DELAY_ON_FIRST_HIT, +txtProjectileComboFlags.value);
-			chkProjectileFlag32.checked = hasFlag(COMBO_FLAGS.KNOCKDOWN_ON_MAX_HIT, +txtProjectileComboFlags.value);
+			chkProjectileFlag2.checked = hasFlag(
+				COMBO_FLAGS.BLUE_FIRE_ON_FIRST_HIT,
+				+txtProjectileComboFlags.value,
+			);
+			chkProjectileFlag4.checked = hasFlag(
+				COMBO_FLAGS.RED_FIRE_ON_MAX_HIT,
+				+txtProjectileComboFlags.value,
+			);
+			chkProjectileFlag8.checked = hasFlag(
+				COMBO_FLAGS.RED_FIRE_SOUND_ON_MAX_HIT,
+				+txtProjectileComboFlags.value,
+			);
+			chkProjectileFlag16.checked = hasFlag(
+				COMBO_FLAGS.SHORT_DELAY_ON_FIRST_HIT,
+				+txtProjectileComboFlags.value,
+			);
+			chkProjectileFlag32.checked = hasFlag(
+				COMBO_FLAGS.KNOCKDOWN_ON_MAX_HIT,
+				+txtProjectileComboFlags.value,
+			);
 
 			txtProjectileYSpeed.value = p1.Projectiles[projectileIndex].YSpeed;
 			txtProjectileXSpeed.value = p1.Projectiles[projectileIndex].XSpeed;
@@ -308,7 +392,7 @@ var ProjectileEditorWindow = function () {
 	 */
 	this.reload = function () {
 		var p1 = debug_.p1();
-		if (!p1 || (p1.Name !== this.charId)) {
+		if (!p1 || p1.Name !== this.charId) {
 			this.selectedProjectileIndex = null;
 			this.reset();
 		}
@@ -357,13 +441,12 @@ var ProjectileEditorWindow = function () {
 			p1.Projectiles[projectileIndex].YSpeed = ySpeed;
 		//combo flags
 
-
-		var combo = (chkProjectileFlag2.checked && COMBO_FLAGS.BLUE_FIRE_ON_FIRST_HIT)
-			| (chkProjectileFlag4.checked && COMBO_FLAGS.RED_FIRE_ON_MAX_HIT)
-			| (chkProjectileFlag8.checked && COMBO_FLAGS.RED_FIRE_SOUND_ON_MAX_HIT)
-			| (chkProjectileFlag16.checked && COMBO_FLAGS.SHORT_DELAY_ON_FIRST_HIT)
-			| (chkProjectileFlag32.checked && COMBO_FLAGS.KNOCKDOWN_ON_MAX_HIT)
-		;
+		var combo =
+			(chkProjectileFlag2.checked && COMBO_FLAGS.BLUE_FIRE_ON_FIRST_HIT) |
+			(chkProjectileFlag4.checked && COMBO_FLAGS.RED_FIRE_ON_MAX_HIT) |
+			(chkProjectileFlag8.checked && COMBO_FLAGS.RED_FIRE_SOUND_ON_MAX_HIT) |
+			(chkProjectileFlag16.checked && COMBO_FLAGS.SHORT_DELAY_ON_FIRST_HIT) |
+			(chkProjectileFlag32.checked && COMBO_FLAGS.KNOCKDOWN_ON_MAX_HIT);
 
 		txtProjectileComboFlags.value = combo || "";
 
@@ -399,21 +482,31 @@ var ProjectileEditorWindow = function () {
 	};
 
 	this.init();
-}
+};
 
-var MainEditorWindow = function (fn, setJoyPadListener, cancelJoyPadListener, hideCancelButtons, setHighlight) {
+var MainEditorWindow = function (
+	fn,
+	setJoyPadListener,
+	cancelJoyPadListener,
+	hideCancelButtons,
+	setHighlight,
+) {
 	var self = this;
 	var closeModalFn = fn;
-	var chkDamage = window.document.querySelector("#chkDamage")
-	var chkUserController = window.document.querySelector("#chkUserController")
-	var pnlKeyboardKeys = window.document.querySelector("#pnlKeyboardKeys")
-	var pnlNoJoystick = window.document.querySelector("#pnlNoJoystick")
-	var pnlJoystick = window.document.querySelector("#pnlJoystick")
+	var chkDamage = window.document.querySelector("#chkDamage");
+	var chkUserController = window.document.querySelector("#chkUserController");
+	var pnlKeyboardKeys = window.document.querySelector("#pnlKeyboardKeys");
+	var pnlNoJoystick = window.document.querySelector("#pnlNoJoystick");
+	var pnlJoystick = window.document.querySelector("#pnlJoystick");
 
 	this.init = function () {
 		var self = this;
-		chkDamage.addEventListener("input", function () { __noDamage = !__noDamage });
-		chkUserController.addEventListener("input", function () { self.useJoystick(!!chkUserController.checked) });
+		chkDamage.addEventListener("input", function () {
+			__noDamage = !__noDamage;
+		});
+		chkUserController.addEventListener("input", function () {
+			self.useJoystick(!!chkUserController.checked);
+		});
 
 		joypad.on("connect", function (e) {
 			self.checkGamepads(e.gamepad);
@@ -500,25 +593,64 @@ var MainEditorWindow = function (fn, setJoyPadListener, cancelJoyPadListener, hi
 					setHighlight();
 					hideCancelButtons();
 					showJoyPadMappings();
-				}
+				};
 			})(key);
 
 			setJoyPadListener(joypad.on("button_press", fn));
 		};
 
-
-		document.querySelector("#liJoyPadCoin").addEventListener("click", function () { mapJoyPad("#liJoyPadCoin", "select"); });
-		document.querySelector("#liJoyPadStart").addEventListener("click", function () { mapJoyPad("#liJoyPadStart", "start"); });
-		document.querySelector("#liJoyPadHP").addEventListener("click", function () { mapJoyPad("#liJoyPadHP", "hp"); });
-		document.querySelector("#liJoyPadMP").addEventListener("click", function () { mapJoyPad("#liJoyPadMP", "mp"); });
-		document.querySelector("#liJoyPadLP").addEventListener("click", function () { mapJoyPad("#liJoyPadLP", "lp"); });
-		document.querySelector("#liJoyPadHK").addEventListener("click", function () { mapJoyPad("#liJoyPadHK", "hk"); });
-		document.querySelector("#liJoyPadMK").addEventListener("click", function () { mapJoyPad("#liJoyPadMK", "mk"); });
-		document.querySelector("#liJoyPadLK").addEventListener("click", function () { mapJoyPad("#liJoyPadLK", "lk"); });
-		document.querySelector("#liJoyPadL").addEventListener("click", function () { mapJoyPad("#liJoyPadL", "l"); });
-		document.querySelector("#liJoyPadR").addEventListener("click", function () { mapJoyPad("#liJoyPadR", "r"); });
-		document.querySelector("#liJoyPadU").addEventListener("click", function () { mapJoyPad("#liJoyPadU", "u"); });
-		document.querySelector("#liJoyPadD").addEventListener("click", function () { mapJoyPad("#liJoyPadD", "d"); });
+		document
+			.querySelector("#liJoyPadCoin")
+			.addEventListener("click", function () {
+				mapJoyPad("#liJoyPadCoin", "select");
+			});
+		document
+			.querySelector("#liJoyPadStart")
+			.addEventListener("click", function () {
+				mapJoyPad("#liJoyPadStart", "start");
+			});
+		document
+			.querySelector("#liJoyPadHP")
+			.addEventListener("click", function () {
+				mapJoyPad("#liJoyPadHP", "hp");
+			});
+		document
+			.querySelector("#liJoyPadMP")
+			.addEventListener("click", function () {
+				mapJoyPad("#liJoyPadMP", "mp");
+			});
+		document
+			.querySelector("#liJoyPadLP")
+			.addEventListener("click", function () {
+				mapJoyPad("#liJoyPadLP", "lp");
+			});
+		document
+			.querySelector("#liJoyPadHK")
+			.addEventListener("click", function () {
+				mapJoyPad("#liJoyPadHK", "hk");
+			});
+		document
+			.querySelector("#liJoyPadMK")
+			.addEventListener("click", function () {
+				mapJoyPad("#liJoyPadMK", "mk");
+			});
+		document
+			.querySelector("#liJoyPadLK")
+			.addEventListener("click", function () {
+				mapJoyPad("#liJoyPadLK", "lk");
+			});
+		document.querySelector("#liJoyPadL").addEventListener("click", function () {
+			mapJoyPad("#liJoyPadL", "l");
+		});
+		document.querySelector("#liJoyPadR").addEventListener("click", function () {
+			mapJoyPad("#liJoyPadR", "r");
+		});
+		document.querySelector("#liJoyPadU").addEventListener("click", function () {
+			mapJoyPad("#liJoyPadU", "u");
+		});
+		document.querySelector("#liJoyPadD").addEventListener("click", function () {
+			mapJoyPad("#liJoyPadD", "d");
+		});
 
 		var cancel = function (e) {
 			cancelJoyPadListener();
@@ -528,33 +660,87 @@ var MainEditorWindow = function (fn, setJoyPadListener, cancelJoyPadListener, hi
 			e.stopPropagation && e.stopPropagation();
 		};
 
-		document.querySelector("#liJoyPadCoin button").addEventListener("click", function (e) { cancel(e); });
-		document.querySelector("#liJoyPadStart button").addEventListener("click", function (e) { cancel(e); });
-		document.querySelector("#liJoyPadHP button").addEventListener("click", function (e) { cancel(e); });
-		document.querySelector("#liJoyPadMP button").addEventListener("click", function (e) { cancel(e); });
-		document.querySelector("#liJoyPadLP button").addEventListener("click", function (e) { cancel(e); });
-		document.querySelector("#liJoyPadHK button").addEventListener("click", function (e) { cancel(e); });
-		document.querySelector("#liJoyPadMK button").addEventListener("click", function (e) { cancel(e); });
-		document.querySelector("#liJoyPadLK button").addEventListener("click", function (e) { cancel(e); });
-		document.querySelector("#liJoyPadL button").addEventListener("click", function (e) { cancel(e); });
-		document.querySelector("#liJoyPadR button").addEventListener("click", function (e) { cancel(e); });
-		document.querySelector("#liJoyPadU button").addEventListener("click", function (e) { cancel(e); });
-		document.querySelector("#liJoyPadD button").addEventListener("click", function (e) { cancel(e); });
+		document
+			.querySelector("#liJoyPadCoin button")
+			.addEventListener("click", function (e) {
+				cancel(e);
+			});
+		document
+			.querySelector("#liJoyPadStart button")
+			.addEventListener("click", function (e) {
+				cancel(e);
+			});
+		document
+			.querySelector("#liJoyPadHP button")
+			.addEventListener("click", function (e) {
+				cancel(e);
+			});
+		document
+			.querySelector("#liJoyPadMP button")
+			.addEventListener("click", function (e) {
+				cancel(e);
+			});
+		document
+			.querySelector("#liJoyPadLP button")
+			.addEventListener("click", function (e) {
+				cancel(e);
+			});
+		document
+			.querySelector("#liJoyPadHK button")
+			.addEventListener("click", function (e) {
+				cancel(e);
+			});
+		document
+			.querySelector("#liJoyPadMK button")
+			.addEventListener("click", function (e) {
+				cancel(e);
+			});
+		document
+			.querySelector("#liJoyPadLK button")
+			.addEventListener("click", function (e) {
+				cancel(e);
+			});
+		document
+			.querySelector("#liJoyPadL button")
+			.addEventListener("click", function (e) {
+				cancel(e);
+			});
+		document
+			.querySelector("#liJoyPadR button")
+			.addEventListener("click", function (e) {
+				cancel(e);
+			});
+		document
+			.querySelector("#liJoyPadU button")
+			.addEventListener("click", function (e) {
+				cancel(e);
+			});
+		document
+			.querySelector("#liJoyPadD button")
+			.addEventListener("click", function (e) {
+				cancel(e);
+			});
 	};
 
 	var showJoyPadMappings = function () {
-		document.querySelector("#spnJoyPadCoin").innerText = "button_" + user1_.jm.SELECT;
-		document.querySelector("#spnJoyPadStart").innerText = "button_" + user1_.jm.START;
+		document.querySelector("#spnJoyPadCoin").innerText =
+			"button_" + user1_.jm.SELECT;
+		document.querySelector("#spnJoyPadStart").innerText =
+			"button_" + user1_.jm.START;
 		document.querySelector("#spnJoyPadHP").innerText = "button_" + user1_.jm.HP;
 		document.querySelector("#spnJoyPadMP").innerText = "button_" + user1_.jm.MP;
 		document.querySelector("#spnJoyPadLP").innerText = "button_" + user1_.jm.LP;
 		document.querySelector("#spnJoyPadHK").innerText = "button_" + user1_.jm.HK;
 		document.querySelector("#spnJoyPadMK").innerText = "button_" + user1_.jm.MK;
 		document.querySelector("#spnJoyPadLK").innerText = "button_" + user1_.jm.LK;
-		document.querySelector("#spnJoyPadL").innerText = "button_" + user1_.jm.LEFT;
-		document.querySelector("#spnJoyPadR").innerText = "button_" + user1_.jm.RIGHT;
-		document.querySelector("#spnJoyPadU").innerText = "button_" + user1_.jm.JUMP;
-		document.querySelector("#spnJoyPadD").innerText = "button_" + user1_.jm.CROUCH;
+		document.querySelector("#spnJoyPadL").innerText =
+			"button_" + user1_.jm.LEFT;
+		document.querySelector("#spnJoyPadR").innerText =
+			"button_" + user1_.jm.RIGHT;
+		document.querySelector("#spnJoyPadU").innerText =
+			"button_" + user1_.jm.JUMP;
+		document.querySelector("#spnJoyPadD").innerText =
+			"button_" + user1_.jm.CROUCH;
 	};
 
 	this.useJoystick = function (value) {
@@ -602,13 +788,17 @@ var OtherWindow = function (fn) {
 var DebugModal = function () {
 	var pnlContainer = window.document.querySelector("#pnlDebugModal");
 	var pnlMainContainer = window.document.querySelector("#pnlMainContainer");
-	var pnlQuickMenuContainer = window.document.querySelector("#pnlQuickMenuContainer");
+	var pnlQuickMenuContainer = window.document.querySelector(
+		"#pnlQuickMenuContainer",
+	);
 	var pnlPEContainer = window.document.querySelector("#pnlPEContainer");
 	var pnlOtherContainer = window.document.querySelector("#pnlOtherContainer");
 	var cmdClose = window.document.querySelector("#cmdCloseDebugModal");
-	var cmdMain = window.document.querySelector("#cmdMain")
-	var cmdQuickMatch = window.document.querySelector("#cmdQuickMatch")
-	var cmdProjectileEditor = window.document.querySelector("#cmdProjectileEditor")
+	var cmdMain = window.document.querySelector("#cmdMain");
+	var cmdQuickMatch = window.document.querySelector("#cmdQuickMatch");
+	var cmdProjectileEditor = window.document.querySelector(
+		"#cmdProjectileEditor",
+	);
 	var cmdOther = window.document.querySelector("#cmdOther");
 	var joyPadListener;
 
@@ -621,7 +811,7 @@ var DebugModal = function () {
 		cancelJoyPadListener();
 		hideCancelButtons();
 		setHighlight();
-	}
+	};
 
 	var hideCancelButtons = function () {
 		var items = document.querySelectorAll(".joypad-mappings li button");
@@ -649,12 +839,16 @@ var DebugModal = function () {
 		joyPadListener && joyPadListener.unsubscribe();
 	};
 
-
 	var other = new OtherWindow(close);
-	var mainEditor = new MainEditorWindow(close, setJoyPadListener, cancelJoyPadListener, hideCancelButtons, setHighlight);
+	var mainEditor = new MainEditorWindow(
+		close,
+		setJoyPadListener,
+		cancelJoyPadListener,
+		hideCancelButtons,
+		setHighlight,
+	);
 	var quickMatchConfigurator = new QuickMatchConfiguratorWindow(close);
 	var projectileEditor = new ProjectileEditorWindow();
-
 
 	/**
 	 * Just a handler for menu clicks
@@ -696,11 +890,21 @@ var DebugModal = function () {
 	 */
 	this.init = function () {
 		var self = this;
-		cmdClose.addEventListener("click", function() { close(); });
-		cmdMain.addEventListener("click", function() { self.menuClick(0); });
-		cmdQuickMatch.addEventListener("click", function() { self.menuClick(1); });
-		cmdProjectileEditor.addEventListener("click", function() { self.menuClick(2); });
-		cmdOther.addEventListener("click", function() { self.menuClick(3); });
+		cmdClose.addEventListener("click", function () {
+			close();
+		});
+		cmdMain.addEventListener("click", function () {
+			self.menuClick(0);
+		});
+		cmdQuickMatch.addEventListener("click", function () {
+			self.menuClick(1);
+		});
+		cmdProjectileEditor.addEventListener("click", function () {
+			self.menuClick(2);
+		});
+		cmdOther.addEventListener("click", function () {
+			self.menuClick(3);
+		});
 	};
 
 	/**

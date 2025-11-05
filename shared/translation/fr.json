@@ -1,247 +1,247 @@
 {
-    "on": "Activé",
-    "off": "Désactivé",
-    "select": "Sélectionner",
-    "success": "Succès",
-    "ok": "Ok",
-    "cancel": "Annuler",
-    "sound_volume": "Volume sonore",
-    "skip_media": "Ignorer les médias",
-    "skip_alert": "Ignorer l’alerte",
-    "authorization": {
-        "title": "Autorisation",
-        "code": "Demander un code",
-        "sign_in": "Se connecter",
-        "phone": "Numéro de téléphone",
-        "telegram_code": "Code Telegram",
-        "your_code": "Votre code",
-        "2fa_password": "Mot de passe 2FA",
-        "password": "Mot de passe"
-    },
-    "error": {
-        "wrong_lots_format": "Format de lots incorrect"
-    },
-    "updater": {
-        "title": "Mise à jour",
-        "description": "Une nouvelle version de l’application est disponible. Voulez-vous mettre à jour ?",
-        "update": "Mettre à jour",
-        "later": "Plus tard",
-        "downloading": "Téléchargement..."
-    },
-    "media": {
-        "title": "Médias",
-        "youtube": "YouTube",
-        "twitch": "Twitch",
-        "tiktok": "TikTok"
-    },
-    "integration": {
-        "tribute": "Afficher les messages de tribut"
-    },
-    "auction": {
-        "lots": "Lots",
-        "wheel": "Roue",
-        "settings": "Paramètres"
-    },
-    "maption": {
-        "set_point": "Définir un point",
-        "meter_price": "Prix par mètre",
-        "amount": "Montant",
-        "finish": "Terminer",
-        "lat_error": "La latitude doit être comprise entre -90 et 90",
-        "lng_error": "La longitude doit être comprise entre -180 et 180",
-        "rules": "Pour que le pointeur change automatiquement de position dans le message, il doit n’y avoir qu’un seul mot de :"
-    },
-    "media_settings": {
-        "enabled": "Activé",
-        "min_amount_eur": "Montant minimum EUR",
-        "min_amount_rub": "Montant minimum RUB",
-        "video_volume": "Volume vidéo",
-        "min_views": "Vues minimales"
-    },
-    "dashboard": {
-        "messages": "Messages",
-        "settings": "Paramètres",
-        "alerts": "Alertes",
-        "media": "Médias",
-        "goals": "Objectifs",
-        "auction": "Enchères",
-        "maption": "Carte",
-        "fighter": "Combattant"
-    },
-    "messages": {
-        "title": "Derniers messages"
-    },
-    "message": {
-        "skip": "Ignorer",
-        "replay": "Rejouer",
-        "donate": "Donner"
-    },
-    "settings": {
-        "title": "Paramètres",
-        "pause": "Mettre en pause les messages d’alerte",
-        "moderation_duration": "Durée de modération",
-        "black_list": "Liste noire",
-        "remove_links": "Supprimer les liens",
-        "language": "Langue",
-        "sec": "Sec."
-    },
-    "wheel": {
-        "normal": "Normal",
-        "dropout": "Élimination",
-        "spin": "Tourner",
-        "speed": "Vitesse de la roue"
-    },
-    "timer": {
-        "continue": "Continuer",
-        "pause": "Pause",
-        "reset": "Réinitialiser",
-        "add_time": "Ajouter du temps",
-        "reduce_time": "Réduire le temps",
-        "add_timex2": "Ajouter du temps x2"
-    },
-    "fighter": {
-        "title": "Combattant",
-        "match": "Match",
-        "final": "Finale",
-        "game": "Jeu",
-        "cancel": "Annuler le jeu",
-        "winner": "Vainqueur",
-        "settings": "Paramètres",
-        "create_game": "Créer un jeu à partir de lots",
-        "start": "Démarrer",
-        "pause": "Pause",
-        "rematch": "Revanche",
-        "resume": "Reprendre"
-    },
-    "lot": {
-        "name": "Nom",
-        "delete": "Supprimer",
-        "add": "Ajouter un montant"
-    },
-    "bid": {
-        "delete": "Supprimer",
-        "to_lot": "Au lot",
-        "new": "Nouveau",
-        "add_to_random_slot": "Ajouter à un lot aléatoire"
-    },
-    "lots": {
-        "add": "Ajouter",
-        "new_lot_name": "Nom du nouveau lot",
-        "search": "Rechercher un lot"
-    },
-    "auction_settings": {
-        "leader_change": "Changement de leader",
-        "new_lot": "Nouveau lot",
-        "new_donation": "Nouveau don",
-        "show_odds": "Afficher les cotes",
-        "show_total_sum": "Afficher le montant total",
-        "greater_timer_adding_time": "Temps d’ajout plus élevé",
-        "not_add_time_if": "Ne pas ajouter de temps si",
-        "adding_time": "Ajout de temps"
-    },
-    "lots_options": {
-        "import_lots": "Importer des lots",
-        "clear_lots": "Effacer les lots"
-    },
-    "auc_fighter_settings": {
-        "round_duration": "Durée du round",
-        "add_players": "Ajouter des joueurs"
-    },
-    "alerts": {
-        "title": "Alertes",
-        "group": "Groupe"
-    },
-    "alert": {
-        "image": "Image",
-        "audio": "Audio",
-        "view": "Voir",
-        "title": "Titre",
-        "message": "Message",
-        "test_name": "Test",
-        "test_text": "Ceci est une alerte de test !",
-        "configure": "Configurer",
-        "test": "Tester",
-        "add_new_variant": "Ajouter une nouvelle variante",
-        "new_variant": "Nouvelle variante",
-        "variant_title": "Titre de la variante",
-        "variant_group": "Groupe de la variante",
-        "status": "Statut",
-        "variation_condition": "Condition de variation",
-        "group": "Groupe",
-        "Random": "Aléatoire",
-        "AmountIsGreater": "Le montant est supérieur",
-        "AmountIsEqual": "Le montant est égal",
-        "delete": "Supprimer",
-        "sure_delete": "Êtes-vous sûr de vouloir supprimer cette variante ?"
-    },
-    "general": "Général",
-    "goals": {
-        "title": "Objectifs",
-        "create": "Créer un nouvel objectif"
-    },
-    "goal": {
-        "new": "Nouvel objectif",
-        "goal": "Voir",
-        "elements": "Éléments",
-        "progress": "Progression",
-        "goal_title": "Titre de l’objectif",
-        "amount_raise": "Montant à collecter",
-        "start_raising": "Commencer à collecter à partir de",
-        "end_date": "Date de fin",
-        "bar_height": "Hauteur de la barre",
-        "rounding_radius": "Rayon d’arrondi",
-        "bar_stroke_thickness": "Épaisseur du contour de la barre",
-        "background_bar_color": "Couleur de la barre de fond",
-        "progress_bar_color": "Couleur de la barre de progression",
-        "goal_progress_bar": "Barre de progression de l’objectif",
-        "progress_bar_layout": "Disposition de la barre de progression",
-        "remaining_time": "Temps restant",
-        "goal_amount_limits": "Limites du montant de l’objectif",
-        "widget_background": "Arrière-plan du widget",
-        "background_color": "Couleur de fond",
-        "OnTop": "En haut",
-        "Inside": "À l’intérieur",
-        "Below": "En dessous",
-        "DoNotDisplay": "Ne pas afficher",
-        "title": "Titre",
-        "limits": "Limites",
-        "raised": "Collecté",
-        "days_left": "Jours restants",
-        "finish_goal": "Terminer l’objectif",
-        "sure_finish": "Êtes-vous sûr de vouloir terminer cet objectif ?"
-    },
-    "save": "Enregistrer",
-    "back": "Retour",
-    "widget": {
-        "copy": "Copier",
-        "launch": "Lancer",
-        "url": "URL du widget",
-        "obs_dock_url": "URL du dock OBS"
-    },
-    "view": {
-        "top": "Image en haut, texte en bas",
-        "bottom": "Image en bas, texte en haut",
-        "left": "Image à gauche, texte à droite",
-        "right": "Image à droite, texte à gauche",
-        "overlay": "Texte sur l’image"
-    },
-    "text": {
-        "font": "Police",
-        "font_size": "Taille de police",
-        "text_color": "Couleur du texte",
-        "bold": "Gras",
-        "italics": "Italique",
-        "underline": "Souligné",
-        "transformation": "Transformation",
-        "letter_spacing": "Espacement des lettres",
-        "word_spacing": "Espacement des mots",
-        "horizontal_alignment": "Alignement horizontal",
-        "vertical_alignment": "Alignement vertical",
-        "text_preview": "Ceci est un aperçu !",
-        "name": "Nom"
-    },
-    "audio": {
-        "play": "Lire",
-        "stop": "Arrêter"
-    }
+	"on": "Activé",
+	"off": "Désactivé",
+	"select": "Sélectionner",
+	"success": "Succès",
+	"ok": "Ok",
+	"cancel": "Annuler",
+	"sound_volume": "Volume sonore",
+	"skip_media": "Ignorer les médias",
+	"skip_alert": "Ignorer l’alerte",
+	"authorization": {
+		"title": "Autorisation",
+		"code": "Demander un code",
+		"sign_in": "Se connecter",
+		"phone": "Numéro de téléphone",
+		"telegram_code": "Code Telegram",
+		"your_code": "Votre code",
+		"2fa_password": "Mot de passe 2FA",
+		"password": "Mot de passe"
+	},
+	"error": {
+		"wrong_lots_format": "Format de lots incorrect"
+	},
+	"updater": {
+		"title": "Mise à jour",
+		"description": "Une nouvelle version de l’application est disponible. Voulez-vous mettre à jour ?",
+		"update": "Mettre à jour",
+		"later": "Plus tard",
+		"downloading": "Téléchargement..."
+	},
+	"media": {
+		"title": "Médias",
+		"youtube": "YouTube",
+		"twitch": "Twitch",
+		"tiktok": "TikTok"
+	},
+	"integration": {
+		"tribute": "Afficher les messages de tribut"
+	},
+	"auction": {
+		"lots": "Lots",
+		"wheel": "Roue",
+		"settings": "Paramètres"
+	},
+	"maption": {
+		"set_point": "Définir un point",
+		"meter_price": "Prix par mètre",
+		"amount": "Montant",
+		"finish": "Terminer",
+		"lat_error": "La latitude doit être comprise entre -90 et 90",
+		"lng_error": "La longitude doit être comprise entre -180 et 180",
+		"rules": "Pour que le pointeur change automatiquement de position dans le message, il doit n’y avoir qu’un seul mot de :"
+	},
+	"media_settings": {
+		"enabled": "Activé",
+		"min_amount_eur": "Montant minimum EUR",
+		"min_amount_rub": "Montant minimum RUB",
+		"video_volume": "Volume vidéo",
+		"min_views": "Vues minimales"
+	},
+	"dashboard": {
+		"messages": "Messages",
+		"settings": "Paramètres",
+		"alerts": "Alertes",
+		"media": "Médias",
+		"goals": "Objectifs",
+		"auction": "Enchères",
+		"maption": "Carte",
+		"fighter": "Combattant"
+	},
+	"messages": {
+		"title": "Derniers messages"
+	},
+	"message": {
+		"skip": "Ignorer",
+		"replay": "Rejouer",
+		"donate": "Donner"
+	},
+	"settings": {
+		"title": "Paramètres",
+		"pause": "Mettre en pause les messages d’alerte",
+		"moderation_duration": "Durée de modération",
+		"black_list": "Liste noire",
+		"remove_links": "Supprimer les liens",
+		"language": "Langue",
+		"sec": "Sec."
+	},
+	"wheel": {
+		"normal": "Normal",
+		"dropout": "Élimination",
+		"spin": "Tourner",
+		"speed": "Vitesse de la roue"
+	},
+	"timer": {
+		"continue": "Continuer",
+		"pause": "Pause",
+		"reset": "Réinitialiser",
+		"add_time": "Ajouter du temps",
+		"reduce_time": "Réduire le temps",
+		"add_timex2": "Ajouter du temps x2"
+	},
+	"fighter": {
+		"title": "Combattant",
+		"match": "Match",
+		"final": "Finale",
+		"game": "Jeu",
+		"cancel": "Annuler le jeu",
+		"winner": "Vainqueur",
+		"settings": "Paramètres",
+		"create_game": "Créer un jeu à partir de lots",
+		"start": "Démarrer",
+		"pause": "Pause",
+		"rematch": "Revanche",
+		"resume": "Reprendre"
+	},
+	"lot": {
+		"name": "Nom",
+		"delete": "Supprimer",
+		"add": "Ajouter un montant"
+	},
+	"bid": {
+		"delete": "Supprimer",
+		"to_lot": "Au lot",
+		"new": "Nouveau",
+		"add_to_random_slot": "Ajouter à un lot aléatoire"
+	},
+	"lots": {
+		"add": "Ajouter",
+		"new_lot_name": "Nom du nouveau lot",
+		"search": "Rechercher un lot"
+	},
+	"auction_settings": {
+		"leader_change": "Changement de leader",
+		"new_lot": "Nouveau lot",
+		"new_donation": "Nouveau don",
+		"show_odds": "Afficher les cotes",
+		"show_total_sum": "Afficher le montant total",
+		"greater_timer_adding_time": "Temps d’ajout plus élevé",
+		"not_add_time_if": "Ne pas ajouter de temps si",
+		"adding_time": "Ajout de temps"
+	},
+	"lots_options": {
+		"import_lots": "Importer des lots",
+		"clear_lots": "Effacer les lots"
+	},
+	"auc_fighter_settings": {
+		"round_duration": "Durée du round",
+		"add_players": "Ajouter des joueurs"
+	},
+	"alerts": {
+		"title": "Alertes",
+		"group": "Groupe"
+	},
+	"alert": {
+		"image": "Image",
+		"audio": "Audio",
+		"view": "Voir",
+		"title": "Titre",
+		"message": "Message",
+		"test_name": "Test",
+		"test_text": "Ceci est une alerte de test !",
+		"configure": "Configurer",
+		"test": "Tester",
+		"add_new_variant": "Ajouter une nouvelle variante",
+		"new_variant": "Nouvelle variante",
+		"variant_title": "Titre de la variante",
+		"variant_group": "Groupe de la variante",
+		"status": "Statut",
+		"variation_condition": "Condition de variation",
+		"group": "Groupe",
+		"Random": "Aléatoire",
+		"AmountIsGreater": "Le montant est supérieur",
+		"AmountIsEqual": "Le montant est égal",
+		"delete": "Supprimer",
+		"sure_delete": "Êtes-vous sûr de vouloir supprimer cette variante ?"
+	},
+	"general": "Général",
+	"goals": {
+		"title": "Objectifs",
+		"create": "Créer un nouvel objectif"
+	},
+	"goal": {
+		"new": "Nouvel objectif",
+		"goal": "Voir",
+		"elements": "Éléments",
+		"progress": "Progression",
+		"goal_title": "Titre de l’objectif",
+		"amount_raise": "Montant à collecter",
+		"start_raising": "Commencer à collecter à partir de",
+		"end_date": "Date de fin",
+		"bar_height": "Hauteur de la barre",
+		"rounding_radius": "Rayon d’arrondi",
+		"bar_stroke_thickness": "Épaisseur du contour de la barre",
+		"background_bar_color": "Couleur de la barre de fond",
+		"progress_bar_color": "Couleur de la barre de progression",
+		"goal_progress_bar": "Barre de progression de l’objectif",
+		"progress_bar_layout": "Disposition de la barre de progression",
+		"remaining_time": "Temps restant",
+		"goal_amount_limits": "Limites du montant de l’objectif",
+		"widget_background": "Arrière-plan du widget",
+		"background_color": "Couleur de fond",
+		"OnTop": "En haut",
+		"Inside": "À l’intérieur",
+		"Below": "En dessous",
+		"DoNotDisplay": "Ne pas afficher",
+		"title": "Titre",
+		"limits": "Limites",
+		"raised": "Collecté",
+		"days_left": "Jours restants",
+		"finish_goal": "Terminer l’objectif",
+		"sure_finish": "Êtes-vous sûr de vouloir terminer cet objectif ?"
+	},
+	"save": "Enregistrer",
+	"back": "Retour",
+	"widget": {
+		"copy": "Copier",
+		"launch": "Lancer",
+		"url": "URL du widget",
+		"obs_dock_url": "URL du dock OBS"
+	},
+	"view": {
+		"top": "Image en haut, texte en bas",
+		"bottom": "Image en bas, texte en haut",
+		"left": "Image à gauche, texte à droite",
+		"right": "Image à droite, texte à gauche",
+		"overlay": "Texte sur l’image"
+	},
+	"text": {
+		"font": "Police",
+		"font_size": "Taille de police",
+		"text_color": "Couleur du texte",
+		"bold": "Gras",
+		"italics": "Italique",
+		"underline": "Souligné",
+		"transformation": "Transformation",
+		"letter_spacing": "Espacement des lettres",
+		"word_spacing": "Espacement des mots",
+		"horizontal_alignment": "Alignement horizontal",
+		"vertical_alignment": "Alignement vertical",
+		"text_preview": "Ceci est un aperçu !",
+		"name": "Nom"
+	},
+	"audio": {
+		"play": "Lire",
+		"stop": "Arrêter"
+	}
 }
