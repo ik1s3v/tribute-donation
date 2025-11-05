@@ -5,20 +5,20 @@ import type {
 	GoalProgressLayout,
 	GoalTextPosition,
 	MediaType,
-	Platform,
+	Service,
 	ViewType,
 } from "./enums";
 
 export interface IMessage {
 	id: string;
-	platform_message_id: string;
+	service_message_id: string;
 	amount: number;
 	user_name: string;
 	text?: string;
 	audio?: string;
 	media?: IMedia;
 	played: boolean;
-	platform: Platform;
+	service: Service;
 	currency: Currency;
 	created_at: number;
 }

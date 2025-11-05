@@ -10,7 +10,7 @@ impl MigrationTrait for Migration {
             .alter_table(
                 Table::alter()
                     .table(Messages::Table)
-                    .rename_column(Messages::TelegramMessageId, Messages::PlatformMessageId)
+                    .rename_column(Messages::TelegramMessageId, Messages::ServiceMessageId)
                     .to_owned(),
             )
             .await?;
@@ -19,11 +19,7 @@ impl MigrationTrait for Migration {
             .alter_table(
                 Table::alter()
                     .table(Messages::Table)
-                    .add_column(
-                        ColumnDef::new(Messages::Platform)
-                            .text()
-                            .default("Telegram"),
-                    )
+                    .add_column(ColumnDef::new(Messages::Service).text().default("Telegram"))
                     .to_owned(),
             )
             .await?;
@@ -36,7 +32,7 @@ impl MigrationTrait for Migration {
             .alter_table(
                 Table::alter()
                     .table(Messages::Table)
-                    .drop_column(Messages::Platform)
+                    .drop_column(Messages::Service)
                     .to_owned(),
             )
             .await?;
@@ -44,7 +40,7 @@ impl MigrationTrait for Migration {
             .alter_table(
                 Table::alter()
                     .table(Messages::Table)
-                    .rename_column(Messages::PlatformMessageId, Messages::TelegramMessageId)
+                    .rename_column(Messages::ServiceMessageId, Messages::TelegramMessageId)
                     .to_owned(),
             )
             .await?;
@@ -55,7 +51,7 @@ impl MigrationTrait for Migration {
 #[derive(Iden)]
 enum Messages {
     Table,
-    Platform,
+    Service,
     TelegramMessageId,
-    PlatformMessageId,
+    ServiceMessageId,
 }

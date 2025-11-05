@@ -65,8 +65,8 @@ export enum Currency {
 	USD = "USD",
 	NONE = "NONE",
 }
-export enum Platform {
-	Telegram = "Telegram",
+export enum Service {
+	Tribute = "Tribute",
 }
 export enum MediaType {
 	Youtube = "Youtube",

@@ -6,13 +6,13 @@ use serde::{Deserialize, Serialize};
 pub struct Model {
     #[sea_orm(primary_key, auto_increment = false)]
     pub id: String,
-    pub platform_message_id: String,
+    pub service_message_id: String,
     pub amount: f64,
     pub user_name: String,
     pub currency: Currency,
     pub text: Option<String>,
     pub audio: Option<String>,
-    pub platform: Platform,
+    pub service: Service,
     #[sea_orm(column_type = "Text")]
     pub media: Option<Media>,
     pub played: bool,
@@ -25,9 +25,9 @@ pub enum Relation {}
 impl ActiveModelBehavior for ActiveModel {}
 #[derive(Debug, Clone, PartialEq, EnumIter, DeriveActiveEnum, Serialize, Deserialize)]
 #[sea_orm(rs_type = "String", db_type = "Text")]
-pub enum Platform {
-    #[sea_orm(string_value = "Telegram")]
-    Telegram,
+pub enum Service {
+    #[sea_orm(string_value = "Tribute")]
+    Tribute,
 }
 #[derive(Debug, Clone, PartialEq, EnumIter, DeriveActiveEnum, Serialize, Deserialize)]
 #[sea_orm(rs_type = "String", db_type = "Text")]
