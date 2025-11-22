@@ -1,11 +1,13 @@
-use super::{DatabaseService, MediaService, TTSService, WebSocketBroadcaster};
+use super::DatabaseService;
 use crate::{
     app_event::AppEvent,
-    repositories::{GoalsRepository, MessagesRepository, SettingsRepository},
-    utils::{parse_message_to_tribute_donate_message, remove_black_listed_words, remove_links},
+    repositories::ServicesRepository,
+    utils::{on_new_donation, parse_message_to_tribute_donate_message},
 };
-use chrono::Utc;
-use entity::message::{Currency, Model as Message, Service};
+use entity::{
+    message::Currency,
+    service::{Model as Service, ServiceType},
+};
 use grammers_client::{
     session::Session,
     types::{LoginToken, PasswordToken},
@@ -15,7 +17,6 @@ use serde::Serialize;
 use std::path::{Path, PathBuf};
 use tauri::{AppHandle, Manager};
 use tokio::sync::Mutex;
-use uuid::Uuid;
 
 #[derive(Serialize, Clone, Debug)]
 pub struct EventMessage<T> {
@@ -67,8 +68,33 @@ impl TelegramService {
             e.to_string()
         })?;
         app.manage(telegram_client);
+        let database_service = app.state::<DatabaseService>();
+        let service = database_service
+            .get_service_by_id(ServiceType::TributeBot)
+            .await
+            .unwrap()
+            .unwrap();
         if is_authorized {
+            database_service
+                .update_service(Service {
+                    id: ServiceType::TributeBot,
+                    authorized: true,
+                    active: service.active,
+                    token: service.token,
+                })
+                .await
+                .unwrap();
             self.listen_tribute(app).await?;
+        } else {
+            database_service
+                .update_service(Service {
+                    id: ServiceType::TributeBot,
+                    authorized: false,
+                    active: service.active,
+                    token: service.token,
+                })
+                .await
+                .unwrap();
         }
         Ok(())
     }
@@ -80,10 +106,6 @@ impl TelegramService {
         let tribute_id: i64 = std::env::var("TRIBUTE_ID").unwrap().parse().unwrap();
         tauri::async_runtime::spawn(async move {
             let telegram_client = app.state::<Client>();
-            let database_service = app.state::<DatabaseService>();
-            let tts_service = app.state::<TTSService>();
-            let media_service = app.state::<MediaService>();
-            let websocket_broadcaster = app.state::<WebSocketBroadcaster>();
             loop {
                 let update = match telegram_client.next_update().await {
                     Ok(update) => update,
@@ -108,114 +130,15 @@ impl TelegramService {
                             Some(message) => message,
                             None => continue,
                         };
-                        let media = media_service.get_media(&donate_message, app.clone()).await;
-                        let settings = match database_service
-                            .get_settings()
-                            .await
-                            .map_err(|e| {
-                                log::error!("{}", e.to_string());
-                            })
-                            .unwrap()
-                        {
-                            Some(settings) => settings,
-                            None => continue,
-                        };
-
-                        let text = match donate_message.text {
-                            Some(text) => {
-                                let text_without_black_listed_words = remove_black_listed_words(
-                                    text.as_str(),
-                                    settings.black_list.as_str(),
-                                );
-
-                                if settings.remove_links {
-                                    Some(remove_links(text_without_black_listed_words.as_str()))
-                                } else {
-                                    Some(text_without_black_listed_words)
-                                }
-                            }
-                            None => None,
-                        };
-
-                        let tribute_message_id = message.id().to_string();
-
-                        if let Ok(Some(_)) = database_service
-                            .get_message_by_service_message_id(tribute_message_id.clone())
-                            .await
-                        {
-                            continue;
-                        }
-                        let audio = if let Some(text) = text.clone() {
-                            match tts_service
-                                .make_audio(
-                                    &remove_links(&text),
-                                    message.id().to_string(),
-                                    app.clone(),
-                                )
-                                .await
-                            {
-                                Ok(audio) => Some(audio),
-                                Err(e) => {
-                                    log::error!("{}", e.to_string());
-                                    let ws_message = EventMessage {
-                                        event: AppEvent::MakeAudioError,
-                                        data: e,
-                                    };
-
-                                    websocket_broadcaster
-                                        .broadcast_event_message(&ws_message)
-                                        .await
-                                        .unwrap();
-                                    None
-                                }
-                            }
-                        } else {
-                            None
-                        };
-                        let alert_message = Message {
-                            id: Uuid::new_v4().to_string(),
-                            user_name: donate_message.user_name,
-                            amount: donate_message.amount,
-                            text,
-                            audio,
-                            currency: donate_message.currency,
-                            service: Service::Tribute,
-                            service_message_id: tribute_message_id,
-                            played: false,
-                            created_at: Utc::now().timestamp(),
-                            media: media.clone(),
-                        };
-                        database_service
-                            .save_message(alert_message.clone())
-                            .await
-                            .unwrap();
-
-                        database_service
-                            .update_goal_amount(donate_message.amount as u32)
-                            .await
-                            .unwrap();
-
-                        let event_message = EventMessage {
-                            event: AppEvent::Message,
-                            data: alert_message.clone(),
-                        };
-
-                        websocket_broadcaster
-                            .broadcast_event_message(&event_message)
-                            .await
-                            .unwrap();
-
-                        if let Some(_) = media {
-                            let event_message = EventMessage {
-                                event: AppEvent::MediaMessage,
-                                data: alert_message,
-                            };
-
-                            websocket_broadcaster
-                                .broadcast_event_message(&event_message)
-                                .await
-                                .unwrap();
-                        }
+                        on_new_donation(
+                            message.id().to_string(),
+                            donate_message.user_name,
+                            donate_message.currency,
+                            donate_message.amount,
+                            donate_message.text,
+                            app.clone(),
+                        )
+                        .await;
                     }
                     _ => {}
                 }
@@ -252,11 +175,27 @@ impl TelegramService {
         let password_token_state = app_handle.state::<Mutex<Option<PasswordToken>>>();
         let mut password_token_guard = password_token_state.lock().await;
         let sign_in = telegram_client.sign_in(login_token, &phone_code).await;
+        let database_service = app_handle.state::<DatabaseService>();
+
         match sign_in {
             Ok(_) => {
                 telegram_client
                     .session()
                     .save_to_file(&*self.session_path)
+                    .unwrap();
+                let service = database_service
+                    .get_service_by_id(ServiceType::TributeBot)
+                    .await
+                    .unwrap()
+                    .unwrap();
+                database_service
+                    .update_service(Service {
+                        id: ServiceType::TributeBot,
+                        authorized: true,
+                        active: service.active,
+                        token: service.token,
+                    })
+                    .await
                     .unwrap();
                 self.listen_tribute(app).await?;
             }
@@ -277,6 +216,7 @@ impl TelegramService {
     pub async fn check_password(&self, password: String, app: AppHandle) -> Result<(), String> {
         let app_handle = app.clone();
         let password_token_state = app_handle.state::<Mutex<Option<PasswordToken>>>();
+        let database_service = app_handle.state::<DatabaseService>();
         let password_token_guard = password_token_state.lock().await;
         let password_token = password_token_guard.as_ref().unwrap();
         let telegram_client = app_handle.state::<Client>();
@@ -288,6 +228,20 @@ impl TelegramService {
                 telegram_client
                     .session()
                     .save_to_file(&*self.session_path)
+                    .unwrap();
+                let service = database_service
+                    .get_service_by_id(ServiceType::TributeBot)
+                    .await
+                    .unwrap()
+                    .unwrap();
+                database_service
+                    .update_service(Service {
+                        id: ServiceType::TributeBot,
+                        authorized: true,
+                        active: service.active,
+                        token: service.token,
+                    })
+                    .await
                     .unwrap();
                 self.listen_tribute(app).await?;
                 return Ok(());

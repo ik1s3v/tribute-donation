@@ -5,7 +5,8 @@ import type {
 	GoalProgressLayout,
 	GoalTextPosition,
 	MediaType,
-	Service,
+	ServiceType,
+	StreamElementsEventType,
 	ViewType,
 } from "./enums";
 
@@ -18,7 +19,7 @@ export interface IMessage {
 	audio?: string;
 	media?: IMedia;
 	played: boolean;
-	service: Service;
+	service: ServiceType;
 	currency: Currency;
 	created_at: number;
 }
@@ -75,6 +76,7 @@ export interface ISettings {
 	remove_links: boolean;
 	black_list: string;
 	language: string;
+	currency: Currency;
 }
 
 export interface IAuctionSettings {
@@ -114,8 +116,7 @@ export interface IMediaSettings {
 }
 export interface IMediaPlatformSettings {
 	enabled: boolean;
-	min_amount_eur: number;
-	min_amount_rub: number;
+	min_amount: number;
 	video_volume: number;
 	min_views: number;
 }
@@ -181,6 +182,7 @@ export interface IWebsocketService extends ISubscriptions {
 	disconnect: () => void;
 	send: <T>(message: IEventMessage<T>) => void;
 }
+
 export interface IGoal {
 	id: string;
 	title: string;
@@ -205,4 +207,40 @@ export interface IGoal {
 	title_style: ITextStyle;
 	progress_style: ITextStyle;
 	limits_style: ITextStyle;
+}
+export interface IService {
+	id: ServiceType;
+	active: boolean;
+	authorized: boolean;
+	token?: string;
+}
+
+export interface IStreamElementsEvent<T> {
+	channel: string;
+	provider: string;
+	type: StreamElementsEventType;
+	createdAt: string;
+	isMock: boolean;
+	data: T;
+	updatedAt: string;
+	_id: string;
+	activityId: string;
+	sessionEventsCount: number;
+}
+
+export interface IStreamElementsTip {
+	amount: number;
+	avatar: string;
+	displayName: string;
+	username: string;
+	providerId: string;
+	gifted: boolean;
+	currency?: string;
+	message?: string;
+}
+export interface IStreamElementsAuthenticated {
+	clientId: string;
+	channelId: string;
+	project: string;
+	message: string;
 }

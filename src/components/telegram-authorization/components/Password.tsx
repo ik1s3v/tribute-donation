@@ -30,7 +30,7 @@ const Password = () => {
 				onClick={async () => {
 					try {
 						await checkPassword({ password: password.trim() }).unwrap();
-						navigate("/dashboard/messages", { replace: true });
+						navigate(-3);
 					} catch (error) {
 						const err = error as SerializedError;
 						dispatch(

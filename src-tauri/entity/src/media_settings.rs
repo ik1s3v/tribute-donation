@@ -21,8 +21,7 @@ impl ActiveModelBehavior for ActiveModel {}
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, Eq, FromJsonQueryResult)]
 pub struct MediaPlatformSettings {
     pub enabled: bool,
-    pub min_amount_eur: u64,
-    pub min_amount_rub: u64,
+    pub min_amount: u64,
     pub video_volume: u64,
     pub min_views: u64,
 }

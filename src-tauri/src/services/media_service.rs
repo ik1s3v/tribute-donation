@@ -1,8 +1,8 @@
-use super::{DatabaseService, TributeDonateMessage};
+use super::DatabaseService;
 use crate::repositories::MediaSettingsRepository;
 use entity::{
     media_settings::MediaPlatformSettings,
-    message::{Currency, Media, MediaType},
+    message::{Media, MediaType},
 };
 #[cfg(test)]
 use mockall::predicate::*;
@@ -122,7 +122,8 @@ impl MediaService {
 
     pub async fn get_media(
         &self,
-        donate_message: &TributeDonateMessage,
+        text: Option<String>,
+        amount: f64,
         app: AppHandle,
     ) -> Option<Media> {
         let database_service = app.state::<DatabaseService>();
@@ -135,11 +136,11 @@ impl MediaService {
             }
         };
 
-        let url_media = self.get_url_media(&donate_message.text.as_ref()?)?;
+        let url_media = self.get_url_media(text.as_ref()?)?;
 
         match url_media.media_type {
             MediaType::Twitch => {
-                self.check_enabled_and_min_amount(&donate_message, &media_settings.twitch)?;
+                self.check_enabled_and_min_amount(amount, &media_settings.twitch)?;
 
                 let twitch_clip_info = self.get_twitch_clip_info(&url_media.url, app).await?;
                 let token = match serde_json::from_str::<Token>(
@@ -162,7 +163,7 @@ impl MediaService {
                 });
             }
             MediaType::TikTok => {
-                self.check_enabled_and_min_amount(&donate_message, &media_settings.tiktok)?;
+                self.check_enabled_and_min_amount(amount, &media_settings.tiktok)?;
 
                 let tiktok_info = self.get_tiktok_info(&url_media.url, app).await?;
 
@@ -178,7 +179,7 @@ impl MediaService {
                 });
             }
             MediaType::Youtube => {
-                self.check_enabled_and_min_amount(&donate_message, &media_settings.youtube)?;
+                self.check_enabled_and_min_amount(amount, &media_settings.youtube)?;
 
                 let video_id = self.get_youtube_video_id(&url_media.url.clone())?;
 
@@ -200,25 +201,16 @@ impl MediaService {
 
     fn check_enabled_and_min_amount(
         &self,
-        donate_message: &TributeDonateMessage,
+        amount: f64,
         media_platform_settings: &MediaPlatformSettings,
     ) -> Option<bool> {
         if !media_platform_settings.enabled {
             return None;
         }
-        match donate_message.currency {
-            Currency::RUB => {
-                if media_platform_settings.min_amount_rub as f64 > donate_message.amount {
-                    return None;
-                }
-            }
-            Currency::EUR => {
-                if media_platform_settings.min_amount_eur as f64 > donate_message.amount {
-                    return None;
-                }
-            }
-            _ => return None,
+        if media_platform_settings.min_amount as f64 > amount {
+            return None;
         }
+
         Some(true)
     }
 

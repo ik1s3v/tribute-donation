@@ -1,25 +1,33 @@
 import { CircularProgress } from "@mui/material";
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router";
-import { AlertSeverity } from "../shared/enums";
+import { AlertSeverity, ServiceType } from "../shared/enums";
 import useWebSocket from "../shared/hooks/useWebSocket";
 import { showSnackBar } from "../shared/slices/snackBarSlice";
 import { useInitMutation } from "./api";
+import { useGetServiceByIdQuery } from "./api/servicesApi";
 import { useGetSettingsQuery } from "./api/settingsApi";
 import { AppSnackBar } from "./components/AppSnackBar";
 import Dashboard from "./components/dashboard/Dashboard";
+import StreamElements from "./components/streamelements/StreamElements";
 import TelegramAuthorization from "./components/telegram-authorization/TelegramAuthorization";
 import UpdaterDialog from "./components/UpdaterDialog";
+import useStreamElementsSocketService from "./hooks/useStreamElementsService";
+import type { AppState } from "./store";
 import { setSettings } from "./store/slices/settingsSlice";
 
 function App() {
 	const websocketService = useWebSocket();
+	const streamElementsSocketService = useStreamElementsSocketService();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { i18n } = useTranslation();
 	const hasNavigated = useRef(false);
+	const { isConnected, isAuthenticated } = useSelector(
+		(state: AppState) => state.streamElementsState,
+	);
 	const [
 		init,
 		{ error: initError, isSuccess: initIsSuccess, isLoading: initIsLoading },
@@ -36,11 +44,36 @@ function App() {
 		refetchOnReconnect: true,
 	});
 
+	const { data: streamelementsService } = useGetServiceByIdQuery(
+		{ id: ServiceType.Streamelements },
+		{
+			skip: !initIsSuccess,
+			refetchOnMountOrArgChange: true,
+			refetchOnFocus: true,
+			refetchOnReconnect: true,
+		},
+	);
+
 	useEffect(() => {
-		init().then(() => {
+		init();
+	}, [init]);
+
+	useEffect(() => {
+		if (initIsSuccess) {
 			websocketService.connect();
-		});
-	}, [init, websocketService]);
+		}
+	}, [initIsSuccess, websocketService]);
+
+	useEffect(() => {
+		if (isConnected && streamelementsService && !isAuthenticated) {
+			streamElementsSocketService.authenticate(streamelementsService?.token);
+		}
+	}, [
+		isConnected,
+		isAuthenticated,
+		streamelementsService,
+		streamElementsSocketService,
+	]);
 
 	useEffect(() => {
 		if (settings) {
@@ -90,6 +123,7 @@ function App() {
 						path="/telegram-authorization/*"
 						element={<TelegramAuthorization />}
 					/>
+					<Route path="/streamelements/*" element={<StreamElements />} />
 					<Route path="/dashboard/*" element={<Dashboard />} />
 				</Routes>
 			)}

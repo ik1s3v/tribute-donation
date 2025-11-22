@@ -54,31 +54,15 @@ const MediaPlatformSettings = ({
 				</div>
 				<div className={styles.settings}>
 					<div className={styles.label}>
-						<span>{t("media_settings.min_amount_eur")}:</span>
+						<span>{t("media_settings.min_amount")}:</span>
 					</div>
 					<MinInput
-						value={mediaPlatformSettings.min_amount_eur}
+						value={mediaPlatformSettings.min_amount}
 						onChange={(value) => {
 							dispatch(
 								setMediaPlatformSettings({
 									...mediaPlatformSettings,
-									min_amount_eur: value,
-								}),
-							);
-						}}
-					/>
-				</div>
-				<div className={styles.settings}>
-					<div className={styles.label}>
-						<span>{t("media_settings.min_amount_rub")}:</span>
-					</div>
-					<MinInput
-						value={mediaPlatformSettings.min_amount_rub}
-						onChange={(value) => {
-							dispatch(
-								setMediaPlatformSettings({
-									...mediaPlatformSettings,
-									min_amount_rub: value,
+									min_amount: value,
 								}),
 							);
 						}}

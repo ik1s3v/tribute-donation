@@ -1,3 +1,4 @@
+import AddLinkIcon from "@mui/icons-material/AddLink";
 import CampaignIcon from "@mui/icons-material/Campaign";
 import MapIcon from "@mui/icons-material/Map";
 import MessageIcon from "@mui/icons-material/Message";
@@ -13,6 +14,7 @@ import Goals from "../components/dashboard/components/goals/Goals";
 import Maption from "../components/dashboard/components/maption/Maption";
 import Media from "../components/dashboard/components/media/Media";
 import Messages from "../components/dashboard/components/messages/Messages";
+import Services from "../components/dashboard/components/services/Services";
 import Settings from "../components/dashboard/components/settings/Settings";
 
 export const dashboardRouts = [
@@ -22,12 +24,17 @@ export const dashboardRouts = [
 		icon: <MessageIcon />,
 		name: "messages",
 	},
-
 	{
 		path: "settings",
 		element: <Settings />,
 		icon: <SettingsIcon />,
 		name: "settings",
+	},
+	{
+		path: "services",
+		element: <Services />,
+		icon: <AddLinkIcon />,
+		name: "services",
 	},
 	{
 		path: "alerts",

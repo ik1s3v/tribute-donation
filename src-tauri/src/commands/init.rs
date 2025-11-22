@@ -1,6 +1,7 @@
 use crate::constants::{SQLITE_DB, STATIC_DIR};
 use crate::services::{
-    AxumService, DatabaseService, MediaService, TTSService, TelegramService, WebSocketBroadcaster,
+    AxumService, DatabaseService, ExchangeRatesService, MediaService, StreamElementsService,
+    TTSService, TelegramService, WebSocketBroadcaster,
 };
 use crate::utils::copy_assets_to_static;
 use grammers_client::types::{LoginToken, PasswordToken};
@@ -85,6 +86,13 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
 
     let media_service = MediaService::new();
     app.manage(media_service);
+
+    let stream_elements_service = StreamElementsService::new();
+    app.manage(stream_elements_service);
+
+    let mut exchange_rates_service = ExchangeRatesService::new();
+    exchange_rates_service.get_exchange_rates().await;
+    app.manage(Mutex::new(exchange_rates_service));
 
     app.manage(Mutex::new(None::<LoginToken>));
     app.manage(Mutex::new(None::<PasswordToken>));

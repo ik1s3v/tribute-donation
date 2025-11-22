@@ -3,4 +3,4 @@ import { IWebsocketService } from "../types";
 
 export const WebsocketContext = createContext(
 	null,
-) as unknown as Context<IWebsocketService>;
+) as Context<IWebsocketService | null>;

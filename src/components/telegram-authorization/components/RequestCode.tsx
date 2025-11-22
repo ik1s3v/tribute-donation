@@ -51,7 +51,7 @@ const RequestCode = () => {
 				onClick={async () => {
 					try {
 						await requestLoginCode({ phoneNumber }).unwrap();
-						navigate("/authorization/singin");
+						navigate("/telegram-authorization/singin");
 					} catch (error) {
 						const err = error as SerializedError;
 						dispatch(

@@ -23,6 +23,7 @@ impl SettingsRepository for DatabaseService {
             black_list: Set(settings.black_list),
             tts_volume: Set(settings.tts_volume),
             language: Set(settings.language),
+            currency: Set(settings.currency),
             id: Set(1),
         })
         .exec(&self.connection)

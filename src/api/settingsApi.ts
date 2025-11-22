@@ -1,5 +1,5 @@
-import { api } from ".";
 import type { ISettings } from "../../shared/types";
+import { api } from ".";
 
 export const settingsApi = api.injectEndpoints({
 	endpoints: (builder) => ({

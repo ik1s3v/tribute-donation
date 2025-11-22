@@ -1,6 +1,8 @@
 use sea_orm::{entity::prelude::*, FromJsonQueryResult};
 use serde::{Deserialize, Serialize};
 
+use crate::service::ServiceType;
+
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Serialize, Deserialize)]
 #[sea_orm(table_name = "messages")]
 pub struct Model {
@@ -12,7 +14,7 @@ pub struct Model {
     pub currency: Currency,
     pub text: Option<String>,
     pub audio: Option<String>,
-    pub service: Service,
+    pub service: ServiceType,
     #[sea_orm(column_type = "Text")]
     pub media: Option<Media>,
     pub played: bool,
@@ -23,15 +25,12 @@ pub struct Model {
 pub enum Relation {}
 
 impl ActiveModelBehavior for ActiveModel {}
-#[derive(Debug, Clone, PartialEq, EnumIter, DeriveActiveEnum, Serialize, Deserialize)]
-#[sea_orm(rs_type = "String", db_type = "Text")]
-pub enum Service {
-    #[sea_orm(string_value = "Tribute")]
-    Tribute,
-}
-#[derive(Debug, Clone, PartialEq, EnumIter, DeriveActiveEnum, Serialize, Deserialize)]
+
+#[derive(Debug, Clone, PartialEq, EnumIter, Eq, DeriveActiveEnum, Serialize, Deserialize)]
 #[sea_orm(rs_type = "String", db_type = "Text")]
 pub enum Currency {
+    #[sea_orm(string_value = "UAH")]
+    UAH,
     #[sea_orm(string_value = "RUB")]
     RUB,
     #[sea_orm(string_value = "EUR")]
@@ -40,6 +39,18 @@ pub enum Currency {
     USD,
     #[sea_orm(string_value = "NONE")]
     NONE,
+}
+
+impl Currency {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Currency::UAH => "UAH",
+            Currency::RUB => "RUB",
+            Currency::EUR => "EUR",
+            Currency::USD => "USD",
+            Currency::NONE => "NONE",
+        }
+    }
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, Eq, FromJsonQueryResult)]

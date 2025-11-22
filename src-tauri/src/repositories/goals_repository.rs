@@ -42,6 +42,7 @@ impl GoalsRepository for DatabaseService {
             .filter(Expr::col(Column::Ended).eq(false))
             .exec(&self.connection)
             .await?;
+
         Ok(())
     }
     async fn get_goals(&self, limit: u64, offset: u64) -> Result<Vec<Model>, DbErr> {

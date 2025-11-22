@@ -19,7 +19,8 @@
 		"password": "Password"
 	},
 	"error": {
-		"wrong_lots_format": "Wrong lots format"
+		"wrong_lots_format": "Wrong lots format",
+		"not_connected": "Not connected"
 	},
 	"updater": {
 		"title": "Update",
@@ -53,14 +54,14 @@
 	},
 	"media_settings": {
 		"enabled": "Enabled",
-		"min_amount_eur": "Min amount EUR",
-		"min_amount_rub": "Min amount RUB",
+		"min_amount": "Min amount",
 		"video_volume": "Video volume",
 		"min_views": "Min views"
 	},
 	"dashboard": {
 		"messages": "Messages",
 		"settings": "Settings",
+		"services": "Services",
 		"alerts": "Alerts",
 		"media": "Media",
 		"goals": "Goals",
@@ -83,7 +84,8 @@
 		"black_list": "Black list",
 		"remove_links": "Remove links",
 		"language": "Language",
-		"sec": "Sec"
+		"sec": "Sec",
+		"currency": "Currency"
 	},
 	"wheel": {
 		"normal": "Normal",
@@ -150,6 +152,12 @@
 	"alerts": {
 		"title": "Alerts",
 		"group": "Group"
+	},
+	"services": {
+		"title": "Services",
+		"tribute": "Tribute",
+		"streamelements": "Streamelements",
+		"connect": "Connect"
 	},
 	"alert": {
 		"image": "Image",

@@ -41,7 +41,6 @@ export class WebSocketService
 		super();
 		this.url = url;
 		this.socket = null;
-
 		this.subscribe<IMessage>(AppEvent.Message, (message) => {
 			const state = store.getState() as AppState;
 			const { isShowTributeMessages } = state.auctionState;

@@ -39,6 +39,7 @@ const GoalGeneralSettings = () => {
 								}}
 							/>
 						</div>
+
 						<div className={styles.settings}>
 							<div className={styles.label}>
 								<span>{t("goal.amount_raise")}:</span>

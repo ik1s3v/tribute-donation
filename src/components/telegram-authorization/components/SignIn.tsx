@@ -28,11 +28,11 @@ const SignIn = () => {
 				onClick={async () => {
 					try {
 						await signin({ phoneCode: phoneCode.trim() }).unwrap();
-						navigate("/dashboard/messages");
+						navigate(-2);
 					} catch (error) {
 						const err = error as SerializedError;
 						if (err.message === "Password required") {
-							navigate("/authorization/password");
+							navigate("/telegram-authorization/password");
 							return;
 						}
 						dispatch(

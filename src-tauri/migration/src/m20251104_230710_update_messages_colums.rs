@@ -1,3 +1,4 @@
+use entity::service::ServiceType;
 use sea_orm_migration::prelude::*;
 
 #[derive(DeriveMigrationName)]
@@ -19,7 +20,11 @@ impl MigrationTrait for Migration {
             .alter_table(
                 Table::alter()
                     .table(Messages::Table)
-                    .add_column(ColumnDef::new(Messages::Service).text().default("Telegram"))
+                    .add_column(
+                        ColumnDef::new(Messages::Service)
+                            .text()
+                            .default(ServiceType::TributeBot),
+                    )
                     .to_owned(),
             )
             .await?;

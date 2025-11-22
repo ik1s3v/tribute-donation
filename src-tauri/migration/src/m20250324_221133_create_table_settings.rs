@@ -17,6 +17,7 @@ impl MigrationTrait for Migration {
                     .col(boolean(Settings::RemoveLinks))
                     .col(string(Settings::BlackList))
                     .col(string(Settings::Language))
+                    .col(text(Settings::Currency))
                     .to_owned(),
             )
             .await?;
@@ -42,4 +43,5 @@ enum Settings {
     TtsVolume,
     BlackList,
     Language,
+    Currency,
 }

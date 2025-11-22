@@ -1,6 +1,7 @@
 import type { SerializedError } from "@reduxjs/toolkit";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { AlertSeverity } from "../../../../../../shared/enums";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
 import {
@@ -16,6 +17,7 @@ const CreateAlert = () => {
 	const [createAlert] = useCreateAlertMutation();
 	const { alert } = useSelector((state: AppState) => state.alertsState);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	return (
 		<AlertSettings
@@ -32,6 +34,7 @@ const CreateAlert = () => {
 							alertSeverity: AlertSeverity.success,
 						}),
 					);
+					navigate(-1);
 				} catch (error) {
 					const err = error as SerializedError;
 					dispatch(

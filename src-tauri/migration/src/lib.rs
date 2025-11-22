@@ -16,6 +16,10 @@ mod m20250819_113447_add_default_auc_fighter_settings;
 mod m20250909_130535_add_alert_columns;
 mod m20250911_130555_create_table_goals;
 mod m20251104_230710_update_messages_colums;
+mod m20251111_172605_create_table_services;
+mod m20251111_183902_add_default_services;
+mod m20251115_183022_update_settings;
+mod m20251122_001838_update_media_settings;
 
 pub struct Migrator;
 
@@ -39,6 +43,10 @@ impl MigratorTrait for Migrator {
             Box::new(m20250909_130535_add_alert_columns::Migration),
             Box::new(m20250911_130555_create_table_goals::Migration),
             Box::new(m20251104_230710_update_messages_colums::Migration),
+            Box::new(m20251111_172605_create_table_services::Migration),
+            Box::new(m20251111_183902_add_default_services::Migration),
+            Box::new(m20251115_183022_update_settings::Migration),
+            Box::new(m20251122_001838_update_media_settings::Migration),
         ]
     }
 }

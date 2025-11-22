@@ -51,6 +51,10 @@ export enum AppEvent {
 	TestAlert = "TestAlert",
 	Goal = "Goal",
 }
+export enum StreamElementsEvent {
+	Connect = "Connect",
+	Authenticated = "Authenticated",
+}
 
 export enum ViewType {
 	Top = "Top",
@@ -60,14 +64,13 @@ export enum ViewType {
 	Overlay = "Overlay",
 }
 export enum Currency {
+	UAH = "UAH",
 	RUB = "RUB",
 	EUR = "EUR",
 	USD = "USD",
 	NONE = "NONE",
 }
-export enum Service {
-	Tribute = "Tribute",
-}
+
 export enum MediaType {
 	Youtube = "Youtube",
 	Twitch = "Twitch",
@@ -94,4 +97,12 @@ export enum GoalProgressLayout {
 	CurrentAmountPercent = "CurrentAmountPercent",
 	CurrentAmountRemainingAmount = "CurrentAmountRemainingAmount",
 	CurrentAmountRemainingAmountPercent = "CurrentAmountRemainingAmountPercent",
+}
+export enum ServiceType {
+	TributeBot = "TributeBot",
+	Streamelements = "Streamelements",
+}
+
+export enum StreamElementsEventType {
+	tip = "tip",
 }

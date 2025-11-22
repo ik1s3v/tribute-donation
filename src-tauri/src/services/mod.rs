@@ -1,12 +1,16 @@
 pub mod axum_service;
 pub mod database_service;
+pub mod exchange_rates_service;
 pub mod media_service;
+pub mod stream_elements_service;
 pub mod telegram_service;
 pub mod tts_service;
 pub mod websocket_broadcaster;
 pub use axum_service::*;
 pub use database_service::*;
+pub use exchange_rates_service::*;
 pub use media_service::*;
+pub use stream_elements_service::*;
 pub use telegram_service::*;
 pub use tts_service::*;
 pub use websocket_broadcaster::*;

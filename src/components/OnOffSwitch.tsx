@@ -1,4 +1,5 @@
 import { Switch, useTheme } from "@mui/material";
+import type { ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
 import type { AppTheme } from "../theme/default";
 
@@ -7,7 +8,7 @@ const OnOffSwitch = ({
 	onChange,
 }: {
 	checked: boolean;
-	onChange: () => void;
+	onChange: (event: ChangeEvent<HTMLInputElement>, checked: boolean) => void;
 }) => {
 	const { t } = useTranslation();
 	const theme = useTheme<AppTheme>();

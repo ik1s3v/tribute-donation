@@ -67,6 +67,11 @@ pub fn run() {
             get_goal_by_id,
             get_not_ended_goal,
             finish_goal,
+            update_service,
+            get_services,
+            get_service_by_id,
+            stream_elements_tip_event,
+            get_exchange_rates,
             init
         ])
         .run(tauri::generate_context!())

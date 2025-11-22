@@ -1,7 +1,9 @@
 use sea_orm::entity::prelude::*;
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, Eq, DeriveEntityModel, Serialize, Deserialize)]
+use crate::message::Currency;
+
+#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Serialize, Deserialize)]
 #[sea_orm(table_name = "settings")]
 pub struct Model {
     #[sea_orm(primary_key)]
@@ -12,6 +14,7 @@ pub struct Model {
     pub remove_links: bool,
     pub black_list: String,
     pub language: String,
+    pub currency: Currency,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

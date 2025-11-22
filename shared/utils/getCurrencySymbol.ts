@@ -1,6 +1,9 @@
 import { Currency } from "../enums";
+
 const getCurrencySymbol = (currency: Currency) => {
 	switch (currency) {
+		case Currency.UAH:
+			return "₴";
 		case Currency.EUR:
 			return "€";
 		case Currency.RUB:

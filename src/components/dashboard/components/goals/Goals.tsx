@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import {
+	Currency,
 	GoalProgressLayout,
 	GoalTextPosition,
 } from "../../../../../shared/enums";
@@ -55,6 +56,7 @@ const Goals = () => {
 									title_style: TEXT_STYLE,
 									progress_style: TEXT_STYLE,
 									limits_style: TEXT_STYLE,
+									currency: Currency.USD,
 								}),
 							);
 							navigate("/dashboard/goals/new/goal");

@@ -11,8 +11,7 @@ impl MigrationTrait for Migration {
         let media_platform_settings = MediaPlatformSettings {
             enabled: true,
             video_volume: 50,
-            min_amount_eur: 0,
-            min_amount_rub: 0,
+            min_amount: 0,
             min_views: 5000,
         };
         ActiveModel {

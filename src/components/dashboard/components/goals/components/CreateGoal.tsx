@@ -1,6 +1,7 @@
 import type { SerializedError } from "@reduxjs/toolkit";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { AlertSeverity } from "../../../../../../shared/enums";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
 import {
@@ -16,6 +17,7 @@ const CreateGoal = () => {
 	const dispatch = useDispatch();
 	const [createGoal] = useCreateGoalMutation();
 	const { refetch } = useGetNotEndedGoalQuery();
+	const navigate = useNavigate();
 
 	return (
 		<GoalSettings
@@ -30,6 +32,7 @@ const CreateGoal = () => {
 							alertSeverity: AlertSeverity.success,
 						}),
 					);
+					navigate(-1);
 				} catch (error) {
 					const err = error as SerializedError;
 					dispatch(

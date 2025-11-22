@@ -2,7 +2,7 @@ import { Button, MenuItem, Select, TextField } from "@mui/material";
 import type { SerializedError } from "@reduxjs/toolkit";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { AlertSeverity } from "../../../../../shared/enums";
+import { AlertSeverity, Currency } from "../../../../../shared/enums";
 import { languages } from "../../../../../shared/i18n/languages";
 import { showSnackBar } from "../../../../../shared/slices/snackBarSlice";
 import { useUpdateSettingsMutation } from "../../../../api/settingsApi";
@@ -49,6 +49,29 @@ const Settings = () => {
 										}}
 									>
 										{language.name}
+									</MenuItem>
+								))}
+							</Select>
+						</div>
+						<div className={styles.settings}>
+							<div className={styles.label}>
+								<span>{t("settings.currency")}:</span>
+							</div>
+							<Select sx={{ width: 150 }} value={settings.currency}>
+								{Object.values(Currency).map((currency) => (
+									<MenuItem
+										value={currency}
+										key={currency}
+										onClick={() => {
+											dispatch(
+												setSettings({
+													...settings,
+													currency,
+												}),
+											);
+										}}
+									>
+										{currency}
 									</MenuItem>
 								))}
 							</Select>
@@ -150,7 +173,6 @@ const Settings = () => {
 								}}
 							/>
 						</div>
-
 						<div style={{ display: "flex", placeContent: "center" }}>
 							<Button
 								variant="contained"

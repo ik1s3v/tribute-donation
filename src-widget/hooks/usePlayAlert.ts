@@ -4,6 +4,7 @@ import {
 	AlertVariationConditions,
 	AppEvent,
 	Currency,
+	ServiceType,
 } from "../../shared/enums";
 import useWebSocket from "../../shared/hooks/useWebSocket";
 import type { IAlert, IMessage, ISettings } from "../../shared/types";
@@ -102,6 +103,7 @@ const usePlayAlert = () => {
 			text: t("alert.test_text"),
 			currency: Currency.EUR,
 			created_at: Math.round(new Date().getTime() / 1000),
+			service: ServiceType.TributeBot,
 		};
 		if (!messagesRef.current.length && settingsRef.current) {
 			websocketService.send({
