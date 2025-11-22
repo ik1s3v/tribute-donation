@@ -7,13 +7,18 @@ import { useDispatch, useSelector } from "react-redux";
 import type { AppState } from "../../src/store";
 import { AlertSeverity } from "../enums";
 import { showSnackBar } from "../slices/snackBarSlice";
-import type { IMessage } from "../types";
+import type { IClientDonation } from "../types";
 import MessageTile from "./MessageTile";
 
 const InfiniteMessages = ({
-	useGetMessagesInfiniteQuery,
+	useGetDonationsInfiniteQuery,
 }: {
-	useGetMessagesInfiniteQuery: TypedUseInfiniteQuery<IMessage[], any, any, any>;
+	useGetDonationsInfiniteQuery: TypedUseInfiniteQuery<
+		IClientDonation[],
+		any,
+		any,
+		any
+	>;
 }) => {
 	const { t } = useTranslation();
 	const { playingAlertId } = useSelector(
@@ -21,7 +26,7 @@ const InfiniteMessages = ({
 	);
 	const { playingMediaId } = useSelector((state: AppState) => state.mediaState);
 	const { data, fetchNextPage, hasNextPage, isFetchingNextPage, error } =
-		useGetMessagesInfiniteQuery(undefined, {
+		useGetDonationsInfiniteQuery(undefined, {
 			refetchOnFocus: false,
 			refetchOnMountOrArgChange: false,
 			refetchOnReconnect: false,
@@ -63,12 +68,12 @@ const InfiniteMessages = ({
 				>
 					<div>
 						{data.pages.map((page) =>
-							page.map((message) => (
+							page.map((donation) => (
 								<MessageTile
-									message={message}
-									isAlertPlaying={message.id === playingAlertId}
-									isMediaPlaying={message.id === playingMediaId}
-									key={message.id}
+									donation={donation}
+									isAlertPlaying={donation.id === playingAlertId}
+									isMediaPlaying={donation.id === playingMediaId}
+									key={donation.id}
 								/>
 							)),
 						)}

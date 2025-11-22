@@ -1,13 +1,16 @@
 import { useCallback, useEffect, useRef } from "react";
 import { AppEvent } from "../../../shared/enums";
 import useWebSocket from "../../../shared/hooks/useWebSocket";
-import type { IMediaPlatformSettings, IMessage } from "../../../shared/types";
+import type {
+	IClientDonation,
+	IMediaPlatformSettings,
+} from "../../../shared/types";
 
 const TikTok = ({
-	message,
+	donation,
 	mediaPlatformSettings,
 }: {
-	message: IMessage;
+	donation: IClientDonation;
 	mediaPlatformSettings: IMediaPlatformSettings;
 }) => {
 	const websocketService = useWebSocket();
@@ -21,20 +24,20 @@ const TikTok = ({
 						case 0:
 							websocketService.send({
 								event: AppEvent.MediaEnd,
-								data: message.id,
+								data: donation.id,
 							});
 							break;
 						case 1:
 							websocketService.send({
 								event: AppEvent.MediaPlaying,
-								data: message.id,
+								data: donation.id,
 							});
 
 							break;
 						case 2:
 							websocketService.send({
 								event: AppEvent.MediaPaused,
-								data: message.id,
+								data: donation.id,
 							});
 							break;
 
@@ -61,7 +64,7 @@ const TikTok = ({
 				case "onError":
 					websocketService.send({
 						event: AppEvent.MediaError,
-						data: message.id,
+						data: donation.id,
 					});
 					break;
 
@@ -69,7 +72,7 @@ const TikTok = ({
 					break;
 			}
 		},
-		[message, mediaPlatformSettings, websocketService],
+		[donation, mediaPlatformSettings, websocketService],
 	);
 	useEffect(() => {
 		window.addEventListener("message", tiktokListener);
@@ -83,7 +86,7 @@ const TikTok = ({
 		const unsubscribe = websocketService.subscribe<string>(
 			AppEvent.PauseMedia,
 			(id) => {
-				if (message.id === id && tiktokRef.current) {
+				if (donation.id === id && tiktokRef.current) {
 					tiktokRef.current?.contentWindow?.postMessage(
 						{ type: "pause", value: null, "x-tiktok-player": true },
 						"*",
@@ -93,13 +96,13 @@ const TikTok = ({
 		);
 
 		return () => unsubscribe();
-	}, [message, websocketService]);
+	}, [donation, websocketService]);
 
 	useEffect(() => {
 		const unsubscribe = websocketService.subscribe<string>(
 			AppEvent.PlayMedia,
 			(id) => {
-				if (message.id === id && tiktokRef.current) {
+				if (donation.id === id && tiktokRef.current) {
 					tiktokRef.current?.contentWindow?.postMessage(
 						{ type: "play", value: null, "x-tiktok-player": true },
 						"*",
@@ -109,13 +112,13 @@ const TikTok = ({
 		);
 
 		return () => unsubscribe();
-	}, [message, websocketService]);
+	}, [donation, websocketService]);
 	return (
 		<iframe
 			ref={tiktokRef}
 			height="100%"
 			width="100%"
-			src={`https://www.tiktok.com/player/v1/${message.media?.temporary_src}?controls=0&progress_bar=0&play_button=0&volume_control=0&music_info=0&autoplay=1&timestamp=0&fullscreen_button=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+			src={`https://www.tiktok.com/player/v1/${donation.media?.temporary_src}?controls=0&progress_bar=0&play_button=0&volume_control=0&music_info=0&autoplay=1&timestamp=0&fullscreen_button=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
 			allow="fullscreen"
 			title="widget"
 		/>

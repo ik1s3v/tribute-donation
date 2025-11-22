@@ -8,11 +8,11 @@ import {
 } from "../../shared/slices/mediaSlice";
 import type {
 	IAucFighterMatchWinner,
+	IClientDonation,
 	IEventMessage,
-	IMessage,
 	IWebsocketService,
 } from "../../shared/types";
-import { messagesApi } from "../api/messagesApi";
+import { donationsApi } from "../api/donationsApi";
 import updateAucFighterTeamAmount from "../helpers/updateAucFighterTeamAmount";
 import { AppState, store } from "../store";
 import {
@@ -22,12 +22,12 @@ import {
 	updateMatch,
 } from "../store/slices/aucFighterSlice";
 import {
-	auctionMessagesSlice,
-	maptionMessagesSlice,
-} from "../store/slices/messagesSlice";
+	auctionDonationsSlice,
+	maptionDonationsSlice,
+} from "../store/slices/donationsSlice.ts";
 
-const { addMessage: addAuctionMessage } = auctionMessagesSlice.actions;
-const { addMessage: addMaptionMessage } = maptionMessagesSlice.actions;
+const { addDonation: addAuctionDonation } = auctionDonationsSlice.actions;
+const { addDonation: addMaptionDonation } = maptionDonationsSlice.actions;
 
 export class WebSocketService
 	extends Subscriptions
@@ -41,22 +41,26 @@ export class WebSocketService
 		super();
 		this.url = url;
 		this.socket = null;
-		this.subscribe<IMessage>(AppEvent.Message, (message) => {
+		this.subscribe<IClientDonation>(AppEvent.Donation, (donation) => {
 			const state = store.getState() as AppState;
 			const { isShowTributeMessages } = state.auctionState;
 			if (isShowTributeMessages) {
-				store.dispatch(addAuctionMessage(message));
+				store.dispatch(addAuctionDonation(donation));
 			}
-			updateAucFighterTeamAmount(message, this);
-			store.dispatch(addMaptionMessage(message));
+			updateAucFighterTeamAmount(donation, this);
+			store.dispatch(addMaptionDonation(donation));
 			store.dispatch(
-				messagesApi.util.updateQueryData("getMessages", undefined, (draft) => {
-					draft.pages[0].unshift(message);
-					const lastPageParam = draft.pageParams.at(-1);
-					if (lastPageParam) {
-						lastPageParam.offset = lastPageParam.offset + 1;
-					}
-				}),
+				donationsApi.util.updateQueryData(
+					"getDonations",
+					undefined,
+					(draft) => {
+						draft.pages[0].unshift(donation);
+						const lastPageParam = draft.pageParams.at(-1);
+						if (lastPageParam) {
+							lastPageParam.offset = lastPageParam.offset + 1;
+						}
+					},
+				),
 			);
 		});
 

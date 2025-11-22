@@ -18,7 +18,7 @@ export enum Language {
 }
 
 export enum AppEvent {
-	Message = "Message",
+	Donation = "Donation",
 	MediaMessage = "MediaMessage",
 	SkipAlert = "SkipAlert",
 	ReplayAlert = "ReplayAlert",

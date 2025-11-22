@@ -3,18 +3,18 @@ import { Box, Button, Card, IconButton, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { AppEvent } from "../enums";
 import useWebSocket from "../hooks/useWebSocket";
-import type { IMessage } from "../types";
+import type { IClientDonation } from "../types";
 import getColorByMediaType from "../utils/getColorByMediaType";
 import getCurrencySymbol from "../utils/getCurrencySymbol";
 import MediaTile from "./MediaTile";
 import MessageDate from "./MessageDate";
 
 const MessageTile = ({
-	message,
+	donation,
 	isAlertPlaying,
 	isMediaPlaying,
 }: {
-	message: IMessage;
+	donation: IClientDonation;
 	isAlertPlaying: boolean;
 	isMediaPlaying: boolean;
 }) => {
@@ -37,24 +37,24 @@ const MessageTile = ({
 				overflow: "hidden",
 			})}
 		>
-			{isMediaPlaying && <MediaTile message={message} />}
+			{isMediaPlaying && <MediaTile donation={donation} />}
 			<Box
 				sx={(theme) => ({
 					width: "3rem",
 					display: "grid",
 					placeItems: "center",
-					background: message.media
-						? getColorByMediaType(message.media.media_type)
+					background: donation.media
+						? getColorByMediaType(donation.media.media_type)
 						: theme.palette.background.paper,
 					minHeight: "100%",
 				})}
 			>
-				{message.media && !isMediaPlaying && !isAlertPlaying && (
+				{donation.media && !isMediaPlaying && !isAlertPlaying && (
 					<IconButton
 						onClick={() => {
 							websocketService.send({
 								event: AppEvent.ReplayMedia,
-								data: message,
+								data: donation,
 							});
 						}}
 					>
@@ -65,7 +65,7 @@ const MessageTile = ({
 
 			<div style={{ width: "100%", padding: 15 }}>
 				<div style={{ float: "right" }}>
-					<MessageDate message={message} />
+					<MessageDate donation={donation} />
 				</div>
 				<div>
 					<Typography
@@ -73,13 +73,13 @@ const MessageTile = ({
 							color: theme.palette.primary.main,
 						})}
 					>
-						{message.user_name} {t("message.donate")}{" "}
-						{getCurrencySymbol(message.currency)}
-						{message.amount}
+						{donation.user_name} {t("message.donate")}{" "}
+						{getCurrencySymbol(donation.currency)}
+						{donation.amount}
 					</Typography>
 				</div>
 				<div style={{ wordBreak: "break-word" }}>
-					<span>{message.text}</span>
+					<span>{donation.text}</span>
 				</div>
 
 				<div style={{ display: "grid", gridAutoFlow: "column", marginTop: 10 }}>
@@ -93,7 +93,7 @@ const MessageTile = ({
 							onClick={() => {
 								websocketService.send({
 									event: AppEvent.ReplayAlert,
-									data: message,
+									data: donation,
 								});
 							}}
 						>
@@ -110,7 +110,7 @@ const MessageTile = ({
 						onClick={() => {
 							websocketService.send({
 								event: AppEvent.SkipAlert,
-								data: message.id,
+								data: donation.id,
 							});
 						}}
 					>

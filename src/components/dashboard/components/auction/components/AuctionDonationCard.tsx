@@ -16,33 +16,33 @@ import { useDispatch, useSelector } from "react-redux";
 import { findBestMatch } from "string-similarity";
 import { AlertSeverity } from "../../../../../../shared/enums";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
-import type { ILot, IMessage } from "../../../../../../shared/types";
+import type { IClientDonation, ILot } from "../../../../../../shared/types";
 import getRandomColor from "../../../../../helpers/getRandomColor";
 import type { AppState } from "../../../../../store";
+import { auctionDonationsSlice } from "../../../../../store/slices/donationsSlice.ts";
 import { addLot, updateLot } from "../../../../../store/slices/lotsSlice";
-import { auctionMessagesSlice } from "../../../../../store/slices/messagesSlice";
 
-const AuctionMessageCard = ({ message }: { message: IMessage }) => {
+const AuctionDonationCard = ({ donation }: { donation: IClientDonation }) => {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
-	const { removeMessage } = auctionMessagesSlice.actions;
+	const { removeDonation } = auctionDonationsSlice.actions;
 	const { lots, currentId } = useSelector((state: AppState) => state.lotsState);
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
 	const { colors } = useSelector((state: AppState) => state.mainState);
 
 	const bestMatch = useMemo(() => {
-		if (!message.text) return;
+		if (!donation.text) return;
 		const lotsNames = lots.map(({ name }) => name || "");
 		if (!lotsNames.length) return;
 		const {
 			bestMatch: { rating },
 			bestMatchIndex,
-		} = findBestMatch(message.text, lotsNames);
+		} = findBestMatch(donation.text, lotsNames);
 		return rating > 0.4
 			? { ...lots[bestMatchIndex], index: bestMatchIndex + 1 }
 			: null;
-	}, [lots, message.text]);
+	}, [lots, donation.text]);
 
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
@@ -57,36 +57,36 @@ const AuctionMessageCard = ({ message }: { message: IMessage }) => {
 		dispatch(
 			updateLot({
 				...randomLot,
-				amount: (randomLot.amount ?? 0) + message.amount,
+				amount: (randomLot.amount ?? 0) + donation.amount,
 			}),
 		);
 		dispatch(
 			showSnackBar({
-				message: `+${message.amount}      #${randomLot.fastId}`,
+				message: `+${donation.amount}      #${randomLot.fastId}`,
 				alertSeverity: AlertSeverity.success,
 			}),
 		);
-		dispatch(removeMessage(message));
+		dispatch(removeDonation(donation));
 		setAnchorEl(null);
-	}, [dispatch, lots, message, removeMessage]);
+	}, [dispatch, lots, donation, removeDonation]);
 
 	const handleAddToBestMatch = useCallback(() => {
 		if (!bestMatch) return;
 		dispatch(
 			updateLot({
 				...bestMatch,
-				amount: (bestMatch.amount ?? 0) + message.amount,
+				amount: (bestMatch.amount ?? 0) + donation.amount,
 			}),
 		);
 		dispatch(
 			showSnackBar({
-				message: `+${message.amount}      #${bestMatch.fastId}`,
+				message: `+${donation.amount}      #${bestMatch.fastId}`,
 				alertSeverity: AlertSeverity.success,
 			}),
 		);
-		dispatch(removeMessage(message));
+		dispatch(removeDonation(donation));
 		setAnchorEl(null);
-	}, [dispatch, bestMatch, removeMessage, message]);
+	}, [dispatch, bestMatch, removeDonation, donation]);
 
 	return (
 		<Card
@@ -105,11 +105,11 @@ const AuctionMessageCard = ({ message }: { message: IMessage }) => {
 					}}
 				>
 					<Typography variant="h6">
-						{message.amount} {message.user_name}
+						{donation.amount} {donation.user_name}
 					</Typography>
 					<IconButton
 						onClick={() => {
-							dispatch(removeMessage(message));
+							dispatch(removeDonation(donation));
 						}}
 						title={t("bid.delete")}
 						size="large"
@@ -117,7 +117,7 @@ const AuctionMessageCard = ({ message }: { message: IMessage }) => {
 						<CloseIcon />
 					</IconButton>
 				</div>
-				<Typography sx={{ wordWrap: "break-word" }}>{message.text}</Typography>
+				<Typography sx={{ wordWrap: "break-word" }}>{donation.text}</Typography>
 				<div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
 					<ButtonGroup size="small" style={{ display: "flex" }}>
 						<Button
@@ -128,12 +128,12 @@ const AuctionMessageCard = ({ message }: { message: IMessage }) => {
 								dispatch(
 									addLot({
 										fastId: currentId,
-										name: message.text,
-										amount: message.amount,
+										name: donation.text,
+										amount: donation.amount,
 										color: getRandomColor(colors),
 									}),
 								);
-								dispatch(removeMessage(message));
+								dispatch(removeDonation(donation));
 							}}
 						>
 							{t("bid.new")}
@@ -166,4 +166,4 @@ const AuctionMessageCard = ({ message }: { message: IMessage }) => {
 		</Card>
 	);
 };
-export default AuctionMessageCard;
+export default AuctionDonationCard;

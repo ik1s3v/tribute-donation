@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { ViewType } from "../enums";
-import type { IAlert, IMessage } from "../types";
+import type { IAlert, IClientDonation } from "../types";
 import computePXSize from "../utils/computePXSize";
 import getCurrencySymbol from "../utils/getCurrencySymbol";
 import getGridAutoColumns from "../utils/getGridAutoColumns";
@@ -9,14 +9,14 @@ import getGridTemplateAreas from "../utils/getGridTemplateAreas";
 
 const AlertView = ({
 	alert,
-	message,
+	donation,
 	imageSrc,
 	width,
 	height,
 	backgroundColor,
 }: {
 	alert: IAlert;
-	message: IMessage;
+	donation: IClientDonation;
 	imageSrc: string;
 	width: number;
 	height: number;
@@ -90,9 +90,9 @@ const AlertView = ({
 						}),
 					}}
 				>
-					{message.user_name} {t("message.donate")}{" "}
-					{getCurrencySymbol(message.currency)}
-					{message.amount}
+					{donation.user_name} {t("message.donate")}{" "}
+					{getCurrencySymbol(donation.currency)}
+					{donation.amount}
 				</span>
 
 				<span
@@ -119,7 +119,7 @@ const AlertView = ({
 						}),
 					}}
 				>
-					{message.text}
+					{donation.text}
 				</span>
 			</div>
 		</div>

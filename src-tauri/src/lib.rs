@@ -43,7 +43,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             is_authorized,
             request_login_code,
-            get_messages,
+            get_donations,
             sign_in,
             get_alert_by_id,
             get_alerts,

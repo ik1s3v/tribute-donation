@@ -17,14 +17,14 @@ import newLotAddAuctionTimeMiddleware from "./middlewares/newLotAddAuctionTimeMi
 import updateMaptionSettingsMiddleware from "./middlewares/updateMaptionSettingsMiddleware";
 import { aucFighterSlice } from "./slices/aucFighterSlice";
 import { auctionSlice } from "./slices/auctionSlice";
+import {
+	auctionDonationsSlice,
+	maptionDonationsSlice,
+} from "./slices/donationsSlice.ts";
 import { goalsSlice } from "./slices/goalsSlice";
 import { lotsSlice } from "./slices/lotsSlice";
 import { mainSlice } from "./slices/mainSlice";
 import { maptionSlice } from "./slices/maptionSlice";
-import {
-	auctionMessagesSlice,
-	maptionMessagesSlice,
-} from "./slices/messagesSlice";
 import { settingsSlice } from "./slices/settingsSlice";
 import { streamElementsSlice } from "./slices/streamElementsSlice";
 
@@ -38,8 +38,8 @@ export const rootReducer = combineReducers({
 	auctionState: auctionSlice.reducer,
 	auctionTimerState: auctionTimerSlice.reducer,
 	maptionTimerState: maptionTimerSlice.reducer,
-	auctionMessagesState: auctionMessagesSlice.reducer,
-	maptionMessagesState: maptionMessagesSlice.reducer,
+	auctionDonationsState: auctionDonationsSlice.reducer,
+	maptionDonationsState: maptionDonationsSlice.reducer,
 	maptionState: maptionSlice.reducer,
 	aucFighterState: aucFighterSlice.reducer,
 	goalsState: goalsSlice.reducer,

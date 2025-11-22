@@ -14,12 +14,12 @@ import {
 	CellMeasurerCache,
 	List,
 } from "react-virtualized";
-import type { IMessage } from "../../../../../../shared/types";
+import type { IClientDonation } from "../../../../../../shared/types";
 import type { AppState } from "../../../../../store";
+import { auctionDonationsSlice } from "../../../../../store/slices/donationsSlice.ts";
 import { updateLot } from "../../../../../store/slices/lotsSlice";
-import { auctionMessagesSlice } from "../../../../../store/slices/messagesSlice";
-import AuctionMessageCard from "./AuctionMessageCard";
-import DraggableMessageCard from "./DraggableMessageCard";
+import AuctionDonationCard from "./AuctionDonationCard";
+import DraggableDonationCard from "./DraggableDonationCard";
 import LotCard from "./LotCard";
 import LotSearch from "./LotSearch";
 import NewLotForm from "./NewLotForm";
@@ -36,9 +36,9 @@ const Lots = () => {
 	const { lots, searchPattern } = useSelector(
 		(state: AppState) => state.lotsState,
 	);
-	const [activeMessageId, setActiveMessageId] = useState<UniqueIdentifier>();
-	const { messages } = useSelector(
-		(state: AppState) => state.auctionMessagesState,
+	const [activeDonationId, setActiveDonationId] = useState<UniqueIdentifier>();
+	const { donations } = useSelector(
+		(state: AppState) => state.auctionDonationsState,
 	);
 	const cacheRef = useRef(
 		new CellMeasurerCache({ fixedWidth: true, defaultHeight: 110 }),
@@ -47,7 +47,7 @@ const Lots = () => {
 		(state: AppState) => state.auctionState,
 	);
 	const dispatch = useDispatch();
-	const { removeMessage } = auctionMessagesSlice.actions;
+	const { removeDonation } = auctionDonationsSlice.actions;
 
 	const touchSensor = useSensor(MouseSensor, {
 		activationConstraint: {
@@ -66,7 +66,7 @@ const Lots = () => {
 
 	useEffect(() => {
 		cacheRef.current.clearAll();
-	}, [messages]);
+	}, [donations]);
 
 	return (
 		<>
@@ -74,32 +74,31 @@ const Lots = () => {
 				modifiers={[restrictToWindowEdges]}
 				sensors={sensors}
 				onDragStart={({ active }) => {
-					setActiveMessageId(active.id);
+					setActiveDonationId(active.id);
 				}}
 				onDragEnd={({ over, active }) => {
 					if (over) {
-						dispatch(removeMessage(active.data.current as IMessage));
+						dispatch(removeDonation(active.data.current as IClientDonation));
 
 						const selectedLot = lots.find((lot) => lot.fastId === over?.id);
 
 						if (selectedLot) {
-							const messageAmount = (active.data.current as { amount: number })
-								.amount;
+							const amount = (active.data.current as { amount: number }).amount;
 							dispatch(
 								updateLot({
 									...selectedLot,
-									amount: messageAmount + (selectedLot.amount ?? 0),
+									amount: amount + (selectedLot.amount ?? 0),
 								}),
 							);
 							dispatch(
 								showSnackBar({
-									message: `+${messageAmount}      #${selectedLot.fastId}`,
+									message: `+${amount}      #${selectedLot.fastId}`,
 									alertSeverity: AlertSeverity.success,
 								}),
 							);
 						}
 					}
-					setActiveMessageId(undefined);
+					setActiveDonationId(undefined);
 				}}
 			>
 				<div
@@ -166,12 +165,12 @@ const Lots = () => {
 								{({ height, width }) => (
 									<List
 										style={{
-											overflowY: activeMessageId ? "hidden" : "auto",
+											overflowY: activeDonationId ? "hidden" : "auto",
 											overflowX: "hidden",
 										}}
 										width={width}
 										height={height}
-										rowCount={messages.length}
+										rowCount={donations.length}
 										rowHeight={cacheRef.current.rowHeight}
 										deferredMeasurementCache={cacheRef.current}
 										rowRenderer={({ key, index, style, parent }) => {
@@ -184,7 +183,9 @@ const Lots = () => {
 													rowIndex={index}
 												>
 													<div style={style}>
-														<DraggableMessageCard message={messages[index]} />
+														<DraggableDonationCard
+															donation={donations[index]}
+														/>
 													</div>
 												</CellMeasurer>
 											);
@@ -194,12 +195,12 @@ const Lots = () => {
 							</AutoSizer>
 
 							<DragOverlay>
-								{activeMessageId ? (
-									<AuctionMessageCard
-										message={
-											messages.find(
-												(message) => message.id === activeMessageId,
-											) as IMessage
+								{activeDonationId ? (
+									<AuctionDonationCard
+										donation={
+											donations.find(
+												(donation) => donation.id === activeDonationId,
+											) as IClientDonation
 										}
 									/>
 								) : null}

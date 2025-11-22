@@ -1,6 +1,6 @@
 use chrono::Utc;
 use entity::{
-    message::{Currency, Model as Message},
+    donation::{Currency, Model as Donation},
     service::ServiceType,
 };
 use tauri::{AppHandle, Manager};
@@ -9,7 +9,7 @@ use uuid::Uuid;
 
 use crate::{
     enums::AppEvent,
-    repositories::{GoalsRepository, MessagesRepository, SettingsRepository},
+    repositories::{DonationsRepository, GoalsRepository, SettingsRepository},
     services::{
         DatabaseService, EventMessage, ExchangeRatesService, MediaService, TTSService,
         WebSocketBroadcaster,
@@ -18,7 +18,7 @@ use crate::{
 };
 
 pub async fn on_new_donation(
-    service_message_id: String,
+    service_id: String,
     user_name: String,
     target_currency: Currency,
     target_amount: f64,
@@ -32,7 +32,7 @@ pub async fn on_new_donation(
     let exchange_rates_service_mutex = app.state::<Mutex<ExchangeRatesService>>();
 
     if let Ok(Some(_)) = database_service
-        .get_message_by_service_message_id(service_message_id.clone())
+        .get_donation_by_service_id(service_id.clone())
         .await
     {
         return;
@@ -98,7 +98,7 @@ pub async fn on_new_donation(
         None
     };
 
-    let alert_message = Message {
+    let donation = Donation {
         id,
         user_name,
         amount: target_amount.clone(),
@@ -106,7 +106,7 @@ pub async fn on_new_donation(
         audio,
         currency: target_currency.clone(),
         service: ServiceType::Streamelements,
-        service_message_id: service_message_id,
+        service_id,
         played: false,
         created_at: Utc::now().timestamp(),
         media: media.clone(),
@@ -131,13 +131,13 @@ pub async fn on_new_donation(
     }
 
     database_service
-        .save_message(alert_message.clone())
+        .save_donation(donation.clone())
         .await
         .unwrap();
 
     let event_message = EventMessage {
-        event: AppEvent::Message,
-        data: alert_message.clone(),
+        event: AppEvent::Donation,
+        data: donation.clone(),
     };
 
     websocket_broadcaster
@@ -148,7 +148,7 @@ pub async fn on_new_donation(
     if !media.is_none() {
         let event_message = EventMessage {
             event: AppEvent::MediaMessage,
-            data: alert_message,
+            data: donation,
         };
 
         websocket_broadcaster

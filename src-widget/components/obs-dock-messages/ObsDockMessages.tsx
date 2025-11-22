@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import InfiniteMessages from "../../../shared/components/InfiniteMessages";
-import { useGetMessagesInfiniteQuery } from "../../api/messagesApi";
+import { useGetDonationsInfiniteQuery } from "../../api/donationsApi";
 
 const ObsDockMessages = () => {
 	return (
@@ -12,7 +12,7 @@ const ObsDockMessages = () => {
 			}}
 		>
 			<InfiniteMessages
-				useGetMessagesInfiniteQuery={useGetMessagesInfiniteQuery}
+				useGetDonationsInfiniteQuery={useGetDonationsInfiniteQuery}
 			></InfiniteMessages>
 		</Box>
 	);

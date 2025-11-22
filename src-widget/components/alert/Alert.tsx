@@ -2,13 +2,13 @@ import AlertView from "../../../shared/components/AlertView";
 import usePlayAlert from "../../hooks/usePlayAlert";
 
 const Alert = () => {
-	const { currentAlert, currentMessage } = usePlayAlert();
+	const { currentAlert, currentDonation } = usePlayAlert();
 	return (
-		currentMessage &&
+		currentDonation &&
 		currentAlert && (
 			<AlertView
 				alert={currentAlert}
-				message={currentMessage}
+				donation={currentDonation}
 				width={window.innerWidth}
 				height={window.innerHeight}
 				imageSrc={`static/${currentAlert.image}`}

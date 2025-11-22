@@ -120,14 +120,16 @@ const AlertSettings = ({
 							height={300}
 							alert={alert as IAlert}
 							backgroundColor="green"
-							message={{
+							donation={{
 								id: "1",
 								user_name: t("text.name"),
 								amount: 100,
 								text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis",
-								service_message_id: "1",
+								service_id: "1",
 								created_at: 1,
 								service: ServiceType.TributeBot,
+								display_amount: 1,
+								display_currency: Currency.EUR,
 								played: false,
 								currency: Currency.EUR,
 							}}

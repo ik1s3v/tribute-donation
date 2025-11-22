@@ -1,8 +1,8 @@
 use crate::constants::HTTP_WIDGET_PORT;
 use crate::enums::AppEvent;
 use crate::repositories::{
-    AlertsRepository, AucFighterSettingsRepository, GoalsRepository, MediaSettingsRepository,
-    MessagesRepository, SettingsRepository,
+    AlertsRepository, AucFighterSettingsRepository, DonationsRepository, GoalsRepository,
+    MediaSettingsRepository, SettingsRepository,
 };
 use crate::services::{DatabaseService, EventMessage, WebSocketBroadcaster};
 use axum::extract::ws::{Message, WebSocket};
@@ -15,7 +15,7 @@ use axum::{
     routing::get,
     Router,
 };
-use entity::message::Model;
+use entity::donation::Model;
 use futures::{sink::SinkExt, stream::StreamExt};
 use reqwest::StatusCode;
 use serde::Deserialize;
@@ -28,7 +28,7 @@ use tower_http::services::{ServeDir, ServeFile};
 type Tx = mpsc::UnboundedSender<Message>;
 
 #[derive(Debug, Deserialize)]
-pub struct MessagesQuery {
+pub struct DonationsQuery {
     pub limit: u64,
     pub offset: u64,
 }
@@ -63,7 +63,7 @@ impl AxumService {
 
         let axum_router: Router = Router::new()
             .route("/ws", get(AxumService::websocket_handler))
-            .route("/api/messages", get(AxumService::get_messages))
+            .route("/api/donations", get(AxumService::get_donations))
             .nest_service("/static", ServeDir::new(&static_path))
             .nest_service(
                 "/auc-fighter",
@@ -96,17 +96,17 @@ impl AxumService {
         Ok(())
     }
 
-    async fn get_messages(
-        Query(params): Query<MessagesQuery>,
+    async fn get_donations(
+        Query(params): Query<DonationsQuery>,
         State(state): State<AxumState>,
     ) -> Result<Json<Vec<Model>>, StatusCode> {
         let database_service = state.app.state::<DatabaseService>();
-        let messages = database_service
-            .get_messages(params.limit, params.offset)
+        let donations = database_service
+            .get_donations(params.limit, params.offset)
             .await
             .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
 
-        Ok(Json(messages))
+        Ok(Json(donations))
     }
 
     async fn websocket_handler(

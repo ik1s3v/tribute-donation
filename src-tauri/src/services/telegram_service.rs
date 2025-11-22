@@ -5,7 +5,7 @@ use crate::{
     utils::{on_new_donation, parse_message_to_tribute_donate_message},
 };
 use entity::{
-    message::Currency,
+    donation::Currency,
     service::{Model as Service, ServiceType},
 };
 use grammers_client::{

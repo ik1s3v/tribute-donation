@@ -8,12 +8,12 @@ import {
 	setPlayingMediaId,
 } from "../../shared/slices/mediaSlice";
 import type {
+	IClientDonation,
 	IEventMessage,
-	IMessage,
 	ISettings,
 	IWebsocketService,
 } from "../../shared/types";
-import { messagesApi } from "../api/messagesApi";
+import { donationsApi } from "../api/donationsApi";
 import { store } from "../store";
 
 export class WebSocketService
@@ -30,15 +30,19 @@ export class WebSocketService
 		this.socket = null;
 		this.hotReload = null;
 
-		this.subscribe<IMessage>(AppEvent.Message, (message) => {
+		this.subscribe<IClientDonation>(AppEvent.Donation, (donation) => {
 			store.dispatch(
-				messagesApi.util.updateQueryData("getMessages", undefined, (draft) => {
-					draft.pages[0].unshift(message);
-					const lastPageParam = draft.pageParams.at(-1);
-					if (lastPageParam) {
-						lastPageParam.offset = lastPageParam.offset + 1;
-					}
-				}),
+				donationsApi.util.updateQueryData(
+					"getDonations",
+					undefined,
+					(draft) => {
+						draft.pages[0].unshift(donation);
+						const lastPageParam = draft.pageParams.at(-1);
+						if (lastPageParam) {
+							lastPageParam.offset = lastPageParam.offset + 1;
+						}
+					},
+				),
 			);
 		});
 

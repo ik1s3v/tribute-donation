@@ -17,7 +17,7 @@ impl MigrationTrait for Migration {
                         .add_column(
                             ColumnDef::new(Settings::Currency)
                                 .text()
-                                .default(entity::message::Currency::EUR),
+                                .default(entity::donation::Currency::EUR),
                         )
                         .to_owned(),
                 )

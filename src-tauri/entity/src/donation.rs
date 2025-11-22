@@ -4,11 +4,11 @@ use serde::{Deserialize, Serialize};
 use crate::service::ServiceType;
 
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Serialize, Deserialize)]
-#[sea_orm(table_name = "messages")]
+#[sea_orm(table_name = "donations")]
 pub struct Model {
     #[sea_orm(primary_key, auto_increment = false)]
     pub id: String,
-    pub service_message_id: String,
+    pub service_id: String,
     pub amount: f64,
     pub user_name: String,
     pub currency: Currency,
@@ -18,6 +18,22 @@ pub struct Model {
     #[sea_orm(column_type = "Text")]
     pub media: Option<Media>,
     pub played: bool,
+    pub created_at: i64,
+}
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ClientDonation {
+    pub id: String,
+    pub service_id: String,
+    pub amount: f64,
+    pub user_name: String,
+    pub currency: Currency,
+    pub text: Option<String>,
+    pub audio: Option<String>,
+    pub service: ServiceType,
+    pub media: Option<Media>,
+    pub played: bool,
+    pub display_amount: f64,
+    pub display_currency: Currency,
     pub created_at: i64,
 }
 

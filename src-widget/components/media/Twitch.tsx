@@ -1,13 +1,16 @@
 import { useEffect, useRef } from "react";
 import { AppEvent } from "../../../shared/enums";
 import useWebSocket from "../../../shared/hooks/useWebSocket";
-import type { IMediaPlatformSettings, IMessage } from "../../../shared/types";
+import type {
+	IClientDonation,
+	IMediaPlatformSettings,
+} from "../../../shared/types";
 
 const Twitch = ({
-	message,
+	donation,
 	mediaPlatformSettings,
 }: {
-	message: IMessage;
+	donation: IClientDonation;
 	mediaPlatformSettings: IMediaPlatformSettings;
 }) => {
 	const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -22,26 +25,26 @@ const Twitch = ({
 		videoRef.current.onplay = () => {
 			websocketService.send({
 				event: AppEvent.MediaPlaying,
-				data: message.id,
+				data: donation.id,
 			});
 		};
 
 		videoRef.current.onended = () => {
 			websocketService.send({
 				event: AppEvent.MediaEnd,
-				data: message.id,
+				data: donation.id,
 			});
 		};
 		videoRef.current.onpause = () => {
 			websocketService.send({
 				event: AppEvent.MediaPaused,
-				data: message.id,
+				data: donation.id,
 			});
 		};
 		videoRef.current.onerror = () => {
 			websocketService.send({
 				event: AppEvent.MediaError,
-				data: message.id,
+				data: donation.id,
 			});
 		};
 
@@ -52,33 +55,33 @@ const Twitch = ({
 			videoRef.current.onpause = null;
 			videoRef.current.onerror = null;
 		};
-	}, [message, websocketService]);
+	}, [donation, websocketService]);
 
 	useEffect(() => {
 		const unsubscribe = websocketService.subscribe<string>(
 			AppEvent.PauseMedia,
 			(id) => {
-				if (message.id === id && videoRef.current) {
+				if (donation.id === id && videoRef.current) {
 					videoRef.current.pause();
 				}
 			},
 		);
 
 		return () => unsubscribe();
-	}, [message, websocketService]);
+	}, [donation, websocketService]);
 
 	useEffect(() => {
 		const unsubscribe = websocketService.subscribe<string>(
 			AppEvent.PlayMedia,
 			(id) => {
-				if (message.id === id && videoRef.current) {
+				if (donation.id === id && videoRef.current) {
 					videoRef.current.play();
 				}
 			},
 		);
 
 		return () => unsubscribe();
-	}, [message, websocketService]);
+	}, [donation, websocketService]);
 
 	return (
 		<>
@@ -86,7 +89,7 @@ const Twitch = ({
 			<video
 				autoPlay
 				ref={videoRef}
-				src={message.media?.temporary_src}
+				src={donation.media?.temporary_src}
 				style={{ height: "100%", width: "100%" }}
 			/>
 		</>

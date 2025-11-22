@@ -2,7 +2,7 @@ import type { Middleware, Action as UnknownAction } from "@reduxjs/toolkit";
 import { maptionTimerSlice } from "../../../shared/slices/timerSlice";
 import isDonationAddTime from "../../helpers/isDonationAddTime";
 import type { AppState } from "..";
-import { maptionMessagesSlice } from "../slices/messagesSlice";
+import { maptionDonationsSlice } from "../slices/donationsSlice.ts";
 
 const { addTime } = maptionTimerSlice.actions;
 
@@ -15,7 +15,7 @@ const newDonationAddMaptionTimeMiddleware: Middleware<unknown, AppState> =
 		const time = nextState.maptionTimerState.time;
 
 		if (
-			appAction.type === maptionMessagesSlice.actions.addMessage.type &&
+			appAction.type === maptionDonationsSlice.actions.addDonation.type &&
 			isPointSet &&
 			maptionSettings &&
 			isDonationAddTime({

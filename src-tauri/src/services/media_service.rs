@@ -2,7 +2,7 @@ use super::DatabaseService;
 use crate::repositories::MediaSettingsRepository;
 use entity::{
     media_settings::MediaPlatformSettings,
-    message::{Media, MediaType},
+    donation::{Media, MediaType},
 };
 #[cfg(test)]
 use mockall::predicate::*;

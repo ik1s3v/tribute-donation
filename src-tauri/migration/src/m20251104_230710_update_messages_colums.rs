@@ -11,7 +11,7 @@ impl MigrationTrait for Migration {
             .alter_table(
                 Table::alter()
                     .table(Messages::Table)
-                    .rename_column(Messages::TelegramMessageId, Messages::ServiceMessageId)
+                    .rename_column(Messages::TelegramMessageId, Messages::ServiceId)
                     .to_owned(),
             )
             .await?;
@@ -45,7 +45,7 @@ impl MigrationTrait for Migration {
             .alter_table(
                 Table::alter()
                     .table(Messages::Table)
-                    .rename_column(Messages::ServiceMessageId, Messages::TelegramMessageId)
+                    .rename_column(Messages::ServiceId, Messages::TelegramMessageId)
                     .to_owned(),
             )
             .await?;
@@ -58,5 +58,5 @@ enum Messages {
     Table,
     Service,
     TelegramMessageId,
-    ServiceMessageId,
+    ServiceId,
 }

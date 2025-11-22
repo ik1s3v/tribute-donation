@@ -10,9 +10,9 @@ import type {
 	ViewType,
 } from "./enums";
 
-export interface IMessage {
+export interface IClientDonation {
 	id: string;
-	service_message_id: string;
+	service_id: string;
 	amount: number;
 	user_name: string;
 	text?: string;
@@ -21,6 +21,8 @@ export interface IMessage {
 	played: boolean;
 	service: ServiceType;
 	currency: Currency;
+	display_amount: number;
+	display_currency: Currency;
 	created_at: number;
 }
 

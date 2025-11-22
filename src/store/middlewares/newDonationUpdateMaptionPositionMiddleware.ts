@@ -3,8 +3,8 @@ import { AlertSeverity } from "../../../shared/enums";
 import { showSnackBar } from "../../../shared/slices/snackBarSlice";
 import calculateMaptionDistance from "../../helpers/calculateMaptionDistance";
 import type { AppState } from "..";
+import { maptionDonationsSlice } from "../slices/donationsSlice.ts";
 import { down, left, right, up } from "../slices/maptionSlice";
-import { maptionMessagesSlice } from "../slices/messagesSlice";
 
 const newDonationUpdateMaptionPositionMiddleware: Middleware<
 	unknown,
@@ -13,30 +13,30 @@ const newDonationUpdateMaptionPositionMiddleware: Middleware<
 	const appAction = action as UnknownAction;
 	const result = next(action);
 	const nextState = store.getState();
-	const newMessage = nextState.maptionMessagesState.messages.at(-1);
+	const newDonation = nextState.maptionDonationsState.donations.at(-1);
 	const { isPointSet, maptionSettings } = nextState.maptionState;
 	const isStopped = nextState.maptionTimerState.isStopped;
 
 	if (
-		appAction.type === maptionMessagesSlice.actions.addMessage.type &&
+		appAction.type === maptionDonationsSlice.actions.addDonation.type &&
 		maptionSettings &&
-		newMessage &&
+		newDonation &&
 		isPointSet &&
 		!isStopped
 	) {
-		switch (newMessage.text?.toLowerCase()) {
+		switch (newDonation.text?.toLowerCase()) {
 			case "up":
 				store.dispatch(
 					up(
 						calculateMaptionDistance({
 							price_for_meter: maptionSettings.price_for_meter,
-							amount: newMessage.amount,
+							amount: newDonation.amount,
 						}),
 					),
 				);
 				store.dispatch(
 					showSnackBar({
-						message: `+${newMessage.amount}      Up`,
+						message: `+${newDonation.amount}      Up`,
 						alertSeverity: AlertSeverity.success,
 					}),
 				);
@@ -46,13 +46,13 @@ const newDonationUpdateMaptionPositionMiddleware: Middleware<
 					down(
 						calculateMaptionDistance({
 							price_for_meter: maptionSettings.price_for_meter,
-							amount: newMessage.amount,
+							amount: newDonation.amount,
 						}),
 					),
 				);
 				store.dispatch(
 					showSnackBar({
-						message: `+${newMessage.amount}      Down`,
+						message: `+${newDonation.amount}      Down`,
 						alertSeverity: AlertSeverity.success,
 					}),
 				);
@@ -62,13 +62,13 @@ const newDonationUpdateMaptionPositionMiddleware: Middleware<
 					left(
 						calculateMaptionDistance({
 							price_for_meter: maptionSettings.price_for_meter,
-							amount: newMessage.amount,
+							amount: newDonation.amount,
 						}),
 					),
 				);
 				store.dispatch(
 					showSnackBar({
-						message: `+${newMessage.amount}      Left`,
+						message: `+${newDonation.amount}      Left`,
 						alertSeverity: AlertSeverity.success,
 					}),
 				);
@@ -78,13 +78,13 @@ const newDonationUpdateMaptionPositionMiddleware: Middleware<
 					right(
 						calculateMaptionDistance({
 							price_for_meter: maptionSettings.price_for_meter,
-							amount: newMessage.amount,
+							amount: newDonation.amount,
 						}),
 					),
 				);
 				store.dispatch(
 					showSnackBar({
-						message: `+${newMessage.amount}      Right`,
+						message: `+${newDonation.amount}      Right`,
 						alertSeverity: AlertSeverity.success,
 					}),
 				);

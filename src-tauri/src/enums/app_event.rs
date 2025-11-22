@@ -2,7 +2,7 @@ use serde::Serialize;
 
 #[derive(Serialize, Clone, Debug)]
 pub enum AppEvent {
-    Message,
+    Donation,
     MediaMessage,
     SkipAlert,
     SkipPlayingAlert,
@@ -38,7 +38,7 @@ pub enum AppEvent {
 impl AppEvent {
     pub fn as_str(e: AppEvent) -> &'static str {
         match e {
-            AppEvent::Message => "Message",
+            AppEvent::Donation => "Donation",
             AppEvent::MediaMessage => "MediaMessage",
             AppEvent::SkipAlert => "SkipAlert",
             AppEvent::SkipPlayingAlert => "SkipPlayingAlert",

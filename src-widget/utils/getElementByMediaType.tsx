@@ -1,35 +1,35 @@
 import { MediaType } from "../../shared/enums";
-import type { IMediaSettings, IMessage } from "../../shared/types";
+import type { IClientDonation, IMediaSettings } from "../../shared/types";
 import TikTok from "../components/media/TikTok";
 import Twitch from "../components/media/Twitch";
 import Youtube from "../components/media/Youtube";
 
 const getElementByMediaType = ({
-	message,
+	donation,
 	mediaSettings,
 }: {
-	message: IMessage;
+	donation: IClientDonation;
 	mediaSettings: IMediaSettings;
 }) => {
-	switch (message.media?.media_type) {
+	switch (donation.media?.media_type) {
 		case MediaType.Twitch:
 			return (
 				<Twitch
-					message={message}
+					donation={donation}
 					mediaPlatformSettings={mediaSettings.twitch}
 				/>
 			);
 		case MediaType.Youtube:
 			return (
 				<Youtube
-					message={message}
+					donation={donation}
 					mediaPlatformSettings={mediaSettings.youtube}
 				/>
 			);
 		case MediaType.TikTok:
 			return (
 				<TikTok
-					message={message}
+					donation={donation}
 					mediaPlatformSettings={mediaSettings.tiktok}
 				/>
 			);

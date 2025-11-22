@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import InfiniteMessages from "../../../../../shared/components/InfiniteMessages";
-import { useGetMessagesInfiniteQuery } from "../../../../api/messagesApi";
+import { useGetDonationsInfiniteQuery } from "../../../../api/donationsApi";
 import WidgetUrl from "../alerts/components/WidgetUrl";
 
 const Messages = () => {
@@ -17,7 +17,7 @@ const Messages = () => {
 			<div>{t("skip_media")} - ctrl+F2</div>
 
 			<InfiniteMessages
-				useGetMessagesInfiniteQuery={useGetMessagesInfiniteQuery}
+				useGetDonationsInfiniteQuery={useGetDonationsInfiniteQuery}
 			></InfiniteMessages>
 		</>
 	);

@@ -1,90 +1,97 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AppEvent } from "../../shared/enums";
 import useWebSocket from "../../shared/hooks/useWebSocket";
-import type { IMediaSettings, IMessage, ISettings } from "../../shared/types";
+import type {
+	IClientDonation,
+	IMediaSettings,
+	ISettings,
+} from "../../shared/types";
 
 const usePlayMedia = () => {
 	const websocketService = useWebSocket();
 	const mediaSettingsRef = useRef<IMediaSettings | null>(null);
 	const settingsRef = useRef<ISettings | null>(null);
-	const messagesRef = useRef<IMessage[]>([]);
-	const [currentMessage, setCurrentMessage] = useState<IMessage>();
+	const donationsRef = useRef<IClientDonation[]>([]);
+	const [currentDonation, setCurrentDonation] = useState<IClientDonation>();
 
 	const handleMediaEnd = useCallback(
-		({ message }: { message: IMessage | undefined }) => {
-			if (!message) return;
+		({ donation }: { donation: IClientDonation | undefined }) => {
+			if (!donation) return;
 			websocketService.send({
 				event: AppEvent.MediaPlayed,
-				data: message.id,
+				data: donation.id,
 			});
 
-			messagesRef.current = messagesRef.current.filter(
-				(m) => m.id !== message.id,
+			donationsRef.current = donationsRef.current.filter(
+				(d) => d.id !== donation.id,
 			);
 
-			const newCurrentMessage = messagesRef.current.at(0);
-			setCurrentMessage(undefined);
+			const newCurrentDonation = donationsRef.current.at(0);
+			setCurrentDonation(undefined);
 			setTimeout(() => {
-				if (newCurrentMessage) {
-					playMedia({ message: newCurrentMessage });
+				if (newCurrentDonation) {
+					playMedia({ donation: newCurrentDonation });
 				}
 			}, 0);
 		},
 		[],
 	);
-	const playMedia = useCallback(({ message }: { message: IMessage }) => {
-		if (settingsRef.current && !settingsRef.current.alert_paused) {
-			setCurrentMessage(message);
-		}
-	}, []);
+	const playMedia = useCallback(
+		({ donation }: { donation: IClientDonation }) => {
+			if (settingsRef.current && !settingsRef.current.alert_paused) {
+				setCurrentDonation(donation);
+			}
+		},
+		[],
+	);
 
 	const skipMedia = useCallback(
 		(id: string) => {
-			if (currentMessage?.id === id) {
-				handleMediaEnd({ message: currentMessage });
+			if (currentDonation?.id === id) {
+				handleMediaEnd({ donation: currentDonation });
 			} else {
-				messagesRef.current = messagesRef.current.filter(
-					(message) => message.id !== id,
+				donationsRef.current = donationsRef.current.filter(
+					(donation) => donation.id !== id,
 				);
 			}
 		},
-		[handleMediaEnd, currentMessage],
+		[handleMediaEnd, currentDonation],
 	);
 
 	const skipPlayingMedia = useCallback(() => {
-		if (currentMessage) {
-			handleMediaEnd({ message: currentMessage });
+		if (currentDonation) {
+			handleMediaEnd({ donation: currentDonation });
 		}
-	}, [handleMediaEnd, currentMessage]);
+	}, [handleMediaEnd, currentDonation]);
 
-	const handleNewMessage = useCallback((message: IMessage) => {
-		if (message.media) {
-			messagesRef.current = [...messagesRef.current, message];
+	const handleNewDonate = useCallback((donation: IClientDonation) => {
+		if (donation.media) {
+			donationsRef.current = [...donationsRef.current, donation];
 		}
 	}, []);
 
 	const handleReplayMedia = useCallback(
-		(message: IMessage) => {
-			messagesRef.current = [message, ...messagesRef.current];
+		(donation: IClientDonation) => {
+			donationsRef.current = [donation, ...donationsRef.current];
 
-			if (!currentMessage) {
-				playMedia({ message });
+			if (!currentDonation) {
+				playMedia({ donation: donation });
 			}
 		},
-		[playMedia, currentMessage],
+		[playMedia, currentDonation],
 	);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<IMessage>(
+		const unsubscribe = websocketService.subscribe<IClientDonation>(
 			AppEvent.MediaMessage,
-			handleNewMessage,
+			handleNewDonate,
 		);
 
 		return () => unsubscribe();
-	}, [handleNewMessage]);
+	}, [handleNewDonate]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<IMessage>(
+		const unsubscribe = websocketService.subscribe<IClientDonation>(
 			AppEvent.ReplayMedia,
 			handleReplayMedia,
 		);
@@ -109,9 +116,9 @@ const usePlayMedia = () => {
 			(settings) => {
 				if (settingsRef.current?.alert_paused && !settings.alert_paused) {
 					settingsRef.current = settings;
-					const message = messagesRef.current.at(0);
-					if (message) {
-						playMedia({ message });
+					const donation = donationsRef.current.at(0);
+					if (donation) {
+						playMedia({ donation: donation });
 					}
 					return;
 				}
@@ -144,10 +151,10 @@ const usePlayMedia = () => {
 		const unsubscribe = websocketService.subscribe<string>(
 			AppEvent.MediaEnd,
 			(id) => {
-				const message = messagesRef.current.find(
-					(message) => message.id === id,
+				const donation = donationsRef.current.find(
+					(donation) => donation.id === id,
 				);
-				handleMediaEnd({ message });
+				handleMediaEnd({ donation: donation });
 			},
 		);
 
@@ -158,10 +165,10 @@ const usePlayMedia = () => {
 		const unsubscribe = websocketService.subscribe<string>(
 			AppEvent.MediaError,
 			(id) => {
-				const message = messagesRef.current.find(
-					(message) => message.id === id,
+				const donation = donationsRef.current.find(
+					(donation) => donation.id === id,
 				);
-				handleMediaEnd({ message });
+				handleMediaEnd({ donation: donation });
 			},
 		);
 
@@ -172,18 +179,21 @@ const usePlayMedia = () => {
 		const unsubscribe = websocketService.subscribe<string>(
 			AppEvent.AlertPlayed,
 			(id) => {
-				const message = messagesRef.current.find(
-					(message) => message.id === id,
+				const donation = donationsRef.current.find(
+					(donation) => donation.id === id,
 				);
-				if (!currentMessage && message) {
-					playMedia({ message });
+				if (!currentDonation && donation) {
+					playMedia({ donation: donation });
 				}
 			},
 		);
 
 		return () => unsubscribe();
-	}, [playMedia, currentMessage]);
+	}, [playMedia, currentDonation]);
 
-	return { currentMessage, mediaSettings: mediaSettingsRef.current };
+	return {
+		currentDonation: currentDonation,
+		mediaSettings: mediaSettingsRef.current,
+	};
 };
 export default usePlayMedia;

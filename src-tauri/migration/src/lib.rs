@@ -20,6 +20,7 @@ mod m20251111_172605_create_table_services;
 mod m20251111_183902_add_default_services;
 mod m20251115_183022_update_settings;
 mod m20251122_001838_update_media_settings;
+mod m20251122_144811_rename_messages_table;
 
 pub struct Migrator;
 
@@ -47,6 +48,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20251111_183902_add_default_services::Migration),
             Box::new(m20251115_183022_update_settings::Migration),
             Box::new(m20251122_001838_update_media_settings::Migration),
+            Box::new(m20251122_144811_rename_messages_table::Migration),
         ]
     }
 }

@@ -1,9 +1,9 @@
-import type { IMessage, IPageParm } from "../../shared/types";
+import type { IClientDonation, IPageParm } from "../../shared/types";
 import { api } from ".";
 
-export const messagesApi = api.injectEndpoints({
+export const donationsApi = api.injectEndpoints({
 	endpoints: (builder) => ({
-		getMessages: builder.infiniteQuery<IMessage[], void, IPageParm>({
+		getDonations: builder.infiniteQuery<IClientDonation[], void, IPageParm>({
 			infiniteQueryOptions: {
 				initialPageParam: {
 					offset: 0,
@@ -28,10 +28,10 @@ export const messagesApi = api.injectEndpoints({
 				},
 			},
 			query: ({ pageParam }) => ({
-				command: "get_messages",
+				command: "get_donations",
 				args: { ...pageParam },
 			}),
 		}),
 	}),
 });
-export const { useGetMessagesInfiniteQuery } = messagesApi;
+export const { useGetDonationsInfiniteQuery } = donationsApi;

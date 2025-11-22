@@ -1,5 +1,5 @@
 use chrono::Utc;
-use entity::message::Currency;
+use entity::donation::Currency;
 use serde::Deserialize;
 use std::{collections::HashMap, fmt::Debug};
 

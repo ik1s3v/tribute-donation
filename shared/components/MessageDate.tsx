@@ -1,8 +1,8 @@
 import dayjs from "../dayjs";
-import type { IMessage } from "../types";
+import type { IClientDonation } from "../types";
 
-const MessageDate = ({ message }: { message: IMessage }) => {
-	const date = dayjs(message.created_at * 1000);
+const MessageDate = ({ donation }: { donation: IClientDonation }) => {
+	const date = dayjs(donation.created_at * 1000);
 	return (
 		<span style={{ fontSize: 12 }}>{date.format("YYYY-MM-DD HH:mm:ss")}</span>
 	);
