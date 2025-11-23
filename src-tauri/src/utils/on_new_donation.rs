@@ -52,12 +52,16 @@ pub async fn on_new_donation(
     let id = Uuid::new_v4().to_string();
 
     let mut exchange_rates_service = exchange_rates_service_mutex.lock().await;
-    let amount = exchange_rates_service
-        .calculate_amount_by_currency(settings.currency, target_currency.clone(), target_amount)
+    let exchanged_amount = exchange_rates_service
+        .calculate_amount_by_currency(
+            settings.currency.clone(),
+            target_currency.clone(),
+            target_amount,
+        )
         .await;
 
     let media = media_service
-        .get_media(message.clone(), amount.clone(), app.clone())
+        .get_media(message.clone(), exchanged_amount.clone(), app.clone())
         .await;
 
     let text = match message {
@@ -111,9 +115,10 @@ pub async fn on_new_donation(
         created_at: Utc::now().timestamp(),
         media: media.clone(),
     };
+    let client_donation = donation.to_client_donation(exchanged_amount, settings.currency.clone());
 
     database_service
-        .update_goal_amount(amount as u32)
+        .update_goal_amount(exchanged_amount as u32)
         .await
         .unwrap();
     match database_service.get_not_ended_goal().await {
@@ -137,7 +142,7 @@ pub async fn on_new_donation(
 
     let event_message = EventMessage {
         event: AppEvent::Donation,
-        data: donation.clone(),
+        data: client_donation.clone(),
     };
 
     websocket_broadcaster
@@ -148,7 +153,7 @@ pub async fn on_new_donation(
     if !media.is_none() {
         let event_message = EventMessage {
             event: AppEvent::MediaMessage,
-            data: donation,
+            data: client_donation,
         };
 
         websocket_broadcaster

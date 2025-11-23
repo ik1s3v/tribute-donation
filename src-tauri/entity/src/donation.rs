@@ -20,7 +20,31 @@ pub struct Model {
     pub played: bool,
     pub created_at: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+
+impl Model {
+    pub fn to_client_donation(
+        &self,
+        exchanged_amount: f64,
+        exchanged_currency: Currency,
+    ) -> ClientDonation {
+        ClientDonation {
+            id: self.id.clone(),
+            service_id: self.service_id.clone(),
+            amount: self.amount,
+            user_name: self.user_name.clone(),
+            currency: self.currency.clone(),
+            text: self.text.clone(),
+            audio: self.audio.clone(),
+            service: self.service.clone(),
+            media: self.media.clone(),
+            played: self.played,
+            exchanged_amount,
+            exchanged_currency,
+            created_at: self.created_at,
+        }
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ClientDonation {
     pub id: String,
     pub service_id: String,
@@ -32,8 +56,8 @@ pub struct ClientDonation {
     pub service: ServiceType,
     pub media: Option<Media>,
     pub played: bool,
-    pub display_amount: f64,
-    pub display_currency: Currency,
+    pub exchanged_amount: f64,
+    pub exchanged_currency: Currency,
     pub created_at: i64,
 }
 

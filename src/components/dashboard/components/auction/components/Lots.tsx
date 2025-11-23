@@ -59,7 +59,7 @@ const Lots = () => {
 	const filteredLots = useMemo(
 		() =>
 			lots.filter((lot) =>
-				lot.name?.toLowerCase().includes(searchPattern.toLowerCase()),
+				lot.name.toLowerCase().includes(searchPattern.toLowerCase()),
 			),
 		[searchPattern, lots],
 	);

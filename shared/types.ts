@@ -21,8 +21,8 @@ export interface IClientDonation {
 	played: boolean;
 	service: ServiceType;
 	currency: Currency;
-	display_amount: number;
-	display_currency: Currency;
+	exchanged_amount: number;
+	exchanged_currency: Currency;
 	created_at: number;
 }
 
@@ -130,7 +130,7 @@ export interface IMedia {
 }
 export interface ILot {
 	fastId: number;
-	name?: string;
+	name: string;
 	color: string;
 	amount?: number;
 	extra?: number;

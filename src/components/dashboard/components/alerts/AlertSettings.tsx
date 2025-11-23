@@ -128,8 +128,8 @@ const AlertSettings = ({
 								service_id: "1",
 								created_at: 1,
 								service: ServiceType.TributeBot,
-								display_amount: 1,
-								display_currency: Currency.EUR,
+								exchanged_amount: 1,
+								exchanged_currency: Currency.EUR,
 								played: false,
 								currency: Currency.EUR,
 							}}

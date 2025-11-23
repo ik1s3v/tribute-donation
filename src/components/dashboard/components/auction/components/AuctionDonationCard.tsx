@@ -128,8 +128,8 @@ const AuctionDonationCard = ({ donation }: { donation: IClientDonation }) => {
 								dispatch(
 									addLot({
 										fastId: currentId,
-										name: donation.text,
-										amount: donation.amount,
+										name: donation.text ?? "",
+										amount: donation.exchanged_amount,
 										color: getRandomColor(colors),
 									}),
 								);

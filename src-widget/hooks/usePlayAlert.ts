@@ -105,8 +105,8 @@ const usePlayAlert = () => {
 			played: false,
 			text: t("alert.test_text"),
 			currency: Currency.EUR,
-			display_amount: 1,
-			display_currency: Currency.EUR,
+			exchanged_amount: 1,
+			exchanged_currency: Currency.EUR,
 			created_at: Math.round(new Date().getTime() / 1000),
 			service: ServiceType.TributeBot,
 		};
