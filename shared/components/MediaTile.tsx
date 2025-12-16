@@ -6,11 +6,11 @@ import { useSelector } from "react-redux";
 import type { AppState } from "../../src/store";
 import { AppEvent } from "../enums";
 import useWebSocket from "../hooks/useWebSocket";
-import type { IClientDonation } from "../types";
+import type { IDonation, MessageId } from "../types";
 import getColorByMediaType from "../utils/getColorByMediaType";
 import MessageDate from "./MessageDate";
 
-const MediaTile = ({ donation }: { donation: IClientDonation }) => {
+const MediaTile = ({ donation }: { donation: IDonation }) => {
 	const { pausedMediaId } = useSelector((state: AppState) => state.mediaState);
 	const websocketService = useWebSocket();
 
@@ -37,7 +37,7 @@ const MediaTile = ({ donation }: { donation: IClientDonation }) => {
 							right: 15,
 						}}
 					>
-						<MessageDate donation={donation} />
+						<MessageDate createdAt={donation.created_at} />
 					</div>
 					<div
 						style={{
@@ -51,20 +51,20 @@ const MediaTile = ({ donation }: { donation: IClientDonation }) => {
 					<div style={{ position: "relative", display: "grid" }}>
 						<IconButton
 							onClick={() => {
-								if (pausedMediaId === donation.id) {
-									websocketService.send({
+								if (pausedMediaId === donation.message_id) {
+									websocketService.send<MessageId>({
 										event: AppEvent.PlayMedia,
-										data: donation.id,
+										data: donation.message_id,
 									});
 								} else {
-									websocketService.send({
+									websocketService.send<MessageId>({
 										event: AppEvent.PauseMedia,
-										data: donation.id,
+										data: donation.message_id,
 									});
 								}
 							}}
 						>
-							{pausedMediaId === donation.id ? (
+							{pausedMediaId === donation.message_id ? (
 								<PlayArrowIcon sx={{ height: 50, width: 50 }} />
 							) : (
 								<PauseIcon sx={{ height: 50, width: 50 }} />
@@ -79,9 +79,9 @@ const MediaTile = ({ donation }: { donation: IClientDonation }) => {
 								left: 70,
 							}}
 							onClick={() => {
-								websocketService.send({
+								websocketService.send<MessageId>({
 									event: AppEvent.SkipMedia,
-									data: donation.id,
+									data: donation.message_id,
 								});
 							}}
 						>

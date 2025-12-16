@@ -5,13 +5,13 @@ use crate::{
     utils::{on_new_donation, parse_message_to_tribute_donate_message},
 };
 use entity::{
-    donation::Currency,
     service::{Model as Service, ServiceType},
+    settings::Currency,
 };
 use grammers_client::{
     session::Session,
     types::{LoginToken, PasswordToken},
-    Client, Config, SignInError, Update,
+    Client, Config, FixedReconnect, InitParams, SignInError, Update,
 };
 use serde::Serialize;
 use std::path::{Path, PathBuf};
@@ -49,6 +49,10 @@ impl TelegramService {
     }
 
     pub async fn connect(&mut self, app: AppHandle) -> Result<(), String> {
+        let reconnection_policy = &*Box::leak(Box::new(FixedReconnect {
+            attempts: 10,
+            delay: std::time::Duration::from_secs(1),
+        }));
         let telegram_client = Client::connect(Config {
             session: Session::load_file_or_create(&*self.session_path).map_err(|e| {
                 log::error!("{}", e.to_string());
@@ -56,7 +60,11 @@ impl TelegramService {
             })?,
             api_id: self.api_id,
             api_hash: self.api_hash.clone(),
-            params: Default::default(),
+
+            params: InitParams {
+                reconnection_policy: reconnection_policy,
+                ..Default::default()
+            },
         })
         .await
         .map_err(|e| {
@@ -69,18 +77,12 @@ impl TelegramService {
         })?;
         app.manage(telegram_client);
         let database_service = app.state::<DatabaseService>();
-        let service = database_service
-            .get_service_by_id(ServiceType::TributeBot)
-            .await
-            .unwrap()
-            .unwrap();
         if is_authorized {
             database_service
                 .update_service(Service {
                     id: ServiceType::TributeBot,
                     authorized: true,
-                    active: service.active,
-                    token: service.token,
+                    ..Default::default()
                 })
                 .await
                 .unwrap();
@@ -90,8 +92,7 @@ impl TelegramService {
                 .update_service(Service {
                     id: ServiceType::TributeBot,
                     authorized: false,
-                    active: service.active,
-                    token: service.token,
+                    ..Default::default()
                 })
                 .await
                 .unwrap();
@@ -132,6 +133,7 @@ impl TelegramService {
                         };
                         on_new_donation(
                             message.id().to_string(),
+                            ServiceType::TributeBot,
                             donate_message.user_name,
                             donate_message.currency,
                             donate_message.amount,
@@ -169,6 +171,7 @@ impl TelegramService {
     pub async fn sign_in(&self, phone_code: String, app: AppHandle) -> Result<(), String> {
         let app_handle = app.clone();
         let telegram_client = app_handle.state::<Client>();
+
         let login_token_state = app_handle.state::<Mutex<Option<LoginToken>>>();
         let login_token_guard = login_token_state.lock().await;
         let login_token = login_token_guard.as_ref().unwrap();
@@ -176,24 +179,17 @@ impl TelegramService {
         let mut password_token_guard = password_token_state.lock().await;
         let sign_in = telegram_client.sign_in(login_token, &phone_code).await;
         let database_service = app_handle.state::<DatabaseService>();
-
         match sign_in {
             Ok(_) => {
                 telegram_client
                     .session()
                     .save_to_file(&*self.session_path)
                     .unwrap();
-                let service = database_service
-                    .get_service_by_id(ServiceType::TributeBot)
-                    .await
-                    .unwrap()
-                    .unwrap();
                 database_service
                     .update_service(Service {
                         id: ServiceType::TributeBot,
                         authorized: true,
-                        active: service.active,
-                        token: service.token,
+                        ..Default::default()
                     })
                     .await
                     .unwrap();
@@ -229,17 +225,11 @@ impl TelegramService {
                     .session()
                     .save_to_file(&*self.session_path)
                     .unwrap();
-                let service = database_service
-                    .get_service_by_id(ServiceType::TributeBot)
-                    .await
-                    .unwrap()
-                    .unwrap();
                 database_service
                     .update_service(Service {
                         id: ServiceType::TributeBot,
                         authorized: true,
-                        active: service.active,
-                        token: service.token,
+                        ..Default::default()
                     })
                     .await
                     .unwrap();

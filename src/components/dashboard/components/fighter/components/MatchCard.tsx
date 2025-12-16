@@ -47,7 +47,7 @@ const MatchCard = ({
 					<Button
 						size="small"
 						onClick={() => {
-							websocketService.send({
+							websocketService.send<IAucFighterMatch>({
 								event: AppEvent.StartAucFighterMatch,
 								data: match,
 							});

@@ -1,5 +1,6 @@
 use entity::service::*;
 
+use sea_orm_migration::prelude::prelude::Uuid;
 use sea_orm_migration::prelude::*;
 use sea_orm_migration::sea_orm::entity::*;
 #[derive(DeriveMigrationName)]
@@ -11,17 +12,35 @@ impl MigrationTrait for Migration {
         let connection = manager.get_connection();
         ActiveModel {
             id: Set(ServiceType::TributeBot),
-            active: Set(false),
             authorized: Set(false),
-            token: Set(None),
+            auth: Set(None),
+            settings: Set(None),
         }
         .insert(connection)
         .await?;
         ActiveModel {
             id: Set(ServiceType::Streamelements),
-            active: Set(false),
             authorized: Set(false),
-            token: Set(None),
+            auth: Set(None),
+            settings: Set(None),
+        }
+        .insert(connection)
+        .await?;
+        let twitch_integration_settings = ServiceSettings::Twitch(TwitchIntegrationSettings {
+            points_currency_ratio: 1.0,
+            rewards_name: "Auction".to_string(),
+            rewards: vec![TwitchIntegrationReward {
+                id: Uuid::new_v4().to_string(),
+                reward_id: None,
+                cost: 100,
+                color: "#1976d2".to_string(),
+            }],
+        });
+        ActiveModel {
+            id: Set(ServiceType::Twitch),
+            authorized: Set(false),
+            auth: Set(None),
+            settings: Set(Some(twitch_integration_settings)),
         }
         .insert(connection)
         .await?;
@@ -33,6 +52,9 @@ impl MigrationTrait for Migration {
             .exec(connection)
             .await?;
         Entity::delete_by_id(ServiceType::Streamelements)
+            .exec(connection)
+            .await?;
+        Entity::delete_by_id(ServiceType::Twitch)
             .exec(connection)
             .await?;
         Ok(())

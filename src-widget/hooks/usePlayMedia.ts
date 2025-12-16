@@ -2,96 +2,95 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AppEvent } from "../../shared/enums";
 import useWebSocket from "../../shared/hooks/useWebSocket";
 import type {
-	IClientDonation,
+	IClientMessage,
 	IMediaSettings,
 	ISettings,
+	MessageId,
 } from "../../shared/types";
 
 const usePlayMedia = () => {
 	const websocketService = useWebSocket();
 	const mediaSettingsRef = useRef<IMediaSettings | null>(null);
 	const settingsRef = useRef<ISettings | null>(null);
-	const donationsRef = useRef<IClientDonation[]>([]);
-	const [currentDonation, setCurrentDonation] = useState<IClientDonation>();
+	const messagesRef = useRef<IClientMessage[]>([]);
+	const [currentMessage, setCurrentMessage] = useState<IClientMessage>();
 
 	const handleMediaEnd = useCallback(
-		({ donation }: { donation: IClientDonation | undefined }) => {
-			if (!donation) return;
-			websocketService.send({
+		({ message }: { message?: IClientMessage }) => {
+			if (!message) return;
+			websocketService.send<MessageId>({
 				event: AppEvent.MediaPlayed,
-				data: donation.id,
+				data: message.id,
 			});
 
-			donationsRef.current = donationsRef.current.filter(
-				(d) => d.id !== donation.id,
+			messagesRef.current = messagesRef.current.filter(
+				(d) => d.id !== message.id,
 			);
 
-			const newCurrentDonation = donationsRef.current.at(0);
-			setCurrentDonation(undefined);
+			const newCurrentMessage = messagesRef.current.at(0);
+			setCurrentMessage(undefined);
 			setTimeout(() => {
-				if (newCurrentDonation) {
-					playMedia({ donation: newCurrentDonation });
+				if (newCurrentMessage) {
+					playMedia({ message: newCurrentMessage });
 				}
 			}, 0);
 		},
 		[],
 	);
-	const playMedia = useCallback(
-		({ donation }: { donation: IClientDonation }) => {
-			if (settingsRef.current && !settingsRef.current.alert_paused) {
-				setCurrentDonation(donation);
-			}
-		},
-		[],
-	);
+	const playMedia = useCallback(({ message }: { message: IClientMessage }) => {
+		if (settingsRef.current && !settingsRef.current.alert_paused) {
+			setCurrentMessage(message);
+		}
+	}, []);
 
 	const skipMedia = useCallback(
 		(id: string) => {
-			if (currentDonation?.id === id) {
-				handleMediaEnd({ donation: currentDonation });
+			if (currentMessage?.id === id) {
+				handleMediaEnd({ message: currentMessage });
 			} else {
-				donationsRef.current = donationsRef.current.filter(
-					(donation) => donation.id !== id,
+				messagesRef.current = messagesRef.current.filter(
+					(message) => message.id !== id,
 				);
 			}
 		},
-		[handleMediaEnd, currentDonation],
+		[handleMediaEnd, currentMessage],
 	);
 
 	const skipPlayingMedia = useCallback(() => {
-		if (currentDonation) {
-			handleMediaEnd({ donation: currentDonation });
+		if (currentMessage) {
+			handleMediaEnd({ message: currentMessage });
 		}
-	}, [handleMediaEnd, currentDonation]);
+	}, [handleMediaEnd, currentMessage]);
 
-	const handleNewDonate = useCallback((donation: IClientDonation) => {
-		if (donation.media) {
-			donationsRef.current = [...donationsRef.current, donation];
+	const handleNewMessage = useCallback((message: IClientMessage) => {
+		const media = message.donation?.media;
+		if (media) {
+			messagesRef.current = [...messagesRef.current, message];
 		}
 	}, []);
 
 	const handleReplayMedia = useCallback(
-		(donation: IClientDonation) => {
-			donationsRef.current = [donation, ...donationsRef.current];
+		(message: IClientMessage) => {
+			messagesRef.current = [message, ...messagesRef.current];
 
-			if (!currentDonation) {
-				playMedia({ donation: donation });
+			if (!currentMessage) {
+				playMedia({ message: message });
 			}
 		},
-		[playMedia, currentDonation],
+		[playMedia, currentMessage],
 	);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<IClientDonation>(
+		const unsubscribe = websocketService.subscribe<IClientMessage>(
 			AppEvent.MediaMessage,
-			handleNewDonate,
+			handleNewMessage,
 		);
 
 		return () => unsubscribe();
-	}, [handleNewDonate]);
+	}, [handleNewMessage]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<IClientDonation>(
+		const unsubscribe = websocketService.subscribe<IClientMessage>(
 			AppEvent.ReplayMedia,
 			handleReplayMedia,
 		);
@@ -116,9 +115,9 @@ const usePlayMedia = () => {
 			(settings) => {
 				if (settingsRef.current?.alert_paused && !settings.alert_paused) {
 					settingsRef.current = settings;
-					const donation = donationsRef.current.at(0);
-					if (donation) {
-						playMedia({ donation: donation });
+					const message = messagesRef.current.at(0);
+					if (message) {
+						playMedia({ message: message });
 					}
 					return;
 				}
@@ -151,10 +150,10 @@ const usePlayMedia = () => {
 		const unsubscribe = websocketService.subscribe<string>(
 			AppEvent.MediaEnd,
 			(id) => {
-				const donation = donationsRef.current.find(
-					(donation) => donation.id === id,
+				const message = messagesRef.current.find(
+					(message) => message.id === id,
 				);
-				handleMediaEnd({ donation: donation });
+				handleMediaEnd({ message: message });
 			},
 		);
 
@@ -165,10 +164,10 @@ const usePlayMedia = () => {
 		const unsubscribe = websocketService.subscribe<string>(
 			AppEvent.MediaError,
 			(id) => {
-				const donation = donationsRef.current.find(
-					(donation) => donation.id === id,
+				const message = messagesRef.current.find(
+					(message) => message.id === id,
 				);
-				handleMediaEnd({ donation: donation });
+				handleMediaEnd({ message: message });
 			},
 		);
 
@@ -179,20 +178,20 @@ const usePlayMedia = () => {
 		const unsubscribe = websocketService.subscribe<string>(
 			AppEvent.AlertPlayed,
 			(id) => {
-				const donation = donationsRef.current.find(
-					(donation) => donation.id === id,
+				const message = messagesRef.current.find(
+					(message) => message.id === id,
 				);
-				if (!currentDonation && donation) {
-					playMedia({ donation: donation });
+				if (!currentMessage && message) {
+					playMedia({ message: message });
 				}
 			},
 		);
 
 		return () => unsubscribe();
-	}, [playMedia, currentDonation]);
+	}, [playMedia, currentMessage]);
 
 	return {
-		currentDonation: currentDonation,
+		currentMessage,
 		mediaSettings: mediaSettingsRef.current,
 	};
 };

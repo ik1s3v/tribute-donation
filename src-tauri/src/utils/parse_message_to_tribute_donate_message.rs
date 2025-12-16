@@ -1,4 +1,4 @@
-use entity::donation::Currency;
+use entity::settings::Currency;
 use regex::Regex;
 
 use crate::services::TributeDonateMessage;
@@ -53,7 +53,7 @@ pub fn parse_message_to_tribute_donate_message(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use entity::donation::Currency;
+    use entity::settings::Currency;
 
     #[test]
     fn test_parse_valid_message_with_euro() {

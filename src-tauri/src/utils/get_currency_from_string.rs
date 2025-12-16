@@ -1,4 +1,4 @@
-use entity::donation::Currency;
+use entity::settings::Currency;
 
 pub fn get_currency_from_string(currency: Option<String>) -> Currency {
     match currency {

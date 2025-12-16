@@ -8,22 +8,20 @@ import {
 	useMediaQuery,
 	useTheme,
 } from "@mui/material";
-
+import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import type { AppTheme } from "../../theme/default";
+import { NavLink, useLocation } from "react-router";
 import { MENU_WIDTH, MENU_WIDTH_MD } from "../../constants";
 import { dashboardRouts } from "../../routes/dashboardRouts";
-import { NavLink, useLocation } from "react-router";
-import { useCallback } from "react";
+import type { AppTheme } from "../../theme/default";
 
 const SideBar = styled("div")(({ theme }: { theme?: AppTheme }) => ({
 	top: 0,
 	left: 0,
 	bottom: 0,
-	position: "sticky",
+	position: "fixed",
 	zIndex: 10,
 	backgroundColor: theme?.palette.background.section,
-	height: "100dvh",
 	textWrap: "wrap",
 	textOverflow: "ellipsis",
 	width: MENU_WIDTH,

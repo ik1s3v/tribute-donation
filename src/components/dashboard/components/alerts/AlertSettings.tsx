@@ -10,7 +10,11 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import AlertView from "../../../../../shared/components/AlertView";
-import { Currency, ServiceType } from "../../../../../shared/enums";
+import {
+	Currency,
+	MessageType,
+	ServiceType,
+} from "../../../../../shared/enums";
 import type { IAlert } from "../../../../../shared/types";
 import type { AppState } from "../../../../store";
 import TabPanel from "../../../TabPanel";
@@ -120,18 +124,24 @@ const AlertSettings = ({
 							height={300}
 							alert={alert as IAlert}
 							backgroundColor="green"
-							donation={{
+							message={{
 								id: "1",
-								user_name: t("text.name"),
-								amount: 100,
-								text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis",
-								service_id: "1",
+								type: MessageType.Donation,
 								created_at: 1,
-								service: ServiceType.TributeBot,
-								exchanged_amount: 1,
-								exchanged_currency: Currency.EUR,
-								played: false,
-								currency: Currency.EUR,
+								donation: {
+									user_name: t("text.name"),
+									amount: 100,
+									text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis",
+									service_id: "1",
+									created_at: 1,
+									service: ServiceType.TributeBot,
+									exchanged_amount: 1,
+									exchanged_currency: Currency.EUR,
+									played: false,
+									currency: Currency.EUR,
+									id: "1",
+									message_id: "1",
+								},
 							}}
 							imageSrc={convertFileSrc(`${appDataDir}/static/${alert?.image}`)}
 						/>

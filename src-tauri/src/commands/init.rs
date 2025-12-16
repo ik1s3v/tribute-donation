@@ -1,7 +1,7 @@
 use crate::constants::{SQLITE_DB, STATIC_DIR};
 use crate::services::{
     AxumService, DatabaseService, ExchangeRatesService, MediaService, StreamElementsService,
-    TTSService, TelegramService, WebSocketBroadcaster,
+    TTSService, TelegramService, TwitchService, WebSocketBroadcaster,
 };
 use crate::utils::copy_assets_to_static;
 use grammers_client::types::{LoginToken, PasswordToken};
@@ -9,7 +9,6 @@ use lingua::Language::{
     Arabic, Chinese, English, French, German, Hindi, Portuguese, Russian, Spanish, Ukrainian,
 };
 use lingua::LanguageDetectorBuilder;
-use std::env;
 use tauri::path::BaseDirectory;
 use tauri::{AppHandle, Manager, State};
 use tokio::sync::Mutex;
@@ -70,8 +69,11 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     let tts_service = TTSService::new(static_path.clone());
     app.manage(tts_service);
 
-    let api_id: i32 = env!("API_ID").parse().expect("API_ID must be a valid i32");
-    let api_hash: String = env!("API_HASH").to_string();
+    let api_id: i32 = std::env::var("API_ID")
+        .unwrap()
+        .parse()
+        .expect("API_ID must be a valid i32");
+    let api_hash: String = std::env::var("API_HASH").unwrap();
 
     let session_path = app
         .path()
@@ -86,6 +88,10 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
 
     let media_service = MediaService::new();
     app.manage(media_service);
+
+    let twitch_service = TwitchService::new();
+    twitch_service.connect(app.clone()).await?;
+    app.manage(twitch_service);
 
     let stream_elements_service = StreamElementsService::new();
     app.manage(stream_elements_service);

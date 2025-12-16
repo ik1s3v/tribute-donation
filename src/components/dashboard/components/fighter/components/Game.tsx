@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AutoSizer, List } from "react-virtualized";
 import { AppEvent } from "../../../../../../shared/enums";
 import useWebSocket from "../../../../../../shared/hooks/useWebSocket";
+import type { IAucFighterMatch, MatchId } from "../../../../../../shared/types";
 import fighterGameFromLots from "../../../../../helpers/fighterGameFromLots";
 import type { AppState } from "../../../../../store";
 import {
@@ -46,7 +47,7 @@ const AucFighter = () => {
 					<Button
 						onClick={() => {
 							dispatch(setIsGameStarted(true));
-							websocketService.send({
+							websocketService.send<IAucFighterMatch>({
 								event: AppEvent.StartAucFighterMatch,
 								data: game.matches[0],
 							});
@@ -58,7 +59,7 @@ const AucFighter = () => {
 				{isGameStarted && (
 					<Button
 						onClick={() => {
-							websocketService.send({
+							websocketService.send<MatchId>({
 								event: AppEvent.CancelAucFighterMatch,
 								data: playingMatchId,
 							});
@@ -73,7 +74,7 @@ const AucFighter = () => {
 				<Button
 					disabled={!isGameStarted}
 					onClick={() => {
-						websocketService.send({
+						websocketService.send<MatchId>({
 							event: AppEvent.PauseAucFighterMatch,
 							data: playingMatchId,
 						});
@@ -85,7 +86,7 @@ const AucFighter = () => {
 				<Button
 					disabled={!isGameStarted}
 					onClick={() => {
-						websocketService.send({
+						websocketService.send<MatchId>({
 							event: AppEvent.ResumeAucFighterMatch,
 							data: pausedMatchId,
 						});
@@ -98,7 +99,7 @@ const AucFighter = () => {
 			{game && (
 				<div
 					style={{
-						height: `calc(100vh - 325px)`,
+						height: `calc(100vh - 345px)`,
 						width: "620px",
 					}}
 				>

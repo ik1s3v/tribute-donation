@@ -1,31 +1,39 @@
 import type {
+	AlertType,
 	AlertVariationConditions,
 	AppEvent,
 	Currency,
 	GoalProgressLayout,
 	GoalTextPosition,
 	MediaType,
+	MessageType,
 	ServiceType,
 	StreamElementsEventType,
 	ViewType,
 } from "./enums";
 
-export interface IClientDonation {
+export interface IClientMessage {
+	id: string;
+	type: MessageType;
+	donation?: IDonation;
+	created_at: number;
+}
+export interface IDonation {
 	id: string;
 	service_id: string;
+	message_id: string;
 	amount: number;
 	user_name: string;
+	currency: Currency;
 	text?: string;
 	audio?: string;
+	service: ServiceType;
 	media?: IMedia;
 	played: boolean;
-	service: ServiceType;
-	currency: Currency;
 	exchanged_amount: number;
 	exchanged_currency: Currency;
 	created_at: number;
 }
-
 export interface IPageParm {
 	limit: number;
 	offset: number;
@@ -52,6 +60,7 @@ export interface IAlert {
 	audio: string;
 	audio_volume: number;
 	view_type: ViewType;
+	type: AlertType;
 	image: string;
 	group_id: string;
 	name: string;
@@ -210,13 +219,15 @@ export interface IGoal {
 	progress_style: ITextStyle;
 	limits_style: ITextStyle;
 }
-export interface IService {
+export interface IService<T = undefined, S = undefined> {
 	id: ServiceType;
-	active: boolean;
 	authorized: boolean;
-	token?: string;
+	auth: T;
+	settings: S;
 }
-
+export interface IStreamElementsAuth {
+	jwt_token: string;
+}
 export interface IStreamElementsEvent<T> {
 	channel: string;
 	provider: string;
@@ -246,3 +257,66 @@ export interface IStreamElementsAuthenticated {
 	project: string;
 	message: string;
 }
+export interface ITwitchDeviceCodeResponse {
+	device_code: string;
+	expires_in: number;
+	interval: number;
+	user_code: string;
+	verification_uri: string;
+}
+export interface ITwitchReward {
+	title: string;
+	cost: number;
+}
+export interface ITwitchEventPayload<T> {
+	subscription: ITwitchSubscription;
+	event: T;
+}
+export interface ITwitchRedemptionEvent {
+	user_id: string;
+	id: string;
+	user_login: string;
+	user_name: string;
+	user_input: string;
+	status: string;
+	broadcaster_user_id: string;
+	broadcaster_user_login: string;
+	broadcaster_user_name: string;
+	followed_at: string;
+	redeemed_at: string;
+	reward: ITwitchReward;
+}
+export interface ITwitchReward {
+	id: string;
+	title: string;
+	prompt: string;
+	cost: number;
+}
+export interface ITwitchSubscription {
+	id: string;
+	status: string;
+	type: string;
+	version: string;
+	cost: number;
+	condition: { broadcaster_user_id: string; user_id?: string };
+	transport: { method: string; session_id: string };
+	created_at: string;
+}
+
+export interface ITwitchIntegrationSettings {
+	points_currency_ratio: number;
+	rewards_name: string;
+	rewards: ITwitchIntegrationReward[];
+}
+
+export interface ITwitchIntegrationReward {
+	id: string;
+	reward_id: string | null;
+	cost: number;
+	color: string;
+}
+
+export type MatchId = string;
+export type MessageId = string;
+export type DonationId = string;
+export type AlertId = string;

@@ -129,7 +129,8 @@
 	"lots": {
 		"add": "Add",
 		"new_lot_name": "New lot name",
-		"search": "Search lot"
+		"search": "Search lot",
+		"total": "Total"
 	},
 	"auction_settings": {
 		"leader_change": "Leader change",
@@ -157,7 +158,23 @@
 		"title": "Services",
 		"tribute": "Tribute",
 		"streamelements": "Streamelements",
-		"connect": "Connect"
+		"connect": "Connect",
+		"integrations": "Integrations"
+	},
+	"twitch": {
+		"device_code_expired": "Device code expired. Please try again.",
+		"user_code": "User code",
+		"authorize_with_code": "Authorize with code",
+		"waiting_authorization": "Waiting for authorization..."
+	},
+	"twitch_service_settings": {
+		"title": "Twitch settings",
+		"points_currency_ratio": "Points currency ratio",
+		"rewards_name": "Rewards name",
+		"rewards_list": "Rewards list",
+		"add_reward": "Add reward",
+		"cost": "Cost",
+		"color": "Color"
 	},
 	"alert": {
 		"image": "Image",

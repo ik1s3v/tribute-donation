@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { AppEvent } from "../../../../../../shared/enums";
 import useWebSocket from "../../../../../../shared/hooks/useWebSocket";
-import type { IAlert } from "../../../../../../shared/types";
+import type { AlertId, IAlert } from "../../../../../../shared/types";
 import {
 	useGetAlertsQuery,
 	useUpdateAlertSettingsMutation,
@@ -39,7 +39,7 @@ const AlertTile = ({ alert }: { alert: IAlert }) => {
 	const navigate = useNavigate();
 	const theme = useTheme();
 	const handleTestAlert = () => {
-		websocketService.send({
+		websocketService.send<AlertId>({
 			event: AppEvent.TestAlert,
 			data: alert.id,
 		});

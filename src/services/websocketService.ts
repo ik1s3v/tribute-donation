@@ -1,5 +1,6 @@
 import WebSocket from "@tauri-apps/plugin-websocket";
-import { AppEvent } from "../../shared/enums";
+import { MessageType } from "./../../shared/enums";
+import { AppEvent, ServiceType } from "../../shared/enums";
 import Subscriptions from "../../shared/services/subscriptions";
 import { setPlayingAlertId } from "../../shared/slices/alertsSlice";
 import {
@@ -8,11 +9,18 @@ import {
 } from "../../shared/slices/mediaSlice";
 import type {
 	IAucFighterMatchWinner,
-	IClientDonation,
+	IClientMessage,
 	IEventMessage,
+	IService,
+	ITwitchEventPayload,
+	ITwitchIntegrationSettings,
+	ITwitchRedemptionEvent,
 	IWebsocketService,
 } from "../../shared/types";
-import { donationsApi } from "../api/donationsApi";
+import { messagesApi } from "../api/messagesApi.ts";
+import { servicesApi } from "../api/servicesApi.ts";
+import { settingsApi } from "../api/settingsApi.ts";
+import twitchRedemptionToDonation from "../helpers/twitchRedemptionToDonation";
 import updateAucFighterTeamAmount from "../helpers/updateAucFighterTeamAmount";
 import { AppState, store } from "../store";
 import {
@@ -41,29 +49,61 @@ export class WebSocketService
 		super();
 		this.url = url;
 		this.socket = null;
-		this.subscribe<IClientDonation>(AppEvent.Donation, (donation) => {
+		this.subscribe<IClientMessage>(AppEvent.Message, (message) => {
 			const state = store.getState() as AppState;
-			const { isShowTributeMessages } = state.auctionState;
-			if (isShowTributeMessages) {
-				store.dispatch(addAuctionDonation(donation));
+			const { services } = state.servicesState;
+			if (message.type === MessageType.Donation && message.donation) {
+				if (services[message.donation.service].active) {
+					store.dispatch(addAuctionDonation(message.donation));
+				}
+				updateAucFighterTeamAmount(message.donation, this);
+				store.dispatch(addMaptionDonation(message.donation));
 			}
-			updateAucFighterTeamAmount(donation, this);
-			store.dispatch(addMaptionDonation(donation));
+
 			store.dispatch(
-				donationsApi.util.updateQueryData(
-					"getDonations",
-					undefined,
-					(draft) => {
-						draft.pages[0].unshift(donation);
-						const lastPageParam = draft.pageParams.at(-1);
-						if (lastPageParam) {
-							lastPageParam.offset = lastPageParam.offset + 1;
-						}
-					},
-				),
+				messagesApi.util.updateQueryData("getMessages", undefined, (draft) => {
+					draft.pages[0].unshift(message);
+					const lastPageParam = draft.pageParams.at(-1);
+					if (lastPageParam) {
+						lastPageParam.offset = lastPageParam.offset + 1;
+					}
+				}),
 			);
 		});
 
+		this.subscribe<ITwitchEventPayload<ITwitchRedemptionEvent>>(
+			AppEvent.TwitchRewardRedemptionAdd,
+			async (payload) => {
+				const state = store.getState() as AppState;
+				const { services } = state.servicesState;
+				const { data: settings } = await store.dispatch(
+					settingsApi.endpoints.getSettings.initiate(undefined, {
+						forceRefetch: true,
+					}),
+				);
+				const { data } = await store.dispatch(
+					servicesApi.endpoints.getServiceById.initiate(
+						{
+							id: ServiceType.Twitch,
+						},
+						{ forceRefetch: true },
+					),
+				);
+				const service = data as IService<unknown, ITwitchIntegrationSettings>;
+
+				if (services[ServiceType.Twitch].active && settings && service) {
+					store.dispatch(
+						addAuctionDonation(
+							twitchRedemptionToDonation({
+								payload,
+								currency: settings.currency,
+								ratio: service.settings.points_currency_ratio,
+							}),
+						),
+					);
+				}
+			},
+		);
 		this.subscribe<string>(AppEvent.AlertPlaying, (id) => {
 			store.dispatch(setPlayingAlertId(id));
 		});

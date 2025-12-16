@@ -16,7 +16,6 @@ const Services = () => {
 			{services?.map((service) => (
 				<ServiceCard key={service.id} service={service} />
 			))}
-			{/* <ServicesButtons /> */}
 		</div>
 	);
 };

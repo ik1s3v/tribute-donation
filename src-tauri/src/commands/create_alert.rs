@@ -27,5 +27,6 @@ pub async fn create_alert(
             event: AppEvent::Alerts,
             data: alerts,
         })
-        .await
+        .await;
+    Ok(())
 }

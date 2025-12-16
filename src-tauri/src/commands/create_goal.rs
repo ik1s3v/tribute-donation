@@ -24,5 +24,6 @@ pub async fn create_goal(
             event: AppEvent::Goal,
             data: goal,
         })
-        .await
+        .await;
+    Ok(())
 }

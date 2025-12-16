@@ -1,20 +1,20 @@
 import { Skeleton } from "@mui/material";
 import type { TypedUseInfiniteQuery } from "@reduxjs/toolkit/query/react";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroller";
 import { useDispatch, useSelector } from "react-redux";
+import getMessageComponentByMessageType from "../../src/helpers/getMessageComponentByMessageType";
 import type { AppState } from "../../src/store";
 import { AlertSeverity } from "../enums";
 import { showSnackBar } from "../slices/snackBarSlice";
-import type { IClientDonation } from "../types";
-import MessageTile from "./MessageTile";
+import type { IClientMessage } from "../types";
 
 const InfiniteMessages = ({
-	useGetDonationsInfiniteQuery,
+	useGetMessagesInfiniteQuery,
 }: {
-	useGetDonationsInfiniteQuery: TypedUseInfiniteQuery<
-		IClientDonation[],
+	useGetMessagesInfiniteQuery: TypedUseInfiniteQuery<
+		IClientMessage[],
 		any,
 		any,
 		any
@@ -26,7 +26,7 @@ const InfiniteMessages = ({
 	);
 	const { playingMediaId } = useSelector((state: AppState) => state.mediaState);
 	const { data, fetchNextPage, hasNextPage, isFetchingNextPage, error } =
-		useGetDonationsInfiniteQuery(undefined, {
+		useGetMessagesInfiniteQuery(undefined, {
 			refetchOnFocus: false,
 			refetchOnMountOrArgChange: false,
 			refetchOnReconnect: false,
@@ -68,13 +68,14 @@ const InfiniteMessages = ({
 				>
 					<div>
 						{data.pages.map((page) =>
-							page.map((donation) => (
-								<MessageTile
-									donation={donation}
-									isAlertPlaying={donation.id === playingAlertId}
-									isMediaPlaying={donation.id === playingMediaId}
-									key={donation.id}
-								/>
+							page.map((message) => (
+								<Fragment key={message.id}>
+									{getMessageComponentByMessageType({
+										message,
+										isAlertPlaying: message.id === playingAlertId,
+										isMediaPlaying: message.id === playingMediaId,
+									})}
+								</Fragment>
 							)),
 						)}
 					</div>

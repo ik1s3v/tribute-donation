@@ -1,3 +1,4 @@
+use entity::settings::Currency;
 use sea_orm_migration::prelude::*;
 
 #[derive(DeriveMigrationName)]
@@ -17,7 +18,7 @@ impl MigrationTrait for Migration {
                         .add_column(
                             ColumnDef::new(Settings::Currency)
                                 .text()
-                                .default(entity::donation::Currency::EUR),
+                                .default(Currency::EUR),
                         )
                         .to_owned(),
                 )

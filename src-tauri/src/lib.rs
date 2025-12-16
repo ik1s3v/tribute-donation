@@ -43,7 +43,6 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             is_authorized,
             request_login_code,
-            get_donations,
             sign_in,
             get_alert_by_id,
             get_alerts,
@@ -72,6 +71,13 @@ pub fn run() {
             get_service_by_id,
             stream_elements_tip_event,
             get_exchange_rates,
+            get_device_code,
+            get_token,
+            add_custom_rewards,
+            remove_custom_rewards,
+            twitch_connect,
+            get_messages,
+            update_twitch_service_settings,
             init
         ])
         .run(tauri::generate_context!())

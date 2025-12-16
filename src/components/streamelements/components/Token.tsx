@@ -3,8 +3,10 @@ import type { SerializedError } from "@reduxjs/toolkit";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { AlertSeverity, ServiceType } from "../../../../shared/enums";
 import { showSnackBar } from "../../../../shared/slices/snackBarSlice";
+import type { IService, IStreamElementsAuth } from "../../../../shared/types";
 import {
 	useGetServiceByIdQuery,
 	useUpdateServiceMutation,
@@ -22,6 +24,7 @@ const Token = () => {
 	const [updateService] = useUpdateServiceMutation();
 	const streamElementsSocketService = useStreamElementsSocketService();
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	return (
 		<>
@@ -49,14 +52,14 @@ const Token = () => {
 								if (!token) {
 									return;
 								}
-								await updateService({ service: { ...data, token } }).unwrap();
+								await updateService({
+									service: {
+										...data,
+										auth: { jwt_token: token },
+									} as IService<IStreamElementsAuth, undefined>,
+								}).unwrap();
 								streamElementsSocketService.authenticate(token);
-								dispatch(
-									showSnackBar({
-										message: t("success"),
-										alertSeverity: AlertSeverity.success,
-									}),
-								);
+								navigate(-1);
 							} catch (error) {
 								const err = error as SerializedError;
 								dispatch(

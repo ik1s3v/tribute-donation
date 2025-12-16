@@ -33,6 +33,9 @@ const Password = () => {
 						navigate(-3);
 					} catch (error) {
 						const err = error as SerializedError;
+						if (err.message?.includes("SRP_ID_INVALID")) {
+							navigate(-1);
+						}
 						dispatch(
 							showSnackBar({
 								message: err.message as string,

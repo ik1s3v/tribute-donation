@@ -1,0 +1,18 @@
+FROM alpine:3.19 AS builder
+RUN apk add --no-cache ca-certificates wget tar
+WORKDIR /tmp
+RUN wget -q -O twitch.tar.gz "https://github.com/twitchdev/twitch-cli/releases/download/v1.1.24/twitch-cli_1.1.24_Linux_x86_64.tar.gz" \
+    && tar -xzf twitch.tar.gz
+
+FROM debian:bookworm-slim
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+EXPOSE 8080
+EXPOSE 8081
+COPY --from=builder /tmp/twitch-cli_1.1.24_Linux_x86_64/twitch /usr/local/bin/twitch
+RUN chmod +x /usr/local/bin/twitch
+ENTRYPOINT ["/usr/local/bin/twitch"]
+#docker run -p 8081:8080 twitch-mock event websocket start-server --ip  0.0.0.0
+#docker run -p 8080:8080 twitch-mock mock-api start

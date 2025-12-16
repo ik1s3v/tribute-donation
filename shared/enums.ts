@@ -18,7 +18,7 @@ export enum Language {
 }
 
 export enum AppEvent {
-	Donation = "Donation",
+	Message = "Message",
 	MediaMessage = "MediaMessage",
 	SkipAlert = "SkipAlert",
 	ReplayAlert = "ReplayAlert",
@@ -50,6 +50,7 @@ export enum AppEvent {
 	AucFighterSettings = "AucFighterSettings",
 	TestAlert = "TestAlert",
 	Goal = "Goal",
+	TwitchRewardRedemptionAdd = "TwitchRewardRedemptionAdd",
 }
 export enum StreamElementsEvent {
 	Connect = "Connect",
@@ -101,8 +102,20 @@ export enum GoalProgressLayout {
 export enum ServiceType {
 	TributeBot = "TributeBot",
 	Streamelements = "Streamelements",
+	Twitch = "Twitch",
 }
 
 export enum StreamElementsEventType {
 	tip = "tip",
+}
+
+export enum MessageType {
+	Donation = "Donation",
+	Subscription = "Subscription",
+	Follow = "Follow",
+}
+export enum AlertType {
+	Donation = "Donation",
+	Subscription = "Subscription",
+	Follow = "Follow",
 }

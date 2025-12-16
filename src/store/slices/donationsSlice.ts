@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { IClientDonation } from "../../../shared/types";
+import type { IDonation } from "../../../shared/types";
 
 interface DonationsState {
-	donations: IClientDonation[];
+	donations: IDonation[];
 }
 
 const initialState: DonationsState = {
@@ -17,7 +17,7 @@ const createDonationsSlice = (name: string) =>
 			addDonation: (
 				state,
 				action: {
-					payload: IClientDonation;
+					payload: IDonation;
 				},
 			) => {
 				state.donations.push(action.payload);
@@ -25,7 +25,7 @@ const createDonationsSlice = (name: string) =>
 			removeDonation: (
 				state,
 				action: {
-					payload: IClientDonation;
+					payload: IDonation;
 				},
 			) => {
 				state.donations = state.donations.filter(
@@ -35,7 +35,7 @@ const createDonationsSlice = (name: string) =>
 			setDonations: (
 				state,
 				action: {
-					payload: IClientDonation[];
+					payload: IDonation[];
 				},
 			) => {
 				state.donations = action.payload;

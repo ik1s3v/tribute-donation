@@ -26,5 +26,6 @@ pub async fn delete_alert_by_id(
             event: AppEvent::Alerts,
             data: alerts,
         })
-        .await
+        .await;
+    Ok(())
 }

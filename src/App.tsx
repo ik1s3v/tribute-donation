@@ -6,13 +6,16 @@ import { Route, Routes, useNavigate } from "react-router";
 import { AlertSeverity, ServiceType } from "../shared/enums";
 import useWebSocket from "../shared/hooks/useWebSocket";
 import { showSnackBar } from "../shared/slices/snackBarSlice";
+import type { IService, IStreamElementsAuth } from "../shared/types";
 import { useInitMutation } from "./api";
 import { useGetServiceByIdQuery } from "./api/servicesApi";
 import { useGetSettingsQuery } from "./api/settingsApi";
 import { AppSnackBar } from "./components/AppSnackBar";
 import Dashboard from "./components/dashboard/Dashboard";
+import ServicesSettings from "./components/services/ServicesSettings";
 import StreamElements from "./components/streamelements/StreamElements";
 import TelegramAuthorization from "./components/telegram-authorization/TelegramAuthorization";
+import Twitch from "./components/twitch/Twitch";
 import UpdaterDialog from "./components/UpdaterDialog";
 import useStreamElementsSocketService from "./hooks/useStreamElementsService";
 import type { AppState } from "./store";
@@ -66,7 +69,10 @@ function App() {
 
 	useEffect(() => {
 		if (isConnected && streamelementsService && !isAuthenticated) {
-			streamElementsSocketService.authenticate(streamelementsService?.token);
+			streamElementsSocketService.authenticate(
+				(streamelementsService as IService<IStreamElementsAuth, undefined>).auth
+					?.jwt_token,
+			);
 		}
 	}, [
 		isConnected,
@@ -124,7 +130,9 @@ function App() {
 						element={<TelegramAuthorization />}
 					/>
 					<Route path="/streamelements/*" element={<StreamElements />} />
+					<Route path="/twitch/*" element={<Twitch />} />
 					<Route path="/dashboard/*" element={<Dashboard />} />
+					<Route path="/services-settings/*" element={<ServicesSettings />} />
 				</Routes>
 			)}
 		</main>

@@ -1,7 +1,9 @@
 use chrono::Utc;
 use entity::{
-    donation::{Currency, Model as Donation},
+    donation::Donation,
+    message::{ClientMessage, MessageType},
     service::ServiceType,
+    settings::Currency,
 };
 use tauri::{AppHandle, Manager};
 use tokio::sync::Mutex;
@@ -19,6 +21,7 @@ use crate::{
 
 pub async fn on_new_donation(
     service_id: String,
+    service: ServiceType,
     user_name: String,
     target_currency: Currency,
     target_amount: f64,
@@ -93,8 +96,7 @@ pub async fn on_new_donation(
 
                 websocket_broadcaster
                     .broadcast_event_message(&ws_message)
-                    .await
-                    .unwrap();
+                    .await;
                 None
             }
         }
@@ -102,20 +104,30 @@ pub async fn on_new_donation(
         None
     };
 
-    let donation = Donation {
-        id,
-        user_name,
-        amount: target_amount.clone(),
-        text,
-        audio,
-        currency: target_currency.clone(),
-        service: ServiceType::Streamelements,
-        service_id,
-        played: false,
-        created_at: Utc::now().timestamp(),
-        media: media.clone(),
+    let created_at = Utc::now().timestamp();
+    let message_id = Uuid::new_v4().to_string();
+
+    let client_message = ClientMessage {
+        id: message_id.clone(),
+        r#type: MessageType::Donation,
+        created_at: created_at.clone(),
+        donation: Some(Donation {
+            id,
+            user_name,
+            message_id: message_id.clone(),
+            amount: target_amount.clone(),
+            text,
+            audio,
+            currency: target_currency.clone(),
+            service,
+            service_id,
+            played: false,
+            exchanged_amount: Some(exchanged_amount),
+            exchanged_currency: Some(settings.currency.clone()),
+            created_at,
+            media: media.clone(),
+        }),
     };
-    let client_donation = donation.to_client_donation(exchanged_amount, settings.currency.clone());
 
     database_service
         .update_goal_amount(exchanged_amount as u32)
@@ -129,36 +141,36 @@ pub async fn on_new_donation(
             };
             websocket_broadcaster
                 .broadcast_event_message(&event_message)
-                .await
-                .unwrap();
+                .await;
         }
         _ => {}
     }
 
     database_service
-        .save_donation(donation.clone())
+        .save_donation_message(client_message.clone())
         .await
+        .map_err(|e| {
+            log::error!("{}", e.to_string());
+        })
         .unwrap();
 
     let event_message = EventMessage {
-        event: AppEvent::Donation,
-        data: client_donation.clone(),
+        event: AppEvent::Message,
+        data: client_message.clone(),
     };
 
     websocket_broadcaster
         .broadcast_event_message(&event_message)
-        .await
-        .unwrap();
+        .await;
 
     if !media.is_none() {
         let event_message = EventMessage {
             event: AppEvent::MediaMessage,
-            data: client_donation,
+            data: client_message,
         };
 
         websocket_broadcaster
             .broadcast_event_message(&event_message)
-            .await
-            .unwrap();
+            .await;
     }
 }

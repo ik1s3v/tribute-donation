@@ -1,6 +1,8 @@
 import { io, Socket } from "socket.io-client";
 import { ServiceType, StreamElementsEventType } from "../../shared/enums";
 import {
+	IService,
+	IStreamElementsAuth,
 	IStreamElementsAuthenticated,
 	IStreamElementsEvent,
 	IStreamElementsTip,
@@ -28,8 +30,6 @@ export default class StreamElementsSocketService {
 					service: {
 						id: ServiceType.Streamelements,
 						authorized: false,
-						active: false,
-						token: undefined,
 					},
 				}),
 			);
@@ -37,7 +37,7 @@ export default class StreamElementsSocketService {
 
 		this.socket.on("authenticated", async (_: IStreamElementsAuthenticated) => {
 			store.dispatch(setIsAuthenticated(true));
-			const { data: service } = await store.dispatch(
+			const { data } = await store.dispatch(
 				servicesApi.endpoints.getServiceById.initiate(
 					{
 						id: ServiceType.Streamelements,
@@ -45,13 +45,14 @@ export default class StreamElementsSocketService {
 					{ forceRefetch: true },
 				),
 			);
-			if (service?.token) {
+			const service = data as IService<IStreamElementsAuth, undefined>;
+			if (!service.authorized && service?.auth?.jwt_token) {
 				store.dispatch(
 					servicesApi.endpoints.updateService.initiate({
 						service: {
 							...service,
 							authorized: true,
-						},
+						} as IService<IStreamElementsAuth, undefined>,
 					}),
 				);
 			}

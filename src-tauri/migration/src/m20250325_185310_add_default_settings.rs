@@ -17,7 +17,7 @@ impl MigrationTrait for Migration {
             tts_volume: Set(50),
             black_list: Set("".to_string()),
             language: Set("en".to_string()),
-            currency: Set(entity::donation::Currency::EUR),
+            currency: Set(Currency::EUR),
         }
         .insert(connection)
         .await?;

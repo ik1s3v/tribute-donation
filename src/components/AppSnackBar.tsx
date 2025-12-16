@@ -8,6 +8,7 @@ export const AppSnackBar = () => {
 		(state: AppState) => state.snackBarState,
 	);
 	const dispatch = useDispatch<AppDispatch>();
+
 	return (
 		<Snackbar
 			open={isShowSnackBar}

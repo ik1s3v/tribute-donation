@@ -1,0 +1,39 @@
+use sea_orm::entity::prelude::*;
+use serde::{Deserialize, Serialize};
+
+#[sea_orm::model]
+#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Serialize, Deserialize)]
+#[sea_orm(table_name = "messages")]
+pub struct Model {
+    #[sea_orm(primary_key, auto_increment = false)]
+    pub id: String,
+    pub r#type: MessageType,
+    pub created_at: i64,
+    #[sea_orm(has_one)]
+    pub donation: HasOne<super::donation::Entity>,
+}
+
+impl ActiveModelBehavior for ActiveModel {}
+
+#[derive(Debug, Clone, PartialEq, EnumIter, DeriveActiveEnum, Serialize, Deserialize, Eq)]
+#[sea_orm(rs_type = "String", db_type = "Text")]
+pub enum MessageType {
+    #[sea_orm(string_value = "Donation")]
+    Donation,
+    #[sea_orm(string_value = "Subscription")]
+    Subscription,
+    #[sea_orm(string_value = "Follow")]
+    Follow,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, DerivePartialModel)]
+#[sea_orm(entity = "Entity")]
+
+pub struct ClientMessage {
+    pub id: String,
+    pub r#type: MessageType,
+    pub created_at: i64,
+    #[sea_orm(nested)]
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub donation: Option<super::donation::Donation>,
+}

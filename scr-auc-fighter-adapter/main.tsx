@@ -7,6 +7,7 @@ import type {
 	IAucFighterMatch,
 	IAucFighterMatchWinner,
 	IAucFighterSettings,
+	MatchId,
 } from "../shared/types";
 import App from "./App";
 import updatePlayersEnergybar from "./helpers/updatePlayersEnergybar";
@@ -93,7 +94,7 @@ websocketService.subscribe<IAucFighterMatch>(
 		user1_.resetChar(teamA.character, false, true);
 		user2_.resetChar(teamB.character, true, true);
 		game_.startMatch(0, [0], [1], randomStage, () => {
-			websocketService.send({
+			websocketService.send<MatchId>({
 				event: AppEvent.AucFighterMatchPlaying,
 				data: match.id,
 			});
@@ -139,7 +140,7 @@ websocketService.subscribe<string>(AppEvent.PauseAucFighterMatch, () => {
 	game_.pause();
 	clearTimer();
 	if (match) {
-		websocketService.send({
+		websocketService.send<MatchId>({
 			event: AppEvent.AucFighterMatchPaused,
 			data: match.id,
 		});

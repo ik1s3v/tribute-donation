@@ -32,13 +32,14 @@ impl WebSocketBroadcaster {
         log::info!("WebSocket connection removed: {}", id);
     }
 
-    pub async fn broadcast_text(&self, text: Utf8Bytes) -> Result<(), String> {
+    pub async fn broadcast_text(&self, text: Utf8Bytes) {
         let websocket_clients = self.websocket_clients.lock().await;
 
         let mut failed_connections = Vec::new();
 
         for (id, sender) in websocket_clients.iter() {
             if let Err(_) = sender.send(Message::Text(text.clone())) {
+                log::error!("Send websocket message failed WebSocket connection: {}", id);
                 failed_connections.push(*id);
             }
         }
@@ -51,17 +52,14 @@ impl WebSocketBroadcaster {
                 log::warn!("Removed failed WebSocket connection: {}", id);
             }
         }
-
-        Ok(())
     }
 
-    pub async fn broadcast_event_message<T>(&self, message: &EventMessage<T>) -> Result<(), String>
+    pub async fn broadcast_event_message<T>(&self, message: &EventMessage<T>)
     where
         T: serde::Serialize,
     {
         let text = serde_json::to_string(message).unwrap();
-        self.broadcast_text(text.into()).await?;
-        Ok(())
+        self.broadcast_text(text.into()).await;
     }
 
     pub async fn send_to_client(

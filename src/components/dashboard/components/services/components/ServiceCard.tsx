@@ -1,14 +1,15 @@
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { Box, Button, Card } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import type { IService } from "../../../../../../shared/types";
-import getServiceColorById from "../../../../../helpers/getServiceColorById";
-import getServiceNavigateToById from "../../../../../helpers/getServiceNavigateToById";
+import type { AppState } from "../../../../../store";
 
-const ServiceCard = ({ service }: { service: IService }) => {
+const ServiceCard = ({ service }: { service: IService<unknown, unknown> }) => {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
+	const { services } = useSelector((state: AppState) => state.servicesState);
 
 	return (
 		<Card
@@ -26,7 +27,7 @@ const ServiceCard = ({ service }: { service: IService }) => {
 					width: "3rem",
 					display: "grid",
 					placeItems: "center",
-					background: getServiceColorById(service.id),
+					background: services[service.id].color,
 					minHeight: "100%",
 				}}
 			></Box>
@@ -45,7 +46,7 @@ const ServiceCard = ({ service }: { service: IService }) => {
 				) : (
 					<Button
 						onClick={() => {
-							navigate(getServiceNavigateToById(service.id));
+							navigate(services[service.id].authPath);
 						}}
 					>
 						{t("services.connect")}

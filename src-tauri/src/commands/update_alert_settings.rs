@@ -27,5 +27,6 @@ pub async fn update_alert_settings(
             event: AppEvent::Alerts,
             data: alerts,
         })
-        .await
+        .await;
+    Ok(())
 }

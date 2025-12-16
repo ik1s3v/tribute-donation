@@ -23,5 +23,6 @@ pub async fn update_media_settings(
             event: AppEvent::MediaSettings,
             data: media_settings,
         })
-        .await
+        .await;
+    Ok(())
 }

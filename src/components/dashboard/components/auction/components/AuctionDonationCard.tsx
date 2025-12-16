@@ -16,13 +16,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { findBestMatch } from "string-similarity";
 import { AlertSeverity } from "../../../../../../shared/enums";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
-import type { IClientDonation, ILot } from "../../../../../../shared/types";
+import type { IDonation, ILot } from "../../../../../../shared/types";
+import getCurrencySymbol from "../../../../../../shared/utils/getCurrencySymbol.ts";
 import getRandomColor from "../../../../../helpers/getRandomColor";
 import type { AppState } from "../../../../../store";
 import { auctionDonationsSlice } from "../../../../../store/slices/donationsSlice.ts";
 import { addLot, updateLot } from "../../../../../store/slices/lotsSlice";
 
-const AuctionDonationCard = ({ donation }: { donation: IClientDonation }) => {
+const AuctionDonationCard = ({ donation }: { donation: IDonation }) => {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
 	const { removeDonation } = auctionDonationsSlice.actions;
@@ -30,6 +31,7 @@ const AuctionDonationCard = ({ donation }: { donation: IClientDonation }) => {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
 	const { colors } = useSelector((state: AppState) => state.mainState);
+	const { services } = useSelector((state: AppState) => state.servicesState);
 
 	const bestMatch = useMemo(() => {
 		if (!donation.text) return;
@@ -57,12 +59,12 @@ const AuctionDonationCard = ({ donation }: { donation: IClientDonation }) => {
 		dispatch(
 			updateLot({
 				...randomLot,
-				amount: (randomLot.amount ?? 0) + donation.amount,
+				amount: (randomLot.amount ?? 0) + donation.exchanged_amount,
 			}),
 		);
 		dispatch(
 			showSnackBar({
-				message: `+${donation.amount}      #${randomLot.fastId}`,
+				message: `+${donation.exchanged_amount.toFixed(2)}      #${randomLot.fastId}`,
 				alertSeverity: AlertSeverity.success,
 			}),
 		);
@@ -75,12 +77,12 @@ const AuctionDonationCard = ({ donation }: { donation: IClientDonation }) => {
 		dispatch(
 			updateLot({
 				...bestMatch,
-				amount: (bestMatch.amount ?? 0) + donation.amount,
+				amount: (bestMatch.amount ?? 0) + donation.exchanged_amount,
 			}),
 		);
 		dispatch(
 			showSnackBar({
-				message: `+${donation.amount}      #${bestMatch.fastId}`,
+				message: `+${donation.exchanged_amount.toFixed(2)}      #${bestMatch.fastId}`,
 				alertSeverity: AlertSeverity.success,
 			}),
 		);
@@ -94,6 +96,7 @@ const AuctionDonationCard = ({ donation }: { donation: IClientDonation }) => {
 				width: 304,
 				marginBottom: "10px",
 				cursor: "pointer",
+				backgroundColor: services[donation.service].color,
 			}}
 		>
 			<CardContent>
@@ -105,7 +108,8 @@ const AuctionDonationCard = ({ donation }: { donation: IClientDonation }) => {
 					}}
 				>
 					<Typography variant="h6">
-						{donation.amount} {donation.user_name}
+						{donation.amount}
+						{getCurrencySymbol(donation.currency)} {donation.user_name}
 					</Typography>
 					<IconButton
 						onClick={() => {

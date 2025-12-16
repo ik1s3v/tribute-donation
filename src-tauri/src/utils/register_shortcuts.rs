@@ -28,8 +28,7 @@ pub fn register_shortcuts(app: &mut App) -> Result<(), Box<dyn std::error::Error
                                             event: AppEvent::SkipPlayingAlert,
                                             data: None::<String>,
                                         })
-                                        .await
-                                        .unwrap();
+                                        .await;
                                 });
                             }
                             _ => {}
@@ -45,8 +44,7 @@ pub fn register_shortcuts(app: &mut App) -> Result<(), Box<dyn std::error::Error
                                             event: AppEvent::SkipPlayingMedia,
                                             data: None::<String>,
                                         })
-                                        .await
-                                        .unwrap();
+                                        .await;
                                 });
                             }
                             _ => {}

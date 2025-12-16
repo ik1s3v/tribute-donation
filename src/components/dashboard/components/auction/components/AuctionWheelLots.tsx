@@ -52,7 +52,7 @@ const AuctionWheelLots = ({
 										<span>{lots[index].name}</span>
 									</div>
 									<span style={{ overflow: "hidden" }}>
-										{lots[index].amount}
+										{lots[index].amount?.toFixed(2)}
 									</span>
 									<Divider orientation="vertical" />
 									<div>

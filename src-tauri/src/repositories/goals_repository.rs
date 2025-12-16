@@ -3,7 +3,9 @@ use migration::Expr;
 
 use crate::services::DatabaseService;
 use async_trait::async_trait;
-use sea_orm::{ActiveValue::Set, DbErr, EntityTrait, QueryFilter, QueryOrder, QuerySelect};
+use sea_orm::{
+    ActiveValue::Set, DbErr, EntityTrait, ExprTrait, QueryFilter, QueryOrder, QuerySelect,
+};
 #[async_trait]
 pub trait GoalsRepository: Send + Sync {
     async fn get_goals(&self, limit: u64, offset: u64) -> Result<Vec<Model>, DbErr>;

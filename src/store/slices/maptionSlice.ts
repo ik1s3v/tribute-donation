@@ -8,7 +8,6 @@ const startPosition = {
 
 interface MaptionState {
 	amount: number;
-
 	currentPosition: google.maps.LatLngLiteral;
 	startPosition: google.maps.LatLngLiteral;
 	currentPath: google.maps.LatLngLiteral[];

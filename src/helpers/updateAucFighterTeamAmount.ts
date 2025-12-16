@@ -1,11 +1,11 @@
 import { AppEvent } from "../../shared/enums";
-import { IClientDonation } from "../../shared/types";
+import { IAucFighterMatch, IDonation } from "../../shared/types";
 import { WebSocketService } from "../services/websocketService";
 import { AppState, store } from "../store";
 import { updateMatches } from "../store/slices/aucFighterSlice";
 
 const updateAucFighterTeamAmount = (
-	donation: IClientDonation,
+	donation: IDonation,
 	websocketService: WebSocketService,
 ) => {
 	const state = store.getState() as AppState;
@@ -23,7 +23,7 @@ const updateAucFighterTeamAmount = (
 						match.teams[0],
 						{
 							...teamB,
-							amount: teamB.amount + donation.amount,
+							amount: teamB.amount + donation.exchanged_amount,
 						},
 					],
 				};
@@ -35,7 +35,7 @@ const updateAucFighterTeamAmount = (
 					isFoundTeam = true;
 					const updatedTeam = {
 						...team,
-						amount: team.amount + donation.amount,
+						amount: team.amount + donation.exchanged_amount,
 					};
 
 					const updatedTeams = [...match.teams];
@@ -62,7 +62,7 @@ const updateAucFighterTeamAmount = (
 				(match) => match.id === playingMatchId,
 			);
 			if (updatedMatch) {
-				websocketService.send({
+				websocketService.send<IAucFighterMatch>({
 					event: AppEvent.UpdateAucFighterMatch,
 					data: updatedMatch,
 				});

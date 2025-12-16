@@ -1,4 +1,5 @@
 use crate::utils::{get_currency_from_string, on_new_donation};
+use entity::service::ServiceType;
 use serde::{Deserialize, Serialize};
 use tauri::AppHandle;
 
@@ -49,6 +50,7 @@ impl StreamElementsService {
     ) -> Result<(), String> {
         on_new_donation(
             event._id,
+            ServiceType::Streamelements,
             event.data.display_name,
             get_currency_from_string(event.data.currency),
             event.data.amount,

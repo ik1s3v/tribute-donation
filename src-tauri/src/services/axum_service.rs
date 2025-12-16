@@ -1,8 +1,8 @@
 use crate::constants::HTTP_WIDGET_PORT;
 use crate::enums::AppEvent;
 use crate::repositories::{
-    AlertsRepository, AucFighterSettingsRepository, DonationsRepository, GoalsRepository,
-    MediaSettingsRepository, SettingsRepository,
+    AlertsRepository, AucFighterSettingsRepository, GoalsRepository, MediaSettingsRepository,
+    MessagesRepository, SettingsRepository,
 };
 use crate::services::{DatabaseService, EventMessage, WebSocketBroadcaster};
 use axum::extract::ws::{Message, WebSocket};
@@ -15,7 +15,7 @@ use axum::{
     routing::get,
     Router,
 };
-use entity::donation::Model;
+use entity::message::ClientMessage;
 use futures::{sink::SinkExt, stream::StreamExt};
 use reqwest::StatusCode;
 use serde::Deserialize;
@@ -63,7 +63,7 @@ impl AxumService {
 
         let axum_router: Router = Router::new()
             .route("/ws", get(AxumService::websocket_handler))
-            .route("/api/donations", get(AxumService::get_donations))
+            .route("/api/messages", get(AxumService::get_messages))
             .nest_service("/static", ServeDir::new(&static_path))
             .nest_service(
                 "/auc-fighter",
@@ -96,17 +96,17 @@ impl AxumService {
         Ok(())
     }
 
-    async fn get_donations(
+    async fn get_messages(
         Query(params): Query<DonationsQuery>,
         State(state): State<AxumState>,
-    ) -> Result<Json<Vec<Model>>, StatusCode> {
+    ) -> Result<Json<Vec<ClientMessage>>, StatusCode> {
         let database_service = state.app.state::<DatabaseService>();
-        let donations = database_service
-            .get_donations(params.limit, params.offset)
+        let client_messages = database_service
+            .get_messages(params.limit, params.offset)
             .await
             .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
 
-        Ok(Json(donations))
+        Ok(Json(client_messages))
     }
 
     async fn websocket_handler(
@@ -148,11 +148,7 @@ impl AxumService {
 
         while let Some(msg) = receiver.next().await {
             match msg {
-                Ok(Message::Text(text)) => {
-                    if let Err(e) = websocket_broadcaster.broadcast_text(text).await {
-                        log::error!("Broadcast error: {}", e);
-                    }
-                }
+                Ok(Message::Text(text)) => websocket_broadcaster.broadcast_text(text).await,
 
                 Ok(Message::Close(_)) => {
                     log::info!("WebSocket connection closed");

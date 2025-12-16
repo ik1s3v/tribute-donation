@@ -1,5 +1,6 @@
 import { InputAdornment, Slider, TextField } from "@mui/material";
 import { NumericFormat } from "react-number-format";
+
 const InputSlider = ({
 	sliderValue,
 	inputValue,

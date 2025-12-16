@@ -1,5 +1,4 @@
 pub use sea_orm_migration::prelude::*;
-
 mod m20250324_201351_create_messages_table;
 mod m20250324_221133_create_table_settings;
 mod m20250325_171158_create_table_alerts;
@@ -20,7 +19,10 @@ mod m20251111_172605_create_table_services;
 mod m20251111_183902_add_default_services;
 mod m20251115_183022_update_settings;
 mod m20251122_001838_update_media_settings;
-mod m20251122_144811_rename_messages_table;
+mod m20251212_023401_create_donations_table;
+mod m20251212_124415_update_messages_type;
+mod m20251212_124711_split_messages_and_donations;
+mod m20251213_195846_add_alert_type;
 
 pub struct Migrator;
 
@@ -48,7 +50,10 @@ impl MigratorTrait for Migrator {
             Box::new(m20251111_183902_add_default_services::Migration),
             Box::new(m20251115_183022_update_settings::Migration),
             Box::new(m20251122_001838_update_media_settings::Migration),
-            Box::new(m20251122_144811_rename_messages_table::Migration),
+            Box::new(m20251212_023401_create_donations_table::Migration),
+            Box::new(m20251212_124415_update_messages_type::Migration),
+            Box::new(m20251212_124711_split_messages_and_donations::Migration),
+            Box::new(m20251213_195846_add_alert_type::Migration),
         ]
     }
 }

@@ -1,5 +1,5 @@
-import { api } from ".";
 import type { IAuctionSettings } from "../../shared/types";
+import { api } from ".";
 
 export const auctionApi = api.injectEndpoints({
 	endpoints: (builder) => ({

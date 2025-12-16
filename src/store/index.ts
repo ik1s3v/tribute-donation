@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { alertsSlice } from "../../shared/slices/alertsSlice";
 import { mediaSlice } from "../../shared/slices/mediaSlice";
+import { servicesSlice } from "../../shared/slices/servicesSlice.ts";
 import { snackBarSlice } from "../../shared/slices/snackBarSlice";
 import {
 	auctionTimerSlice,
@@ -44,6 +45,7 @@ export const rootReducer = combineReducers({
 	aucFighterState: aucFighterSlice.reducer,
 	goalsState: goalsSlice.reducer,
 	streamElementsState: streamElementsSlice.reducer,
+	servicesState: servicesSlice.reducer,
 	[api.reducerPath]: api.reducer,
 });
 

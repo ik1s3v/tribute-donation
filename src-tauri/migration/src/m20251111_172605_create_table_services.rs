@@ -11,9 +11,9 @@ impl MigrationTrait for Migration {
                     .table(Services::Table)
                     .if_not_exists()
                     .col(pk_uuid(Services::Id))
-                    .col(boolean(Services::Active))
                     .col(boolean(Services::Authorized))
-                    .col(string_null(Services::Token))
+                    .col(string_null(Services::Auth))
+                    .col(string_null(Services::Settings))
                     .to_owned(),
             )
             .await?;
@@ -31,7 +31,7 @@ impl MigrationTrait for Migration {
 pub enum Services {
     Table,
     Id,
-    Active,
     Authorized,
-    Token,
+    Auth,
+    Settings,
 }

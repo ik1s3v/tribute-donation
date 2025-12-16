@@ -26,12 +26,15 @@ const newDonationUpdateLotMiddleware: Middleware<unknown, AppState> =
 			if (lot) {
 				store.dispatch(
 					showSnackBar({
-						message: `+${newDonation.amount}      #${fastId}`,
+						message: `+${newDonation.exchanged_amount.toFixed(2)}      #${fastId}`,
 						alertSeverity: AlertSeverity.success,
 					}),
 				);
 				store.dispatch(
-					updateLot({ ...lot, amount: (lot.amount ?? 0) + newDonation.amount }),
+					updateLot({
+						...lot,
+						amount: (lot.amount ?? 0) + newDonation.exchanged_amount,
+					}),
 				);
 				store.dispatch(removeDonation(newDonation));
 			}

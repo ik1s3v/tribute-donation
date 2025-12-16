@@ -3,16 +3,19 @@ import YouTube, { type YouTubePlayer } from "react-youtube";
 import { AppEvent } from "../../../shared/enums";
 import useWebSocket from "../../../shared/hooks/useWebSocket";
 import type {
-	IClientDonation,
+	IMedia,
 	IMediaPlatformSettings,
+	MessageId,
 } from "../../../shared/types";
 
 const Youtube = ({
-	donation,
 	mediaPlatformSettings,
+	media,
+	messageId,
 }: {
-	donation: IClientDonation;
 	mediaPlatformSettings: IMediaPlatformSettings;
+	media: IMedia;
+	messageId: string;
 }) => {
 	const websocketService = useWebSocket();
 	const [player, setPlayer] = useState<YouTubePlayer>();
@@ -27,67 +30,67 @@ const Youtube = ({
 	};
 
 	const onReady = (event: YouTubePlayer) => {
-		websocketService.send({
+		websocketService.send<MessageId>({
 			event: AppEvent.MediaPlaying,
-			data: donation.id,
+			data: messageId,
 		});
 		event.target.setVolume(mediaPlatformSettings.video_volume);
 		setPlayer(event.target);
 	};
 	const onError = () => {
-		websocketService.send({
+		websocketService.send<MessageId>({
 			event: AppEvent.MediaError,
-			data: donation.id,
+			data: messageId,
 		});
 	};
 	const onPlay = () => {
-		websocketService.send({
+		websocketService.send<MessageId>({
 			event: AppEvent.MediaPlaying,
-			data: donation.id,
+			data: messageId,
 		});
 	};
 	const onPause = () => {
-		websocketService.send({
+		websocketService.send<MessageId>({
 			event: AppEvent.MediaPaused,
-			data: donation.id,
+			data: messageId,
 		});
 	};
 	const onEnd = () => {
-		websocketService.send({
+		websocketService.send<MessageId>({
 			event: AppEvent.MediaEnd,
-			data: donation.id,
+			data: messageId,
 		});
 	};
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<string>(
+		const unsubscribe = websocketService.subscribe<MessageId>(
 			AppEvent.PauseMedia,
 			(id) => {
-				if (donation.id === id) {
+				if (messageId === id) {
 					player.pauseVideo();
 				}
 			},
 		);
 
 		return () => unsubscribe();
-	}, [donation, player, websocketService]);
+	}, [messageId, player, websocketService]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<string>(
+		const unsubscribe = websocketService.subscribe<MessageId>(
 			AppEvent.PlayMedia,
 			(id) => {
-				if (donation.id === id) {
+				if (messageId === id) {
 					player.playVideo();
 				}
 			},
 		);
 
 		return () => unsubscribe();
-	}, [donation, player, websocketService]);
+	}, [messageId, player, websocketService]);
 
 	return (
 		<YouTube
-			videoId={donation.media?.temporary_src}
+			videoId={media?.temporary_src}
 			opts={opts}
 			onError={onError}
 			onReady={onReady}

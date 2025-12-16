@@ -22,5 +22,6 @@ pub async fn update_auc_fighter_settings(
             event: AppEvent::AucFighterSettings,
             data: auc_fighter_settings,
         })
-        .await
+        .await;
+    Ok(())
 }

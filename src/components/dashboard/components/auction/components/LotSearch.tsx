@@ -1,8 +1,8 @@
-import { IconButton, type InputBaseProps, TextField } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import { useDispatch, useSelector } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from "@mui/icons-material/Search";
+import { IconButton, type InputBaseProps, TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import type { AppState } from "../../../../../store";
 import { setSearchPattern } from "../../../../../store/slices/lotsSlice";
 

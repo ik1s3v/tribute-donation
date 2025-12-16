@@ -30,13 +30,13 @@ const newDonationUpdateMaptionPositionMiddleware: Middleware<
 					up(
 						calculateMaptionDistance({
 							price_for_meter: maptionSettings.price_for_meter,
-							amount: newDonation.amount,
+							amount: newDonation.exchanged_amount,
 						}),
 					),
 				);
 				store.dispatch(
 					showSnackBar({
-						message: `+${newDonation.amount}      Up`,
+						message: `+${newDonation.exchanged_amount.toFixed(2)}      Up`,
 						alertSeverity: AlertSeverity.success,
 					}),
 				);
@@ -46,13 +46,13 @@ const newDonationUpdateMaptionPositionMiddleware: Middleware<
 					down(
 						calculateMaptionDistance({
 							price_for_meter: maptionSettings.price_for_meter,
-							amount: newDonation.amount,
+							amount: newDonation.exchanged_amount,
 						}),
 					),
 				);
 				store.dispatch(
 					showSnackBar({
-						message: `+${newDonation.amount}      Down`,
+						message: `+${newDonation.exchanged_amount.toFixed(2)}      Down`,
 						alertSeverity: AlertSeverity.success,
 					}),
 				);
@@ -62,13 +62,13 @@ const newDonationUpdateMaptionPositionMiddleware: Middleware<
 					left(
 						calculateMaptionDistance({
 							price_for_meter: maptionSettings.price_for_meter,
-							amount: newDonation.amount,
+							amount: newDonation.exchanged_amount,
 						}),
 					),
 				);
 				store.dispatch(
 					showSnackBar({
-						message: `+${newDonation.amount}      Left`,
+						message: `+${newDonation.exchanged_amount.toFixed(2)}      Left`,
 						alertSeverity: AlertSeverity.success,
 					}),
 				);
@@ -78,13 +78,13 @@ const newDonationUpdateMaptionPositionMiddleware: Middleware<
 					right(
 						calculateMaptionDistance({
 							price_for_meter: maptionSettings.price_for_meter,
-							amount: newDonation.amount,
+							amount: newDonation.exchanged_amount,
 						}),
 					),
 				);
 				store.dispatch(
 					showSnackBar({
-						message: `+${newDonation.amount}      Right`,
+						message: `+${newDonation.exchanged_amount.toFixed(2)}      Right`,
 						alertSeverity: AlertSeverity.success,
 					}),
 				);

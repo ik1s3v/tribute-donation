@@ -22,5 +22,6 @@ pub async fn update_settings(
             event: AppEvent::Settings,
             data: settings,
         })
-        .await
+        .await;
+    Ok(())
 }

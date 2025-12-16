@@ -4,11 +4,17 @@ import {
 	AlertVariationConditions,
 	AppEvent,
 	Currency,
+	MessageType,
 	ServiceType,
 } from "../../shared/enums";
 import useWebSocket from "../../shared/hooks/useWebSocket";
-import type { IAlert, IClientDonation, ISettings } from "../../shared/types";
-import getAlertByDonation from "../utils/getAlertByDonation";
+import type {
+	IAlert,
+	IClientMessage,
+	ISettings,
+	MessageId,
+} from "../../shared/types";
+import getAlertByMessage from "../utils/getAlertByMessage";
 
 const usePlayAlert = () => {
 	const { t } = useTranslation();
@@ -17,38 +23,38 @@ const usePlayAlert = () => {
 	const messageAudioRef = useRef<HTMLAudioElement>(new Audio());
 	const alertsRef = useRef<IAlert[]>([]);
 	const settingsRef = useRef<ISettings | null>(null);
-	const donationsRef = useRef<IClientDonation[]>([]);
+	const messagesRef = useRef<IClientMessage[]>([]);
 
-	const [currentDonation, setCurrentDonation] = useState<IClientDonation>();
+	const [currentMessage, setCurrentMessage] = useState<IClientMessage>();
 	const [currentAlert, setCurrentAlert] = useState<IAlert>();
 
 	const handleAudioEnd = useCallback(
 		({
-			donation,
+			message,
 			skip = false,
 		}: {
-			donation: IClientDonation | undefined;
+			message: IClientMessage | undefined;
 			skip?: boolean;
 		}) => {
 			messageAudioRef.current.pause();
 			alertAudioRef.current.pause();
 			setTimeout(
 				() => {
-					if (!donation) return;
-					websocketService.send({
+					if (!message) return;
+					websocketService.send<MessageId>({
 						event: AppEvent.AlertPlayed,
-						data: donation.id,
+						data: message.id,
 					});
-					donationsRef.current = donationsRef.current.filter(
-						(d) => d.id !== donation.id,
+					messagesRef.current = messagesRef.current.filter(
+						(d) => d.id !== message.id,
 					);
 
-					const newCurrentDonation = donationsRef.current.at(0);
+					const newCurrentMessage = messagesRef.current.at(0);
 
-					setCurrentDonation(undefined);
+					setCurrentMessage(undefined);
 					setTimeout(() => {
-						if (newCurrentDonation) {
-							playMessage({ donation: newCurrentDonation });
+						if (newCurrentMessage) {
+							playMessage({ message: newCurrentMessage });
 						}
 					}, 0);
 				},
@@ -59,30 +65,30 @@ const usePlayAlert = () => {
 	);
 
 	const playMessage = useCallback(
-		({ donation }: { donation: IClientDonation }) => {
+		({ message }: { message: IClientMessage }) => {
 			if (settingsRef.current && !settingsRef.current.alert_paused) {
 				setTimeout(() => {
-					if (settingsRef.current && donationsRef.current.length) {
-						const alert = getAlertByDonation({
+					if (settingsRef.current && messagesRef.current.length) {
+						const alert = getAlertByMessage({
 							alerts: alertsRef.current,
-							donation: donation,
+							message: message,
 						});
 
 						if (!alert) return;
-						websocketService.send({
+						websocketService.send<MessageId>({
 							event: AppEvent.AlertPlaying,
-							data: donation.id,
+							data: message.id,
 						});
-
-						if (donation.audio) {
-							messageAudioRef.current.src = `static/${donation.audio}`;
+						const audio = message.donation?.audio;
+						if (audio) {
+							messageAudioRef.current.src = `static/${audio}`;
 							messageAudioRef.current.volume =
 								settingsRef.current.tts_volume / 100;
 						}
 						alertAudioRef.current.src = `static/${alert.audio}`;
 						alertAudioRef.current.volume = alert.audio_volume / 100;
 						alertAudioRef.current.play();
-						setCurrentDonation(donation);
+						setCurrentMessage(message);
 						setCurrentAlert(alert);
 					}
 				}, settingsRef.current.moderation_duration);
@@ -94,97 +100,101 @@ const usePlayAlert = () => {
 	const testAlert = useCallback((id: string) => {
 		const alert = alertsRef.current.find((alert) => alert.id === id);
 		if (!alert) return;
-		const donation: IClientDonation = {
-			id: crypto.randomUUID(),
-			service_id: crypto.randomUUID(),
-			amount:
-				alert.variation_conditions === AlertVariationConditions.AmountIsEqual
-					? alert.amount
-					: alert.amount + 1,
-			user_name: t("alert.test_name"),
-			played: false,
-			text: t("alert.test_text"),
-			currency: Currency.EUR,
-			exchanged_amount: 1,
-			exchanged_currency: Currency.EUR,
+		const messageId = crypto.randomUUID();
+		const message: IClientMessage = {
+			id: messageId,
+			type: MessageType.Donation,
 			created_at: Math.round(new Date().getTime() / 1000),
-			service: ServiceType.TributeBot,
+			donation: {
+				service_id: crypto.randomUUID(),
+				amount:
+					alert.variation_conditions === AlertVariationConditions.AmountIsEqual
+						? alert.amount
+						: alert.amount + 1,
+				user_name: t("alert.test_name"),
+				played: false,
+				text: t("alert.test_text"),
+				currency: Currency.EUR,
+				exchanged_amount: 1,
+				exchanged_currency: Currency.EUR,
+				created_at: Math.round(new Date().getTime() / 1000),
+				service: ServiceType.TributeBot,
+				id: crypto.randomUUID(),
+				message_id: messageId,
+			},
 		};
-		if (!donationsRef.current.length && settingsRef.current) {
-			websocketService.send({
+		if (!messagesRef.current.length && settingsRef.current) {
+			websocketService.send<MessageId>({
 				event: AppEvent.AlertPlaying,
-				data: donation.id,
+				data: message.id,
 			});
 
-			if (donation.audio) {
-				messageAudioRef.current.src = `static/${donation.audio}`;
-				messageAudioRef.current.volume = settingsRef.current.tts_volume / 100;
-			}
 			alertAudioRef.current.src = `static/${alert.audio}`;
 			alertAudioRef.current.volume = alert.audio_volume / 100;
 			alertAudioRef.current.play();
-			setCurrentDonation(donation);
+			setCurrentMessage(message);
 			setCurrentAlert(alert);
 		}
 	}, []);
 
 	const skipMessage = useCallback(
 		(id: string) => {
-			if (currentDonation?.id === id) {
-				handleAudioEnd({ donation: currentDonation, skip: true });
+			if (currentMessage?.id === id) {
+				handleAudioEnd({ message: currentMessage, skip: true });
 			} else {
-				donationsRef.current = donationsRef.current.filter(
-					(donation) => donation.id !== id,
+				messagesRef.current = messagesRef.current.filter(
+					(message) => message.id !== id,
 				);
 			}
 		},
-		[handleAudioEnd, currentDonation],
+		[handleAudioEnd, currentMessage],
 	);
 	const skipPlayingMessage = useCallback(() => {
-		if (currentDonation) {
-			handleAudioEnd({ donation: currentDonation, skip: true });
+		if (currentMessage) {
+			handleAudioEnd({ message: currentMessage, skip: true });
 		}
-	}, [handleAudioEnd, currentDonation]);
+	}, [handleAudioEnd, currentMessage]);
 
-	const handleNewDonation = useCallback(
-		(donation: IClientDonation) => {
-			donationsRef.current = [...donationsRef.current, donation];
-			if (donationsRef.current.length === 1) {
-				playMessage({ donation: donation });
+	const handleNewMessage = useCallback(
+		(message: IClientMessage) => {
+			messagesRef.current = [...messagesRef.current, message];
+			if (messagesRef.current.length === 1) {
+				playMessage({ message: message });
 			}
 		},
 		[playMessage],
 	);
 	const handleReplayMessage = useCallback(
-		(donation: IClientDonation) => {
-			donationsRef.current = [donation, ...donationsRef.current];
+		(message: IClientMessage) => {
+			messagesRef.current = [message, ...messagesRef.current];
 
-			if (donationsRef.current.length === 1) {
-				playMessage({ donation: donation });
+			if (messagesRef.current.length === 1) {
+				playMessage({ message: message });
 			}
 		},
 		[playMessage],
 	);
 
 	const handleSoundEnd = useCallback(() => {
-		if (currentDonation?.audio) {
+		const audio = currentMessage?.donation?.audio;
+		if (audio) {
 			messageAudioRef.current.play();
 		} else {
-			handleAudioEnd({ donation: currentDonation });
+			handleAudioEnd({ message: currentMessage });
 		}
-	}, [currentDonation, handleAudioEnd]);
+	}, [currentMessage, handleAudioEnd]);
 
 	useEffect(() => {
 		messageAudioRef.current.onended = () =>
-			handleAudioEnd({ donation: currentDonation });
+			handleAudioEnd({ message: currentMessage });
 		messageAudioRef.current.onerror = () =>
-			handleAudioEnd({ donation: currentDonation });
+			handleAudioEnd({ message: currentMessage });
 
 		return () => {
 			messageAudioRef.current.onended = null;
 			messageAudioRef.current.onerror = null;
 		};
-	}, [currentDonation, handleAudioEnd]);
+	}, [currentMessage, handleAudioEnd]);
 
 	useEffect(() => {
 		alertAudioRef.current.onended = handleSoundEnd;
@@ -197,16 +207,16 @@ const usePlayAlert = () => {
 	}, [handleSoundEnd]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<IClientDonation>(
-			AppEvent.Donation,
-			handleNewDonation,
+		const unsubscribe = websocketService.subscribe<IClientMessage>(
+			AppEvent.Message,
+			handleNewMessage,
 		);
 
 		return () => unsubscribe();
-	}, [handleNewDonation]);
+	}, [handleNewMessage]);
 
 	useEffect(() => {
-		const unsubscribe = websocketService.subscribe<IClientDonation>(
+		const unsubscribe = websocketService.subscribe<IClientMessage>(
 			AppEvent.ReplayAlert,
 			handleReplayMessage,
 		);
@@ -262,10 +272,10 @@ const usePlayAlert = () => {
 			(settings) => {
 				if (settingsRef.current?.alert_paused && !settings.alert_paused) {
 					settingsRef.current = settings;
-					const donation = donationsRef.current.at(0);
+					const message = messagesRef.current.at(0);
 
-					if (donation) {
-						playMessage({ donation: donation });
+					if (message) {
+						playMessage({ message: message });
 					}
 					return;
 				}
@@ -277,7 +287,7 @@ const usePlayAlert = () => {
 	}, [playMessage]);
 
 	return {
-		currentDonation,
+		currentMessage,
 		currentAlert,
 		settings: settingsRef.current,
 	};
