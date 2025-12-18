@@ -66,7 +66,7 @@ pub fn run() {
             get_goal_by_id,
             get_not_ended_goal,
             finish_goal,
-            update_service,
+            update_service_auth,
             get_services,
             get_service_by_id,
             stream_elements_tip_event,
@@ -77,7 +77,8 @@ pub fn run() {
             remove_custom_rewards,
             twitch_connect,
             get_messages,
-            update_twitch_service_settings,
+            update_service_settings,
+            get_service_with_auth_by_id,
             init
         ])
         .run(tauri::generate_context!())

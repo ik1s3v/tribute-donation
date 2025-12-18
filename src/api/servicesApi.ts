@@ -1,5 +1,9 @@
 import { ServiceType } from "../../shared/enums";
-import type { IService } from "../../shared/types";
+import type {
+	IService,
+	IStreamElementsAuth,
+	ITwitchIntegrationSettings,
+} from "../../shared/types";
 import { api } from ".";
 
 export const servicesApi = api.injectEndpoints({
@@ -20,12 +24,36 @@ export const servicesApi = api.injectEndpoints({
 			}),
 			providesTags: ["Services"],
 		}),
-		updateService: builder.mutation<
-			void,
-			{ service: IService<unknown, unknown> }
+		getServiceWithAuthById: builder.query<
+			IService<unknown, unknown> | undefined,
+			{ id: ServiceType }
 		>({
 			query: (args) => ({
-				command: "update_service",
+				command: "get_service_with_auth_by_id",
+				args,
+			}),
+			providesTags: ["Services"],
+		}),
+		updateServiceAuth: builder.mutation<
+			void,
+			{
+				auth: IStreamElementsAuth | undefined;
+				id: ServiceType;
+				authorized: boolean;
+			}
+		>({
+			query: (args) => ({
+				command: "update_service_auth",
+				args,
+			}),
+			invalidatesTags: ["Services"],
+		}),
+		updateServiceSettings: builder.mutation<
+			void,
+			{ settings: ITwitchIntegrationSettings; id: ServiceType }
+		>({
+			query: (args) => ({
+				command: "update_service_settings",
 				args,
 			}),
 			invalidatesTags: ["Services"],
@@ -34,7 +62,9 @@ export const servicesApi = api.injectEndpoints({
 });
 export const {
 	useGetServicesQuery,
-	useUpdateServiceMutation,
+	useUpdateServiceAuthMutation,
 	useGetServiceByIdQuery,
 	useLazyGetServiceByIdQuery,
+	useGetServiceWithAuthByIdQuery,
+	useUpdateServiceSettingsMutation,
 } = servicesApi;

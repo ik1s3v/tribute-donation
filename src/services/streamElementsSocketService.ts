@@ -26,11 +26,10 @@ export default class StreamElementsSocketService {
 		this.socket.on("unauthorized", () => {
 			store.dispatch(setIsAuthenticated(false));
 			store.dispatch(
-				servicesApi.endpoints.updateService.initiate({
-					service: {
-						id: ServiceType.Streamelements,
-						authorized: false,
-					},
+				servicesApi.endpoints.updateServiceAuth.initiate({
+					id: ServiceType.Streamelements,
+					authorized: false,
+					auth: undefined,
 				}),
 			);
 		});
@@ -38,7 +37,7 @@ export default class StreamElementsSocketService {
 		this.socket.on("authenticated", async (_: IStreamElementsAuthenticated) => {
 			store.dispatch(setIsAuthenticated(true));
 			const { data } = await store.dispatch(
-				servicesApi.endpoints.getServiceById.initiate(
+				servicesApi.endpoints.getServiceWithAuthById.initiate(
 					{
 						id: ServiceType.Streamelements,
 					},
@@ -48,11 +47,10 @@ export default class StreamElementsSocketService {
 			const service = data as IService<IStreamElementsAuth, undefined>;
 			if (!service.authorized && service?.auth?.jwt_token) {
 				store.dispatch(
-					servicesApi.endpoints.updateService.initiate({
-						service: {
-							...service,
-							authorized: true,
-						} as IService<IStreamElementsAuth, undefined>,
+					servicesApi.endpoints.updateServiceAuth.initiate({
+						authorized: true,
+						id: ServiceType.Streamelements,
+						auth: { jwt_token: service.auth.jwt_token },
 					}),
 				);
 			}

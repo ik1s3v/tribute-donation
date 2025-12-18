@@ -4,11 +4,7 @@ import ServiceCard from "./components/ServiceCard";
 
 const Services = () => {
 	const { t } = useTranslation();
-	const { data: services } = useGetServicesQuery(undefined, {
-		refetchOnMountOrArgChange: true,
-		refetchOnFocus: true,
-		refetchOnReconnect: true,
-	});
+	const { data: services } = useGetServicesQuery();
 
 	return (
 		<div>

@@ -7,8 +7,10 @@ import { useDispatch } from "react-redux";
 import { AlertSeverity, ServiceType } from "../../../../shared/enums";
 import { showSnackBar } from "../../../../shared/slices/snackBarSlice";
 import type { ITwitchIntegrationSettings } from "../../../../shared/types";
-import { useGetServiceByIdQuery } from "../../../api/servicesApi";
-import { useUpdateTwitchServiceSettingsMutation } from "../../../api/twitchServiceSettingsApi";
+import {
+	useGetServiceByIdQuery,
+	useUpdateServiceSettingsMutation,
+} from "../../../api/servicesApi";
 import styles from "../../dashboard/components/settings/Settings.module.css";
 import RewardCard from "./RewardCard";
 
@@ -18,8 +20,7 @@ const TwitchServiceSettings = () => {
 	const dispatch = useDispatch();
 	const { data, refetch } = useGetServiceByIdQuery({ id: ServiceType.Twitch });
 
-	const [updateTwitchServiceSettings] =
-		useUpdateTwitchServiceSettingsMutation();
+	const [updateServiceSettings] = useUpdateServiceSettingsMutation();
 
 	const [settings, setSettings] = useState<ITwitchIntegrationSettings>();
 
@@ -124,8 +125,9 @@ const TwitchServiceSettings = () => {
 								variant="contained"
 								onClick={async () => {
 									try {
-										await updateTwitchServiceSettings({
+										await updateServiceSettings({
 											settings: settings,
+											id: ServiceType.Twitch,
 										}).unwrap();
 										refetch();
 										dispatch(

@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { AlertSeverity } from "../../../../shared/enums";
 import { showSnackBar } from "../../../../shared/slices/snackBarSlice";
+import { useGetServicesQuery } from "../../../api/servicesApi";
 import {
 	useGetDeviceCodeQuery,
 	useGetTokenMutation,
@@ -21,6 +22,7 @@ const DeviceCode = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { t } = useTranslation();
+	const { refetch: refetchServices } = useGetServicesQuery();
 
 	useEffect(() => {
 		if (error) {
@@ -54,6 +56,7 @@ const DeviceCode = () => {
 						deviceCode: deviceCodeResponse.device_code as string,
 					}).unwrap();
 					await twitchConnect().unwrap();
+					refetchServices();
 					setIsPullingToken(false);
 					navigate(-1);
 				} catch {
@@ -74,6 +77,7 @@ const DeviceCode = () => {
 		refetch,
 		twitchConnect,
 		requestedAt,
+		refetchServices,
 	]);
 
 	if (!deviceCodeResponse) {
@@ -90,7 +94,7 @@ const DeviceCode = () => {
 			</div>
 			<Button
 				variant="contained"
-				disabled={!deviceCodeResponse}
+				disabled={!deviceCodeResponse || isPullingToken}
 				onClick={() => {
 					if (!deviceCodeResponse) return;
 					setIsPullingToken(true);

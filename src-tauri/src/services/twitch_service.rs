@@ -3,10 +3,7 @@ use crate::{
     repositories::ServicesRepository,
     services::{DatabaseService, EventMessage, WebSocketBroadcaster},
 };
-use entity::service::{
-    Model as Service, ServiceAuth, ServiceType, TwitchAuth, TwitchIntegrationReward,
-    TwitchIntegrationSettings,
-};
+use entity::service::{ServiceAuth, ServiceType, TwitchAuth, TwitchIntegrationSettings};
 use futures::StreamExt;
 use reqwest::StatusCode;
 use serde::{Deserialize, Serialize};
@@ -333,7 +330,7 @@ impl TwitchService {
         };
 
         database_service
-            .update_service_auth(ServiceType::Twitch, ServiceAuth::Twitch(auth), true)
+            .update_service_auth(ServiceType::Twitch, Some(ServiceAuth::Twitch(auth)), true)
             .await
             .map_err(|e| {
                 log::error!("{}", e.to_string());
@@ -393,7 +390,7 @@ impl TwitchService {
         };
 
         database_service
-            .update_service_auth(ServiceType::Twitch, ServiceAuth::Twitch(auth), true)
+            .update_service_auth(ServiceType::Twitch, Some(ServiceAuth::Twitch(auth)), true)
             .await
             .map_err(|e| {
                 log::error!("{}", e.to_string());
@@ -497,7 +494,7 @@ impl TwitchService {
                                         database_service
                                             .update_service_auth(
                                                 ServiceType::Twitch,
-                                                ServiceAuth::Twitch(auth),
+                                                Some(ServiceAuth::Twitch(auth)),
                                                 true,
                                             )
                                             .await
@@ -509,11 +506,11 @@ impl TwitchService {
                                     Err(e) => {
                                         if e.status == StatusCode::BAD_REQUEST.as_u16() {
                                             database_service
-                                                .update_service(Service {
-                                                    id: ServiceType::Twitch,
-                                                    authorized: false,
-                                                    ..Default::default()
-                                                })
+                                                .update_service_auth(
+                                                    ServiceType::Twitch,
+                                                    None,
+                                                    false,
+                                                )
                                                 .await
                                                 .unwrap();
                                         }
@@ -548,7 +545,7 @@ impl TwitchService {
                                         database_service
                                             .update_service_auth(
                                                 ServiceType::Twitch,
-                                                ServiceAuth::Twitch(auth),
+                                                Some(ServiceAuth::Twitch(auth)),
                                                 true,
                                             )
                                             .await
@@ -564,11 +561,11 @@ impl TwitchService {
                                     Err(e) => {
                                         if e.status == StatusCode::BAD_REQUEST.as_u16() {
                                             database_service
-                                                .update_service(Service {
-                                                    id: ServiceType::Twitch,
-                                                    authorized: false,
-                                                    ..Default::default()
-                                                })
+                                                .update_service_auth(
+                                                    ServiceType::Twitch,
+                                                    None,
+                                                    false,
+                                                )
                                                 .await
                                                 .unwrap();
                                         }

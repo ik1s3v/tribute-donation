@@ -25,11 +25,7 @@ import type { AppState } from "../../../../../store";
 
 const Integrations = () => {
 	const { t } = useTranslation();
-	const { data } = useGetServicesQuery(undefined, {
-		refetchOnMountOrArgChange: true,
-		refetchOnFocus: true,
-		refetchOnReconnect: true,
-	});
+	const { data } = useGetServicesQuery();
 	const { services } = useSelector((state: AppState) => state.servicesState);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();

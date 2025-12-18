@@ -4,10 +4,7 @@ use crate::{
     repositories::ServicesRepository,
     utils::{on_new_donation, parse_message_to_tribute_donate_message},
 };
-use entity::{
-    service::{Model as Service, ServiceType},
-    settings::Currency,
-};
+use entity::{service::ServiceType, settings::Currency};
 use grammers_client::{
     session::Session,
     types::{LoginToken, PasswordToken},
@@ -79,21 +76,13 @@ impl TelegramService {
         let database_service = app.state::<DatabaseService>();
         if is_authorized {
             database_service
-                .update_service(Service {
-                    id: ServiceType::TributeBot,
-                    authorized: true,
-                    ..Default::default()
-                })
+                .update_service_auth(ServiceType::TributeBot, None, true)
                 .await
                 .unwrap();
             self.listen_tribute(app).await?;
         } else {
             database_service
-                .update_service(Service {
-                    id: ServiceType::TributeBot,
-                    authorized: false,
-                    ..Default::default()
-                })
+                .update_service_auth(ServiceType::TributeBot, None, false)
                 .await
                 .unwrap();
         }
@@ -186,11 +175,7 @@ impl TelegramService {
                     .save_to_file(&*self.session_path)
                     .unwrap();
                 database_service
-                    .update_service(Service {
-                        id: ServiceType::TributeBot,
-                        authorized: true,
-                        ..Default::default()
-                    })
+                    .update_service_auth(ServiceType::TributeBot, None, true)
                     .await
                     .unwrap();
                 self.listen_tribute(app).await?;
@@ -226,11 +211,7 @@ impl TelegramService {
                     .save_to_file(&*self.session_path)
                     .unwrap();
                 database_service
-                    .update_service(Service {
-                        id: ServiceType::TributeBot,
-                        authorized: true,
-                        ..Default::default()
-                    })
+                    .update_service_auth(ServiceType::TributeBot, None, true)
                     .await
                     .unwrap();
                 self.listen_tribute(app).await?;

@@ -6,10 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { AlertSeverity, ServiceType } from "../../../../shared/enums";
 import { showSnackBar } from "../../../../shared/slices/snackBarSlice";
-import type { IService, IStreamElementsAuth } from "../../../../shared/types";
 import {
 	useGetServiceByIdQuery,
-	useUpdateServiceMutation,
+	useUpdateServiceAuthMutation,
 } from "../../../api/servicesApi";
 import useStreamElementsSocketService from "../../../hooks/useStreamElementsService";
 import type { AppState } from "../../../store";
@@ -21,7 +20,7 @@ const Token = () => {
 	);
 	const { data } = useGetServiceByIdQuery({ id: ServiceType.Streamelements });
 	const [token, setToken] = useState("");
-	const [updateService] = useUpdateServiceMutation();
+	const [updateServiceAuth] = useUpdateServiceAuthMutation();
 	const streamElementsSocketService = useStreamElementsSocketService();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -52,11 +51,10 @@ const Token = () => {
 								if (!token) {
 									return;
 								}
-								await updateService({
-									service: {
-										...data,
-										auth: { jwt_token: token },
-									} as IService<IStreamElementsAuth, undefined>,
+								await updateServiceAuth({
+									authorized: true,
+									id: ServiceType.Streamelements,
+									auth: { jwt_token: token },
 								}).unwrap();
 								streamElementsSocketService.authenticate(token);
 								navigate(-1);

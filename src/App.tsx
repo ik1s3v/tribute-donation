@@ -8,7 +8,7 @@ import useWebSocket from "../shared/hooks/useWebSocket";
 import { showSnackBar } from "../shared/slices/snackBarSlice";
 import type { IService, IStreamElementsAuth } from "../shared/types";
 import { useInitMutation } from "./api";
-import { useGetServiceByIdQuery } from "./api/servicesApi";
+import { useGetServiceWithAuthByIdQuery } from "./api/servicesApi";
 import { useGetSettingsQuery } from "./api/settingsApi";
 import { AppSnackBar } from "./components/AppSnackBar";
 import Dashboard from "./components/dashboard/Dashboard";
@@ -47,13 +47,10 @@ function App() {
 		refetchOnReconnect: true,
 	});
 
-	const { data: streamelementsService } = useGetServiceByIdQuery(
+	const { data: streamelementsService } = useGetServiceWithAuthByIdQuery(
 		{ id: ServiceType.Streamelements },
 		{
 			skip: !initIsSuccess,
-			refetchOnMountOrArgChange: true,
-			refetchOnFocus: true,
-			refetchOnReconnect: true,
 		},
 	);
 
