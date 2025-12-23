@@ -20,10 +20,7 @@ const UpdateGoalSettings = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const { goal } = useSelector((state: AppState) => state.goalsState);
-	const { data, error } = useGetGoalByIdQuery(
-		{ id },
-		{ skip: !id, refetchOnMountOrArgChange: true },
-	);
+	const { data, error } = useGetGoalByIdQuery({ id }, { skip: !id });
 	const [updateGoalSettings] = useUpdateGoalSettingsMutation();
 
 	useEffect(() => {

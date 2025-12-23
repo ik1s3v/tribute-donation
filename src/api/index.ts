@@ -30,6 +30,7 @@ export const api = createApi({
 		"Alerts",
 		"Auc-Filters",
 		"Auction-Settings",
+		"Goals",
 	],
 	endpoints: (builder) => ({
 		init: builder.mutation<void, void>({

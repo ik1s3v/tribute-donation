@@ -31,36 +31,42 @@ export const goalsApi = api.injectEndpoints({
 				command: "get_goals",
 				args: { ...pageParam },
 			}),
+			providesTags: ["Goals"],
 		}),
 		updateGoalSettings: builder.mutation<void, { goal: IGoal }>({
 			query: (args) => ({
 				command: "update_goal_settings",
 				args,
 			}),
+			invalidatesTags: ["Goals"],
 		}),
 		createGoal: builder.mutation<void, { goal: IGoal }>({
 			query: (args) => ({
 				command: "create_goal",
 				args,
 			}),
+			invalidatesTags: ["Goals"],
 		}),
 		getGoalById: builder.query<void, { id: string | undefined }>({
 			query: (args) => ({
 				command: "get_goal_by_id",
 				args,
 			}),
+			providesTags: ["Goals"],
 		}),
 		getNotEndedGoal: builder.query<IGoal | null, void>({
 			query: () => ({
 				command: "get_not_ended_goal",
 				args: undefined,
 			}),
+			providesTags: ["Goals"],
 		}),
 		finishGoal: builder.mutation<void, { id: string }>({
 			query: (args) => ({
 				command: "finish_goal",
 				args,
 			}),
+			invalidatesTags: ["Goals"],
 		}),
 	}),
 });

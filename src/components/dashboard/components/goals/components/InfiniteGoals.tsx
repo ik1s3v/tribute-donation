@@ -12,11 +12,7 @@ const InfiniteGoals = () => {
 	const { t } = useTranslation();
 
 	const { data, fetchNextPage, hasNextPage, isFetchingNextPage, error } =
-		useGetGoalsInfiniteQuery(undefined, {
-			refetchOnFocus: false,
-			refetchOnMountOrArgChange: false,
-			refetchOnReconnect: false,
-		});
+		useGetGoalsInfiniteQuery();
 	const dispatch = useDispatch();
 
 	useEffect(() => {
