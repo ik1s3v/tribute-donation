@@ -12,10 +12,19 @@ pub async fn get_messages(
     exchange_rates_service_mutex: State<'_, Mutex<ExchangeRatesService>>,
     limit: u64,
     offset: u64,
+    filter: MessagesFilter,
 ) -> Result<Vec<ClientMessage>, String> {
     let mut exchange_rates_service = exchange_rates_service_mutex.lock().await;
 
-    let mut client_messages = database_service.get_messages(limit, offset).await?;
+    let mut client_messages = database_service
+        .get_messages(
+            &limit,
+            &offset,
+            &filter.exclude_donations,
+            &filter.exclude_subscriptions,
+            &filter.exclude_follows,
+        )
+        .await?;
     let settings = database_service.get_settings().await?;
     if let Some(settings) = settings {
         for message in client_messages.iter_mut() {

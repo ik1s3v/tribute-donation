@@ -10,6 +10,7 @@ import {
 	Switch,
 	Typography,
 } from "@mui/material";
+import type { SerializedError } from "@reduxjs/toolkit";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -77,11 +78,17 @@ const Integrations = () => {
 														await removeCustomRewards().unwrap();
 													}
 												}
-											} catch (error) {
+											} catch {
 												dispatch(
 													showSnackBar({
-														message: error as string,
+														message: t("error.request_error"),
 														alertSeverity: AlertSeverity.error,
+													}),
+												);
+												dispatch(
+													setServiceActive({
+														service: service.id,
+														active: false,
 													}),
 												);
 											} finally {

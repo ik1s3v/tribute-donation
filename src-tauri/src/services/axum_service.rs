@@ -30,6 +30,9 @@ type Tx = mpsc::UnboundedSender<Message>;
 pub struct DonationsQuery {
     pub limit: u64,
     pub offset: u64,
+    pub exclude_donations: bool,
+    pub exclude_subscriptions: bool,
+    pub exclude_follows: bool,
 }
 
 #[derive(Clone)]
@@ -101,7 +104,13 @@ impl AxumService {
     ) -> Result<Json<Vec<ClientMessage>>, StatusCode> {
         let database_service = state.app.state::<DatabaseService>();
         let client_messages = database_service
-            .get_messages(params.limit, params.offset)
+            .get_messages(
+                &params.limit,
+                &params.offset,
+                &params.exclude_donations,
+                &params.exclude_subscriptions,
+                &params.exclude_follows,
+            )
             .await
             .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
 

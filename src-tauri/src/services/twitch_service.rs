@@ -12,7 +12,7 @@ use entity::{
 };
 use futures::{lock::Mutex, StreamExt};
 use serde::{Deserialize, Serialize};
-use std::{collections::HashMap, sync::Arc};
+use std::{collections::HashMap, sync::Arc, time::Duration};
 use tauri::{AppHandle, Manager, State};
 use tokio_tungstenite::{connect_async, tungstenite::Message};
 use uuid::Uuid;
@@ -391,7 +391,7 @@ impl TwitchService {
             api_endpoint,
             auth_endpoint,
             eventsub_endpoint,
-            http_client: reqwest::Client::builder().build().expect("http_client build error"),
+            http_client: reqwest::Client::builder().timeout(Duration::from_secs(5)).build().expect("http_client build error"),
             session_id:Arc::new(Mutex::new(None))
         }
     }

@@ -33,6 +33,7 @@ export const api = createApi({
 		"Goals",
 		"Maption-Settings",
 		"Media-Settings",
+		"Messages",
 	],
 	endpoints: (builder) => ({
 		init: builder.mutation<void, void>({

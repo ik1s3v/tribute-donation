@@ -47,3 +47,11 @@ pub struct ClientMessage {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub subscription: Option<super::subscription::Subscription>,
 }
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+
+pub struct MessagesFilter {
+    pub exclude_follows: bool,
+    pub exclude_subscriptions: bool,
+    pub exclude_donations: bool,
+}

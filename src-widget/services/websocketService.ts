@@ -29,17 +29,9 @@ export class WebSocketService
 		this.url = url;
 		this.socket = null;
 		this.hotReload = null;
-
-		this.subscribe<IClientMessage>(AppEvent.Message, (message) => {
-			store.dispatch(
-				messagesApi.util.updateQueryData("getMessages", undefined, (draft) => {
-					draft.pages[0].unshift(message);
-					const lastPageParam = draft.pageParams.at(-1);
-					if (lastPageParam) {
-						lastPageParam.offset = lastPageParam.offset + 1;
-					}
-				}),
-			);
+		store.dispatch(messagesApi.util.invalidateTags(["Messages"]));
+		this.subscribe<IClientMessage>(AppEvent.Message, (_) => {
+			store.dispatch(messagesApi.util.invalidateTags(["Messages"]));
 		});
 
 		this.subscribe<string>(AppEvent.AlertPlaying, (id) => {

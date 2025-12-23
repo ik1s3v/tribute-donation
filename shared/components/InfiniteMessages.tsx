@@ -8,14 +8,15 @@ import getMessageComponentByMessageType from "../../src/helpers/getMessageCompon
 import type { AppState } from "../../src/store";
 import { AlertSeverity } from "../enums";
 import { showSnackBar } from "../slices/snackBarSlice";
-import type { IClientMessage } from "../types";
+import type { IClientMessage, IMessagesFilter } from "../types";
+import MessagesFilter from "./MessagesFilter";
 
 const InfiniteMessages = ({
 	useGetMessagesInfiniteQuery,
 }: {
 	useGetMessagesInfiniteQuery: TypedUseInfiniteQuery<
 		IClientMessage[],
-		any,
+		{ filter: IMessagesFilter },
 		any,
 		any
 	>;
@@ -24,13 +25,19 @@ const InfiniteMessages = ({
 	const { playingAlertId } = useSelector(
 		(state: AppState) => state.alertsState,
 	);
+	const { filter } = useSelector((state: AppState) => state.messagesState);
 	const { playingMediaId } = useSelector((state: AppState) => state.mediaState);
 	const { data, fetchNextPage, hasNextPage, isFetchingNextPage, error } =
-		useGetMessagesInfiniteQuery(undefined, {
-			refetchOnFocus: false,
-			refetchOnMountOrArgChange: false,
-			refetchOnReconnect: false,
-		});
+		useGetMessagesInfiniteQuery(
+			{
+				filter,
+			},
+			{
+				refetchOnFocus: false,
+				refetchOnMountOrArgChange: false,
+				refetchOnReconnect: false,
+			},
+		);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -45,6 +52,8 @@ const InfiniteMessages = ({
 	}, [error, dispatch]);
 	return (
 		<>
+			<MessagesFilter />
+
 			{!data?.pages[0].length ? (
 				<Skeleton
 					variant="rectangular"

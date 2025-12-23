@@ -20,7 +20,8 @@
 	},
 	"error": {
 		"wrong_lots_format": "Wrong lots format",
-		"not_connected": "Not connected"
+		"not_connected": "Not connected",
+		"request_error": "Request error"
 	},
 	"updater": {
 		"title": "Update",
@@ -78,6 +79,12 @@
 		"donate": "donate",
 		"follow": "follow",
 		"subscription": "subscription"
+	},
+	"filter": {
+		"title": "Filter messages",
+		"exclude_donations": "Exclude donations",
+		"exclude_follows": "Exclude follows",
+		"exclude_subscriptions": "Exclude subscriptions"
 	},
 	"settings": {
 		"title": "Settings",

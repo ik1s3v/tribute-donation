@@ -59,16 +59,7 @@ export class WebSocketService
 				updateAucFighterTeamAmount(message.donation, this);
 				store.dispatch(addMaptionDonation(message.donation));
 			}
-
-			store.dispatch(
-				messagesApi.util.updateQueryData("getMessages", undefined, (draft) => {
-					draft.pages[0].unshift(message);
-					const lastPageParam = draft.pageParams.at(-1);
-					if (lastPageParam) {
-						lastPageParam.offset = lastPageParam.offset + 1;
-					}
-				}),
-			);
+			store.dispatch(messagesApi.util.invalidateTags(["Messages"]));
 		});
 
 		this.subscribe<ITwitchEventPayload<ITwitchRedemptionEvent>>(

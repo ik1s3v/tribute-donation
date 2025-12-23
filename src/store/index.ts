@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { alertsSlice } from "../../shared/slices/alertsSlice";
 import { mediaSlice } from "../../shared/slices/mediaSlice";
+import { messagesSlice } from "../../shared/slices/messagesSlice.ts";
 import { servicesSlice } from "../../shared/slices/servicesSlice.ts";
 import { snackBarSlice } from "../../shared/slices/snackBarSlice";
 import {
@@ -32,6 +33,7 @@ import { streamElementsSlice } from "./slices/streamElementsSlice";
 export const rootReducer = combineReducers({
 	snackBarState: snackBarSlice.reducer,
 	mainState: mainSlice.reducer,
+	messagesState: messagesSlice.reducer,
 	mediaState: mediaSlice.reducer,
 	alertsState: alertsSlice.reducer,
 	settingsState: settingsSlice.reducer,

@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { alertsSlice } from "../../shared/slices/alertsSlice";
 import { mediaSlice } from "../../shared/slices/mediaSlice";
+import { messagesSlice } from "../../shared/slices/messagesSlice";
 import { servicesSlice } from "../../shared/slices/servicesSlice";
 import { api } from "../api";
 
@@ -8,6 +9,7 @@ export const rootReducer = combineReducers({
 	mediaState: mediaSlice.reducer,
 	alertsState: alertsSlice.reducer,
 	servicesState: servicesSlice.reducer,
+	messagesState: messagesSlice.reducer,
 	[api.reducerPath]: api.reducer,
 });
 

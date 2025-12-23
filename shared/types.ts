@@ -66,6 +66,12 @@ export interface IPageParm {
 	offset: number;
 }
 
+export interface IMessagesFilter {
+	exclude_donations: boolean;
+	exclude_subscriptions: boolean;
+	exclude_follows: boolean;
+}
+
 export interface IEventMessage<T> {
 	event: AppEvent;
 	data: T;

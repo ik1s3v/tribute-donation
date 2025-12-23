@@ -13,6 +13,7 @@ const Messages = () => {
 				widgetUrl={"http://localhost:12553/obs-dock-messages"}
 				text={t("widget.obs_dock_url")}
 			/>
+
 			<div>{t("skip_alert")} - ctrl+F1</div>
 			<div>{t("skip_media")} - ctrl+F2</div>
 
