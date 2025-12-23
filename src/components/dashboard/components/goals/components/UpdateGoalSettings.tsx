@@ -7,7 +7,6 @@ import { AlertSeverity } from "../../../../../../shared/enums";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
 import {
 	useGetGoalByIdQuery,
-	useGetNotEndedGoalQuery,
 	useUpdateGoalSettingsMutation,
 } from "../../../../../api/goalsApi";
 import type { AppState } from "../../../../../store";
@@ -15,7 +14,6 @@ import { setGoal } from "../../../../../store/slices/goalsSlice";
 import GoalSettings from "./GoalSettings";
 
 const UpdateGoalSettings = () => {
-	const { refetch } = useGetNotEndedGoalQuery();
 	const { t } = useTranslation();
 	const { id } = useParams();
 	const dispatch = useDispatch();
@@ -46,7 +44,6 @@ const UpdateGoalSettings = () => {
 				onSave={async () => {
 					try {
 						await updateGoalSettings({ goal }).unwrap();
-						refetch();
 						dispatch(
 							showSnackBar({
 								message: t("success"),
