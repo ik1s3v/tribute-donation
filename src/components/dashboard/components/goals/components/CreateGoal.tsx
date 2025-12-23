@@ -4,10 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { AlertSeverity } from "../../../../../../shared/enums";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
-import {
-	useCreateGoalMutation,
-	useGetNotEndedGoalQuery,
-} from "../../../../../api/goalsApi";
+import { useCreateGoalMutation } from "../../../../../api/goalsApi";
 import type { AppState } from "../../../../../store";
 import GoalSettings from "./GoalSettings";
 
@@ -16,7 +13,6 @@ const CreateGoal = () => {
 	const { goal } = useSelector((state: AppState) => state.goalsState);
 	const dispatch = useDispatch();
 	const [createGoal] = useCreateGoalMutation();
-	const { refetch } = useGetNotEndedGoalQuery();
 	const navigate = useNavigate();
 
 	return (
@@ -25,7 +21,6 @@ const CreateGoal = () => {
 				if (!goal) return;
 				try {
 					await createGoal({ goal }).unwrap();
-					refetch();
 					dispatch(
 						showSnackBar({
 							message: t("success"),
