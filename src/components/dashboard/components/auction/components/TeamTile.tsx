@@ -4,9 +4,7 @@ import getCurrencySymbol from "../../../../../../shared/utils/getCurrencySymbol"
 import { useGetSettingsQuery } from "../../../../../api/settingsApi";
 
 const TeamTile = ({ team }: { team: IAucFighterTeam }) => {
-	const { data: settings } = useGetSettingsQuery(undefined, {
-		refetchOnMountOrArgChange: true,
-	});
+	const { data: settings } = useGetSettingsQuery();
 
 	return (
 		<>

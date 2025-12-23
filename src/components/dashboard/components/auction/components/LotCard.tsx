@@ -49,9 +49,7 @@ const LotCard = ({
 	const { isOver, setNodeRef } = useDroppable({
 		id: lot.fastId,
 	});
-	const { data: settings } = useGetSettingsQuery(undefined, {
-		refetchOnMountOrArgChange: true,
-	});
+	const { data: settings } = useGetSettingsQuery();
 
 	return (
 		<>

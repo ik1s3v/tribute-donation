@@ -7,6 +7,7 @@ export const auctionApi = api.injectEndpoints({
 			query: () => ({
 				command: "get_auction_settings",
 			}),
+			providesTags: ["Auction-Settings"],
 		}),
 		updateAuctionSettings: builder.mutation<
 			void,
@@ -16,6 +17,7 @@ export const auctionApi = api.injectEndpoints({
 				command: "update_auction_settings",
 				args,
 			}),
+			invalidatesTags: ["Auction-Settings"],
 		}),
 	}),
 });

@@ -23,9 +23,7 @@ const AuctionSettings = () => {
 	);
 	const [updateAuctionSettings] = useUpdateAuctionSettingsMutation();
 	const dispatch = useDispatch();
-	const { data, error } = useGetAuctionSettingsQuery(undefined, {
-		refetchOnMountOrArgChange: true,
-	});
+	const { data, error } = useGetAuctionSettingsQuery();
 
 	useEffect(() => {
 		if (data) {

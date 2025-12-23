@@ -45,9 +45,7 @@ const Lots = () => {
 	const cacheRef = useRef(
 		new CellMeasurerCache({ fixedWidth: true, defaultHeight: 110 }),
 	);
-	const { data: auctionSettings } = useGetAuctionSettingsQuery(undefined, {
-		refetchOnMountOrArgChange: true,
-	});
+	const { data: auctionSettings } = useGetAuctionSettingsQuery();
 
 	const dispatch = useDispatch();
 	const { removeDonation } = auctionDonationsSlice.actions;

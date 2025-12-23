@@ -24,7 +24,13 @@ const tauriBaseQuery =
 export const api = createApi({
 	reducerPath: "api",
 	baseQuery: tauriBaseQuery(),
-	tagTypes: ["Services", "Settings", "Alerts", "Auc-Filters"],
+	tagTypes: [
+		"Services",
+		"Settings",
+		"Alerts",
+		"Auc-Filters",
+		"Auction-Settings",
+	],
 	endpoints: (builder) => ({
 		init: builder.mutation<void, void>({
 			query: () => ({
