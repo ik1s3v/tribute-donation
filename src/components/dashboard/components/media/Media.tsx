@@ -25,9 +25,7 @@ const Media = () => {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
 	const { mediaSettings } = useSelector((state: AppState) => state.mediaState);
-	const { data, error } = useGetMediaSettingsQuery(undefined, {
-		refetchOnMountOrArgChange: true,
-	});
+	const { data, error } = useGetMediaSettingsQuery();
 	const [updateMediaSettings] = useUpdateMediaSettingsMutation();
 
 	useEffect(() => {
