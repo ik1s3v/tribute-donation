@@ -12,10 +12,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { AlertSeverity } from "../../../../../../shared/enums";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
-import {
-	useFinishGoalMutation,
-	useGetNotEndedGoalQuery,
-} from "../../../../../api/goalsApi";
+import { useFinishGoalMutation } from "../../../../../api/goalsApi";
 
 const FinishGoalDialog = ({
 	open,
@@ -26,7 +23,6 @@ const FinishGoalDialog = ({
 	setOpen: Dispatch<SetStateAction<boolean>>;
 	goalId: string;
 }) => {
-	const { refetch } = useGetNotEndedGoalQuery();
 	const dispatch = useDispatch();
 	const { t } = useTranslation();
 	const [finishGoal] = useFinishGoalMutation();
@@ -53,7 +49,6 @@ const FinishGoalDialog = ({
 									alertSeverity: AlertSeverity.success,
 								}),
 							);
-							refetch();
 						} catch (error) {
 							const err = error as SerializedError;
 							dispatch(
