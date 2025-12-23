@@ -18,6 +18,7 @@ export const twitchApi = api.injectEndpoints({
 			query: () => ({
 				command: "twitch_connect",
 			}),
+			invalidatesTags: ["Services"],
 		}),
 		addCustomRewards: builder.mutation<void, void>({
 			query: () => ({
