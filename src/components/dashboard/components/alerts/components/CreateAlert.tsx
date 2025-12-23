@@ -4,15 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { AlertSeverity } from "../../../../../../shared/enums";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
-import {
-	useCreateAlertMutation,
-	useGetAlertsQuery,
-} from "../../../../../api/alertsApi";
+import { useCreateAlertMutation } from "../../../../../api/alertsApi";
 import type { AppState } from "../../../../../store";
 import AlertSettings from "../AlertSettings";
 
 const CreateAlert = () => {
-	const { refetch } = useGetAlertsQuery();
 	const { t } = useTranslation();
 	const [createAlert] = useCreateAlertMutation();
 	const { alert } = useSelector((state: AppState) => state.alertsState);
@@ -27,7 +23,6 @@ const CreateAlert = () => {
 				if (!alert) return;
 				try {
 					await createAlert({ alert }).unwrap();
-					refetch();
 					dispatch(
 						showSnackBar({
 							message: t("success"),
