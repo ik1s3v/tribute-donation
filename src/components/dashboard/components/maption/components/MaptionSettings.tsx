@@ -77,9 +77,7 @@ const MaptionSettings = () => {
 		setLngError(true);
 	};
 
-	const { data, error } = useGetMaptionSettingsQuery(undefined, {
-		refetchOnMountOrArgChange: true,
-	});
+	const { data, error } = useGetMaptionSettingsQuery();
 
 	useEffect(() => {
 		if (data) {

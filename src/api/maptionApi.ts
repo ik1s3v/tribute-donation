@@ -1,5 +1,5 @@
-import { api } from ".";
 import type { IMaptionSettings } from "../../shared/types";
+import { api } from ".";
 
 export const maptionApi = api.injectEndpoints({
 	endpoints: (builder) => ({
@@ -7,6 +7,7 @@ export const maptionApi = api.injectEndpoints({
 			query: () => ({
 				command: "get_maption_settings",
 			}),
+			providesTags: ["Maption-Settings"],
 		}),
 		updateMaptionSettings: builder.mutation<
 			void,
@@ -16,6 +17,7 @@ export const maptionApi = api.injectEndpoints({
 				command: "update_maption_settings",
 				args,
 			}),
+			invalidatesTags: ["Maption-Settings"],
 		}),
 	}),
 });

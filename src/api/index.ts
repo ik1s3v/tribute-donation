@@ -31,6 +31,7 @@ export const api = createApi({
 		"Auc-Filters",
 		"Auction-Settings",
 		"Goals",
+		"Maption-Settings",
 	],
 	endpoints: (builder) => ({
 		init: builder.mutation<void, void>({
