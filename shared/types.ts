@@ -1,5 +1,4 @@
 import type {
-	AlertType,
 	AlertVariationConditions,
 	AppEvent,
 	Currency,
@@ -16,6 +15,8 @@ export interface IClientMessage {
 	id: string;
 	type: MessageType;
 	donation?: IDonation;
+	follow?: IFollow;
+	subscription?: ISubscription;
 	created_at: number;
 }
 export interface IDonation {
@@ -34,6 +35,32 @@ export interface IDonation {
 	exchanged_currency: Currency;
 	created_at: number;
 }
+export interface IFollow {
+	id: string;
+	service_id: string;
+	message_id: string;
+	user_name: string;
+	user_id: string;
+	service: ServiceType;
+	played: boolean;
+	followed_at: number;
+}
+export interface ISubscription {
+	id: string;
+	service_id: string;
+	user_name: string;
+	user_id: string;
+	message_id: string;
+	played: boolean;
+	is_gift: boolean;
+	is_anonymous: boolean;
+	service: ServiceType;
+	tier: string;
+	cumulative_total: number;
+	total: number;
+	subscribed_at: number;
+}
+
 export interface IPageParm {
 	limit: number;
 	offset: number;
@@ -60,7 +87,7 @@ export interface IAlert {
 	audio: string;
 	audio_volume: number;
 	view_type: ViewType;
-	type: AlertType;
+	type: MessageType;
 	image: string;
 	group_id: string;
 	name: string;
@@ -312,6 +339,7 @@ export interface ITwitchIntegrationSettings {
 export interface ITwitchIntegrationReward {
 	id: string;
 	reward_id: string | null;
+	subscription_id: string | null;
 	cost: number;
 	color: string;
 }

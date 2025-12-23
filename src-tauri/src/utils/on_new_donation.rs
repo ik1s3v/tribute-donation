@@ -27,29 +27,22 @@ pub async fn on_new_donation(
     target_amount: f64,
     message: Option<String>,
     app: AppHandle,
-) {
+) -> Result<(), String> {
     let media_service = app.state::<MediaService>();
     let database_service = app.state::<DatabaseService>();
     let tts_service = app.state::<TTSService>();
     let websocket_broadcaster = app.state::<WebSocketBroadcaster>();
     let exchange_rates_service_mutex = app.state::<Mutex<ExchangeRatesService>>();
 
-    if let Ok(Some(_)) = database_service
+    database_service
         .get_donation_by_service_id(service_id.clone())
-        .await
-    {
-        return;
-    }
-    let settings = match database_service
-        .get_settings()
-        .await
-        .map_err(|e| {
-            log::error!("{}", e.to_string());
-        })
-        .unwrap()
-    {
+        .await?;
+
+    let settings = match database_service.get_settings().await? {
         Some(settings) => settings,
-        None => return,
+        None => {
+            return Err("No settings found".to_string());
+        }
     };
 
     let id = Uuid::new_v4().to_string();
@@ -111,6 +104,8 @@ pub async fn on_new_donation(
         id: message_id.clone(),
         r#type: MessageType::Donation,
         created_at: created_at.clone(),
+        follow: None,
+        subscription: None,
         donation: Some(Donation {
             id,
             user_name,
@@ -173,4 +168,5 @@ pub async fn on_new_donation(
             .broadcast_event_message(&event_message)
             .await;
     }
+    Ok(())
 }

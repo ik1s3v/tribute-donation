@@ -1,13 +1,15 @@
 use sea_orm::{entity::prelude::*, FromJsonQueryResult};
 use serde::{Deserialize, Serialize};
 
+use crate::message::MessageType;
+
 #[sea_orm::model]
 #[derive(Clone, Debug, PartialEq, Eq, DeriveEntityModel, Serialize, Deserialize)]
 #[sea_orm(table_name = "alerts")]
 pub struct Model {
     #[sea_orm(primary_key, auto_increment = false)]
     pub id: String,
-    pub r#type: AlertType,
+    pub r#type: MessageType,
     pub audio: String,
     pub audio_volume: u32,
     pub image: String,
@@ -61,15 +63,4 @@ pub struct TextStyle {
     pub underline: bool,
     pub letter_spacing: u32,
     pub word_spacing: u32,
-}
-
-#[derive(Debug, Clone, PartialEq, EnumIter, DeriveActiveEnum, Serialize, Deserialize, Eq)]
-#[sea_orm(rs_type = "String", db_type = "Text")]
-pub enum AlertType {
-    #[sea_orm(string_value = "Donation")]
-    Donation,
-    #[sea_orm(string_value = "Subscription")]
-    Subscription,
-    #[sea_orm(string_value = "Follow")]
-    Follow,
 }

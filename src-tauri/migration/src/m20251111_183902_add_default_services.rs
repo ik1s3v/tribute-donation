@@ -32,6 +32,7 @@ impl MigrationTrait for Migration {
             rewards: vec![TwitchIntegrationReward {
                 id: Uuid::new_v4().to_string(),
                 reward_id: None,
+                subscription_id: None,
                 cost: 100,
                 color: "#1976d2".to_string(),
             }],

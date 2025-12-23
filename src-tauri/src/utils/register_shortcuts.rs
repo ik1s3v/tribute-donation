@@ -54,18 +54,18 @@ pub fn register_shortcuts(app: &mut App) -> Result<(), Box<dyn std::error::Error
                 .build(),
         )?;
 
-        app.global_shortcut()
+        let _ = app
+            .global_shortcut()
             .register(ctrl_f1_shortcut)
             .map_err(|e| {
                 log::error!("{}", e.to_string());
-            })
-            .unwrap();
-        app.global_shortcut()
+            });
+        let _ = app
+            .global_shortcut()
             .register(ctrl_f2_shortcut)
             .map_err(|e| {
                 log::error!("{}", e.to_string());
-            })
-            .unwrap();
+            });
         Ok(())
     }
 }

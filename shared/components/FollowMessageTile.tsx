@@ -1,34 +1,28 @@
-import ReplayIcon from "@mui/icons-material/Replay";
-import { Box, Button, Card, IconButton, Typography } from "@mui/material";
+import { Box, Button, Card, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import type { AppState } from "../../src/store";
 import { AppEvent } from "../enums";
 import useWebSocket from "../hooks/useWebSocket";
 import type { IClientMessage, MessageId } from "../types";
-import getColorByMediaType from "../utils/getColorByMediaType";
 import getColorByMessageType from "../utils/getColorByMessageType";
-import getCurrencySymbol from "../utils/getCurrencySymbol";
-import MediaTile from "./MediaTile";
 import MessageDate from "./MessageDate";
 
-const DonationMessageTile = ({
+const FollowMessageTile = ({
 	message,
 	isAlertPlaying,
-	isMediaPlaying,
 }: {
 	message: IClientMessage;
 	isAlertPlaying: boolean;
-	isMediaPlaying: boolean;
 }) => {
 	const { t } = useTranslation();
 	const websocketService = useWebSocket();
 	const { services } = useSelector((state: AppState) => state.servicesState);
-	const donation = message.donation;
+	const follow = message.follow;
 
 	return (
 		<>
-			{donation && (
+			{follow && (
 				<Card
 					sx={(theme) => ({
 						display: "flex",
@@ -44,31 +38,15 @@ const DonationMessageTile = ({
 						overflow: "hidden",
 					})}
 				>
-					{isMediaPlaying && <MediaTile donation={donation} />}
 					<Box
 						sx={{
 							width: "3rem",
 							display: "grid",
 							placeItems: "center",
-							background: donation?.media
-								? getColorByMediaType(donation.media.media_type)
-								: getColorByMessageType(message.type),
+							background: getColorByMessageType(message.type),
 							minHeight: "100%",
 						}}
-					>
-						{donation.media && !isMediaPlaying && !isAlertPlaying && (
-							<IconButton
-								onClick={() => {
-									websocketService.send<IClientMessage>({
-										event: AppEvent.ReplayMedia,
-										data: message,
-									});
-								}}
-							>
-								<ReplayIcon />
-							</IconButton>
-						)}
-					</Box>
+					></Box>
 
 					<div style={{ width: "100%", padding: 15 }}>
 						<div style={{ float: "right" }}>
@@ -80,13 +58,8 @@ const DonationMessageTile = ({
 									color: theme.palette.primary.main,
 								})}
 							>
-								{donation.user_name} {t("message.donate")}{" "}
-								{getCurrencySymbol(donation.currency)}
-								{donation.amount}
+								{follow.user_name} {t("message.follow")}{" "}
 							</Typography>
-						</div>
-						<div style={{ wordBreak: "break-word" }}>
-							<span>{donation.text}</span>
 						</div>
 
 						<div
@@ -132,7 +105,7 @@ const DonationMessageTile = ({
 							width: "3rem",
 							display: "grid",
 							placeItems: "center",
-							background: services[donation.service].color,
+							background: services[follow.service].color,
 							minHeight: "100%",
 						}}
 					/>
@@ -141,4 +114,4 @@ const DonationMessageTile = ({
 		</>
 	);
 };
-export default DonationMessageTile;
+export default FollowMessageTile;

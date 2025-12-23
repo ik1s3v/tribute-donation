@@ -11,6 +11,10 @@ pub struct Model {
     pub created_at: i64,
     #[sea_orm(has_one)]
     pub donation: HasOne<super::donation::Entity>,
+    #[sea_orm(has_one)]
+    pub follow: HasOne<super::follow::Entity>,
+    #[sea_orm(has_one)]
+    pub subscription: HasOne<super::subscription::Entity>,
 }
 
 impl ActiveModelBehavior for ActiveModel {}
@@ -36,4 +40,10 @@ pub struct ClientMessage {
     #[sea_orm(nested)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub donation: Option<super::donation::Donation>,
+    #[sea_orm(nested)]
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub follow: Option<super::follow::Follow>,
+    #[sea_orm(nested)]
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub subscription: Option<super::subscription::Subscription>,
 }

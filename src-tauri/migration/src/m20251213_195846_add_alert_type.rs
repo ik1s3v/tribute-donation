@@ -1,4 +1,4 @@
-use entity::alert::AlertType;
+use entity::message::MessageType;
 use sea_orm_migration::prelude::*;
 
 #[derive(DeriveMigrationName)]
@@ -14,7 +14,7 @@ impl MigrationTrait for Migration {
                     .add_column(
                         ColumnDef::new(Alerts::Type)
                             .text()
-                            .default(AlertType::Donation),
+                            .default(MessageType::Donation),
                     )
                     .to_owned(),
             )

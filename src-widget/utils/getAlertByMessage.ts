@@ -11,8 +11,12 @@ const getAlertByMessage = ({
 	const urlParams = new URLSearchParams(window.location.search);
 	const group_id = urlParams.get("group_id");
 	const onAlerts = alerts.filter(
-		(alert) => alert.status && alert.group_id === group_id,
+		(alert) =>
+			alert.status &&
+			alert.group_id === group_id &&
+			alert.type === message.type,
 	);
+
 	const randomAlerts = onAlerts.filter(
 		(alert) => alert.variation_conditions === AlertVariationConditions.Random,
 	);

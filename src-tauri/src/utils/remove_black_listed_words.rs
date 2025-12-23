@@ -5,7 +5,7 @@ pub fn remove_black_listed_words(text: &str, blacklist: &str) -> String {
 
     for &word in &words {
         let pattern = format!(r"\b{}\b", regex::escape(word));
-        let re = Regex::new(&pattern).unwrap();
+        let re = Regex::new(&pattern).expect("Invalid black listed words regex pattern");
         result = re.replace_all(&result, "***").to_string();
     }
 

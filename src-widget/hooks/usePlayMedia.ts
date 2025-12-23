@@ -24,7 +24,7 @@ const usePlayMedia = () => {
 			});
 
 			messagesRef.current = messagesRef.current.filter(
-				(d) => d.id !== message.id,
+				(m) => m.id !== message.id,
 			);
 
 			const newCurrentMessage = messagesRef.current.at(0);

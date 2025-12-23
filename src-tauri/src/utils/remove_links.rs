@@ -1,6 +1,6 @@
 use regex::Regex;
 pub fn remove_links(text: &str) -> String {
-    let url_regex = Regex::new(r"https?://[^\s]+").unwrap();
+    let url_regex = Regex::new(r"https?://[^\s]+").expect("Invalid URL regex pattern");
     url_regex.replace_all(text, "***").into_owned()
 }
 

@@ -71,19 +71,19 @@ impl ExchangeRatesService {
                 .get(target_currency.as_str())
                 .unwrap_or(&"1.0".to_string())
                 .parse::<f64>()
-                .unwrap();
+                .unwrap_or(1.0);
             return target_amount / target_rate;
         }
         let target_rate = rates
             .get(target_currency.as_str())
             .unwrap_or(&"1.0".to_string())
             .parse::<f64>()
-            .unwrap();
+            .unwrap_or(1.0);
         let base_rate = rates
             .get(base_currency.as_str())
             .unwrap_or(&"1.0".to_string())
             .parse::<f64>()
-            .unwrap();
+            .unwrap_or(1.0);
 
         return target_amount / (target_rate / base_rate);
     }

@@ -75,7 +75,9 @@
 	"message": {
 		"skip": "Skip",
 		"replay": "Replay",
-		"donate": "donate"
+		"donate": "donate",
+		"follow": "follow",
+		"subscription": "subscription"
 	},
 	"settings": {
 		"title": "Settings",
@@ -197,7 +199,11 @@
 		"AmountIsGreater": "Amount is greater",
 		"AmountIsEqual": "Amount is equal",
 		"delete": "Delete",
-		"sure_delete": "Are you sure you want to delete this variation?"
+		"sure_delete": "Are you sure you want to delete this variation?",
+		"type": "Type",
+		"Donation": "Donation",
+		"Subscription": "Subscription",
+		"Follow": "Follow"
 	},
 	"general": "General",
 	"goals": {

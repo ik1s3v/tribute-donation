@@ -1,4 +1,6 @@
 import DonationMessageTile from "../../shared/components/DonationMessageTile";
+import FollowMessageTile from "../../shared/components/FollowMessageTile";
+import SubscriptionMessageTile from "../../shared/components/SubscriptionMessageTile";
 import { MessageType } from "../../shared/enums";
 import type { IClientMessage } from "../../shared/types";
 
@@ -18,6 +20,17 @@ const getMessageComponentByMessageType = ({
 					message={message}
 					isAlertPlaying={isAlertPlaying}
 					isMediaPlaying={isMediaPlaying}
+				/>
+			);
+		case MessageType.Follow:
+			return (
+				<FollowMessageTile message={message} isAlertPlaying={isAlertPlaying} />
+			);
+		case MessageType.Subscription:
+			return (
+				<SubscriptionMessageTile
+					message={message}
+					isAlertPlaying={isAlertPlaying}
 				/>
 			);
 

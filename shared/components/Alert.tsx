@@ -1,29 +1,28 @@
-import { useTranslation } from "react-i18next";
+import type { ReactNode } from "react";
 import { ViewType } from "../enums";
-import type { IAlert, IDonation } from "../types";
+import type { IAlert } from "../types";
 import computePXSize from "../utils/computePXSize";
-import getCurrencySymbol from "../utils/getCurrencySymbol";
 import getGridAutoColumns from "../utils/getGridAutoColumns";
 import getGridAutoRows from "../utils/getGridAutoRows";
 import getGridTemplateAreas from "../utils/getGridTemplateAreas";
 
-const DonationAlert = ({
+const Alert = ({
 	alert,
-	donation,
 	imageSrc,
 	width,
 	height,
 	backgroundColor,
+	text,
+	children,
 }: {
 	alert: IAlert;
-	donation: IDonation;
 	imageSrc: string;
 	width: number;
 	height: number;
 	backgroundColor?: string;
+	text?: string;
+	children: ReactNode;
 }) => {
-	const { t } = useTranslation();
-
 	return (
 		<div
 			style={{
@@ -91,9 +90,7 @@ const DonationAlert = ({
 						}),
 					}}
 				>
-					{donation.user_name} {t("message.donate")}{" "}
-					{getCurrencySymbol(donation.currency)}
-					{donation.amount}
+					{children}
 				</span>
 
 				<span
@@ -120,10 +117,10 @@ const DonationAlert = ({
 						}),
 					}}
 				>
-					{donation.text}
+					{text}
 				</span>
 			</div>
 		</div>
 	);
 };
-export default DonationAlert;
+export default Alert;

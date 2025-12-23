@@ -1,4 +1,4 @@
-use entity::service::{ServiceAuth, ServiceSettings, ServiceType};
+use entity::service::{ServiceSettings, ServiceType};
 use tauri::{AppHandle, Manager, State};
 
 use crate::{
@@ -14,21 +14,30 @@ pub async fn add_custom_rewards(
     let reqwest_client = app.state::<reqwest::Client>();
     let database_service = app.state::<DatabaseService>();
     let service = database_service
-        .get_service_by_id(entity::service::ServiceType::Twitch)
-        .await
-        .unwrap()
-        .unwrap();
-
-    if let Some(ServiceAuth::Twitch(auth)) = service.auth {
-        if let Some(ServiceSettings::Twitch(settings)) = service.settings {
-            let settings = twitch_service
-                .add_custom_rewards(
-                    reqwest_client.clone(),
-                    &auth.access_token,
-                    &auth.user_id,
-                    settings,
-                )
-                .await?;
+        .get_service_with_auth_by_id(entity::service::ServiceType::Twitch)
+        .await?;
+    if let Some(service) = service {
+        let auth = twitch_service.check_auth(&app).await?;
+        let session_id_guard = twitch_service.session_id.lock().await;
+        let session_id = session_id_guard.clone();
+        drop(session_id_guard);
+        if let Some(ServiceSettings::Twitch(mut settings)) = service.settings {
+            let title = settings.rewards_name.clone();
+            for reward in settings.rewards.iter_mut() {
+                let created_reward = twitch_service
+                    .add_custom_reward(
+                        reqwest_client.clone(),
+                        &auth.access_token,
+                        &auth.user_id,
+                        &title,
+                        reward.clone(),
+                        session_id.clone(),
+                    )
+                    .await?;
+                if let Some(created_reward) = created_reward {
+                    *reward = created_reward;
+                }
+            }
             database_service
                 .update_service_settings(ServiceType::Twitch, ServiceSettings::Twitch(settings))
                 .await
@@ -37,7 +46,7 @@ pub async fn add_custom_rewards(
                     e.to_string()
                 })?;
         }
+        return Ok(());
     }
-
-    Ok(())
+    Err("Service not found".to_string())
 }

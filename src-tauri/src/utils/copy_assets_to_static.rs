@@ -10,7 +10,10 @@ pub fn copy_assets_to_static(assets_patch: &PathBuf, static_path: &PathBuf) -> R
         e.to_string()
     })?;
     for entry in dir {
-        let entry = entry.unwrap();
+        let entry = entry.map_err(|e| {
+            log::error!("{}", e.to_string());
+            e.to_string()
+        })?;
         fs::copy(entry.path(), static_path.join(entry.file_name())).map_err(|e| {
             log::error!("{}", e.to_string());
             e.to_string()

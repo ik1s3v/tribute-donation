@@ -57,7 +57,7 @@ impl StreamElementsService {
             event.data.message,
             app,
         )
-        .await;
+        .await?;
         Ok(())
     }
 }

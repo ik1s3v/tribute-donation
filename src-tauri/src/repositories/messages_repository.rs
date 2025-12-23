@@ -1,5 +1,5 @@
 use async_trait::async_trait;
-use entity::{donation, message::*};
+use entity::{donation, follow, message::*, subscription};
 
 use crate::services::DatabaseService;
 use sea_orm::{DbErr, EntityTrait, QueryOrder, QuerySelect};
@@ -14,6 +14,8 @@ impl MessagesRepository for DatabaseService {
     async fn get_messages(&self, limit: u64, offset: u64) -> Result<Vec<ClientMessage>, DbErr> {
         let client_messages: Vec<ClientMessage> = Entity::find()
             .left_join(donation::Entity)
+            .left_join(follow::Entity)
+            .left_join(subscription::Entity)
             .order_by_desc(Column::CreatedAt)
             .limit(limit)
             .offset(offset)

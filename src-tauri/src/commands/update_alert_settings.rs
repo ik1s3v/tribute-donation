@@ -13,14 +13,8 @@ pub async fn update_alert_settings(
     database_service: State<'_, DatabaseService>,
     alert: Model,
 ) -> Result<(), String> {
-    database_service
-        .update_alert_settings(alert)
-        .await
-        .map_err(|e| e.to_string())?;
-    let alerts = database_service
-        .get_alerts()
-        .await
-        .map_err(|e| e.to_string())?;
+    database_service.update_alert_settings(alert).await?;
+    let alerts = database_service.get_alerts().await?;
     let websocket_broadcaster = app.state::<WebSocketBroadcaster>();
     websocket_broadcaster
         .broadcast_event_message(&EventMessage {

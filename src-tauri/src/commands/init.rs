@@ -27,23 +27,23 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     let db_path = app
         .path()
         .resolve(SQLITE_DB.to_string(), BaseDirectory::AppLocalData)
-        .unwrap();
+        .map_err(|e| format!("Failed to resolve database path: {}", e))?;
     let widget_path = app
         .path()
         .resolve("dist-widget", BaseDirectory::Resource)
-        .unwrap();
+        .map_err(|e| format!("Failed to resolve widget path: {}", e))?;
     let auc_fighter_path = app
         .path()
         .resolve("auc-fighter", BaseDirectory::Resource)
-        .unwrap();
+        .map_err(|e| format!("Failed to resolve auc-fighter path: {}", e))?;
     let static_path = app
         .path()
         .resolve(format!("{}", STATIC_DIR), BaseDirectory::AppLocalData)
-        .unwrap();
+        .map_err(|e| format!("Failed to resolve static directory path: {}", e))?;
     let assets_path = app
         .path()
         .resolve("assets", BaseDirectory::Resource)
-        .unwrap();
+        .map_err(|e| format!("Failed to resolve assets path: {}", e))?;
 
     copy_assets_to_static(&assets_path, &static_path)?;
     let database_service = DatabaseService::new(&db_path, &version).await?;
@@ -70,20 +70,17 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     app.manage(tts_service);
 
     let api_id: i32 = std::env::var("API_ID")
-        .unwrap()
+        .expect("API_ID not set")
         .parse()
         .expect("API_ID must be a valid i32");
-    let api_hash: String = std::env::var("API_HASH").unwrap();
 
-    let session_path = app
-        .path()
-        .resolve("telegram.session", BaseDirectory::AppLocalData)
-        .unwrap();
+    let api_hash: String = std::env::var("API_HASH").expect("API_HASH not set");
+
     let user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36";
     let reqwest_client = reqwest::Client::builder()
         .user_agent(user_agent)
         .build()
-        .unwrap();
+        .map_err(|e| format!("reqwest build error: {}", e))?;
     app.manage(reqwest_client);
 
     let media_service = MediaService::new();
@@ -102,6 +99,11 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
 
     app.manage(Mutex::new(None::<LoginToken>));
     app.manage(Mutex::new(None::<PasswordToken>));
+
+    let session_path = app
+        .path()
+        .resolve("telegram.session", BaseDirectory::AppLocalData)
+        .map_err(|e| format!("Failed to resolve telegram session path: {}", e))?;
     let mut telegram_service = TelegramService::new(api_id, api_hash, session_path);
     telegram_service.connect(app.clone()).await?;
     app.manage(telegram_service);

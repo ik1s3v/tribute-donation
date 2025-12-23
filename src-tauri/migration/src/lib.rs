@@ -23,6 +23,8 @@ mod m20251212_023401_create_donations_table;
 mod m20251212_124415_update_messages_type;
 mod m20251212_124711_split_messages_and_donations;
 mod m20251213_195846_add_alert_type;
+mod m20251219_012429_create_table_followers;
+mod m20251219_211909_create_table_subscriptions;
 
 pub struct Migrator;
 
@@ -54,6 +56,8 @@ impl MigratorTrait for Migrator {
             Box::new(m20251212_124415_update_messages_type::Migration),
             Box::new(m20251212_124711_split_messages_and_donations::Migration),
             Box::new(m20251213_195846_add_alert_type::Migration),
+            Box::new(m20251219_012429_create_table_followers::Migration),
+            Box::new(m20251219_211909_create_table_subscriptions::Migration),
         ]
     }
 }

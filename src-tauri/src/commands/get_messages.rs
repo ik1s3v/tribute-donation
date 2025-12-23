@@ -19,28 +19,26 @@ pub async fn get_messages(
         .get_messages(limit, offset)
         .await
         .map_err(|e| e.to_string())?;
-    let settings = database_service
-        .get_settings()
-        .await
-        .map_err(|e| e.to_string())
-        .unwrap()
-        .unwrap();
-    for message in client_messages.iter_mut() {
-        if let Some(donation) = &message.donation {
-            let exchanged_amount = exchange_rates_service
-                .calculate_amount_by_currency(
-                    settings.currency.clone(),
-                    donation.currency.clone(),
-                    donation.amount,
-                )
-                .await;
-            message.donation = Some(Donation {
-                exchanged_amount: Some(exchanged_amount),
-                exchanged_currency: Some(settings.currency.clone()),
-                ..donation.clone()
-            });
+    let settings = database_service.get_settings().await?;
+    if let Some(settings) = settings {
+        for message in client_messages.iter_mut() {
+            if let Some(donation) = &message.donation {
+                let exchanged_amount = exchange_rates_service
+                    .calculate_amount_by_currency(
+                        settings.currency.clone(),
+                        donation.currency.clone(),
+                        donation.amount,
+                    )
+                    .await;
+                message.donation = Some(Donation {
+                    exchanged_amount: Some(exchanged_amount),
+                    exchanged_currency: Some(settings.currency.clone()),
+                    ..donation.clone()
+                });
+            }
         }
-    }
 
-    Ok(client_messages)
+        return Ok(client_messages);
+    }
+    Err("No settings".to_string())
 }

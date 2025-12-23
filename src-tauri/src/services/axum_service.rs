@@ -22,7 +22,6 @@ use serde::Deserialize;
 use std::path::PathBuf;
 use tauri::{AppHandle, Manager};
 use tokio::sync::mpsc;
-use tokio::sync::mpsc::error::SendError;
 use tower_http::cors::CorsLayer;
 use tower_http::services::{ServeDir, ServeFile};
 type Tx = mpsc::UnboundedSender<Message>;
@@ -59,7 +58,7 @@ impl AxumService {
         let static_path = self.static_path.clone();
         let auc_fighter_path = self.auc_fighter_path.clone();
         let cors =
-            CorsLayer::new().allow_origin("http://localhost:12553".parse::<HeaderValue>().unwrap());
+            CorsLayer::new().allow_origin(HeaderValue::from_static("http://localhost:12553"));
 
         let axum_router: Router = Router::new()
             .route("/ws", get(AxumService::websocket_handler))
@@ -179,84 +178,66 @@ impl AxumService {
         log::info!("WebSocket connection ended");
     }
 
-    async fn send_settings(tx: Tx, app: AppHandle) -> Result<(), SendError<Message>> {
+    async fn send_settings(tx: Tx, app: AppHandle) -> Result<(), String> {
         let database_service = app.state::<DatabaseService>();
-        let settings = database_service
-            .get_settings()
-            .await
-            .map_err(|e| {
-                log::error!("Get settings error: {}", e);
-            })
-            .unwrap();
-        tx.send(Message::Text(
-            (&serde_json::to_string(&EventMessage {
+
+        let settings = database_service.get_settings().await?;
+        if let Some(settings) = settings {
+            let json = serde_json::to_string(&EventMessage {
                 event: AppEvent::Settings,
                 data: settings,
             })
-            .unwrap())
-                .into(),
-        ))?;
-        let media_settings = database_service
-            .get_media_settings()
-            .await
-            .map_err(|e| {
-                log::error!("Get media settings error: {}", e);
-            })
-            .unwrap();
-        tx.send(Message::Text(
-            (&serde_json::to_string(&EventMessage {
+            .map_err(|e| e.to_string())?;
+
+            tx.send(Message::Text(json.into()))
+                .map_err(|e| e.to_string())?;
+        }
+
+        let media_settings = database_service.get_media_settings().await?;
+        if let Some(media_settings) = media_settings {
+            let json = serde_json::to_string(&EventMessage {
                 event: AppEvent::MediaSettings,
                 data: media_settings,
             })
-            .unwrap())
-                .into(),
-        ))?;
+            .map_err(|e| e.to_string())?;
 
-        let alerts = database_service
-            .get_alerts()
-            .await
-            .map_err(|e| {
-                log::error!("Get alerts settings error: {}", e);
-            })
-            .unwrap();
-        tx.send(Message::Text(
-            (&serde_json::to_string(&EventMessage {
-                event: AppEvent::Alerts,
-                data: alerts,
-            })
-            .unwrap())
-                .into(),
-        ))?;
-        let auc_fighter_settings = database_service
-            .get_auc_fighter_settings()
-            .await
-            .map_err(|e| {
-                log::error!("Get auc fighter settings error: {}", e);
-            })
-            .unwrap();
-        tx.send(Message::Text(
-            (&serde_json::to_string(&EventMessage {
+            tx.send(Message::Text(json.into()))
+                .map_err(|e| e.to_string())?;
+        }
+
+        let alerts = database_service.get_alerts().await?;
+        let json = serde_json::to_string(&EventMessage {
+            event: AppEvent::Alerts,
+            data: alerts,
+        })
+        .map_err(|e| e.to_string())?;
+
+        tx.send(Message::Text(json.into()))
+            .map_err(|e| e.to_string())?;
+
+        let auc_fighter_settings = database_service.get_auc_fighter_settings().await?;
+        if let Some(auc_fighter_settings) = auc_fighter_settings {
+            let json = serde_json::to_string(&EventMessage {
                 event: AppEvent::AucFighterSettings,
                 data: auc_fighter_settings,
             })
-            .unwrap())
-                .into(),
-        ))?;
-        let goal = database_service
-            .get_not_ended_goal()
-            .await
-            .map_err(|e| {
-                log::error!("Get not ended goal error: {}", e);
-            })
-            .unwrap();
-        tx.send(Message::Text(
-            (&serde_json::to_string(&EventMessage {
+            .map_err(|e| e.to_string())?;
+
+            tx.send(Message::Text(json.into()))
+                .map_err(|e| e.to_string())?;
+        }
+
+        let goal = database_service.get_not_ended_goal().await?;
+        if let Some(goal) = goal {
+            let json = serde_json::to_string(&EventMessage {
                 event: AppEvent::Goal,
                 data: goal,
             })
-            .unwrap())
-                .into(),
-        ))?;
+            .map_err(|e| e.to_string())?;
+
+            tx.send(Message::Text(json.into()))
+                .map_err(|e| e.to_string())?;
+        }
 
         Ok(())
     }

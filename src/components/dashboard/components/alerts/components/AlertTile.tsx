@@ -13,6 +13,7 @@ import { useNavigate } from "react-router";
 import { AppEvent } from "../../../../../../shared/enums";
 import useWebSocket from "../../../../../../shared/hooks/useWebSocket";
 import type { AlertId, IAlert } from "../../../../../../shared/types";
+import getColorByMessageType from "../../../../../../shared/utils/getColorByMessageType";
 import {
 	useGetAlertsQuery,
 	useUpdateAlertSettingsMutation,
@@ -68,7 +69,7 @@ const AlertTile = ({ alert }: { alert: IAlert }) => {
 						display: "flex",
 						placeItems: "center",
 						width: "3rem",
-						background: theme.palette.background.default,
+						background: getColorByMessageType(alert.type),
 						minHeight: "100%",
 					}}
 				></div>

@@ -7,9 +7,9 @@ pub fn parse_message_to_tribute_donate_message(
     text: &str,
     id: i32,
 ) -> Option<TributeDonateMessage> {
-    let donate_regex = Regex::new(r"(€|₽|\$)(\d+(\.\d{1,2})?)").unwrap();
-    let user_regex = Regex::new(r"User @([^\s]+)|Пользователь ([^\s]+)").unwrap();
-    let message_regex = Regex::new(r"(Сообщение:|Message:)\s*(.+)").unwrap();
+    let donate_regex = Regex::new(r"(€|₽|\$)(\d+(\.\d{1,2})?)").expect("Wrong currency regex");
+    let user_regex = Regex::new(r"User @([^\s]+)|Пользователь ([^\s]+)").expect("Wrong user regex");
+    let message_regex = Regex::new(r"(Сообщение:|Message:)\s*(.+)").expect("Wrong message regex");
 
     let donate_data = donate_regex.captures(&text).and_then(|caps| {
         let currency = caps.get(1).map(|m| match m.as_str() {

@@ -114,8 +114,3 @@ export enum MessageType {
 	Subscription = "Subscription",
 	Follow = "Follow",
 }
-export enum AlertType {
-	Donation = "Donation",
-	Subscription = "Subscription",
-	Follow = "Follow",
-}

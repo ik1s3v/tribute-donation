@@ -75,7 +75,8 @@ pub struct StreamElementsAuth {
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct TwitchIntegrationReward {
     pub id: String,
-    pub reward_id: Option<String>,
     pub cost: u32,
     pub color: String,
+    pub reward_id: Option<String>,
+    pub subscription_id: Option<String>,
 }

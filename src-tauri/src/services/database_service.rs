@@ -9,7 +9,7 @@ pub struct DatabaseService {
 }
 impl DatabaseService {
     pub async fn new(db_path: &PathBuf, version: &str) -> Result<Self, String> {
-        let db_url = format!("sqlite://{}?mode=rwc", db_path.to_str().unwrap());
+        let db_url = format!("sqlite://{}?mode=rwc", db_path.to_string_lossy());
 
         let options = Self::get_connect_options(db_url);
 
@@ -21,7 +21,7 @@ impl DatabaseService {
             Err(_) => {
                 let db_url = format!(
                     "sqlite://{}.v{}?mode=rwc",
-                    db_path.to_str().unwrap(),
+                    db_path.to_string_lossy(),
                     version
                 );
 

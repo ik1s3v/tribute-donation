@@ -14,8 +14,9 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { ServiceType } from "../../../../../../shared/enums";
+import { AlertSeverity, ServiceType } from "../../../../../../shared/enums";
 import { setServiceActive } from "../../../../../../shared/slices/servicesSlice";
+import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
 import { useGetServicesQuery } from "../../../../../api/servicesApi";
 import {
 	useAddCustomRewardsMutation,
@@ -71,11 +72,18 @@ const Integrations = () => {
 												);
 												if (service.id === ServiceType.Twitch) {
 													if (value) {
-														await addCustomRewards().unwrap;
+														await addCustomRewards().unwrap();
 													} else {
-														await removeCustomRewards().unwrap;
+														await removeCustomRewards().unwrap();
 													}
 												}
+											} catch (error) {
+												dispatch(
+													showSnackBar({
+														message: error as string,
+														alertSeverity: AlertSeverity.error,
+													}),
+												);
 											} finally {
 												setIsPending(false);
 											}

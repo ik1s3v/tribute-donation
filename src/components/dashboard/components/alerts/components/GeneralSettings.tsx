@@ -2,7 +2,10 @@ import { MenuItem, Select, TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { NumericFormat } from "react-number-format";
 import { useDispatch, useSelector } from "react-redux";
-import { AlertVariationConditions } from "../../../../../../shared/enums";
+import {
+	AlertVariationConditions,
+	MessageType,
+} from "../../../../../../shared/enums";
 import { setAlert } from "../../../../../../shared/slices/alertsSlice";
 import type { AppState } from "../../../../../store";
 import OnOffSwitch from "../../../../OnOffSwitch";
@@ -67,13 +70,43 @@ const GeneralSettings = () => {
 								}
 							/>
 						</div>
-
+						<div className={styles.settings}>
+							<div className={styles.label}>
+								<span>{t("alert.type")}:</span>
+							</div>
+							<div style={{ display: "flex", gap: 5 }}>
+								<Select sx={{ width: 170 }} value={alert.type}>
+									{Object.values(MessageType).map((value) => (
+										<MenuItem
+											key={value}
+											value={value}
+											onClick={() => {
+												dispatch(
+													setAlert({
+														...alert,
+														type: value,
+														variation_conditions:
+															AlertVariationConditions.Random,
+													}),
+												);
+											}}
+										>
+											{t(`alert.${value}`)}
+										</MenuItem>
+									))}
+								</Select>
+							</div>
+						</div>
 						<div className={styles.settings}>
 							<div className={styles.label}>
 								<span>{t("alert.variation_condition")}:</span>
 							</div>
 							<div style={{ display: "flex", gap: 5 }}>
-								<Select sx={{ width: 170 }} value={alert.variation_conditions}>
+								<Select
+									sx={{ width: 170 }}
+									value={alert.variation_conditions}
+									disabled={alert.type !== MessageType.Donation}
+								>
 									{Object.values(AlertVariationConditions).map((value) => (
 										<MenuItem
 											key={value}

@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import {
-	AlertType,
 	AlertVariationConditions,
+	MessageType,
 	ViewType,
 } from "../../../../../../shared/enums";
 import { setAlert } from "../../../../../../shared/slices/alertsSlice";
@@ -34,7 +34,7 @@ const AddNewAlertVariantButton = ({ group_id }: { group_id: string }) => {
 						message_style: TEXT_STYLE,
 						variation_conditions: AlertVariationConditions.Random,
 						status: true,
-						type: AlertType.Donation,
+						type: MessageType.Donation,
 						amount: 100,
 					}),
 				);

@@ -1,12 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-	AlertVariationConditions,
-	AppEvent,
-	Currency,
-	MessageType,
-	ServiceType,
-} from "../../shared/enums";
+import { AppEvent } from "../../shared/enums";
 import useWebSocket from "../../shared/hooks/useWebSocket";
 import type {
 	IAlert,
@@ -14,6 +8,7 @@ import type {
 	ISettings,
 	MessageId,
 } from "../../shared/types";
+import getTestAlertMessage from "../../shared/utils/getTestAlertMessage";
 import getAlertByMessage from "../utils/getAlertByMessage";
 
 const usePlayAlert = () => {
@@ -24,7 +19,6 @@ const usePlayAlert = () => {
 	const alertsRef = useRef<IAlert[]>([]);
 	const settingsRef = useRef<ISettings | null>(null);
 	const messagesRef = useRef<IClientMessage[]>([]);
-
 	const [currentMessage, setCurrentMessage] = useState<IClientMessage>();
 	const [currentAlert, setCurrentAlert] = useState<IAlert>();
 
@@ -46,7 +40,7 @@ const usePlayAlert = () => {
 						data: message.id,
 					});
 					messagesRef.current = messagesRef.current.filter(
-						(d) => d.id !== message.id,
+						(m) => m.id !== message.id,
 					);
 
 					const newCurrentMessage = messagesRef.current.at(0);
@@ -54,7 +48,13 @@ const usePlayAlert = () => {
 					setCurrentMessage(undefined);
 					setTimeout(() => {
 						if (newCurrentMessage) {
-							playMessage({ message: newCurrentMessage });
+							const alert = getAlertByMessage({
+								alerts: alertsRef.current,
+								message: newCurrentMessage,
+							});
+							if (alert) {
+								playMessage({ message: newCurrentMessage, alert });
+							}
 						}
 					}, 0);
 				},
@@ -65,16 +65,10 @@ const usePlayAlert = () => {
 	);
 
 	const playMessage = useCallback(
-		({ message }: { message: IClientMessage }) => {
+		({ message, alert }: { message: IClientMessage; alert: IAlert }) => {
 			if (settingsRef.current && !settingsRef.current.alert_paused) {
 				setTimeout(() => {
 					if (settingsRef.current && messagesRef.current.length) {
-						const alert = getAlertByMessage({
-							alerts: alertsRef.current,
-							message: message,
-						});
-
-						if (!alert) return;
 						websocketService.send<MessageId>({
 							event: AppEvent.AlertPlaying,
 							data: message.id,
@@ -98,41 +92,30 @@ const usePlayAlert = () => {
 	);
 
 	const testAlert = useCallback((id: string) => {
-		const alert = alertsRef.current.find((alert) => alert.id === id);
+		const urlParams = new URLSearchParams(window.location.search);
+		const group_id = urlParams.get("group_id");
+		const alert = alertsRef.current.find(
+			(alert) => alert.id === id && alert.group_id === group_id,
+		);
 		if (!alert) return;
-		const messageId = crypto.randomUUID();
-		const message: IClientMessage = {
-			id: messageId,
-			type: MessageType.Donation,
-			created_at: Math.round(new Date().getTime() / 1000),
-			donation: {
-				service_id: crypto.randomUUID(),
-				amount:
-					alert.variation_conditions === AlertVariationConditions.AmountIsEqual
-						? alert.amount
-						: alert.amount + 1,
-				user_name: t("alert.test_name"),
-				played: false,
-				text: t("alert.test_text"),
-				currency: Currency.EUR,
-				exchanged_amount: 1,
-				exchanged_currency: Currency.EUR,
-				created_at: Math.round(new Date().getTime() / 1000),
-				service: ServiceType.TributeBot,
-				id: crypto.randomUUID(),
-				message_id: messageId,
-			},
-		};
+		const testMessage = getTestAlertMessage({
+			alert,
+			userName: t("alert.test_name"),
+			text: t("alert.test_text"),
+			type: alert.type,
+		});
+		if (!testMessage) return;
+
 		if (!messagesRef.current.length && settingsRef.current) {
 			websocketService.send<MessageId>({
 				event: AppEvent.AlertPlaying,
-				data: message.id,
+				data: testMessage.id,
 			});
 
 			alertAudioRef.current.src = `static/${alert.audio}`;
 			alertAudioRef.current.volume = alert.audio_volume / 100;
 			alertAudioRef.current.play();
-			setCurrentMessage(message);
+			setCurrentMessage(testMessage);
 			setCurrentAlert(alert);
 		}
 	}, []);
@@ -157,19 +140,31 @@ const usePlayAlert = () => {
 
 	const handleNewMessage = useCallback(
 		(message: IClientMessage) => {
-			messagesRef.current = [...messagesRef.current, message];
-			if (messagesRef.current.length === 1) {
-				playMessage({ message: message });
+			const alert = getAlertByMessage({
+				alerts: alertsRef.current,
+				message: message,
+			});
+			if (alert) {
+				messagesRef.current = [...messagesRef.current, message];
+				if (messagesRef.current.length === 1) {
+					playMessage({ message, alert });
+				}
 			}
 		},
 		[playMessage],
 	);
 	const handleReplayMessage = useCallback(
 		(message: IClientMessage) => {
-			messagesRef.current = [message, ...messagesRef.current];
+			const alert = getAlertByMessage({
+				alerts: alertsRef.current,
+				message: message,
+			});
+			if (alert) {
+				messagesRef.current = [message, ...messagesRef.current];
 
-			if (messagesRef.current.length === 1) {
-				playMessage({ message: message });
+				if (messagesRef.current.length === 1) {
+					playMessage({ message, alert });
+				}
 			}
 		},
 		[playMessage],
@@ -275,7 +270,13 @@ const usePlayAlert = () => {
 					const message = messagesRef.current.at(0);
 
 					if (message) {
-						playMessage({ message: message });
+						const alert = getAlertByMessage({
+							alerts: alertsRef.current,
+							message: message,
+						});
+						if (alert) {
+							playMessage({ message, alert });
+						}
 					}
 					return;
 				}

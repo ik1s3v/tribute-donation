@@ -7,7 +7,7 @@ use sea_orm::{ActiveModelTrait, ActiveValue::Set, DbErr, EntityTrait, QuerySelec
 pub trait ServicesRepository: Send + Sync {
     async fn get_services(&self) -> Result<Vec<Model>, DbErr>;
     async fn get_service_by_id(&self, id: ServiceType) -> Result<Option<Model>, DbErr>;
-    async fn get_service_with_auth_by_id(&self, id: ServiceType) -> Result<Option<Model>, DbErr>;
+    async fn get_service_with_auth_by_id(&self, id: ServiceType) -> Result<Option<Model>, String>;
     async fn update_service_settings(
         &self,
         id: ServiceType,
@@ -18,7 +18,7 @@ pub trait ServicesRepository: Send + Sync {
         id: ServiceType,
         auth: Option<ServiceAuth>,
         authorized: bool,
-    ) -> Result<(), DbErr>;
+    ) -> Result<(), String>;
 }
 
 #[async_trait]
@@ -41,8 +41,14 @@ impl ServicesRepository for DatabaseService {
             .one(&self.connection)
             .await
     }
-    async fn get_service_with_auth_by_id(&self, id: ServiceType) -> Result<Option<Model>, DbErr> {
-        Entity::find_by_id(id).one(&self.connection).await
+    async fn get_service_with_auth_by_id(&self, id: ServiceType) -> Result<Option<Model>, String> {
+        Entity::find_by_id(id)
+            .one(&self.connection)
+            .await
+            .map_err(|e| {
+                log::error!("{}", e.to_string());
+                e.to_string()
+            })
     }
 
     async fn update_service_settings(
@@ -51,9 +57,11 @@ impl ServicesRepository for DatabaseService {
         settings: ServiceSettings,
     ) -> Result<(), DbErr> {
         let pear = self.get_service_by_id(id).await?;
-        let mut pear: ActiveModel = pear.unwrap().into();
-        pear.settings = Set(Some(settings));
-        pear.update(&self.connection).await?;
+        if let Some(pear) = pear {
+            let mut pear: ActiveModel = pear.into();
+            pear.settings = Set(Some(settings));
+            pear.update(&self.connection).await?;
+        }
 
         Ok(())
     }
@@ -63,16 +71,27 @@ impl ServicesRepository for DatabaseService {
         id: ServiceType,
         auth: Option<ServiceAuth>,
         authorized: bool,
-    ) -> Result<(), DbErr> {
+    ) -> Result<(), String> {
         let service = Entity::find_by_id(id)
             .one(&self.connection)
-            .await?
-            .ok_or(DbErr::Custom("Service not found".to_owned()))?;
-        let mut service_active_model: ActiveModel = service.into();
-        service_active_model.auth = Set(auth);
-        service_active_model.authorized = Set(authorized);
-        service_active_model.update(&self.connection).await?;
-
-        Ok(())
+            .await
+            .map_err(|e| {
+                log::error!("{}", e.to_string());
+                e.to_string()
+            })?;
+        if let Some(service) = service {
+            let mut service_active_model: ActiveModel = service.into();
+            service_active_model.auth = Set(auth);
+            service_active_model.authorized = Set(authorized);
+            service_active_model
+                .update(&self.connection)
+                .await
+                .map_err(|e| {
+                    log::error!("{}", e.to_string());
+                    e.to_string()
+                })?;
+            return Ok(());
+        }
+        Err("Service not found".to_string())
     }
 }

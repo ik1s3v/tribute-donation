@@ -58,8 +58,12 @@ impl WebSocketBroadcaster {
     where
         T: serde::Serialize,
     {
-        let text = serde_json::to_string(message).unwrap();
-        self.broadcast_text(text.into()).await;
+        let text = serde_json::to_string(message).map_err(|e| {
+            log::error!("serde error: {}", e.to_string());
+        });
+        if let Ok(text) = text {
+            self.broadcast_text(text.into()).await;
+        }
     }
 
     pub async fn send_to_client(

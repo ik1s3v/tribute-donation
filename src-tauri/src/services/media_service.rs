@@ -237,7 +237,7 @@ impl MediaService {
         };
 
         let re = Regex::new(
-            r#"<script id="__UNIVERSAL_DATA_FOR_REHYDRATION__" type="application/json">(.*?)</script>"#).unwrap();
+            r#"<script id="__UNIVERSAL_DATA_FOR_REHYDRATION__" type="application/json">(.*?)</script>"#).expect("Wrong script element regex");
 
         let captures: regex::Captures<'_> = re.captures(&html)?;
 
@@ -285,7 +285,7 @@ impl MediaService {
             }
         };
 
-        let re = Regex::new(r#""viewCount":"(\d+)""#).unwrap();
+        let re = Regex::new(r#""viewCount":"(\d+)""#).expect("Wrong viewCount regex");
 
         if let Some(captures) = re.captures(&html) {
             if let Some(count_match) = captures.get(1) {
@@ -364,7 +364,12 @@ impl MediaService {
             .value
             .replace("\\", "");
 
-        let mut url: Url = Url::parse(&clip_url).unwrap();
+        let mut url: Url = match Url::parse(&clip_url) {
+            Ok(url) => url,
+            Err(_) => {
+                return None;
+            }
+        };
         url.query_pairs_mut()
             .append_pair("sig", &sig)
             .append_pair("token", &token);
@@ -381,7 +386,7 @@ trait MediaParser {
 impl MediaParser for MediaService {
     fn get_url_media(&self, text: &str) -> Option<UrlMedia> {
         let url_pattern = r"https?://[^\s<>]+";
-        let url_regex = Regex::new(url_pattern).unwrap();
+        let url_regex = Regex::new(url_pattern).expect("Wrong url regex");
 
         let url_match = url_regex.find(text)?;
         let url = url_match.as_str().to_string();
@@ -436,19 +441,28 @@ impl MediaParser for MediaService {
         let tiktok_patterns = [r"tiktok\.com/", r"vm\.tiktok\.com/"];
 
         for pattern in youtube_patterns.iter() {
-            if Regex::new(pattern).unwrap().is_match(url) {
+            if Regex::new(pattern)
+                .expect("Wrong youtube regex")
+                .is_match(url)
+            {
                 return Some(MediaType::Youtube);
             }
         }
 
         for pattern in twitch_patterns.iter() {
-            if Regex::new(pattern).unwrap().is_match(url) {
+            if Regex::new(pattern)
+                .expect("Wrong twitch regex")
+                .is_match(url)
+            {
                 return Some(MediaType::Twitch);
             }
         }
 
         for pattern in tiktok_patterns.iter() {
-            if Regex::new(pattern).unwrap().is_match(url) {
+            if Regex::new(pattern)
+                .expect("Wrong tiktok regex")
+                .is_match(url)
+            {
                 return Some(MediaType::TikTok);
             }
         }

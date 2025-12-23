@@ -59,7 +59,7 @@ impl TelegramService {
             api_hash: self.api_hash.clone(),
 
             params: InitParams {
-                reconnection_policy: reconnection_policy,
+                reconnection_policy,
                 ..Default::default()
             },
         })
@@ -77,14 +77,12 @@ impl TelegramService {
         if is_authorized {
             database_service
                 .update_service_auth(ServiceType::TributeBot, None, true)
-                .await
-                .unwrap();
+                .await?;
             self.listen_tribute(app).await?;
         } else {
             database_service
                 .update_service_auth(ServiceType::TributeBot, None, false)
-                .await
-                .unwrap();
+                .await?;
         }
         Ok(())
     }
@@ -93,7 +91,10 @@ impl TelegramService {
         #[cfg(not(debug_assertions))]
         let tribute_id: i64 = 6675346585;
         #[cfg(debug_assertions)]
-        let tribute_id: i64 = std::env::var("TRIBUTE_ID").unwrap().parse().unwrap();
+        let tribute_id: i64 = std::env::var("TRIBUTE_ID")
+            .expect("TRIBUTE_ID not set")
+            .parse()
+            .expect("TRIBUTE_ID is not a valid i64");
         tauri::async_runtime::spawn(async move {
             let telegram_client = app.state::<Client>();
             loop {
@@ -120,7 +121,7 @@ impl TelegramService {
                             Some(message) => message,
                             None => continue,
                         };
-                        on_new_donation(
+                        let _ = on_new_donation(
                             message.id().to_string(),
                             ServiceType::TributeBot,
                             donate_message.user_name,
@@ -158,70 +159,77 @@ impl TelegramService {
     }
 
     pub async fn sign_in(&self, phone_code: String, app: AppHandle) -> Result<(), String> {
-        let app_handle = app.clone();
-        let telegram_client = app_handle.state::<Client>();
-
-        let login_token_state = app_handle.state::<Mutex<Option<LoginToken>>>();
+        let telegram_client = app.state::<Client>();
+        let login_token_state = app.state::<Mutex<Option<LoginToken>>>();
         let login_token_guard = login_token_state.lock().await;
-        let login_token = login_token_guard.as_ref().unwrap();
-        let password_token_state = app_handle.state::<Mutex<Option<PasswordToken>>>();
-        let mut password_token_guard = password_token_state.lock().await;
-        let sign_in = telegram_client.sign_in(login_token, &phone_code).await;
-        let database_service = app_handle.state::<DatabaseService>();
-        match sign_in {
-            Ok(_) => {
-                telegram_client
-                    .session()
-                    .save_to_file(&*self.session_path)
-                    .unwrap();
-                database_service
-                    .update_service_auth(ServiceType::TributeBot, None, true)
-                    .await
-                    .unwrap();
-                self.listen_tribute(app).await?;
-            }
-            Err(e) => match e {
-                SignInError::PasswordRequired(password_token) => {
-                    *password_token_guard = Some(password_token);
-                    return Err("Password required".to_string());
+        if let Some(login_token) = &*login_token_guard {
+            let sign_in = telegram_client.sign_in(login_token, &phone_code).await;
+            match sign_in {
+                Ok(_) => {
+                    telegram_client
+                        .session()
+                        .save_to_file(&*self.session_path)
+                        .map_err(|e| {
+                            log::error!("{}", e.to_string());
+                            e.to_string()
+                        })?;
+                    let database_service = app.state::<DatabaseService>();
+                    database_service
+                        .update_service_auth(ServiceType::TributeBot, None, true)
+                        .await?;
+
+                    self.listen_tribute(app.clone()).await?;
                 }
-                _ => {
-                    log::error!("{}", e.to_string());
-                    return Err(e.to_string());
-                }
-            },
-        };
-        Ok(())
+                Err(e) => match e {
+                    SignInError::PasswordRequired(password_token) => {
+                        let password_token_state = app.state::<Mutex<Option<PasswordToken>>>();
+                        let mut password_token_guard = password_token_state.lock().await;
+                        *password_token_guard = Some(password_token);
+                        return Err("Password required".to_string());
+                    }
+                    _ => {
+                        log::error!("{}", e.to_string());
+                        return Err(e.to_string());
+                    }
+                },
+            };
+            Ok(())
+        } else {
+            Err("Login token not found".to_string())
+        }
     }
 
     pub async fn check_password(&self, password: String, app: AppHandle) -> Result<(), String> {
-        let app_handle = app.clone();
-        let password_token_state = app_handle.state::<Mutex<Option<PasswordToken>>>();
-        let database_service = app_handle.state::<DatabaseService>();
+        let password_token_state = app.state::<Mutex<Option<PasswordToken>>>();
+        let database_service = app.state::<DatabaseService>();
         let password_token_guard = password_token_state.lock().await;
-        let password_token = password_token_guard.as_ref().unwrap();
-        let telegram_client = app_handle.state::<Client>();
-        let check_password = telegram_client
-            .check_password(password_token.clone(), password)
-            .await;
-        match check_password {
-            Ok(_) => {
-                telegram_client
-                    .session()
-                    .save_to_file(&*self.session_path)
-                    .unwrap();
-                database_service
-                    .update_service_auth(ServiceType::TributeBot, None, true)
-                    .await
-                    .unwrap();
-                self.listen_tribute(app).await?;
-                return Ok(());
-            }
-            Err(e) => {
-                log::error!("{}", e.to_string());
-                return Err(e.to_string());
-            }
-        };
+        if let Some(password_token) = &*password_token_guard {
+            let telegram_client = app.state::<Client>();
+            let check_password = telegram_client
+                .check_password(password_token.clone(), password)
+                .await;
+            match check_password {
+                Ok(_) => {
+                    telegram_client
+                        .session()
+                        .save_to_file(&*self.session_path)
+                        .map_err(|e| {
+                            log::error!("{}", e.to_string());
+                            e.to_string()
+                        })?;
+                    database_service
+                        .update_service_auth(ServiceType::TributeBot, None, true)
+                        .await?;
+                    self.listen_tribute(app.clone()).await?;
+                    return Ok(());
+                }
+                Err(e) => {
+                    log::error!("{}", e.to_string());
+                    return Err(e.to_string());
+                }
+            };
+        }
+        Err("Password token not found".to_string())
     }
 
     pub async fn is_authorized(&self, app: AppHandle) -> Result<bool, String> {

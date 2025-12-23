@@ -1,6 +1,14 @@
-import { AlertType } from "../enums";
-import type { IAlert, IClientMessage, IDonation } from "../types";
-import DonationAlert from "./DonationAlert";
+import { useTranslation } from "react-i18next";
+import { MessageType } from "../enums";
+import type {
+	IAlert,
+	IClientMessage,
+	IDonation,
+	IFollow,
+	ISubscription,
+} from "../types";
+import getCurrencySymbol from "../utils/getCurrencySymbol";
+import Alert from "./Alert";
 
 const AlertView = ({
 	alert,
@@ -17,18 +25,57 @@ const AlertView = ({
 	height: number;
 	backgroundColor?: string;
 }) => {
-	switch (alert.type) {
-		case AlertType.Donation:
+	const { t } = useTranslation();
+
+	switch (message.type) {
+		case MessageType.Donation: {
+			const donation = message.donation as IDonation;
+
 			return (
-				<DonationAlert
+				<Alert
 					alert={alert}
-					donation={message.donation as IDonation}
+					text={donation.text}
 					imageSrc={imageSrc}
 					width={width}
 					height={height}
 					backgroundColor={backgroundColor}
-				/>
+				>
+					{donation.user_name} {t("message.donate")}{" "}
+					{getCurrencySymbol(donation.currency)}
+					{donation.amount}
+				</Alert>
 			);
+		}
+		case MessageType.Follow: {
+			const follow = message.follow as IFollow;
+
+			return (
+				<Alert
+					alert={alert}
+					imageSrc={imageSrc}
+					width={width}
+					height={height}
+					backgroundColor={backgroundColor}
+				>
+					{follow.user_name} {t("message.follow")}
+				</Alert>
+			);
+		}
+		case MessageType.Subscription: {
+			const subscription = message.subscription as ISubscription;
+
+			return (
+				<Alert
+					alert={alert}
+					imageSrc={imageSrc}
+					width={width}
+					height={height}
+					backgroundColor={backgroundColor}
+				>
+					{subscription.user_name} {t("message.subscription")}
+				</Alert>
+			);
+		}
 
 		default:
 			return <div></div>;

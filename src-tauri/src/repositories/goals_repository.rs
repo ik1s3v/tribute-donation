@@ -11,9 +11,9 @@ pub trait GoalsRepository: Send + Sync {
     async fn get_goals(&self, limit: u64, offset: u64) -> Result<Vec<Model>, DbErr>;
     async fn get_goal_by_id(&self, id: String) -> Result<Option<Model>, DbErr>;
     async fn update_goal_settings(&self, goal: Model) -> Result<Model, DbErr>;
-    async fn update_goal_amount(&self, amount: u32) -> Result<(), DbErr>;
+    async fn update_goal_amount(&self, amount: u32) -> Result<(), String>;
     async fn create_goal(&self, goal: Model) -> Result<(), DbErr>;
-    async fn get_not_ended_goal(&self) -> Result<Option<Model>, DbErr>;
+    async fn get_not_ended_goal(&self) -> Result<Option<Model>, String>;
     async fn finish_goal(&self, id: String) -> Result<(), DbErr>;
 }
 
@@ -29,13 +29,17 @@ impl GoalsRepository for DatabaseService {
         .await?;
         Ok(())
     }
-    async fn get_not_ended_goal(&self) -> Result<Option<Model>, DbErr> {
+    async fn get_not_ended_goal(&self) -> Result<Option<Model>, String> {
         Entity::find()
             .filter(Expr::col(Column::Ended).eq(false))
             .one(&self.connection)
             .await
+            .map_err(|e| {
+                log::error!("Get not ended goal error: {}", e);
+                e.to_string()
+            })
     }
-    async fn update_goal_amount(&self, amount: u32) -> Result<(), DbErr> {
+    async fn update_goal_amount(&self, amount: u32) -> Result<(), String> {
         Entity::update_many()
             .col_expr(
                 Column::CurrentAmount,
@@ -43,7 +47,11 @@ impl GoalsRepository for DatabaseService {
             )
             .filter(Expr::col(Column::Ended).eq(false))
             .exec(&self.connection)
-            .await?;
+            .await
+            .map_err(|e| {
+                log::error!("Update goal amount error: {}", e);
+                e.to_string()
+            })?;
 
         Ok(())
     }
