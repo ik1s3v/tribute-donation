@@ -14,15 +14,10 @@ import { AppEvent } from "../../../../../../shared/enums";
 import useWebSocket from "../../../../../../shared/hooks/useWebSocket";
 import type { AlertId, IAlert } from "../../../../../../shared/types";
 import getColorByMessageType from "../../../../../../shared/utils/getColorByMessageType";
-import {
-	useGetAlertsQuery,
-	useUpdateAlertSettingsMutation,
-} from "../../../../../api/alertsApi";
+import { useUpdateAlertSettingsMutation } from "../../../../../api/alertsApi";
 import DeleteAlertDialog from "./DeleteAlertDialog";
 
 const AlertTile = ({ alert }: { alert: IAlert }) => {
-	const { refetch } = useGetAlertsQuery();
-
 	const [status, setStatus] = useState(alert.status);
 	const [updateAlertSettings] = useUpdateAlertSettingsMutation();
 	const [dialogOpen, setDialogOpen] = useState(false);
@@ -93,7 +88,6 @@ const AlertTile = ({ alert }: { alert: IAlert }) => {
 									await updateAlertSettings({
 										alert: { ...alert, status: value },
 									}).unwrap();
-									refetch();
 								}}
 							></Switch>
 						)}
