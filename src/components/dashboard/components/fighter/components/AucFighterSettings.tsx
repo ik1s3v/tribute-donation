@@ -19,9 +19,7 @@ const AucFighterSettings = () => {
 	const { aucFighterSettings } = useSelector(
 		(state: AppState) => state.aucFighterState,
 	);
-	const { data, error } = useGetAucFighterSettingsQuery(undefined, {
-		refetchOnMountOrArgChange: true,
-	});
+	const { data, error } = useGetAucFighterSettingsQuery();
 	const [updateAucFighterSettings] = useUpdateAucFighterSettingsMutation();
 	const dispatch = useDispatch();
 	const { t } = useTranslation();

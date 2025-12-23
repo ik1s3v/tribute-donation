@@ -7,6 +7,7 @@ export const aucFighterApi = api.injectEndpoints({
 			query: () => ({
 				command: "get_auc_fighter_settings",
 			}),
+			providesTags: ["Auc-Filters"],
 		}),
 		updateAucFighterSettings: builder.mutation<
 			void,
@@ -16,6 +17,7 @@ export const aucFighterApi = api.injectEndpoints({
 				command: "update_auc_fighter_settings",
 				args,
 			}),
+			invalidatesTags: ["Auc-Filters"],
 		}),
 	}),
 });
