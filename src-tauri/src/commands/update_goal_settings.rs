@@ -13,10 +13,7 @@ pub async fn update_goal_settings(
     database_service: State<'_, DatabaseService>,
     goal: Model,
 ) -> Result<(), String> {
-    let updated_goal = database_service
-        .update_goal_settings(goal)
-        .await
-        .map_err(|e| e.to_string())?;
+    let updated_goal = database_service.update_goal_settings(goal).await?;
 
     let websocket_broadcaster = app.state::<WebSocketBroadcaster>();
     websocket_broadcaster

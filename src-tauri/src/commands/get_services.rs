@@ -6,9 +6,5 @@ use tauri::State;
 pub async fn get_services(
     database_service: State<'_, DatabaseService>,
 ) -> Result<Vec<Model>, String> {
-    let services = database_service
-        .get_services()
-        .await
-        .map_err(|e| e.to_string())?;
-    Ok(services)
+    database_service.get_services().await
 }

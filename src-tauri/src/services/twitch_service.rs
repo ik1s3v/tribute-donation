@@ -420,11 +420,7 @@ impl TwitchService {
     ) -> Result<TwitchAuth, String> {
         let service = database_service
             .get_service_with_auth_by_id(ServiceType::Twitch)
-            .await
-            .map_err(|e| {
-                log::error!("Failed to get service: {}", e);
-                e.to_string()
-            })?;
+            .await?;
 
         let service = service.ok_or_else(|| "Service not found".to_string())?;
 
@@ -458,11 +454,7 @@ impl TwitchService {
                         Some(ServiceAuth::Twitch(new_auth.clone())),
                         true,
                     )
-                    .await
-                    .map_err(|e| {
-                        log::error!("Failed to update auth: {}", e);
-                        e.to_string()
-                    })?;
+                    .await?;
 
                 Ok(new_auth)
             }
@@ -807,13 +799,7 @@ impl TwitchService {
                                                             websocket_broadcaster
                                                                 .broadcast_event_message(&event_message)
                                                                 .await;
-                                                              match database_service.save_subscribe_message(client_message).await {
-                                                                Err(e)=>{
-                                                                    log::error!("{}",e.to_string())
-                                                                },
-                                                                _=>{}
-                                                                
-                                                            }
+                                                              let _= database_service.save_subscribe_message(client_message).await;
                                                           
                                                         }
                                                     }
@@ -852,13 +838,7 @@ impl TwitchService {
                                                             websocket_broadcaster
                                                                 .broadcast_event_message(&event_message)
                                                                 .await;
-                                                             match database_service.save_subscribe_message(client_message).await {
-                                                                Err(e)=>{
-                                                                    log::error!("{}",e.to_string())
-                                                                },
-                                                                _=>{}
-                                                                
-                                                            }
+                                                             let _= database_service.save_subscribe_message(client_message).await;
                                                         }
                                                     }
                                                     SubscriptionType::ChannelSubscriptionMessage => {
@@ -896,13 +876,7 @@ impl TwitchService {
                                                              websocket_broadcaster
                                                                  .broadcast_event_message(&event_message)
                                                                  .await;
-                                                              match database_service.save_subscribe_message(client_message).await {
-                                                                Err(e)=>{
-                                                                    log::error!("{}",e.to_string())
-                                                                },
-                                                                _=>{}
-                                                                
-                                                            }
+                                                            let _= database_service.save_subscribe_message(client_message).await;
                                                          }
 
                                                     },

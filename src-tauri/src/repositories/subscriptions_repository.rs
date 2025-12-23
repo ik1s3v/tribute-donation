@@ -3,25 +3,17 @@ use entity::{
     message::{self, ClientMessage},
     subscription,
 };
-use sea_orm::TransactionError;
 
 use crate::services::DatabaseService;
-use sea_orm::DbErr;
 
 #[async_trait]
 pub trait SubscriptionsRepository: Send + Sync {
-    async fn save_subscribe_message(
-        &self,
-        client_message: ClientMessage,
-    ) -> Result<(), TransactionError<DbErr>>;
+    async fn save_subscribe_message(&self, client_message: ClientMessage) -> Result<(), String>;
 }
 
 #[async_trait]
 impl SubscriptionsRepository for DatabaseService {
-    async fn save_subscribe_message(
-        &self,
-        client_message: ClientMessage,
-    ) -> Result<(), TransactionError<DbErr>> {
+    async fn save_subscribe_message(&self, client_message: ClientMessage) -> Result<(), String> {
         if let Some(subscription) = client_message.subscription {
             subscription::ActiveModel::builder()
                 .set_subscribed_at(subscription.subscribed_at)
@@ -43,7 +35,11 @@ impl SubscriptionsRepository for DatabaseService {
                         .set_created_at(client_message.created_at),
                 )
                 .insert(&self.connection)
-                .await?;
+                .await
+                .map_err(|e| {
+                    log::error!("Save subscription error: {}", e.to_string());
+                    e.to_string()
+                })?;
         }
 
         Ok(())

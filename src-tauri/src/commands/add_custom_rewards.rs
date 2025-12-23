@@ -40,11 +40,7 @@ pub async fn add_custom_rewards(
             }
             database_service
                 .update_service_settings(ServiceType::Twitch, ServiceSettings::Twitch(settings))
-                .await
-                .map_err(|e| {
-                    log::error!("{}", e.to_string());
-                    e.to_string()
-                })?;
+                .await?;
         }
         return Ok(());
     }

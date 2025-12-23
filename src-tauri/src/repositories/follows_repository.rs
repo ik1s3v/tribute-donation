@@ -3,25 +3,17 @@ use entity::{
     follow,
     message::{self, ClientMessage},
 };
-use sea_orm::TransactionError;
 
 use crate::services::DatabaseService;
-use sea_orm::DbErr;
 
 #[async_trait]
 pub trait FollowsRepository: Send + Sync {
-    async fn save_follow_message(
-        &self,
-        client_message: ClientMessage,
-    ) -> Result<(), TransactionError<DbErr>>;
+    async fn save_follow_message(&self, client_message: ClientMessage) -> Result<(), String>;
 }
 
 #[async_trait]
 impl FollowsRepository for DatabaseService {
-    async fn save_follow_message(
-        &self,
-        client_message: ClientMessage,
-    ) -> Result<(), TransactionError<DbErr>> {
+    async fn save_follow_message(&self, client_message: ClientMessage) -> Result<(), String> {
         if let Some(follow) = client_message.follow {
             follow::ActiveModel::builder()
                 .set_followed_at(follow.followed_at)
@@ -38,7 +30,11 @@ impl FollowsRepository for DatabaseService {
                         .set_created_at(client_message.created_at),
                 )
                 .insert(&self.connection)
-                .await?;
+                .await
+                .map_err(|e| {
+                    log::error!("Save follow message error: {}", e);
+                    e.to_string()
+                })?;
         }
 
         Ok(())

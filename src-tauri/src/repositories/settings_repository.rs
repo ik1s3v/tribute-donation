@@ -2,12 +2,12 @@ use entity::settings::*;
 
 use crate::services::DatabaseService;
 use async_trait::async_trait;
-use sea_orm::{ActiveValue::Set, DbErr, EntityTrait};
+use sea_orm::{ActiveValue::Set, EntityTrait};
 
 #[async_trait]
 pub trait SettingsRepository: Send + Sync {
     async fn get_settings(&self) -> Result<Option<Model>, String>;
-    async fn update_settings(&self, settings: Model) -> Result<(), DbErr>;
+    async fn update_settings(&self, settings: Model) -> Result<(), String>;
 }
 
 #[async_trait]
@@ -21,7 +21,7 @@ impl SettingsRepository for DatabaseService {
                 e.to_string()
             })
     }
-    async fn update_settings(&self, settings: Model) -> Result<(), DbErr> {
+    async fn update_settings(&self, settings: Model) -> Result<(), String> {
         Entity::update(ActiveModel {
             moderation_duration: Set(settings.moderation_duration),
             alert_paused: Set(settings.alert_paused),
@@ -33,7 +33,11 @@ impl SettingsRepository for DatabaseService {
             id: Set(1),
         })
         .exec(&self.connection)
-        .await?;
+        .await
+        .map_err(|e| {
+            log::error!("Update settings error: {}", e);
+            e.to_string()
+        })?;
         Ok(())
     }
 }

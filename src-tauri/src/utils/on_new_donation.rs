@@ -126,8 +126,7 @@ pub async fn on_new_donation(
 
     database_service
         .update_goal_amount(exchanged_amount as u32)
-        .await
-        .unwrap();
+        .await?;
     match database_service.get_not_ended_goal().await {
         Ok(goal) => {
             let event_message = EventMessage {
@@ -143,11 +142,7 @@ pub async fn on_new_donation(
 
     database_service
         .save_donation_message(client_message.clone())
-        .await
-        .map_err(|e| {
-            log::error!("{}", e.to_string());
-        })
-        .unwrap();
+        .await?;
 
     let event_message = EventMessage {
         event: AppEvent::Message,

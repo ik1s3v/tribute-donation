@@ -15,10 +15,7 @@ pub async fn get_messages(
 ) -> Result<Vec<ClientMessage>, String> {
     let mut exchange_rates_service = exchange_rates_service_mutex.lock().await;
 
-    let mut client_messages = database_service
-        .get_messages(limit, offset)
-        .await
-        .map_err(|e| e.to_string())?;
+    let mut client_messages = database_service.get_messages(limit, offset).await?;
     let settings = database_service.get_settings().await?;
     if let Some(settings) = settings {
         for message in client_messages.iter_mut() {

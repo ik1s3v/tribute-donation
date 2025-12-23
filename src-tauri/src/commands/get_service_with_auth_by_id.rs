@@ -7,9 +7,5 @@ pub async fn get_service_with_auth_by_id(
     database_service: State<'_, DatabaseService>,
     id: ServiceType,
 ) -> Result<Option<Model>, String> {
-    let service = database_service
-        .get_service_with_auth_by_id(id)
-        .await
-        .map_err(|e| e.to_string())?;
-    Ok(service)
+    database_service.get_service_with_auth_by_id(id).await
 }

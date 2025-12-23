@@ -14,8 +14,7 @@ pub async fn update_auc_fighter_settings(
 ) -> Result<(), String> {
     database_service
         .update_auc_fighter_settings(auc_fighter_settings.clone())
-        .await
-        .map_err(|e| e.to_string())?;
+        .await?;
     let websocket_broadcaster = app.state::<WebSocketBroadcaster>();
     websocket_broadcaster
         .broadcast_event_message(&EventMessage {

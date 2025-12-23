@@ -6,9 +6,5 @@ use tauri::State;
 pub async fn get_auc_fighter_settings(
     database_service: State<'_, DatabaseService>,
 ) -> Result<Option<Model>, String> {
-    let auc_fighter_settings = database_service
-        .get_auc_fighter_settings()
-        .await
-        .map_err(|e| e.to_string())?;
-    Ok(auc_fighter_settings)
+    database_service.get_auc_fighter_settings().await
 }

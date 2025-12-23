@@ -2,11 +2,11 @@ use entity::media_settings::*;
 
 use crate::services::DatabaseService;
 use async_trait::async_trait;
-use sea_orm::{ActiveValue::Set, DbErr, EntityTrait};
+use sea_orm::{ActiveValue::Set, EntityTrait};
 #[async_trait]
 pub trait MediaSettingsRepository: Send + Sync {
     async fn get_media_settings(&self) -> Result<Option<Model>, String>;
-    async fn update_media_settings(&self, media_settings: Model) -> Result<(), DbErr>;
+    async fn update_media_settings(&self, media_settings: Model) -> Result<(), String>;
 }
 
 #[async_trait]
@@ -21,7 +21,7 @@ impl MediaSettingsRepository for DatabaseService {
             })
     }
 
-    async fn update_media_settings(&self, alert: Model) -> Result<(), DbErr> {
+    async fn update_media_settings(&self, alert: Model) -> Result<(), String> {
         Entity::update(ActiveModel {
             id: Set(alert.id),
             youtube: Set(alert.youtube),
@@ -29,7 +29,11 @@ impl MediaSettingsRepository for DatabaseService {
             tiktok: Set(alert.tiktok),
         })
         .exec(&self.connection)
-        .await?;
+        .await
+        .map_err(|e| {
+            log::error!("Update media settings error: {}", e);
+            e.to_string()
+        })?;
         Ok(())
     }
 }

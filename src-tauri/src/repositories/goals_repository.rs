@@ -3,30 +3,32 @@ use migration::Expr;
 
 use crate::services::DatabaseService;
 use async_trait::async_trait;
-use sea_orm::{
-    ActiveValue::Set, DbErr, EntityTrait, ExprTrait, QueryFilter, QueryOrder, QuerySelect,
-};
+use sea_orm::{ActiveValue::Set, EntityTrait, ExprTrait, QueryFilter, QueryOrder, QuerySelect};
 #[async_trait]
 pub trait GoalsRepository: Send + Sync {
-    async fn get_goals(&self, limit: u64, offset: u64) -> Result<Vec<Model>, DbErr>;
-    async fn get_goal_by_id(&self, id: String) -> Result<Option<Model>, DbErr>;
-    async fn update_goal_settings(&self, goal: Model) -> Result<Model, DbErr>;
+    async fn get_goals(&self, limit: u64, offset: u64) -> Result<Vec<Model>, String>;
+    async fn get_goal_by_id(&self, id: String) -> Result<Option<Model>, String>;
+    async fn update_goal_settings(&self, goal: Model) -> Result<Model, String>;
     async fn update_goal_amount(&self, amount: u32) -> Result<(), String>;
-    async fn create_goal(&self, goal: Model) -> Result<(), DbErr>;
+    async fn create_goal(&self, goal: Model) -> Result<(), String>;
     async fn get_not_ended_goal(&self) -> Result<Option<Model>, String>;
-    async fn finish_goal(&self, id: String) -> Result<(), DbErr>;
+    async fn finish_goal(&self, id: String) -> Result<(), String>;
 }
 
 #[async_trait]
 impl GoalsRepository for DatabaseService {
-    async fn finish_goal(&self, id: String) -> Result<(), DbErr> {
+    async fn finish_goal(&self, id: String) -> Result<(), String> {
         Entity::update(ActiveModel {
             id: Set(id),
             ended: Set(true),
             ..ActiveModel::default()
         })
         .exec(&self.connection)
-        .await?;
+        .await
+        .map_err(|e| {
+            log::error!("Finish goal error: {}", e);
+            e.to_string()
+        })?;
         Ok(())
     }
     async fn get_not_ended_goal(&self) -> Result<Option<Model>, String> {
@@ -55,18 +57,28 @@ impl GoalsRepository for DatabaseService {
 
         Ok(())
     }
-    async fn get_goals(&self, limit: u64, offset: u64) -> Result<Vec<Model>, DbErr> {
+    async fn get_goals(&self, limit: u64, offset: u64) -> Result<Vec<Model>, String> {
         Entity::find()
             .order_by_desc(Column::StartDate)
             .limit(limit)
             .offset(offset)
             .all(&self.connection)
             .await
+            .map_err(|e| {
+                log::error!("Get goals error: {}", e);
+                e.to_string()
+            })
     }
-    async fn get_goal_by_id(&self, id: String) -> Result<Option<Model>, DbErr> {
-        Entity::find_by_id(id).one(&self.connection).await
+    async fn get_goal_by_id(&self, id: String) -> Result<Option<Model>, String> {
+        Entity::find_by_id(id)
+            .one(&self.connection)
+            .await
+            .map_err(|e| {
+                log::error!("Get goal by id error: {}", e);
+                e.to_string()
+            })
     }
-    async fn update_goal_settings(&self, goal: Model) -> Result<Model, DbErr> {
+    async fn update_goal_settings(&self, goal: Model) -> Result<Model, String> {
         let updated_goal = Entity::update(ActiveModel {
             id: Set(goal.id),
             title: Set(goal.title),
@@ -93,11 +105,15 @@ impl GoalsRepository for DatabaseService {
             limits_style: Set(goal.limits_style),
         })
         .exec(&self.connection)
-        .await?;
+        .await
+        .map_err(|e| {
+            log::error!("Update goal settings error: {}", e);
+            e.to_string()
+        })?;
 
         Ok(updated_goal)
     }
-    async fn create_goal(&self, goal: Model) -> Result<(), DbErr> {
+    async fn create_goal(&self, goal: Model) -> Result<(), String> {
         Entity::insert(ActiveModel {
             id: Set(goal.id),
             title: Set(goal.title),
@@ -124,7 +140,11 @@ impl GoalsRepository for DatabaseService {
             limits_style: Set(goal.limits_style),
         })
         .exec(&self.connection)
-        .await?;
+        .await
+        .map_err(|e| {
+            log::error!("Create goal error: {}", e);
+            e.to_string()
+        })?;
 
         Ok(())
     }

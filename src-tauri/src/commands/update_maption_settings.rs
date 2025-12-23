@@ -10,6 +10,4 @@ pub async fn update_maption_settings(
     database_service
         .update_maption_settings(maption_settings.clone())
         .await
-        .map_err(|e| e.to_string())?;
-    Ok(())
 }

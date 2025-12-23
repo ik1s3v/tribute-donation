@@ -3,10 +3,9 @@ use entity::{
     donation,
     message::{self, ClientMessage},
 };
-use sea_orm::TransactionError;
 
 use crate::services::DatabaseService;
-use sea_orm::{ColumnTrait, DbErr, EntityTrait, QueryFilter};
+use sea_orm::{ColumnTrait, EntityTrait, QueryFilter};
 
 #[async_trait]
 pub trait DonationsRepository: Send + Sync {
@@ -14,10 +13,7 @@ pub trait DonationsRepository: Send + Sync {
         &self,
         service_id: String,
     ) -> Result<Option<donation::Model>, String>;
-    async fn save_donation_message(
-        &self,
-        client_message: ClientMessage,
-    ) -> Result<(), TransactionError<DbErr>>;
+    async fn save_donation_message(&self, client_message: ClientMessage) -> Result<(), String>;
 }
 
 #[async_trait]
@@ -35,10 +31,7 @@ impl DonationsRepository for DatabaseService {
                 e.to_string()
             })
     }
-    async fn save_donation_message(
-        &self,
-        client_message: ClientMessage,
-    ) -> Result<(), TransactionError<DbErr>> {
+    async fn save_donation_message(&self, client_message: ClientMessage) -> Result<(), String> {
         if let Some(donation) = client_message.donation {
             donation::ActiveModel::builder()
                 .set_amount(donation.amount)
@@ -61,7 +54,11 @@ impl DonationsRepository for DatabaseService {
                         .set_created_at(client_message.created_at),
                 )
                 .insert(&self.connection)
-                .await?;
+                .await
+                .map_err(|e| {
+                    log::error!("Save donation message error: {}", e);
+                    e.to_string()
+                })?;
         }
 
         Ok(())

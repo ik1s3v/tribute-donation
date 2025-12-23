@@ -12,6 +12,4 @@ pub async fn update_service_auth(
     database_service
         .update_service_auth(id, auth, authorized)
         .await
-        .map_err(|e| e.to_string())?;
-    Ok(())
 }
