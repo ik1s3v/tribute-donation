@@ -42,9 +42,6 @@ function App() {
 		isLoading: settingsIsLoading,
 	} = useGetSettingsQuery(undefined, {
 		skip: !initIsSuccess,
-		refetchOnMountOrArgChange: true,
-		refetchOnFocus: true,
-		refetchOnReconnect: true,
 	});
 
 	const { data: streamelementsService } = useGetServiceWithAuthByIdQuery(
