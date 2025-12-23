@@ -18,7 +18,7 @@ const TwitchServiceSettings = () => {
 	const theme = useTheme();
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
-	const { data, refetch } = useGetServiceByIdQuery({ id: ServiceType.Twitch });
+	const { data } = useGetServiceByIdQuery({ id: ServiceType.Twitch });
 
 	const [updateServiceSettings] = useUpdateServiceSettingsMutation();
 
@@ -108,6 +108,7 @@ const TwitchServiceSettings = () => {
 													{
 														id: crypto.randomUUID(),
 														reward_id: null,
+														subscription_id: null,
 														cost: 100,
 														color: theme.palette.primary.main,
 													},
@@ -129,7 +130,6 @@ const TwitchServiceSettings = () => {
 											settings: settings,
 											id: ServiceType.Twitch,
 										}).unwrap();
-										refetch();
 										dispatch(
 											showSnackBar({
 												message: t("success"),
