@@ -12,10 +12,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { AlertSeverity } from "../../../../../../shared/enums";
 import { showSnackBar } from "../../../../../../shared/slices/snackBarSlice";
-import {
-	useDeleteAlertByIdMutation,
-	useGetAlertsQuery,
-} from "../../../../../api/alertsApi";
+import { useDeleteAlertByIdMutation } from "../../../../../api/alertsApi";
 
 const DeleteAlertDialog = ({
 	open,
@@ -26,7 +23,6 @@ const DeleteAlertDialog = ({
 	setOpen: Dispatch<SetStateAction<boolean>>;
 	alertId: string;
 }) => {
-	const { refetch } = useGetAlertsQuery();
 	const [deleteAlertById] = useDeleteAlertByIdMutation();
 	const dispatch = useDispatch();
 	const handleClose = () => {
@@ -51,7 +47,6 @@ const DeleteAlertDialog = ({
 									alertSeverity: AlertSeverity.success,
 								}),
 							);
-							refetch();
 						} catch (error) {
 							const err = error as SerializedError;
 							dispatch(
