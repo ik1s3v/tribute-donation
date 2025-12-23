@@ -22,7 +22,7 @@ const UpdateAlertSettings = () => {
 	const { alert } = useSelector((state: AppState) => state.alertsState);
 	const { data, error: getAlertByIdError } = useGetAlertByIdQuery(
 		{ id },
-		{ skip: !id, refetchOnMountOrArgChange: true },
+		{ skip: !id },
 	);
 	const [updateAlertSettings] = useUpdateAlertSettingsMutation();
 
