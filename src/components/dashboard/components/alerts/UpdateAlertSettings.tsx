@@ -8,14 +8,12 @@ import { setAlert } from "../../../../../shared/slices/alertsSlice";
 import { showSnackBar } from "../../../../../shared/slices/snackBarSlice";
 import {
 	useGetAlertByIdQuery,
-	useGetAlertsQuery,
 	useUpdateAlertSettingsMutation,
 } from "../../../../api/alertsApi";
 import type { AppState } from "../../../../store";
 import AlertSettings from "./AlertSettings";
 
 const UpdateAlertSettings = () => {
-	const { refetch } = useGetAlertsQuery();
 	const { t } = useTranslation();
 	const { id } = useParams();
 	const dispatch = useDispatch();
@@ -51,7 +49,6 @@ const UpdateAlertSettings = () => {
 				onSave={async () => {
 					try {
 						await updateAlertSettings({ alert }).unwrap();
-						refetch();
 						dispatch(
 							showSnackBar({
 								message: t("success"),
