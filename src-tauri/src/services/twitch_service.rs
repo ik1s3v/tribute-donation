@@ -1,14 +1,11 @@
 use crate::{
     enums::AppEvent,
-    repositories::{FollowsRepository, ServicesRepository, SubscriptionsRepository},
+    repositories::{FollowsRepository, RaidsRepository, ServicesRepository, SubscriptionsRepository},
     services::{DatabaseService, EventMessage, WebSocketBroadcaster},
 };
 use chrono::Utc;
 use entity::{
-    follow::Follow,
-    message::{ClientMessage, MessageType},
-    service::{ServiceAuth, ServiceType, TwitchAuth, TwitchIntegrationReward},
-    subscription::{self},
+    follow::Follow, message::{ClientMessage, MessageType}, raid, service::{ServiceAuth, ServiceType, TwitchAuth, TwitchIntegrationReward}, subscription::{self}
 };
 use futures::{lock::Mutex, StreamExt};
 use serde::{Deserialize, Serialize};
@@ -734,6 +731,7 @@ impl TwitchService {
                                                                 created_at: created_at.clone(),
                                                                 donation: None,
                                                                 subscription: None,
+                                                                raid: None,
                                                                 follow:Some(Follow {
                                                                     id: Uuid::new_v4().to_string(),
                                                                     user_id:event.user_id,
@@ -775,6 +773,7 @@ impl TwitchService {
                                                                 created_at: created_at.clone(),
                                                                 donation: None,
                                                                 follow: None,
+                                                                raid: None,
                                                                 subscription:Some(subscription::Subscription{
                                                                     id: Uuid::new_v4().to_string(),
                                                                     user_id:event.user_id,
@@ -814,6 +813,7 @@ impl TwitchService {
                                                                 created_at: created_at.clone(),
                                                                 donation: None,
                                                                 follow: None,
+                                                                raid: None,
                                                                 subscription:Some(subscription::Subscription{
                                                                     id: Uuid::new_v4().to_string(),
                                                                     user_id:event.user_id,
@@ -852,6 +852,7 @@ impl TwitchService {
                                                                  created_at: created_at.clone(),
                                                                  donation: None,
                                                                  follow: None,
+                                                                 raid: None,
                                                                  subscription:Some(subscription::Subscription{
                                                                      id: Uuid::new_v4().to_string(),
                                                                      user_id:event.user_id,
@@ -878,6 +879,42 @@ impl TwitchService {
                                                                  .await;
                                                             let _= database_service.save_subscribe_message(client_message).await;
                                                          }
+
+                                                    },
+                                                    SubscriptionType::ChannelRaid => {
+                                                         if let Event::Raid(event)=payload.event{
+                                                              let created_at = Utc::now().timestamp();
+                                                             let message_id=Uuid::new_v4().to_string();
+                                                             let client_message=ClientMessage{
+                                                                 id: message_id.clone(),
+                                                                 r#type: MessageType::Raid,
+                                                                 created_at: created_at.clone(),
+                                                                 donation: None,
+                                                                 follow: None,
+                                                                 subscription:None,
+                                                                 raid: Some(raid::Raid{
+                                                                     id: Uuid::new_v4().to_string(),
+                                                                     service_id: payload.subscription.id,
+                                                                     message_id:message_id,
+                                                                     played: false,
+                                                                     service:ServiceType::Twitch,
+                                                                     viewers: event.viewers,
+                                                                     from_broadcaster_user_id: event.from_broadcaster_user_id,
+                                                                     from_broadcaster_user_name: event.from_broadcaster_user_name,
+                                                                    created_at,
+                                                                 }),
+                                                             };
+                                                             let event_message = EventMessage {
+                                                                 event: AppEvent::Message,
+                                                                 data: client_message.clone(),
+                                                             };
+
+                                                             websocket_broadcaster
+                                                                 .broadcast_event_message(&event_message)
+                                                                 .await;
+                                                            let _= database_service.save_raid_message(client_message).await;
+                                                         }
+                                                       
 
                                                     },
                                                      _ => {}

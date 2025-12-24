@@ -15,6 +15,8 @@ pub struct Model {
     pub follow: HasOne<super::follow::Entity>,
     #[sea_orm(has_one)]
     pub subscription: HasOne<super::subscription::Entity>,
+    #[sea_orm(has_one)]
+    pub raid: HasOne<super::raid::Entity>,
 }
 
 impl ActiveModelBehavior for ActiveModel {}
@@ -28,6 +30,8 @@ pub enum MessageType {
     Subscription,
     #[sea_orm(string_value = "Follow")]
     Follow,
+    #[sea_orm(string_value = "Raid")]
+    Raid,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, DerivePartialModel)]
@@ -46,6 +50,9 @@ pub struct ClientMessage {
     #[sea_orm(nested)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub subscription: Option<super::subscription::Subscription>,
+    #[sea_orm(nested)]
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub raid: Option<super::raid::Raid>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -54,4 +61,5 @@ pub struct MessagesFilter {
     pub exclude_follows: bool,
     pub exclude_subscriptions: bool,
     pub exclude_donations: bool,
+    pub exclude_raids: bool,
 }

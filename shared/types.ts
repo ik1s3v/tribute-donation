@@ -17,6 +17,7 @@ export interface IClientMessage {
 	donation?: IDonation;
 	follow?: IFollow;
 	subscription?: ISubscription;
+	raid?: IRaid;
 	created_at: number;
 }
 export interface IDonation {
@@ -60,6 +61,17 @@ export interface ISubscription {
 	total: number;
 	subscribed_at: number;
 }
+export interface IRaid {
+	id: string;
+	service_id: string;
+	from_broadcaster_user_name: string;
+	from_broadcaster_user_id: string;
+	message_id: string;
+	played: boolean;
+	viewers: number;
+	service: ServiceType;
+	created_at: number;
+}
 
 export interface IPageParm {
 	limit: number;
@@ -70,6 +82,7 @@ export interface IMessagesFilter {
 	exclude_donations: boolean;
 	exclude_subscriptions: boolean;
 	exclude_follows: boolean;
+	exclude_raids: boolean;
 }
 
 export interface IEventMessage<T> {

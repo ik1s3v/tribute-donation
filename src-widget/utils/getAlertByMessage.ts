@@ -12,9 +12,7 @@ const getAlertByMessage = ({
 	const group_id = urlParams.get("group_id");
 	const onAlerts = alerts.filter(
 		(alert) =>
-			alert.status &&
-			alert.group_id === group_id &&
-			alert.type === message.type,
+			alert.status && alert.group_id === group_id && alert.type == message.type,
 	);
 
 	const randomAlerts = onAlerts.filter(

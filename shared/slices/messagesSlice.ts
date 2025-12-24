@@ -10,6 +10,7 @@ const initialState: MessagesState = {
 		exclude_donations: false,
 		exclude_follows: false,
 		exclude_subscriptions: false,
+		exclude_raids: false,
 	},
 };
 

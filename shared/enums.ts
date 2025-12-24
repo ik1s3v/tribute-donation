@@ -113,4 +113,5 @@ export enum MessageType {
 	Donation = "Donation",
 	Subscription = "Subscription",
 	Follow = "Follow",
+	Raid = "Raid",
 }

@@ -78,13 +78,15 @@
 		"replay": "Replay",
 		"donate": "donate",
 		"follow": "follow",
-		"subscription": "subscription"
+		"subscription": "subscription",
+		"raid": "raid"
 	},
 	"filter": {
 		"title": "Filter messages",
 		"exclude_donations": "Exclude donations",
 		"exclude_follows": "Exclude follows",
-		"exclude_subscriptions": "Exclude subscriptions"
+		"exclude_subscriptions": "Exclude subscriptions",
+		"exclude_raids": "Exclude raids"
 	},
 	"settings": {
 		"title": "Settings",
@@ -210,7 +212,8 @@
 		"type": "Type",
 		"Donation": "Donation",
 		"Subscription": "Subscription",
-		"Follow": "Follow"
+		"Follow": "Follow",
+		"Raid": "Raid"
 	},
 	"general": "General",
 	"goals": {

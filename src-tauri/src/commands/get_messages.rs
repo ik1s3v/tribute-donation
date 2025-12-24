@@ -23,6 +23,7 @@ pub async fn get_messages(
             &filter.exclude_donations,
             &filter.exclude_subscriptions,
             &filter.exclude_follows,
+            &filter.exclude_raids,
         )
         .await?;
     let settings = database_service.get_settings().await?;

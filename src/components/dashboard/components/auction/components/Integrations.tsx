@@ -10,8 +10,7 @@ import {
 	Switch,
 	Typography,
 } from "@mui/material";
-import type { SerializedError } from "@reduxjs/toolkit";
-import { useState } from "react";
+
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
@@ -33,7 +32,6 @@ const Integrations = () => {
 	const navigate = useNavigate();
 	const [addCustomRewards] = useAddCustomRewardsMutation();
 	const [removeCustomRewards] = useRemoveCustomRewardsMutation();
-	const [isPending, setIsPending] = useState(false);
 
 	return (
 		<Accordion>
@@ -61,10 +59,8 @@ const Integrations = () => {
 									<span>{service.id}:</span>
 									<Switch
 										checked={services[service.id].active}
-										disabled={isPending}
 										onChange={async (_, value) => {
 											try {
-												setIsPending(true);
 												dispatch(
 													setServiceActive({
 														service: service.id,
@@ -91,8 +87,6 @@ const Integrations = () => {
 														active: false,
 													}),
 												);
-											} finally {
-												setIsPending(false);
 											}
 										}}
 									/>

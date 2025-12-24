@@ -7,6 +7,7 @@ export const mediaApi = api.injectEndpoints({
 			query: () => ({
 				command: "get_media_settings",
 			}),
+			providesTags: ["Media-Settings"],
 		}),
 		updateMediaSettings: builder.mutation<
 			void,
@@ -16,6 +17,7 @@ export const mediaApi = api.injectEndpoints({
 				command: "update_media_settings",
 				args,
 			}),
+			invalidatesTags: ["Media-Settings"],
 		}),
 	}),
 });

@@ -33,6 +33,7 @@ pub struct DonationsQuery {
     pub exclude_donations: bool,
     pub exclude_subscriptions: bool,
     pub exclude_follows: bool,
+    pub exclude_raids: bool,
 }
 
 #[derive(Clone)]
@@ -110,6 +111,7 @@ impl AxumService {
                 &params.exclude_donations,
                 &params.exclude_subscriptions,
                 &params.exclude_follows,
+                &params.exclude_raids,
             )
             .await
             .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;

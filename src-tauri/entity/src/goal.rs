@@ -66,3 +66,14 @@ pub enum GoalProgressLayout {
     #[sea_orm(string_value = "CurrentAmountRemainingAmountPercent")]
     CurrentAmountRemainingAmountPercent,
 }
+
+#[derive(Debug, Clone, PartialEq, EnumIter, DeriveActiveEnum, Eq, Deserialize, Serialize)]
+#[sea_orm(rs_type = "String", db_type = "Text")]
+pub enum GoalType {
+    #[sea_orm(string_value = "Donation")]
+    Donation,
+    #[sea_orm(string_value = "Follow")]
+    Follow,
+    #[sea_orm(string_value = "Subscription")]
+    Subscription,
+}

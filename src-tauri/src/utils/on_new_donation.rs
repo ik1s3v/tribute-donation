@@ -106,6 +106,7 @@ pub async fn on_new_donation(
         created_at: created_at.clone(),
         follow: None,
         subscription: None,
+        raid: None,
         donation: Some(Donation {
             id,
             user_name,

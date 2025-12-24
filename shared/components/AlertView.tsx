@@ -5,6 +5,7 @@ import type {
 	IClientMessage,
 	IDonation,
 	IFollow,
+	IRaid,
 	ISubscription,
 } from "../types";
 import getCurrencySymbol from "../utils/getCurrencySymbol";
@@ -73,6 +74,21 @@ const AlertView = ({
 					backgroundColor={backgroundColor}
 				>
 					{subscription.user_name} {t("message.subscription")}
+				</Alert>
+			);
+		}
+		case MessageType.Raid: {
+			const raid = message.raid as IRaid;
+
+			return (
+				<Alert
+					alert={alert}
+					imageSrc={imageSrc}
+					width={width}
+					height={height}
+					backgroundColor={backgroundColor}
+				>
+					{raid.from_broadcaster_user_name} {t("message.raid")}
 				</Alert>
 			);
 		}
