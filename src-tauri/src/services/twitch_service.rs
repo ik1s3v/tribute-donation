@@ -1,7 +1,7 @@
 use crate::{
     enums::AppEvent,
-    repositories::{FollowsRepository, RaidsRepository, ServicesRepository, SubscriptionsRepository},
-    services::{DatabaseService, EventMessage, WebSocketBroadcaster},
+    repositories::{FollowsRepository,  RaidsRepository, ServicesRepository, SubscriptionsRepository},
+    services::{DatabaseService, EventMessage, WebSocketBroadcaster}, utils::goal_handler,
 };
 use chrono::Utc;
 use entity::{
@@ -708,7 +708,6 @@ impl TwitchService {
                                                 }
                                             }
                                         }
-
                                         WebSocketInstruction::Notification(message) => {
                                             if let Payload::Event(payload) = message.payload {
                                                 match payload.subscription.r#type  {
@@ -752,19 +751,14 @@ impl TwitchService {
                                                             websocket_broadcaster
                                                                 .broadcast_event_message(&event_message)
                                                                 .await;
-                                                            match database_service.save_follow_message(client_message).await {
-                                                                Err(e)=>{
-                                                                    log::error!("{}",e.to_string())
-                                                                },
-                                                                _=>{}
-                                                                
-                                                            }
+                                                            let _= database_service.save_follow_message(client_message).await;
+                                                            let _= goal_handler(&database_service, &websocket_broadcaster, 1, entity::goal::GoalType::TwitchFollow).await;
+
                                                         }
 
                                                     },
                                                     SubscriptionType::ChannelSubscribe =>{
                                                         if let Event::Subscribe(event)=payload.event{
-
                                                             let created_at = Utc::now().timestamp();
                                                             let message_id=Uuid::new_v4().to_string();
                                                             let client_message=ClientMessage{
@@ -799,6 +793,7 @@ impl TwitchService {
                                                                 .broadcast_event_message(&event_message)
                                                                 .await;
                                                               let _= database_service.save_subscribe_message(client_message).await;
+                                                              let _= goal_handler(&database_service, &websocket_broadcaster, 1, entity::goal::GoalType::TwitchSubscription).await;
                                                           
                                                         }
                                                     }
@@ -839,6 +834,8 @@ impl TwitchService {
                                                                 .broadcast_event_message(&event_message)
                                                                 .await;
                                                              let _= database_service.save_subscribe_message(client_message).await;
+                                                             let _= goal_handler(&database_service, &websocket_broadcaster, event.total, entity::goal::GoalType::TwitchSubscription).await;
+
                                                         }
                                                     }
                                                     SubscriptionType::ChannelSubscriptionMessage => {
@@ -878,6 +875,7 @@ impl TwitchService {
                                                                  .broadcast_event_message(&event_message)
                                                                  .await;
                                                             let _= database_service.save_subscribe_message(client_message).await;
+                                                            let _= goal_handler(&database_service, &websocket_broadcaster, 1, entity::goal::GoalType::TwitchSubscription).await;
                                                          }
 
                                                     },

@@ -14,6 +14,7 @@ pub struct Model {
     pub end_date: u32,
     pub start_date: u32,
     pub ended: bool,
+    pub r#type: GoalType,
     pub goal_amount_limits: bool,
     pub widget_background: bool,
     pub bar_height: u32,
@@ -72,8 +73,8 @@ pub enum GoalProgressLayout {
 pub enum GoalType {
     #[sea_orm(string_value = "Donation")]
     Donation,
-    #[sea_orm(string_value = "Follow")]
-    Follow,
-    #[sea_orm(string_value = "Subscription")]
-    Subscription,
+    #[sea_orm(string_value = "TwitchFollow")]
+    TwitchFollow,
+    #[sea_orm(string_value = "TwitchSubscription")]
+    TwitchSubscription,
 }

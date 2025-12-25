@@ -65,6 +65,17 @@ const getTestAlertMessage = ({
 			total: 1,
 			subscribed_at: Math.round(new Date().getTime() / 1000),
 		},
+		raid: {
+			id: crypto.randomUUID(),
+			service_id: crypto.randomUUID(),
+			from_broadcaster_user_name: userName,
+			from_broadcaster_user_id: "1",
+			message_id: messageId,
+			played: false,
+			viewers: 43543,
+			service: ServiceType.Twitch,
+			created_at: Math.round(new Date().getTime() / 1000),
+		},
 	};
 	return testMessage;
 };

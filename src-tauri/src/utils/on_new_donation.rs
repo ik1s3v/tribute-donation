@@ -1,6 +1,7 @@
 use chrono::Utc;
 use entity::{
     donation::Donation,
+    goal::GoalType,
     message::{ClientMessage, MessageType},
     service::ServiceType,
     settings::Currency,
@@ -16,7 +17,7 @@ use crate::{
         DatabaseService, EventMessage, ExchangeRatesService, MediaService, TTSService,
         WebSocketBroadcaster,
     },
-    utils::{remove_black_listed_words, remove_links},
+    utils::{goal_handler, remove_black_listed_words, remove_links},
 };
 
 pub async fn on_new_donation(
@@ -125,21 +126,13 @@ pub async fn on_new_donation(
         }),
     };
 
-    database_service
-        .update_goal_amount(exchanged_amount as u32)
-        .await?;
-    match database_service.get_not_ended_goal().await {
-        Ok(goal) => {
-            let event_message = EventMessage {
-                event: AppEvent::Goal,
-                data: goal,
-            };
-            websocket_broadcaster
-                .broadcast_event_message(&event_message)
-                .await;
-        }
-        _ => {}
-    }
+    goal_handler(
+        &database_service,
+        &websocket_broadcaster,
+        exchanged_amount as u32,
+        entity::goal::GoalType::Donation,
+    )
+    .await?;
 
     database_service
         .save_donation_message(client_message.clone())

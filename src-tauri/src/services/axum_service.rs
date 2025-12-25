@@ -15,6 +15,7 @@ use axum::{
     routing::get,
     Router,
 };
+use entity::goal::GoalType;
 use entity::message::ClientMessage;
 use futures::{sink::SinkExt, stream::StreamExt};
 use reqwest::StatusCode;
@@ -34,6 +35,10 @@ pub struct DonationsQuery {
     pub exclude_subscriptions: bool,
     pub exclude_follows: bool,
     pub exclude_raids: bool,
+}
+#[derive(Debug, Deserialize)]
+pub struct GoalsQuery {
+    pub r#type: GoalType,
 }
 
 #[derive(Clone)]
@@ -67,6 +72,7 @@ impl AxumService {
         let axum_router: Router = Router::new()
             .route("/ws", get(AxumService::websocket_handler))
             .route("/api/messages", get(AxumService::get_messages))
+            .route("/api/goals", get(AxumService::get_not_ended_goal))
             .nest_service("/static", ServeDir::new(&static_path))
             .nest_service(
                 "/auc-fighter",
@@ -117,6 +123,19 @@ impl AxumService {
             .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
 
         Ok(Json(client_messages))
+    }
+
+    async fn get_not_ended_goal(
+        Query(params): Query<GoalsQuery>,
+        State(state): State<AxumState>,
+    ) -> Result<Json<Option<entity::goal::Model>>, StatusCode> {
+        let database_service = state.app.state::<DatabaseService>();
+        let goal = database_service
+            .get_not_ended_goal(params.r#type)
+            .await
+            .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+
+        Ok(Json(goal))
     }
 
     async fn websocket_handler(
@@ -231,18 +250,6 @@ impl AxumService {
             let json = serde_json::to_string(&EventMessage {
                 event: AppEvent::AucFighterSettings,
                 data: auc_fighter_settings,
-            })
-            .map_err(|e| e.to_string())?;
-
-            tx.send(Message::Text(json.into()))
-                .map_err(|e| e.to_string())?;
-        }
-
-        let goal = database_service.get_not_ended_goal().await?;
-        if let Some(goal) = goal {
-            let json = serde_json::to_string(&EventMessage {
-                event: AppEvent::Goal,
-                data: goal,
             })
             .map_err(|e| e.to_string())?;
 

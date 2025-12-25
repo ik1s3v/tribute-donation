@@ -1,5 +1,6 @@
 pub mod copy_assets_to_static;
 pub mod get_currency_from_string;
+pub mod goal_handler;
 pub mod on_new_donation;
 pub mod parse_message_to_tribute_donate_message;
 pub mod register_shortcuts;
@@ -7,6 +8,7 @@ pub mod remove_black_listed_words;
 pub mod remove_links;
 pub use copy_assets_to_static::*;
 pub use get_currency_from_string::*;
+pub use goal_handler::*;
 pub use on_new_donation::*;
 pub use parse_message_to_tribute_donate_message::*;
 pub use register_shortcuts::*;

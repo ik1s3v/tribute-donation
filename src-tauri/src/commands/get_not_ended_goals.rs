@@ -3,9 +3,8 @@ use entity::goal::*;
 use tauri::State;
 
 #[tauri::command]
-pub async fn get_not_ended_goal(
+pub async fn get_not_ended_goals(
     database_service: State<'_, DatabaseService>,
-    r#type: GoalType,
-) -> Result<Option<Model>, String> {
-    database_service.get_not_ended_goal(r#type).await
+) -> Result<Vec<Model>, String> {
+    database_service.get_not_ended_goals().await
 }

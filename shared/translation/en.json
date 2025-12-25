@@ -223,6 +223,7 @@
 	"goal": {
 		"new": "New goal",
 		"goal": "View",
+		"type": "Type",
 		"elements": "Elements",
 		"progress": "Progress",
 		"goal_title": "Goal title",
@@ -249,7 +250,11 @@
 		"raised": "Raised",
 		"days_left": "Days left",
 		"finish_goal": "Finish goal",
-		"sure_finish": "Are you sure you want to finish this goal?"
+		"sure_finish": "Are you sure you want to finish this goal?",
+		"Donation": "Donation",
+		"TwitchSubscription": "Twitch Subscription",
+		"TwitchFollow": "Twitch Follow",
+		"goal_not_finished": "You have an unfinished goal of this type."
 	},
 	"save": "Save",
 	"back": "Back",

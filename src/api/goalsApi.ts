@@ -1,3 +1,4 @@
+import { GoalType } from "../../shared/enums";
 import type { IGoal, IPageParm } from "../../shared/types";
 import { api } from ".";
 
@@ -54,9 +55,16 @@ export const goalsApi = api.injectEndpoints({
 			}),
 			providesTags: ["Goals"],
 		}),
-		getNotEndedGoal: builder.query<IGoal | null, void>({
-			query: () => ({
+		getNotEndedGoal: builder.query<IGoal, { type: GoalType }>({
+			query: (args) => ({
 				command: "get_not_ended_goal",
+				args,
+			}),
+			providesTags: ["Goals"],
+		}),
+		getNotEndedGoals: builder.query<IGoal[], void>({
+			query: () => ({
+				command: "get_not_ended_goals",
 				args: undefined,
 			}),
 			providesTags: ["Goals"],
@@ -77,4 +85,5 @@ export const {
 	useGetGoalByIdQuery,
 	useGetNotEndedGoalQuery,
 	useFinishGoalMutation,
+	useGetNotEndedGoalsQuery,
 } = goalsApi;

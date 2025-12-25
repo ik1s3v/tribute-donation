@@ -4,6 +4,7 @@ import type {
 	Currency,
 	GoalProgressLayout,
 	GoalTextPosition,
+	GoalType,
 	MediaType,
 	MessageType,
 	ServiceType,
@@ -248,6 +249,7 @@ export interface IGoal {
 	current_amount: number;
 	end_date: number;
 	start_date: number;
+	type: GoalType;
 	ended: boolean;
 	bar_height: number;
 	rounding_radius: number;

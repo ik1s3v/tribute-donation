@@ -115,3 +115,8 @@ export enum MessageType {
 	Follow = "Follow",
 	Raid = "Raid",
 }
+export enum GoalType {
+	Donation = "Donation",
+	TwitchSubscription = "TwitchSubscription",
+	TwitchFollow = "TwitchFollow",
+}

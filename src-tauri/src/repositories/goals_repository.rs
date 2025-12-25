@@ -9,9 +9,10 @@ pub trait GoalsRepository: Send + Sync {
     async fn get_goals(&self, limit: u64, offset: u64) -> Result<Vec<Model>, String>;
     async fn get_goal_by_id(&self, id: String) -> Result<Option<Model>, String>;
     async fn update_goal_settings(&self, goal: Model) -> Result<Model, String>;
-    async fn update_goal_amount(&self, amount: u32) -> Result<(), String>;
+    async fn update_goal_amount(&self, amount: u32, r#type: GoalType) -> Result<(), String>;
     async fn create_goal(&self, goal: Model) -> Result<(), String>;
-    async fn get_not_ended_goal(&self) -> Result<Option<Model>, String>;
+    async fn get_not_ended_goal(&self, r#type: GoalType) -> Result<Option<Model>, String>;
+    async fn get_not_ended_goals(&self) -> Result<Vec<Model>, String>;
     async fn finish_goal(&self, id: String) -> Result<(), String>;
 }
 
@@ -31,9 +32,10 @@ impl GoalsRepository for DatabaseService {
         })?;
         Ok(())
     }
-    async fn get_not_ended_goal(&self) -> Result<Option<Model>, String> {
+    async fn get_not_ended_goal(&self, r#type: GoalType) -> Result<Option<Model>, String> {
         Entity::find()
             .filter(Expr::col(Column::Ended).eq(false))
+            .filter(Expr::col(Column::Type).eq(r#type))
             .one(&self.connection)
             .await
             .map_err(|e| {
@@ -41,12 +43,24 @@ impl GoalsRepository for DatabaseService {
                 e.to_string()
             })
     }
-    async fn update_goal_amount(&self, amount: u32) -> Result<(), String> {
+    async fn get_not_ended_goals(&self) -> Result<Vec<Model>, String> {
+        Entity::find()
+            .filter(Expr::col(Column::Ended).eq(false))
+            .all(&self.connection)
+            .await
+            .map_err(|e| {
+                log::error!("Get not ended goals error: {}", e);
+                e.to_string()
+            })
+    }
+    async fn update_goal_amount(&self, amount: u32, r#type: GoalType) -> Result<(), String> {
         Entity::update_many()
             .col_expr(
                 Column::CurrentAmount,
                 Expr::col(Column::CurrentAmount).add(amount),
             )
+            .filter(Expr::col(Column::Ended).eq(false))
+            .filter(Expr::col(Column::Type).eq(r#type))
             .filter(Expr::col(Column::Ended).eq(false))
             .exec(&self.connection)
             .await
@@ -88,6 +102,7 @@ impl GoalsRepository for DatabaseService {
             end_date: Set(goal.end_date),
             start_date: Set(goal.start_date),
             ended: Set(goal.ended),
+            r#type: Set(goal.r#type),
             goal_amount_limits: Set(goal.goal_amount_limits),
             widget_background: Set(goal.widget_background),
             bar_height: Set(goal.bar_height),
@@ -123,6 +138,7 @@ impl GoalsRepository for DatabaseService {
             end_date: Set(goal.end_date),
             start_date: Set(goal.start_date),
             ended: Set(goal.ended),
+            r#type: Set(goal.r#type),
             goal_amount_limits: Set(goal.goal_amount_limits),
             widget_background: Set(goal.widget_background),
             bar_height: Set(goal.bar_height),

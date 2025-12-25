@@ -17,7 +17,13 @@ import LimitsStyle from "./LimitsStyle";
 import ProgressStyle from "./ProgressStyle";
 import TItleStyle from "./TItleStyle";
 
-const GoalSettings = ({ onSave }: { onSave: () => void }) => {
+const GoalSettings = ({
+	onSave,
+	isCreate,
+}: {
+	onSave: () => void;
+	isCreate: boolean;
+}) => {
 	const navigate = useNavigate();
 	const [value, setValue] = useState(0);
 	const { t } = useTranslation();
@@ -84,7 +90,7 @@ const GoalSettings = ({ onSave }: { onSave: () => void }) => {
 					</Box>
 					<div style={{ marginTop: 20 }}>
 						<TabPanel index={0} value={value}>
-							<GoalGeneralSettings />
+							<GoalGeneralSettings isCreate={isCreate} />
 						</TabPanel>
 						<TabPanel index={1} value={value}>
 							<GoalElementsSettings />

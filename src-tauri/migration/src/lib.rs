@@ -26,6 +26,7 @@ mod m20251213_195846_add_alert_type;
 mod m20251219_012429_create_table_followers;
 mod m20251219_211909_create_table_subscriptions;
 mod m20251224_193112_create_table_raids;
+mod m20251225_002805_add_goal_type;
 
 pub struct Migrator;
 
@@ -60,6 +61,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20251219_012429_create_table_followers::Migration),
             Box::new(m20251219_211909_create_table_subscriptions::Migration),
             Box::new(m20251224_193112_create_table_raids::Migration),
+            Box::new(m20251225_002805_add_goal_type::Migration),
         ]
     }
 }

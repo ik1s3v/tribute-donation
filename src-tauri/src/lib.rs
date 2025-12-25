@@ -65,6 +65,7 @@ pub fn run() {
             get_goals,
             get_goal_by_id,
             get_not_ended_goal,
+            get_not_ended_goals,
             finish_goal,
             update_service_auth,
             get_services,

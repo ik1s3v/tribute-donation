@@ -61,6 +61,9 @@ export class WebSocketService
 			}
 			store.dispatch(messagesApi.util.invalidateTags(["Messages"]));
 		});
+		this.subscribe<IClientMessage>(AppEvent.Goal, () => {
+			store.dispatch(settingsApi.util.invalidateTags(["Goals"]));
+		});
 
 		this.subscribe<ITwitchEventPayload<ITwitchRedemptionEvent>>(
 			AppEvent.TwitchRewardRedemptionAdd,

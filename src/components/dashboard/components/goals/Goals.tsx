@@ -7,8 +7,9 @@ import { useNavigate } from "react-router";
 import {
 	GoalProgressLayout,
 	GoalTextPosition,
+	GoalType,
 } from "../../../../../shared/enums";
-import { useGetNotEndedGoalQuery } from "../../../../api/goalsApi";
+import { useGetNotEndedGoalsQuery } from "../../../../api/goalsApi";
 import { TEXT_STYLE } from "../../../../constants";
 import { setGoal } from "../../../../store/slices/goalsSlice";
 import GoalCard from "./components/GoalCard";
@@ -18,7 +19,7 @@ const Goals = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const theme = useTheme();
-	const { data, isSuccess } = useGetNotEndedGoalQuery();
+	const { data, isSuccess } = useGetNotEndedGoalsQuery();
 
 	return (
 		<>
@@ -28,7 +29,6 @@ const Goals = () => {
 					<Button
 						variant="contained"
 						startIcon={<AddIcon />}
-						disabled={!!data}
 						onClick={() => {
 							dispatch(
 								setGoal({
@@ -37,6 +37,7 @@ const Goals = () => {
 									amount_raise: 1000,
 									start_raising: 0,
 									current_amount: 0,
+									type: GoalType.Donation,
 									end_date: dayjs(Date.now()).add(7, "day").unix(),
 									ended: false,
 									start_date: dayjs(Date.now()).unix(),
@@ -64,8 +65,9 @@ const Goals = () => {
 					</Button>
 				</Box>
 			)}
-
-			{data && <GoalCard key={data.id} goal={data} />}
+			{data?.map((goal) => (
+				<GoalCard key={goal.id} goal={goal} />
+			))}
 		</>
 	);
 };

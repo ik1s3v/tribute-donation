@@ -91,7 +91,7 @@ const GoalCard = ({ goal }: { goal: IGoal }) => {
 							</Typography>
 
 							<WidgetUrl
-								widgetUrl={"http://localhost:12553/goal"}
+								widgetUrl={`http://localhost:12553/goal?type=${goal.type}`}
 								text={t("widget.url")}
 							/>
 						</div>

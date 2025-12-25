@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { MenuItem, Select, TextField } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -8,11 +8,12 @@ import { useTranslation } from "react-i18next";
 import { NumericFormat } from "react-number-format";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "../../../../../../shared/dayjs";
+import { GoalType } from "../../../../../../shared/enums";
 import type { AppState } from "../../../../../store";
 import { setGoal } from "../../../../../store/slices/goalsSlice";
 import styles from "../../settings/Settings.module.css";
 
-const GoalGeneralSettings = () => {
+const GoalGeneralSettings = ({ isCreate }: { isCreate: boolean }) => {
 	const { goal } = useSelector((state: AppState) => state.goalsState);
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
@@ -39,7 +40,33 @@ const GoalGeneralSettings = () => {
 								}}
 							/>
 						</div>
-
+						{isCreate && (
+							<div className={styles.settings}>
+								<div className={styles.label}>
+									<span>{t("goal.type")}:</span>
+								</div>
+								<div style={{ display: "flex", gap: 5 }}>
+									<Select sx={{ width: 170 }} value={goal.type}>
+										{Object.values(GoalType).map((value) => (
+											<MenuItem
+												key={value}
+												value={value}
+												onClick={() => {
+													dispatch(
+														setGoal({
+															...goal,
+															type: value,
+														}),
+													);
+												}}
+											>
+												{t(`goal.${value}`)}
+											</MenuItem>
+										))}
+									</Select>
+								</div>
+							</div>
+						)}
 						<div className={styles.settings}>
 							<div className={styles.label}>
 								<span>{t("goal.amount_raise")}:</span>
@@ -60,6 +87,7 @@ const GoalGeneralSettings = () => {
 								value={goal.amount_raise}
 							/>
 						</div>
+
 						<div className={styles.settings}>
 							<div className={styles.label}>
 								<span>{t("goal.start_raising")}:</span>

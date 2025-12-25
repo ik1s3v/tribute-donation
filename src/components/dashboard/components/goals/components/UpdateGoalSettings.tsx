@@ -41,6 +41,7 @@ const UpdateGoalSettings = () => {
 	return (
 		goal && (
 			<GoalSettings
+				isCreate={false}
 				onSave={async () => {
 					try {
 						await updateGoalSettings({ goal }).unwrap();
