@@ -1,7 +1,6 @@
 use chrono::Utc;
 use entity::{
     donation::Donation,
-    goal::GoalType,
     message::{ClientMessage, MessageType},
     service::ServiceType,
     settings::Currency,
@@ -12,7 +11,7 @@ use uuid::Uuid;
 
 use crate::{
     enums::AppEvent,
-    repositories::{DonationsRepository, GoalsRepository, SettingsRepository},
+    repositories::{DonationsRepository, SettingsRepository},
     services::{
         DatabaseService, EventMessage, ExchangeRatesService, MediaService, TTSService,
         WebSocketBroadcaster,

@@ -271,6 +271,9 @@
 		"right": "Image right, text left",
 		"overlay": "Text overlay image"
 	},
+	"image": {
+		"show": "Show image"
+	},
 	"text": {
 		"font": "Font",
 		"font_size": "Font size",

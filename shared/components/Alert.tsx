@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ViewType } from "../enums";
+import { MessageType, ViewType } from "../enums";
 import type { IAlert } from "../types";
 import computePXSize from "../utils/computePXSize";
 import getGridAutoColumns from "../utils/getGridAutoColumns";
@@ -39,22 +39,24 @@ const Alert = ({
 				fontSize: 25,
 			}}
 		>
+			{alert.show_image && (
+				<div
+					style={{
+						gridArea: "Image",
+						height: alert.view_type === ViewType.Overlay ? height : "100%",
+						width: alert.view_type === ViewType.Overlay ? width : "100%",
+						position:
+							alert.view_type === ViewType.Overlay ? "absolute" : undefined,
+						backgroundImage: `url(${imageSrc})`,
+						backgroundPosition: "center",
+						backgroundRepeat: "no-repeat",
+						backgroundSize: "contain",
+					}}
+				/>
+			)}
 			<div
 				style={{
-					gridArea: "Image",
-					height: alert.view_type === ViewType.Overlay ? height : "100%",
-					width: alert.view_type === ViewType.Overlay ? width : "100%",
-					position:
-						alert.view_type === ViewType.Overlay ? "absolute" : undefined,
-					backgroundImage: `url(${imageSrc})`,
-					backgroundPosition: "center",
-					backgroundRepeat: "no-repeat",
-					backgroundSize: "contain",
-				}}
-			/>
-			<div
-				style={{
-					gridArea: "Text",
+					gridArea: alert.show_image ? "Text" : "Image",
 					height: alert.view_type === ViewType.Overlay ? height : "100%",
 					width: alert.view_type === ViewType.Overlay ? width : "100%",
 					maxWidth: `${(width / 100) * 60}px`,
@@ -72,7 +74,7 @@ const Alert = ({
 						fontSize: computePXSize({
 							percent: alert.title_style.font_size,
 							width,
-							coefficient: 4,
+							coefficient: alert.type === MessageType.Donation ? 4 : 12,
 						}),
 						color: alert.title_style.text_color,
 						fontWeight: alert.title_style.bold ? "bold" : undefined,
@@ -99,7 +101,7 @@ const Alert = ({
 						fontSize: computePXSize({
 							percent: alert.message_style.font_size,
 							width,
-							coefficient: 4,
+							coefficient: alert.type === MessageType.Donation ? 4 : 8,
 						}),
 						color: alert.message_style.text_color,
 						fontWeight: alert.message_style.bold ? "bold" : undefined,

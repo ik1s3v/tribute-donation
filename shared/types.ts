@@ -109,6 +109,7 @@ export interface IAlert {
 	view_type: ViewType;
 	type: MessageType;
 	image: string;
+	show_image: boolean;
 	group_id: string;
 	name: string;
 	variation_conditions: AlertVariationConditions;

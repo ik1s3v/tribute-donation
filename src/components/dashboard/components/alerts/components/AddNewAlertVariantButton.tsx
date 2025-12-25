@@ -32,6 +32,7 @@ const AddNewAlertVariantButton = ({ group_id }: { group_id: string }) => {
 						name: t("alert.new_variant"),
 						title_style: TEXT_STYLE,
 						message_style: TEXT_STYLE,
+						show_image: true,
 						variation_conditions: AlertVariationConditions.Random,
 						status: true,
 						type: MessageType.Donation,

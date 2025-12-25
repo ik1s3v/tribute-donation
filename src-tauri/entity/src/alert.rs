@@ -17,6 +17,7 @@ pub struct Model {
     pub name: String,
     pub view_type: ViewType,
     pub status: bool,
+    pub show_image: bool,
     pub amount: u32,
     pub variation_conditions: AlertVariationConditions,
     #[sea_orm(column_type = "Text")]
