@@ -1,14 +1,12 @@
 import { CircularProgress } from "@mui/material";
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router";
-import { AlertSeverity, ServiceType } from "../shared/enums";
+import { AlertSeverity } from "../shared/enums";
 import useWebSocket from "../shared/hooks/useWebSocket";
 import { showSnackBar } from "../shared/slices/snackBarSlice";
-import type { IService, IStreamElementsAuth } from "../shared/types";
 import { useInitMutation } from "./api";
-import { useGetServiceWithAuthByIdQuery } from "./api/servicesApi";
 import { useGetSettingsQuery } from "./api/settingsApi";
 import { AppSnackBar } from "./components/AppSnackBar";
 import Dashboard from "./components/dashboard/Dashboard";
@@ -17,20 +15,15 @@ import StreamElements from "./components/streamelements/StreamElements";
 import TelegramAuthorization from "./components/telegram-authorization/TelegramAuthorization";
 import Twitch from "./components/twitch/Twitch";
 import UpdaterDialog from "./components/UpdaterDialog";
-import useStreamElementsSocketService from "./hooks/useStreamElementsService";
-import type { AppState } from "./store";
 import { setSettings } from "./store/slices/settingsSlice";
 
 function App() {
 	const websocketService = useWebSocket();
-	const streamElementsSocketService = useStreamElementsSocketService();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { i18n } = useTranslation();
 	const hasNavigated = useRef(false);
-	const { isConnected, isAuthenticated } = useSelector(
-		(state: AppState) => state.streamElementsState,
-	);
+
 	const [
 		init,
 		{ error: initError, isSuccess: initIsSuccess, isLoading: initIsLoading },
@@ -44,13 +37,6 @@ function App() {
 		skip: !initIsSuccess,
 	});
 
-	const { data: streamelementsService } = useGetServiceWithAuthByIdQuery(
-		{ id: ServiceType.Streamelements },
-		{
-			skip: !initIsSuccess,
-		},
-	);
-
 	useEffect(() => {
 		init();
 	}, [init]);
@@ -60,20 +46,6 @@ function App() {
 			websocketService.connect();
 		}
 	}, [initIsSuccess, websocketService]);
-
-	useEffect(() => {
-		if (isConnected && streamelementsService && !isAuthenticated) {
-			streamElementsSocketService.authenticate(
-				(streamelementsService as IService<IStreamElementsAuth, undefined>).auth
-					?.jwt_token,
-			);
-		}
-	}, [
-		isConnected,
-		isAuthenticated,
-		streamelementsService,
-		streamElementsSocketService,
-	]);
 
 	useEffect(() => {
 		if (settings) {

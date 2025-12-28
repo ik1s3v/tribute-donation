@@ -10,32 +10,21 @@ import {
 import { servicesApi } from "../api/servicesApi";
 import { streamElementsApi } from "../api/streamElementsApi";
 import { store } from "../store";
-import {
-	setIsAuthenticated,
-	setIsConnected,
-} from "../store/slices/streamElementsSlice";
 
 export default class StreamElementsSocketService {
 	socket: Socket;
+	isAuthorized: boolean = false;
 
 	constructor() {
 		this.socket = io("https://realtime.streamelements.com", {
 			transports: ["websocket"],
 		});
 
-		this.socket.on("unauthorized", () => {
-			store.dispatch(setIsAuthenticated(false));
-			store.dispatch(
-				servicesApi.endpoints.updateServiceAuth.initiate({
-					id: ServiceType.Streamelements,
-					authorized: false,
-					auth: undefined,
-				}),
-			);
+		this.socket.on("unauthorized", async () => {
+			this.signOut();
 		});
 
 		this.socket.on("authenticated", async (_: IStreamElementsAuthenticated) => {
-			store.dispatch(setIsAuthenticated(true));
 			const { data } = await store.dispatch(
 				servicesApi.endpoints.getServiceWithAuthById.initiate(
 					{
@@ -46,13 +35,10 @@ export default class StreamElementsSocketService {
 			);
 			const service = data as IService<IStreamElementsAuth, undefined>;
 			if (!service.authorized && service?.auth?.jwt_token) {
-				store.dispatch(
-					servicesApi.endpoints.updateServiceAuth.initiate({
-						authorized: true,
-						id: ServiceType.Streamelements,
-						auth: { jwt_token: service.auth.jwt_token },
-					}),
-				);
+				await this.setAuthorized({
+					authorized: true,
+					auth: { jwt_token: service.auth.jwt_token },
+				});
 			}
 		});
 
@@ -74,16 +60,54 @@ export default class StreamElementsSocketService {
 			}
 		});
 
-		this.socket.on("connect", () => {
-			store.dispatch(setIsConnected(true));
+		this.socket.on("connect", async () => {
+			const { data } = await store.dispatch(
+				servicesApi.endpoints.getServiceWithAuthById.initiate(
+					{
+						id: ServiceType.Streamelements,
+					},
+					{ forceRefetch: true },
+				),
+			);
+			const service = data as IService<IStreamElementsAuth, undefined>;
+			const token = service?.auth?.jwt_token;
+			if (token) {
+				this.socket.emit("authenticate", { method: "jwt", token });
+			}
 		});
 	}
 
-	authenticate(token?: string) {
-		this.socket.emit("authenticate", { method: "jwt", token });
+	async setAuthorized({
+		authorized,
+		auth,
+	}: {
+		authorized: boolean;
+		auth?: IStreamElementsAuth;
+	}) {
+		this.isAuthorized = true;
+		await store
+			.dispatch(
+				servicesApi.endpoints.updateServiceAuth.initiate({
+					id: ServiceType.Streamelements,
+					authorized,
+					auth,
+				}),
+			)
+			.unwrap();
 	}
 
-	disconnect() {
+	async signIn(token: string) {
+		await this.setAuthorized({
+			authorized: false,
+			auth: {
+				jwt_token: token,
+			},
+		});
+		this.socket.connect();
+	}
+
+	signOut() {
 		this.socket.disconnect();
+		this.setAuthorized({ authorized: false });
 	}
 }

@@ -28,7 +28,6 @@ import { lotsSlice } from "./slices/lotsSlice";
 import { mainSlice } from "./slices/mainSlice";
 import { maptionSlice } from "./slices/maptionSlice";
 import { settingsSlice } from "./slices/settingsSlice";
-import { streamElementsSlice } from "./slices/streamElementsSlice";
 
 export const rootReducer = combineReducers({
 	snackBarState: snackBarSlice.reducer,
@@ -46,7 +45,6 @@ export const rootReducer = combineReducers({
 	maptionState: maptionSlice.reducer,
 	aucFighterState: aucFighterSlice.reducer,
 	goalsState: goalsSlice.reducer,
-	streamElementsState: streamElementsSlice.reducer,
 	servicesState: servicesSlice.reducer,
 	[api.reducerPath]: api.reducer,
 });

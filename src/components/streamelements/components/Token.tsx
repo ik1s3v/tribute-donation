@@ -2,7 +2,7 @@ import { Button, TextField } from "@mui/material";
 import type { SerializedError } from "@reduxjs/toolkit";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { AlertSeverity, ServiceType } from "../../../../shared/enums";
 import { showSnackBar } from "../../../../shared/slices/snackBarSlice";
@@ -11,13 +11,9 @@ import {
 	useUpdateServiceAuthMutation,
 } from "../../../api/servicesApi";
 import useStreamElementsSocketService from "../../../hooks/useStreamElementsService";
-import type { AppState } from "../../../store";
 
 const Token = () => {
 	const { t } = useTranslation();
-	const { isConnected } = useSelector(
-		(state: AppState) => state.streamElementsState,
-	);
 	const { data } = useGetServiceByIdQuery({ id: ServiceType.Streamelements });
 	const [token, setToken] = useState("");
 	const [updateServiceAuth] = useUpdateServiceAuthMutation();
@@ -39,15 +35,6 @@ const Token = () => {
 						variant="contained"
 						onClick={async () => {
 							try {
-								if (!isConnected) {
-									dispatch(
-										showSnackBar({
-											message: t("error.not_connected"),
-											alertSeverity: AlertSeverity.warning,
-										}),
-									);
-									return;
-								}
 								if (!token) {
 									return;
 								}
@@ -56,7 +43,7 @@ const Token = () => {
 									id: ServiceType.Streamelements,
 									auth: { jwt_token: token },
 								}).unwrap();
-								streamElementsSocketService.authenticate(token);
+								await streamElementsSocketService.signIn(token);
 								navigate(-1);
 							} catch (error) {
 								const err = error as SerializedError;

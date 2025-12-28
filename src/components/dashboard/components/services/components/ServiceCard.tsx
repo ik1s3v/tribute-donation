@@ -1,6 +1,7 @@
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Box, Button, Card, IconButton } from "@mui/material";
+import type { SerializedError } from "@reduxjs/toolkit";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,7 +33,7 @@ const ServiceCard = ({ service }: { service: IService<unknown, unknown> }) => {
 				onClick={async () => {
 					try {
 						await signOut();
-						refetch();
+						await refetch().unwrap();
 						dispatch(
 							showSnackBar({
 								message: t("success"),
@@ -40,9 +41,10 @@ const ServiceCard = ({ service }: { service: IService<unknown, unknown> }) => {
 							}),
 						);
 					} catch (error) {
+						const err = error as SerializedError;
 						dispatch(
 							showSnackBar({
-								message: error as string,
+								message: err.message as string,
 								alertSeverity: AlertSeverity.error,
 							}),
 						);
