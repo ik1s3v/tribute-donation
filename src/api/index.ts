@@ -41,7 +41,12 @@ export const api = createApi({
 				command: "init",
 			}),
 		}),
+		tributeBotSignOut: builder.mutation<void, void>({
+			query: () => ({
+				command: "tribute_bot_sign_out",
+			}),
+		}),
 	}),
 });
 
-export const { useInitMutation } = api;
+export const { useInitMutation, useTributeBotSignOutMutation } = api;

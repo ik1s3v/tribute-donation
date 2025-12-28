@@ -170,7 +170,9 @@
 		"tribute": "Tribute",
 		"streamelements": "Streamelements",
 		"connect": "Connect",
-		"integrations": "Integrations"
+		"integrations": "Integrations",
+		"sign_out": "Sign out",
+		"confirm_sign_out": "Are you sure you want to sign out from this service?"
 	},
 	"twitch": {
 		"device_code_expired": "Device code expired. Please try again.",

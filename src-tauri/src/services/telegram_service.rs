@@ -11,7 +11,10 @@ use grammers_client::{
     Client, Config, FixedReconnect, InitParams, SignInError, Update,
 };
 use serde::Serialize;
-use std::path::{Path, PathBuf};
+use std::{
+    path::{Path, PathBuf},
+    sync::Arc,
+};
 use tauri::{AppHandle, Manager};
 use tokio::sync::Mutex;
 
@@ -34,6 +37,7 @@ pub struct TelegramService {
     api_id: i32,
     api_hash: String,
     session_path: PathBuf,
+    authorized: Arc<Mutex<bool>>,
 }
 
 impl TelegramService {
@@ -42,6 +46,7 @@ impl TelegramService {
             api_id,
             api_hash,
             session_path: session_path.as_ref().to_path_buf(),
+            authorized: Arc::new(Mutex::new(false)),
         }
     }
 
@@ -73,18 +78,24 @@ impl TelegramService {
             e.to_string()
         })?;
         app.manage(telegram_client);
-        let database_service = app.state::<DatabaseService>();
         if is_authorized {
-            database_service
-                .update_service_auth(ServiceType::TributeBot, None, true)
-                .await?;
+            self.set_authorized(&app, true).await?;
+
             self.listen_tribute(app).await?;
         } else {
-            database_service
-                .update_service_auth(ServiceType::TributeBot, None, false)
-                .await?;
+            self.set_authorized(&app, false).await?;
         }
         Ok(())
+    }
+
+    pub async fn set_authorized(&self, app: &AppHandle, authorized: bool) -> Result<(), String> {
+        let database_service = app.state::<DatabaseService>();
+        let mut authorized_guard = self.authorized.lock().await;
+        *authorized_guard = authorized;
+        drop(authorized_guard);
+        database_service
+            .update_service_auth(ServiceType::TributeBot, None, authorized)
+            .await
     }
 
     pub async fn listen_tribute(&self, app: AppHandle) -> Result<(), String> {
@@ -97,7 +108,13 @@ impl TelegramService {
             .expect("TRIBUTE_ID is not a valid i64");
         tauri::async_runtime::spawn(async move {
             let telegram_client = app.state::<Client>();
+            let telegram_service = app.state::<TelegramService>();
             loop {
+                let authorized = telegram_service.authorized.lock().await;
+                if !*authorized {
+                    break;
+                }
+                drop(authorized);
                 let update = match telegram_client.next_update().await {
                     Ok(update) => update,
                     Err(e) => {
@@ -173,10 +190,8 @@ impl TelegramService {
                             log::error!("{}", e.to_string());
                             e.to_string()
                         })?;
-                    let database_service = app.state::<DatabaseService>();
-                    database_service
-                        .update_service_auth(ServiceType::TributeBot, None, true)
-                        .await?;
+
+                    self.set_authorized(&app, true).await?;
 
                     self.listen_tribute(app.clone()).await?;
                 }
@@ -201,7 +216,6 @@ impl TelegramService {
 
     pub async fn check_password(&self, password: String, app: AppHandle) -> Result<(), String> {
         let password_token_state = app.state::<Mutex<Option<PasswordToken>>>();
-        let database_service = app.state::<DatabaseService>();
         let password_token_guard = password_token_state.lock().await;
         if let Some(password_token) = &*password_token_guard {
             let telegram_client = app.state::<Client>();
@@ -217,9 +231,7 @@ impl TelegramService {
                             log::error!("{}", e.to_string());
                             e.to_string()
                         })?;
-                    database_service
-                        .update_service_auth(ServiceType::TributeBot, None, true)
-                        .await?;
+                    self.set_authorized(&app, true).await?;
                     self.listen_tribute(app.clone()).await?;
                     return Ok(());
                 }
@@ -240,12 +252,14 @@ impl TelegramService {
         })?;
         Ok(is_authorized)
     }
-    pub async fn sign_out(&self, app: AppHandle) -> Result<(), String> {
+    pub async fn sign_out(&self, app: &AppHandle) -> Result<(), String> {
+        self.set_authorized(&app, false).await?;
         let telegram_client = app.state::<Client>();
         telegram_client.sign_out().await.map_err(|e| {
             log::error!("{}", e.to_string());
             e.to_string()
         })?;
+
         Ok(())
     }
 }

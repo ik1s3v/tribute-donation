@@ -28,6 +28,7 @@ export const telegramApi = api.injectEndpoints({
 				command: "sign_in",
 				args,
 			}),
+			invalidatesTags: ["Services"],
 		}),
 		checkPassword: builder.mutation<
 			void,
@@ -39,6 +40,7 @@ export const telegramApi = api.injectEndpoints({
 				command: "check_password",
 				args,
 			}),
+			invalidatesTags: ["Services"],
 		}),
 	}),
 });
