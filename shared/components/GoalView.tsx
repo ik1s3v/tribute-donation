@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import getProgressBarLayoutText from "../../src/helpers/getProgressBarLayoutText";
-import { GoalTextPosition } from "../enums";
+import { type Currency, GoalTextPosition, GoalType } from "../enums";
 import type { IGoal } from "../types";
 import computePXSize from "../utils/computePXSize";
 
@@ -10,12 +10,14 @@ const GoalView = ({
 	height,
 	backgroundColor,
 	currentAmount,
+	currency,
 }: {
 	goal: IGoal;
 	width: number;
 	height: number;
 	backgroundColor?: string;
 	currentAmount: number;
+	currency?: Currency;
 }) => {
 	const currentAmountPercent = Math.floor(
 		(currentAmount / goal.amount_raise) * 100,
@@ -25,6 +27,7 @@ const GoalView = ({
 		currentAmount,
 		amountRaise: goal.amount_raise,
 		currentAmountPercent,
+		currency: goal.type === GoalType.Donation ? currency : undefined,
 	});
 
 	const titleStyle: CSSProperties = {

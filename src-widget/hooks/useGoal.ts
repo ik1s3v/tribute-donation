@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AppEvent, GoalType } from "../../shared/enums";
 import useWebSocket from "../../shared/hooks/useWebSocket";
-import type { IGoal } from "../../shared/types";
+import type { IGoal, ISettings } from "../../shared/types";
 import { useGetNotEndedGoalQuery } from "../api/goalsApi";
 
 const useGoal = () => {
@@ -10,6 +10,7 @@ const useGoal = () => {
 	const urlParams = new URLSearchParams(window.location.search);
 	const type = urlParams.get("type") as GoalType;
 	const { data } = useGetNotEndedGoalQuery({ type: type }, { skip: !type });
+	const [settings, setSettings] = useState<ISettings>();
 
 	useEffect(() => {
 		if (data) {
@@ -30,8 +31,20 @@ const useGoal = () => {
 		return () => unsubscribe();
 	}, [data]);
 
+	useEffect(() => {
+		const unsubscribe = websocketService.subscribe<ISettings>(
+			AppEvent.Settings,
+			(settings) => {
+				setSettings(settings);
+			},
+		);
+
+		return () => unsubscribe();
+	}, [setSettings]);
+
 	return {
 		goal,
+		settings,
 	};
 };
 export default useGoal;

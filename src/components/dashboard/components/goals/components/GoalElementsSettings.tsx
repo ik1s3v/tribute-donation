@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
 	GoalProgressLayout,
 	GoalTextPosition,
+	GoalType,
 } from "../../../../../../shared/enums";
+import { useGetSettingsQuery } from "../../../../../api/settingsApi";
 import getProgressBarLayoutText from "../../../../../helpers/getProgressBarLayoutText";
 import type { AppState } from "../../../../../store";
 import { setGoal } from "../../../../../store/slices/goalsSlice";
@@ -15,6 +17,7 @@ const GoalElementsSettings = () => {
 	const { goal } = useSelector((state: AppState) => state.goalsState);
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
+	const { data: settings } = useGetSettingsQuery();
 
 	return (
 		<>
@@ -89,6 +92,10 @@ const GoalElementsSettings = () => {
 												currentAmount: Math.floor(goal.amount_raise / 2),
 												amountRaise: goal.amount_raise,
 												currentAmountPercent: 50,
+												currency:
+													goal.type === GoalType.Donation
+														? settings?.currency
+														: undefined,
 											})}
 										</MenuItem>
 									);

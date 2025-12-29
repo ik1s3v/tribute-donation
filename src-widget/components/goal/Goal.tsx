@@ -2,7 +2,7 @@ import GoalView from "../../../shared/components/GoalView";
 import useGoal from "../../hooks/useGoal";
 
 const Goal = () => {
-	const { goal } = useGoal();
+	const { goal, settings } = useGoal();
 	return (
 		goal && (
 			<GoalView
@@ -10,6 +10,7 @@ const Goal = () => {
 				width={window.innerWidth}
 				height={window.innerHeight}
 				currentAmount={goal.current_amount + goal.start_raising}
+				currency={settings?.currency}
 			/>
 		)
 	);

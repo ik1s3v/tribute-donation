@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import GoalView from "../../../../../../shared/components/GoalView";
+import { useGetSettingsQuery } from "../../../../../api/settingsApi";
 import type { AppState } from "../../../../../store";
 import TabPanel from "../../../../TabPanel";
 import GoalElementsSettings from "./GoalElementsSettings";
@@ -28,6 +29,7 @@ const GoalSettings = ({
 	const [value, setValue] = useState(0);
 	const { t } = useTranslation();
 	const { goal } = useSelector((state: AppState) => state.goalsState);
+	const { data: settings } = useGetSettingsQuery();
 
 	return (
 		<>
@@ -123,6 +125,7 @@ const GoalSettings = ({
 								height={300}
 								backgroundColor="green"
 								currentAmount={Math.floor(goal.amount_raise / 2)}
+								currency={settings?.currency}
 							/>
 						</div>
 					)}
