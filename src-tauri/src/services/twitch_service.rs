@@ -710,7 +710,7 @@ impl TwitchService {
                                                 }
                                             }
                                             else {
-                                                let _=twitch_service.set_authorized(&database_service, None, false, true).await;
+                                                let _=twitch_service.set_authorized(&database_service, None, false, false).await;
                                                 break 'connection_loop; 
                                             }
                                         }

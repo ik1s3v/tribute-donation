@@ -76,10 +76,11 @@
 	"message": {
 		"skip": "Skip",
 		"replay": "Replay",
-		"donate": "donate",
-		"follow": "follow",
-		"subscription": "subscription",
-		"raid": "raid"
+		"donated": "{{user_name}} donated {{currency}} {{amount}}",
+		"followed": "{{user_name}} followed",
+		"subscribed": "{{user_name}} subscribed",
+		"gifted_subscriptions": "{{user_name}} gift {{total}} subscriptions",
+		"raided_with": "{{user_name}} raided with {{viewers}} viewers"
 	},
 	"filter": {
 		"title": "Filter messages",

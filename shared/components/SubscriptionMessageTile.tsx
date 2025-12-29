@@ -58,7 +58,14 @@ const SubscriptionMessageTile = ({
 									color: theme.palette.primary.main,
 								})}
 							>
-								{subscription.user_name} {t("message.subscription")}{" "}
+								{!subscription.is_gift
+									? t("message.subscribed", {
+											user_name: subscription.user_name,
+										})
+									: t("message.gifted_subscriptions", {
+											user_name: subscription.user_name,
+											total: subscription.total,
+										})}
 							</Typography>
 						</div>
 

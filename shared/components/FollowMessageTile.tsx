@@ -58,7 +58,7 @@ const FollowMessageTile = ({
 									color: theme.palette.primary.main,
 								})}
 							>
-								{follow.user_name} {t("message.follow")}{" "}
+								{t("message.followed", { user_name: follow.user_name })}
 							</Typography>
 						</div>
 

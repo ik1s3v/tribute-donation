@@ -80,9 +80,11 @@ const DonationMessageTile = ({
 									color: theme.palette.primary.main,
 								})}
 							>
-								{donation.user_name} {t("message.donate")}{" "}
-								{getCurrencySymbol(donation.currency)}
-								{donation.amount}
+								{t("message.donated", {
+									user_name: donation.user_name,
+									currency: getCurrencySymbol(donation.currency),
+									amount: donation.amount,
+								})}
 							</Typography>
 						</div>
 						<div style={{ wordBreak: "break-word" }}>

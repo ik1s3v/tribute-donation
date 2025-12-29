@@ -41,9 +41,11 @@ const AlertView = ({
 					height={height}
 					backgroundColor={backgroundColor}
 				>
-					{donation.user_name} {t("message.donate")}{" "}
-					{getCurrencySymbol(donation.currency)}
-					{donation.amount}
+					{t("message.donated", {
+						user_name: donation.user_name,
+						currency: getCurrencySymbol(donation.currency),
+						amount: donation.amount,
+					})}
 				</Alert>
 			);
 		}
@@ -58,7 +60,7 @@ const AlertView = ({
 					height={height}
 					backgroundColor={backgroundColor}
 				>
-					{follow.user_name} {t("message.follow")}
+					{t("message.followed", { user_name: follow.user_name })}
 				</Alert>
 			);
 		}
@@ -73,7 +75,12 @@ const AlertView = ({
 					height={height}
 					backgroundColor={backgroundColor}
 				>
-					{subscription.user_name} {t("message.subscription")}
+					{!subscription.is_gift
+						? t("message.subscribed", { user_name: subscription.user_name })
+						: t("message.gifted_subscriptions", {
+								user_name: subscription.user_name,
+								total: subscription.total,
+							})}
 				</Alert>
 			);
 		}
@@ -88,7 +95,10 @@ const AlertView = ({
 					height={height}
 					backgroundColor={backgroundColor}
 				>
-					{raid.from_broadcaster_user_name} {t("message.raid")}
+					{t("message.raided_with", {
+						viewers: raid.viewers,
+						user_name: raid.from_broadcaster_user_name,
+					})}
 				</Alert>
 			);
 		}

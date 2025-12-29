@@ -58,7 +58,10 @@ const RaidMessageTile = ({
 									color: theme.palette.primary.main,
 								})}
 							>
-								{raid.from_broadcaster_user_name} {t("message.raid")}{" "}
+								{t("message.raided_with", {
+									viewers: raid.viewers,
+									user_name: raid.from_broadcaster_user_name,
+								})}
 							</Typography>
 						</div>
 
