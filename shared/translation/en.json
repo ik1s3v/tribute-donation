@@ -76,7 +76,7 @@
 	"message": {
 		"skip": "Skip",
 		"replay": "Replay",
-		"donated": "{{user_name}} donated {{currency}} {{amount}}",
+		"donated": "{{user_name}} donated {{amount}}{{currency}}",
 		"followed": "{{user_name}} followed",
 		"subscribed": "{{user_name}} subscribed",
 		"gifted_subscriptions": "{{user_name}} gift {{total}} subscriptions",
