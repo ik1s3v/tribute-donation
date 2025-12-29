@@ -46,7 +46,16 @@ export const api = createApi({
 				command: "tribute_bot_sign_out",
 			}),
 		}),
+		twitchSignOut: builder.mutation<void, void>({
+			query: () => ({
+				command: "twitch_sign_out",
+			}),
+		}),
 	}),
 });
 
-export const { useInitMutation, useTributeBotSignOutMutation } = api;
+export const {
+	useInitMutation,
+	useTributeBotSignOutMutation,
+	useTwitchSignOutMutation,
+} = api;

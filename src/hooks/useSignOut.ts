@@ -1,9 +1,10 @@
 import { ServiceType } from "./../../shared/enums";
-import { useTributeBotSignOutMutation } from "../api";
+import { useTributeBotSignOutMutation, useTwitchSignOutMutation } from "../api";
 import useStreamElementsSocketService from "./useStreamElementsService";
 
 const useSignOut = (id: ServiceType) => {
 	const [tributeBotSignOut] = useTributeBotSignOutMutation();
+	const [twitchSignOut] = useTwitchSignOutMutation();
 	const streamElementsSocketService = useStreamElementsSocketService();
 
 	switch (id) {
@@ -13,6 +14,8 @@ const useSignOut = (id: ServiceType) => {
 			return streamElementsSocketService.signOut.bind(
 				streamElementsSocketService,
 			);
+		case ServiceType.Twitch:
+			return twitchSignOut;
 
 		default:
 			return () => null;

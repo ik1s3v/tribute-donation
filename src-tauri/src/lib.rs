@@ -81,6 +81,7 @@ pub fn run() {
             update_service_settings,
             get_service_with_auth_by_id,
             tribute_bot_sign_out,
+            twitch_sign_out,
             init
         ])
         .run(tauri::generate_context!())

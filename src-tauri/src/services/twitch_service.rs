@@ -350,6 +350,7 @@ pub enum Payload {
 
 #[derive(Clone, Debug)]
 pub struct TwitchService {
+    is_close_connection:Arc<Mutex<bool>>,
     client_id: String,
     scopes: String,
     websocket_eventsub_url: String,
@@ -381,6 +382,7 @@ impl TwitchService {
         let eventsub_endpoint = "http://localhost:8081".to_string();
 
         Self {
+            is_close_connection:Arc::new(Mutex::new(false)),
             client_id: std::env::var("TWITCH_CLIENT_ID").expect("TWITCH_CLIENT_ID not set"),
             scopes: "user:read:email channel:read:subscriptions moderator:read:followers channel:manage:redemptions"
                 .to_string(),
@@ -400,13 +402,13 @@ impl TwitchService {
     }
 
     pub async fn check_auth(&self, app: &AppHandle) -> Result<TwitchAuth, String> {
-        if cfg!(debug_assertions) {
-            return self.get_token_mock().await;
-        }
-
+    
         let database_service = app.state::<DatabaseService>();
 
         let auth = self.get_existing_auth(&database_service).await?;
+        if cfg!(debug_assertions) {
+            return self.get_token_mock().await;
+        }
 
         self.refresh_and_update_auth(&database_service, &auth).await
     }
@@ -444,22 +446,15 @@ impl TwitchService {
                     expires_in: old_auth.expires_in,
                     user_id: old_auth.user_id.clone(),
                 };
-
-                database_service
-                    .update_service_auth(
-                        ServiceType::Twitch,
-                        Some(ServiceAuth::Twitch(new_auth.clone())),
-                        true,
-                    )
-                    .await?;
-
+                self.set_authorized(database_service, Some(ServiceAuth::Twitch(new_auth.clone())),
+                        true,false).await?;
                 Ok(new_auth)
             }
             Err(e) => {
                 log::warn!("Token refresh failed, clearing auth: {}", e);
 
-                if let Err(update_err) = database_service
-                    .update_service_auth(ServiceType::Twitch, None, false)
+                if let Err(update_err) = self
+                    .set_authorized(database_service, None, false,true)
                     .await
                 {
                     log::error!("Failed to clear invalid auth: {}", update_err);
@@ -678,8 +673,15 @@ impl TwitchService {
                 log::info!("Connecting to Twitch EventSub: {}", current_url);
                 match connect_async(&current_url).await {
                     Ok((mut socket, _)) => {
+
                         log::info!("WebSocket connected.");
                         while let Some(msg_result) = socket.next().await {
+                            let mut is_close_connection = twitch_service.is_close_connection.lock().await;
+                            if *is_close_connection {
+                                *is_close_connection=false;
+                                break 'connection_loop;
+                            }
+                            drop(is_close_connection);
                             match msg_result {
                                 Ok(Message::Text(text)) => {
                                     let instruction =
@@ -706,6 +708,10 @@ impl TwitchService {
                                                         "Twitch events subscribed successfully"
                                                     );
                                                 }
+                                            }
+                                            else {
+                                                let _=twitch_service.set_authorized(&database_service, None, false, true).await;
+                                                break 'connection_loop; 
                                             }
                                         }
                                         WebSocketInstruction::Notification(message) => {
@@ -1272,4 +1278,20 @@ impl TwitchService {
 
         Ok(())
     }
+
+    pub async fn set_authorized(&self, database_service: &DatabaseService,auth:Option<ServiceAuth>, authorized: bool,is_close_connection:bool) -> Result<(), String> {
+        let mut is_close_connection_guard = self.is_close_connection.lock().await;
+        *is_close_connection_guard = is_close_connection;
+        drop(is_close_connection_guard);
+        database_service
+            .update_service_auth(ServiceType::Twitch, auth, authorized)
+            .await
+    }
+
+    pub async fn sign_out(&self, app: &AppHandle) -> Result<(), String> {
+        let database_service=app.state::<DatabaseService>();
+        self.set_authorized(&database_service, None,false,true).await?;
+        Ok(())
+    }
+
 }
