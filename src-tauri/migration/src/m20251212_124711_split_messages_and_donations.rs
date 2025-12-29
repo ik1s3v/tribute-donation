@@ -6,8 +6,8 @@ pub struct Migration;
 impl MigrationTrait for Migration {
     async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         let db = manager.get_connection();
-        let sql = "INSERT INTO donations (service_id, message_id, amount, user_name, currency, text, audio, service, media, played, created_at) 
-                   SELECT service_id, id, amount, user_name, currency, text, audio, service, media, played, created_at FROM messages";
+        let sql = "INSERT INTO donations (id,service_id, message_id, amount, user_name, currency, text, audio, service, media, played, created_at) 
+                   SELECT id,service_id, id, amount, user_name, currency, text, audio, service, media, played, created_at FROM messages";
 
         db.execute_unprepared(sql).await?;
 
