@@ -383,7 +383,7 @@ impl TwitchService {
 
         Self {
             is_close_connection:Arc::new(Mutex::new(false)),
-            client_id: std::env::var("TWITCH_CLIENT_ID").expect("TWITCH_CLIENT_ID not set"),
+            client_id:  env!("TWITCH_CLIENT_ID").to_string(),
             scopes: "user:read:email channel:read:subscriptions moderator:read:followers channel:manage:redemptions"
                 .to_string(),
             websocket_eventsub_url,
@@ -695,7 +695,7 @@ impl TwitchService {
                                             let auth = twitch_service.check_auth(&app).await;
                                             if let Ok(auth) = auth {
                                                 twitch_service
-                                                    .create_subscriptions(
+                                                    .create_subscriptions (
                                                         &session_id,
                                                         &auth.access_token,
                                                         &auth.user_id,

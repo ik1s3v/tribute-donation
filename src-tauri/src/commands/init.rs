@@ -69,12 +69,8 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     let tts_service = TTSService::new(static_path.clone());
     app.manage(tts_service);
 
-    let api_id: i32 = std::env::var("API_ID")
-        .expect("API_ID not set")
-        .parse()
-        .expect("API_ID must be a valid i32");
-
-    let api_hash: String = std::env::var("API_HASH").expect("API_HASH not set");
+    let api_id: i32 = env!("API_ID").parse().expect("API_ID must be a valid i32");
+    let api_hash: String = env!("API_HASH").to_string();
 
     let user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36";
     let reqwest_client = reqwest::Client::builder()
