@@ -3,23 +3,25 @@
 	"off": "Выкл",
 	"select": "Выбрать",
 	"success": "Успех",
-	"ok": "Ок",
+	"ok": "ОК",
 	"cancel": "Отмена",
 	"sound_volume": "Громкость звука",
-	"skip_media": "Пропустить медиа",
-	"skip_alert": "Пропустить оповещение",
+	"skip_media": "Пропустить медиа (горячая клавиша)",
+	"skip_alert": "Пропустить алерт (горячая клавиша)",
 	"authorization": {
 		"title": "Авторизация",
 		"code": "Запросить код",
 		"sign_in": "Войти",
 		"phone": "Номер телефона",
-		"telegram_code": "Код Telegram",
+		"telegram_code": "Код из Telegram",
 		"your_code": "Ваш код",
 		"2fa_password": "Пароль 2FA",
 		"password": "Пароль"
 	},
 	"error": {
-		"wrong_lots_format": "Неверный формат лотов"
+		"wrong_lots_format": "Неверный формат лотов",
+		"not_connected": "Не подключено",
+		"request_error": "Ошибка запроса"
 	},
 	"updater": {
 		"title": "Обновление",
@@ -30,12 +32,12 @@
 	},
 	"media": {
 		"title": "Медиа",
-		"youtube": "YouTube",
+		"youtube": "Youtube",
 		"twitch": "Twitch",
-		"tiktok": "TikTok"
+		"tiktok": "Tiktok"
 	},
 	"integration": {
-		"tribute": "Показ сообщений с благодарностью"
+		"tribute": "Показывать сообщения трибьюта"
 	},
 	"auction": {
 		"lots": "Лоты",
@@ -43,25 +45,25 @@
 		"settings": "Настройки"
 	},
 	"maption": {
-		"set_point": "Задать точку",
-		"meter_price": "Цена за метр",
+		"set_point": "Установить точку",
+		"meter_price": "Цена за 1 метр",
 		"amount": "Сумма",
 		"finish": "Завершить",
-		"lat_error": "Широта должна быть в пределах -90 и 90",
-		"lng_error": "Долгота должна быть в пределах -180 и 180",
-		"rules": "Чтобы указатель автоматически менял позицию в сообщении, должно быть только одно слово из:"
+		"lat_error": "Широта должна быть между -90 и 90",
+		"lng_error": "Долгота должна быть между -180 и 180",
+		"rules": "Чтобы указатель автоматически менял позицию в сообщении, в нём должно быть только одно слово из:"
 	},
 	"media_settings": {
 		"enabled": "Включено",
-		"min_amount_eur": "Мин. сумма EUR",
-		"min_amount_rub": "Мин. сумма RUB",
+		"min_amount": "Минимальная сумма",
 		"video_volume": "Громкость видео",
-		"min_views": "Мин. просмотров"
+		"min_views": "Минимальное количество просмотров"
 	},
 	"dashboard": {
 		"messages": "Сообщения",
 		"settings": "Настройки",
-		"alerts": "Оповещения",
+		"services": "Сервисы",
+		"alerts": "Алерты",
 		"media": "Медиа",
 		"goals": "Цели",
 		"auction": "Аукцион",
@@ -73,21 +75,33 @@
 	},
 	"message": {
 		"skip": "Пропустить",
-		"replay": "Повтор",
-		"donate": "Пожертвовать"
+		"replay": "Повторить",
+		"donated": "{{user_name}} пожертвовал {{amount}}{{currency}}",
+		"followed": "{{user_name}} подписался",
+		"subscribed": "{{user_name}} оформил подписку",
+		"gifted_subscriptions": "{{user_name}} подарил {{total}} подписок",
+		"raided_with": "{{user_name}} рейднул с {{viewers}} зрителями"
+	},
+	"filter": {
+		"title": "Фильтр сообщений",
+		"exclude_donations": "Исключить донаты",
+		"exclude_follows": "Исключить фоллоу",
+		"exclude_subscriptions": "Исключить подписки",
+		"exclude_raids": "Исключить рейды"
 	},
 	"settings": {
 		"title": "Настройки",
-		"pause": "Пауза оповещений",
-		"moderation_duration": "Время модерации",
+		"pause": "Приостановить сообщения алертов",
+		"moderation_duration": "Длительность модерации",
 		"black_list": "Чёрный список",
 		"remove_links": "Удалять ссылки",
 		"language": "Язык",
-		"sec": "Сек"
+		"sec": "Сек",
+		"currency": "Валюта"
 	},
 	"wheel": {
-		"normal": "Обычный",
-		"dropout": "Выбывание",
+		"normal": "Обычное",
+		"dropout": "Выпадение",
 		"spin": "Крутить",
 		"speed": "Скорость колеса"
 	},
@@ -97,7 +111,7 @@
 		"reset": "Сброс",
 		"add_time": "Добавить время",
 		"reduce_time": "Уменьшить время",
-		"add_timex2": "Добавить время x2"
+		"add_timex2": "Добавить время ×2"
 	},
 	"fighter": {
 		"title": "Боец",
@@ -120,27 +134,28 @@
 	},
 	"bid": {
 		"delete": "Удалить",
-		"to_lot": "К лоту",
+		"to_lot": "В лот",
 		"new": "Новый",
 		"add_to_random_slot": "Добавить в случайный лот"
 	},
 	"lots": {
 		"add": "Добавить",
-		"new_lot_name": "Название нового лота",
-		"search": "Поиск лота"
+		"new_lot_name": "Новое название лота",
+		"search": "Поиск лота",
+		"total": "Итого"
 	},
 	"auction_settings": {
 		"leader_change": "Смена лидера",
 		"new_lot": "Новый лот",
-		"new_donation": "Новое пожертвование",
-		"show_odds": "Показать шансы",
-		"show_total_sum": "Показать общую сумму",
-		"greater_timer_adding_time": "Большее добавляемое время",
+		"new_donation": "Новый донат",
+		"show_odds": "Показывать шансы",
+		"show_total_sum": "Показывать общую сумму",
+		"greater_timer_adding_time": "Добавлять время к таймеру при превышении",
 		"not_add_time_if": "Не добавлять время, если",
-		"adding_time": "Добавляемое время"
+		"adding_time": "Время"
 	},
 	"lots_options": {
-		"import_lots": "Импортировать лоты",
+		"import_lots": "Импорт лотов",
 		"clear_lots": "Очистить лоты"
 	},
 	"auc_fighter_settings": {
@@ -148,17 +163,41 @@
 		"add_players": "Добавить игроков"
 	},
 	"alerts": {
-		"title": "Оповещения",
+		"title": "Алерты",
 		"group": "Группа"
+	},
+	"services": {
+		"title": "Сервисы",
+		"tribute": "Трибьют",
+		"streamelements": "StreamElements",
+		"connect": "Подключить",
+		"integrations": "Интеграции",
+		"sign_out": "Выйти",
+		"confirm_sign_out": "Вы уверены, что хотите выйти из этого сервиса?"
+	},
+	"twitch": {
+		"device_code_expired": "Код устройства истёк. Попробуйте ещё раз.",
+		"user_code": "Код пользователя",
+		"authorize_with_code": "Авторизовать с кодом",
+		"waiting_authorization": "Ожидание авторизации..."
+	},
+	"twitch_service_settings": {
+		"title": "Настройки Twitch",
+		"points_currency_ratio": "Соотношение очков и валюты",
+		"rewards_name": "Название наград",
+		"rewards_list": "Список наград",
+		"add_reward": "Добавить награду",
+		"cost": "Стоимость",
+		"color": "Цвет"
 	},
 	"alert": {
 		"image": "Изображение",
 		"audio": "Аудио",
-		"view": "Просмотр",
+		"view": "Вид",
 		"title": "Заголовок",
 		"message": "Сообщение",
 		"test_name": "Тест",
-		"test_text": "Это тестовое оповещение!",
+		"test_text": "Это тестовый алерт!",
 		"configure": "Настроить",
 		"test": "Тестировать",
 		"add_new_variant": "Добавить новый вариант",
@@ -168,13 +207,18 @@
 		"status": "Статус",
 		"variation_condition": "Условие вариации",
 		"group": "Группа",
-		"Random": "Случайный",
+		"Random": "Случайно",
 		"AmountIsGreater": "Сумма больше",
 		"AmountIsEqual": "Сумма равна",
 		"delete": "Удалить",
-		"sure_delete": "Вы уверены, что хотите удалить этот вариант?"
+		"sure_delete": "Вы уверены, что хотите удалить этот вариант?",
+		"type": "Тип",
+		"Donation": "Донат",
+		"Subscription": "Подписка",
+		"Follow": "Фоллоу",
+		"Raid": "Рейд"
 	},
-	"general": "Общее",
+	"general": "Общие",
 	"goals": {
 		"title": "Цели",
 		"create": "Создать новую цель"
@@ -182,19 +226,20 @@
 	"goal": {
 		"new": "Новая цель",
 		"goal": "Просмотр",
+		"type": "Тип",
 		"elements": "Элементы",
 		"progress": "Прогресс",
-		"goal_title": "Название цели",
-		"amount_raise": "Сумма для сбора",
+		"goal_title": "Заголовок цели",
+		"amount_raise": "Сумма к сбору",
 		"start_raising": "Начать сбор с",
-		"end_date": "Дата окончания",
-		"bar_height": "Высота шкалы",
+		"end_date": "Дата окончания цели",
+		"bar_height": "Высота полосы",
 		"rounding_radius": "Радиус скругления",
-		"bar_stroke_thickness": "Толщина шкалы",
-		"background_bar_color": "Цвет фона шкалы",
-		"progress_bar_color": "Цвет прогресса",
-		"goal_progress_bar": "Шкала прогресса цели",
-		"progress_bar_layout": "Расположение шкалы прогресса",
+		"bar_stroke_thickness": "Толщина обводки полосы",
+		"background_bar_color": "Цвет фоновой полосы",
+		"progress_bar_color": "Цвет полосы прогресса",
+		"goal_progress_bar": "Полоса прогресса цели",
+		"progress_bar_layout": "Расположение полосы прогресса",
 		"remaining_time": "Оставшееся время",
 		"goal_amount_limits": "Ограничения суммы цели",
 		"widget_background": "Фон виджета",
@@ -202,13 +247,17 @@
 		"OnTop": "Сверху",
 		"Inside": "Внутри",
 		"Below": "Снизу",
-		"DoNotDisplay": "Не отображать",
+		"DoNotDisplay": "Не показывать",
 		"title": "Заголовок",
-		"limits": "Ограничения",
+		"limits": "лимиты",
 		"raised": "Собрано",
-		"days_left": "Осталось дней",
+		"days_left": "Дней осталось",
 		"finish_goal": "Завершить цель",
-		"sure_finish": "Вы уверены, что хотите завершить эту цель?"
+		"sure_finish": "Вы уверены, что хотите завершить эту цель?",
+		"Donation": "Донат",
+		"TwitchSubscription": "Подписка Twitch",
+		"TwitchFollow": "Фоллоу Twitch",
+		"goal_not_finished": "У вас есть незавершённая цель этого типа."
 	},
 	"save": "Сохранить",
 	"back": "Назад",
@@ -216,7 +265,7 @@
 		"copy": "Копировать",
 		"launch": "Запустить",
 		"url": "URL виджета",
-		"obs_dock_url": "OBS Dock URL"
+		"obs_dock_url": "URL панели OBS"
 	},
 	"view": {
 		"top": "Изображение сверху, текст снизу",
@@ -224,6 +273,9 @@
 		"left": "Изображение слева, текст справа",
 		"right": "Изображение справа, текст слева",
 		"overlay": "Текст поверх изображения"
+	},
+	"image": {
+		"show": "Показать изображение"
 	},
 	"text": {
 		"font": "Шрифт",
@@ -233,7 +285,7 @@
 		"italics": "Курсив",
 		"underline": "Подчёркнутый",
 		"transformation": "Трансформация",
-		"letter_spacing": "Межбуквенный интервал",
+		"letter_spacing": "Интервал между буквами",
 		"word_spacing": "Интервал между словами",
 		"horizontal_alignment": "Горизонтальное выравнивание",
 		"vertical_alignment": "Вертикальное выравнивание",

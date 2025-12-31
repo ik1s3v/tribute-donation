@@ -73,10 +73,11 @@ jobs:
           VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ""
+          TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
         with:
           tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
           releaseName: "v__VERSION__"
-          releaseBody: "Add goals."
+          releaseBody: "Add services and integrations."
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
@@ -89,10 +90,11 @@ jobs:
           VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ""
+          TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
         with:
           tagName: latest # the action automatically replaces \_\_VERSION\_\_ with the app version.
           releaseName: "latest"
-          releaseBody: "Add goals."
+          releaseBody: "Add services and integrations."
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}

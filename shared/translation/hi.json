@@ -3,14 +3,14 @@
 	"off": "बंद",
 	"select": "चुनें",
 	"success": "सफलता",
-	"ok": "ठीक है",
+	"ok": "ठीक",
 	"cancel": "रद्द करें",
 	"sound_volume": "ध्वनि की मात्रा",
-	"skip_media": "मीडिया छोड़ें",
-	"skip_alert": "अलर्ट छोड़ें",
+	"skip_media": "मीडिया छोड़ने का शॉर्टकट",
+	"skip_alert": "अलर्ट छोड़ने का शॉर्टकट",
 	"authorization": {
 		"title": "प्राधिकरण",
-		"code": "कोड का अनुरोध करें",
+		"code": "कोड अनुरोध करें",
 		"sign_in": "साइन इन करें",
 		"phone": "फ़ोन नंबर",
 		"telegram_code": "टेलीग्राम से कोड",
@@ -19,12 +19,14 @@
 		"password": "पासवर्ड"
 	},
 	"error": {
-		"wrong_lots_format": "गलत लॉट प्रारूप"
+		"wrong_lots_format": "लॉट्स का गलत प्रारूप",
+		"not_connected": "कनेक्ट नहीं है",
+		"request_error": "अनुरोध त्रुटि"
 	},
 	"updater": {
-		"title": "अद्यतन",
-		"description": "ऐप का एक नया संस्करण उपलब्ध है। क्या आप अपडेट करना चाहते हैं?",
-		"update": "अद्यतन करें",
+		"title": "अपडेट",
+		"description": "ऐप का नया संस्करण उपलब्ध है। क्या आप अपडेट करना चाहते हैं?",
+		"update": "अपडेट करें",
 		"later": "बाद में",
 		"downloading": "डाउनलोड हो रहा है..."
 	},
@@ -39,42 +41,53 @@
 	},
 	"auction": {
 		"lots": "लॉट्स",
-		"wheel": "पहिया",
+		"wheel": "व्हील",
 		"settings": "सेटिंग्स"
 	},
 	"maption": {
-		"set_point": "बिंदु निर्धारित करें",
+		"set_point": "पॉइंट सेट करें",
 		"meter_price": "1 मीटर की कीमत",
 		"amount": "राशि",
-		"finish": "समाप्त",
+		"finish": "समाप्त करें",
 		"lat_error": "अक्षांश -90 और 90 के बीच होना चाहिए",
 		"lng_error": "देशांतर -180 और 180 के बीच होना चाहिए",
-		"rules": "संदेश में पॉइंटर को स्वचालित रूप से स्थिति बदलने के लिए, केवल एक शब्द होना चाहिए:"
+		"rules": "संदेश में पॉइंटर की स्थिति स्वचालित रूप से बदलने के लिए केवल एक शब्द होना चाहिए:"
 	},
 	"media_settings": {
-		"enabled": "सक्रिय",
-		"min_amount_eur": "न्यूनतम राशि EUR",
-		"min_amount_rub": "न्यूनतम राशि RUB",
+		"enabled": "सक्षम",
+		"min_amount": "न्यूनतम राशि",
 		"video_volume": "वीडियो वॉल्यूम",
-		"min_views": "न्यूनतम दृश्य"
+		"min_views": "न्यूनतम व्यूज"
 	},
 	"dashboard": {
 		"messages": "संदेश",
 		"settings": "सेटिंग्स",
+		"services": "सेवाएं",
 		"alerts": "अलर्ट",
 		"media": "मीडिया",
-		"goals": "लक्ष्य",
+		"goals": "गोल",
 		"auction": "नीलामी",
 		"maption": "मैप्शन",
-		"fighter": "योद्धा"
+		"fighter": "फाइटर"
 	},
 	"messages": {
-		"title": "अंतिम संदेश"
+		"title": "आखिरी संदेश"
 	},
 	"message": {
 		"skip": "छोड़ें",
-		"replay": "फिर से चलाएं",
-		"donate": "दान करें"
+		"replay": "दोबारा चलाएं",
+		"donated": "{{user_name}} ने {{amount}}{{currency}} दान किया",
+		"followed": "{{user_name}} ने फॉलो किया",
+		"subscribed": "{{user_name}} ने सब्सक्राइब किया",
+		"gifted_subscriptions": "{{user_name}} ने {{total}} सब्सक्रिप्शन गिफ्ट किए",
+		"raided_with": "{{user_name}} ने {{viewers}} दर्शकों के साथ रेड किया"
+	},
+	"filter": {
+		"title": "संदेश फ़िल्टर करें",
+		"exclude_donations": "दान को छोड़ें",
+		"exclude_follows": "फॉलो को छोड़ें",
+		"exclude_subscriptions": "सब्सक्रिप्शन को छोड़ें",
+		"exclude_raids": "रेड को छोड़ें"
 	},
 	"settings": {
 		"title": "सेटिंग्स",
@@ -83,35 +96,36 @@
 		"black_list": "ब्लैक लिस्ट",
 		"remove_links": "लिंक हटाएं",
 		"language": "भाषा",
-		"sec": "सेकंड"
+		"sec": "सेकंड",
+		"currency": "मुद्रा"
 	},
 	"wheel": {
 		"normal": "सामान्य",
-		"dropout": "बहिर्गमन",
+		"dropout": "ड्रॉपआउट",
 		"spin": "घुमाएं",
-		"speed": "पहिए की गति"
+		"speed": "व्हील की गति"
 	},
 	"timer": {
 		"continue": "जारी रखें",
 		"pause": "रोकें",
-		"reset": "रीसेट",
+		"reset": "रीसेट करें",
 		"add_time": "समय जोड़ें",
-		"reduce_time": "समय घटाएं",
+		"reduce_time": "समय कम करें",
 		"add_timex2": "समय x2 जोड़ें"
 	},
 	"fighter": {
-		"title": "योद्धा",
+		"title": "फाइटर",
 		"match": "मैच",
 		"final": "फाइनल",
-		"game": "खेल",
-		"cancel": "खेल रद्द करें",
+		"game": "गेम",
+		"cancel": "गेम रद्द करें",
 		"winner": "विजेता",
 		"settings": "सेटिंग्स",
-		"create_game": "लॉट्स से खेल बनाएं",
-		"start": "प्रारंभ",
+		"create_game": "लॉट्स से गेम बनाएं",
+		"start": "शुरू करें",
 		"pause": "रोकें",
-		"rematch": "पुनः मैच",
-		"resume": "फिर से शुरू करें"
+		"rematch": "रीमैच",
+		"resume": "जारी रखें"
 	},
 	"lot": {
 		"name": "नाम",
@@ -120,95 +134,130 @@
 	},
 	"bid": {
 		"delete": "हटाएं",
-		"to_lot": "लॉट पर",
+		"to_lot": "लॉट में",
 		"new": "नया",
-		"add_to_random_slot": "यादृच्छिक लॉट में जोड़ें"
+		"add_to_random_slot": "रैंडम लॉट में जोड़ें"
 	},
 	"lots": {
 		"add": "जोड़ें",
-		"new_lot_name": "नए लॉट का नाम",
-		"search": "लॉट खोजें"
+		"new_lot_name": "नया लॉट नाम",
+		"search": "लॉट खोजें",
+		"total": "कुल"
 	},
 	"auction_settings": {
-		"leader_change": "नेता परिवर्तन",
+		"leader_change": "लीडर बदलें",
 		"new_lot": "नया लॉट",
 		"new_donation": "नया दान",
-		"show_odds": "संभावनाएँ दिखाएं",
+		"show_odds": "ऑड्स दिखाएं",
 		"show_total_sum": "कुल राशि दिखाएं",
-		"greater_timer_adding_time": "अधिक समय जोड़ने का समय",
+		"greater_timer_adding_time": "टाइमर में समय जोड़ें यदि अधिक",
 		"not_add_time_if": "समय न जोड़ें यदि",
-		"adding_time": "समय जोड़ना"
+		"adding_time": "समय"
 	},
 	"lots_options": {
 		"import_lots": "लॉट्स आयात करें",
 		"clear_lots": "लॉट्स साफ़ करें"
 	},
 	"auc_fighter_settings": {
-		"round_duration": "राउंड की अवधि",
+		"round_duration": "राउंड अवधि",
 		"add_players": "खिलाड़ी जोड़ें"
 	},
 	"alerts": {
 		"title": "अलर्ट",
-		"group": "समूह"
+		"group": "ग्रुप"
+	},
+	"services": {
+		"title": "सेवाएं",
+		"tribute": "श्रद्धांजलि",
+		"streamelements": "स्ट्रीमएलीमेंट्स",
+		"connect": "कनेक्ट करें",
+		"integrations": "इंटीग्रेशन",
+		"sign_out": "साइन आउट",
+		"confirm_sign_out": "क्या आप इस सेवा से साइन आउट करना चाहते हैं?"
+	},
+	"twitch": {
+		"device_code_expired": "डिवाइस कोड समाप्त हो गया। कृपया फिर से कोशिश करें।",
+		"user_code": "यूजर कोड",
+		"authorize_with_code": "कोड से अधिकृत करें",
+		"waiting_authorization": "प्राधिकरण की प्रतीक्षा कर रहे हैं..."
+	},
+	"twitch_service_settings": {
+		"title": "ट्विच सेटिंग्स",
+		"points_currency_ratio": "पॉइंट्स-मुद्रा अनुपात",
+		"rewards_name": "रिवार्ड्स नाम",
+		"rewards_list": "रिवार्ड्स सूची",
+		"add_reward": "रिवार्ड जोड़ें",
+		"cost": "लागत",
+		"color": "रंग"
 	},
 	"alert": {
-		"image": "छवि",
+		"image": "इमेज",
 		"audio": "ऑडियो",
-		"view": "देखें",
+		"view": "दृश्य",
 		"title": "शीर्षक",
 		"message": "संदेश",
-		"test_name": "परीक्षण",
-		"test_text": "यह एक परीक्षण अलर्ट है!",
+		"test_name": "टेस्ट",
+		"test_text": "यह एक टेस्ट अलर्ट है!",
 		"configure": "कॉन्फ़िगर करें",
-		"test": "परीक्षण करें",
-		"add_new_variant": "नया प्रकार जोड़ें",
-		"new_variant": "नया प्रकार",
-		"variant_title": "प्रकार का शीर्षक",
-		"variant_group": "प्रकार समूह",
+		"test": "टेस्ट करें",
+		"add_new_variant": "नया वैरिएंट जोड़ें",
+		"new_variant": "नया वैरिएंट",
+		"variant_title": "वैरिएंट शीर्षक",
+		"variant_group": "वैरिएंट ग्रुप",
 		"status": "स्थिति",
-		"variation_condition": "परिवर्तन की शर्त",
-		"group": "समूह",
-		"Random": "यादृच्छिक",
+		"variation_condition": "वैरिएशन शर्त",
+		"group": "ग्रुप",
+		"Random": "रैंडम",
 		"AmountIsGreater": "राशि अधिक है",
 		"AmountIsEqual": "राशि बराबर है",
 		"delete": "हटाएं",
-		"sure_delete": "क्या आप वाकई इस प्रकार को हटाना चाहते हैं?"
+		"sure_delete": "क्या आप इस वैरिएंट को हटाना चाहते हैं?",
+		"type": "प्रकार",
+		"Donation": "दान",
+		"Subscription": "सब्सक्रिप्शन",
+		"Follow": "फॉलो",
+		"Raid": "रेड"
 	},
 	"general": "सामान्य",
 	"goals": {
-		"title": "लक्ष्य",
-		"create": "नया लक्ष्य बनाएं"
+		"title": "गोल",
+		"create": "नया गोल बनाएं"
 	},
 	"goal": {
-		"new": "नया लक्ष्य",
-		"goal": "देखें",
+		"new": "नया गोल",
+		"goal": "दृश्य",
+		"type": "प्रकार",
 		"elements": "तत्व",
 		"progress": "प्रगति",
-		"goal_title": "लक्ष्य का शीर्षक",
-		"amount_raise": "उठाने की राशि",
-		"start_raising": "शुरू करें",
-		"end_date": "अंतिम तिथि",
-		"bar_height": "बार की ऊँचाई",
-		"rounding_radius": "गोलाई का त्रिज्या",
-		"bar_stroke_thickness": "बार की मोटाई",
-		"background_bar_color": "पृष्ठभूमि बार का रंग",
-		"progress_bar_color": "प्रगति बार का रंग",
-		"goal_progress_bar": "लक्ष्य प्रगति बार",
-		"progress_bar_layout": "प्रगति बार लेआउट",
-		"remaining_time": "शेष समय",
-		"goal_amount_limits": "लक्ष्य राशि की सीमाएँ",
-		"widget_background": "विजेट पृष्ठभूमि",
-		"background_color": "पृष्ठभूमि रंग",
+		"goal_title": "गोल शीर्षक",
+		"amount_raise": "जुटाने वाली राशि",
+		"start_raising": "इससे शुरू करें",
+		"end_date": "गोल समाप्ति तिथि",
+		"bar_height": "बार की ऊंचाई",
+		"rounding_radius": "गोलाई त्रिज्या",
+		"bar_stroke_thickness": "बार बॉर्डर मोटाई",
+		"background_bar_color": "बैकग्राउंड बार रंग",
+		"progress_bar_color": "प्रोग्रेस बार रंग",
+		"goal_progress_bar": "गोल प्रोग्रेस बार",
+		"progress_bar_layout": "प्रोग्रेस बार लेआउट",
+		"remaining_time": "बाकी समय",
+		"goal_amount_limits": "गोल राशि सीमाएं",
+		"widget_background": "विजेट बैकग्राउंड",
+		"background_color": "बैकग्राउंड रंग",
 		"OnTop": "ऊपर",
 		"Inside": "अंदर",
 		"Below": "नीचे",
-		"DoNotDisplay": "प्रदर्शित न करें",
+		"DoNotDisplay": "न दिखाएं",
 		"title": "शीर्षक",
-		"limits": "सीमाएँ",
-		"raised": "एकत्रित",
-		"days_left": "दिन शेष",
-		"finish_goal": "लक्ष्य समाप्त करें",
-		"sure_finish": "क्या आप वाकई इस लक्ष्य को समाप्त करना चाहते हैं?"
+		"limits": "सीमाएं",
+		"raised": "जुटाया गया",
+		"days_left": "बाकी दिन",
+		"finish_goal": "गोल समाप्त करें",
+		"sure_finish": "क्या आप इस गोल को समाप्त करना चाहते हैं?",
+		"Donation": "दान",
+		"TwitchSubscription": "ट्विच सब्सक्रिप्शन",
+		"TwitchFollow": "ट्विच फॉलो",
+		"goal_not_finished": "इस प्रकार का आपका एक अधूरा गोल है।"
 	},
 	"save": "सहेजें",
 	"back": "वापस",
@@ -219,29 +268,32 @@
 		"obs_dock_url": "OBS डॉक URL"
 	},
 	"view": {
-		"top": "छवि ऊपर, पाठ नीचे",
-		"bottom": "छवि नीचे, पाठ ऊपर",
-		"left": "छवि बाएं, पाठ दाएं",
-		"right": "छवि दाएं, पाठ बाएं",
-		"overlay": "पाठ छवि पर ओवरले"
+		"top": "इमेज ऊपर, टेक्स्ट नीचे",
+		"bottom": "इमेज नीचे, टेक्स्ट ऊपर",
+		"left": "इमेज बाएं, टेक्स्ट दाएं",
+		"right": "इमेज दाएं, टेक्स्ट बाएं",
+		"overlay": "टेक्स्ट इमेज पर"
+	},
+	"image": {
+		"show": "इमेज दिखाएं"
 	},
 	"text": {
 		"font": "फ़ॉन्ट",
-		"font_size": "फ़ॉन्ट आकार",
-		"text_color": "पाठ का रंग",
-		"bold": "गाढ़ा",
-		"italics": "तिरछा",
-		"underline": "रेखांकित",
-		"transformation": "परिवर्तन",
+		"font_size": "फ़ॉन्ट साइज़",
+		"text_color": "टेक्स्ट रंग",
+		"bold": "बोल्ड",
+		"italics": "इटैलिक",
+		"underline": "अंडरलाइन",
+		"transformation": "ट्रांसफॉर्मेशन",
 		"letter_spacing": "अक्षर अंतराल",
 		"word_spacing": "शब्द अंतराल",
 		"horizontal_alignment": "क्षैतिज संरेखण",
-		"vertical_alignment": "ऊर्ध्वाधर संरेखण",
+		"vertical_alignment": "लंबवत संरेखण",
 		"text_preview": "यह एक पूर्वावलोकन है!",
 		"name": "नाम"
 	},
 	"audio": {
-		"play": "चलाएँ",
+		"play": "चलाएं",
 		"stop": "रोकें"
 	}
 }

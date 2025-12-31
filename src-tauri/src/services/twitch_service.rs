@@ -694,20 +694,13 @@ impl TwitchService {
                                             drop(session_id_guard);
                                             let auth = twitch_service.check_auth(&app).await;
                                             if let Ok(auth) = auth {
-                                                if let Err(e) = twitch_service
+                                                twitch_service
                                                     .create_subscriptions(
                                                         &session_id,
                                                         &auth.access_token,
                                                         &auth.user_id,
                                                     )
-                                                    .await
-                                                {
-                                                    log::error!("Failed to subscribe: {}", e);
-                                                } else {
-                                                    log::info!(
-                                                        "Twitch events subscribed successfully"
-                                                    );
-                                                }
+                                                    .await;
                                             }
                                             else {
                                                 let _=twitch_service.set_authorized(&database_service, None, false, false).await;
@@ -1141,7 +1134,7 @@ impl TwitchService {
         session_id: &String,
         access_token: &String,
         user_id: &String,
-    ) -> Result<(), String> {
+    )  {
         let transport = Transport {
             method: "websocket".to_string(),
             session_id: session_id.clone(),
@@ -1152,7 +1145,7 @@ impl TwitchService {
             "channel.subscription.message",
         ];
         for subscribe_type in subscribes_types {
-            self.create_subscription(
+          let _=  self.create_subscription(
                 &access_token,
                 SubscriptionRequestBody {
                     r#type: subscribe_type.to_string(),
@@ -1165,9 +1158,9 @@ impl TwitchService {
                     transport: transport.clone(),
                 },
             )
-            .await?;
+            .await;
         }
-        self.create_subscription(
+     let _=  self.create_subscription(
             &access_token,
             SubscriptionRequestBody {
                 r#type: "channel.follow".to_string(),
@@ -1181,8 +1174,8 @@ impl TwitchService {
                 transport: transport.clone(),
             },
         )
-        .await?;
-        self.create_subscription(
+        .await;
+     let _=   self.create_subscription(
             &access_token,
             SubscriptionRequestBody {
                 r#type: "channel.raid".to_string(),
@@ -1195,8 +1188,8 @@ impl TwitchService {
                 transport: transport.clone(),
             },
         )
-        .await?;
-        self.create_subscription(
+        .await;
+      let _=  self.create_subscription(
             &access_token,
             SubscriptionRequestBody {
                 r#type: "channel.cheer".to_string(),
@@ -1209,9 +1202,9 @@ impl TwitchService {
                 transport: transport.clone(),
             },
         )
-        .await?;
+        .await;
 
-        Ok(())
+       
     }
 
     async fn create_subscription(

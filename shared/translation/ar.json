@@ -5,112 +5,126 @@
 	"success": "نجاح",
 	"ok": "موافق",
 	"cancel": "إلغاء",
-	"sound_volume": "مستوى الصوت",
-	"skip_media": "تخطي الوسائط",
-	"skip_alert": "تخطي التنبيه",
+	"sound_volume": "حجم الصوت",
+	"skip_media": "اختصار تخطي الوسائط",
+	"skip_alert": "اختصار تخطي التنبيه",
 	"authorization": {
-		"title": "تفويض",
-		"code": "طلب رمز",
+		"title": "التفويض",
+		"code": "طلب الرمز",
 		"sign_in": "تسجيل الدخول",
 		"phone": "رقم الهاتف",
-		"telegram_code": "رمز من تيليجرام",
+		"telegram_code": "الرمز من تليغرام",
 		"your_code": "رمزك",
-		"2fa_password": "كلمة مرور التحقق الثنائي",
+		"2fa_password": "كلمة مرور التحقق بخطوتين",
 		"password": "كلمة المرور"
 	},
 	"error": {
-		"wrong_lots_format": "تنسيق خاطئ للعروض"
+		"wrong_lots_format": "تنسيق اللوتات خاطئ",
+		"not_connected": "غير متصل",
+		"request_error": "خطأ في الطلب"
 	},
 	"updater": {
 		"title": "تحديث",
-		"description": "يتوفر إصدار جديد من التطبيق. هل ترغب في التحديث؟",
+		"description": "يتوفر إصدار جديد من التطبيق. هل تريد التحديث؟",
 		"update": "تحديث",
-		"later": "لاحقًا",
+		"later": "لاحقاً",
 		"downloading": "جاري التنزيل..."
 	},
 	"media": {
-		"title": "وسائط",
+		"title": "الوسائط",
 		"youtube": "يوتيوب",
 		"twitch": "تويتش",
 		"tiktok": "تيك توك"
 	},
 	"integration": {
-		"tribute": "إظهار رسائل التقدير"
+		"tribute": "عرض رسائل التحية"
 	},
 	"auction": {
-		"lots": "عروض",
-		"wheel": "عجلة",
-		"settings": "إعدادات"
+		"lots": "اللوتات",
+		"wheel": "العجلة",
+		"settings": "الإعدادات"
 	},
 	"maption": {
-		"set_point": "تعيين نقطة",
-		"meter_price": "السعر لكل متر",
+		"set_point": "تحديد النقطة",
+		"meter_price": "السعر للمتر الواحد",
 		"amount": "المبلغ",
 		"finish": "إنهاء",
-		"lat_error": "خط العرض يجب أن يكون بين -90 و 90",
-		"lng_error": "خط الطول يجب أن يكون بين -180 و 180",
-		"rules": "لتغيير موضع المؤشر تلقائيًا في الرسالة يجب أن تحتوي فقط على كلمة واحدة من:"
+		"lat_error": "يجب أن تكون خط العرض بين -90 و90",
+		"lng_error": "يجب أن تكون خط الطول بين -180 و180",
+		"rules": "لكي يتغير موقع المؤشر تلقائياً في الرسالة يجب أن تكون هناك كلمة واحدة فقط من:"
 	},
 	"media_settings": {
 		"enabled": "مفعل",
-		"min_amount_eur": "الحد الأدنى باليورو",
-		"min_amount_rub": "الحد الأدنى بالروبل",
-		"video_volume": "مستوى صوت الفيديو",
+		"min_amount": "الحد الأدنى للمبلغ",
+		"video_volume": "حجم فيديو",
 		"min_views": "الحد الأدنى للمشاهدات"
 	},
 	"dashboard": {
 		"messages": "الرسائل",
 		"settings": "الإعدادات",
+		"services": "الخدمات",
 		"alerts": "التنبيهات",
-		"media": "وسائط",
+		"media": "الوسائط",
 		"goals": "الأهداف",
 		"auction": "المزاد",
-		"maption": "الخريطة",
-		"fighter": "المقاتل"
+		"maption": "خريطة النقاط",
+		"fighter": "المحارب"
 	},
 	"messages": {
 		"title": "آخر الرسائل"
 	},
 	"message": {
 		"skip": "تخطي",
-		"replay": "إعادة",
-		"donate": "تبرع"
+		"replay": "إعادة تشغيل",
+		"donated": "{{user_name}} تبرع بـ {{amount}}{{currency}}",
+		"followed": "{{user_name}} تبع",
+		"subscribed": "{{user_name}} اشترك",
+		"gifted_subscriptions": "{{user_name}} أهدى {{total}} اشتراكات",
+		"raided_with": "{{user_name}} هاجم مع {{viewers}} مشاهدين"
+	},
+	"filter": {
+		"title": "تصفية الرسائل",
+		"exclude_donations": "استثناء التبرعات",
+		"exclude_follows": "استثناء المتابعين",
+		"exclude_subscriptions": "استثناء الاشتراكات",
+		"exclude_raids": "استثناء الهجمات"
 	},
 	"settings": {
 		"title": "الإعدادات",
-		"pause": "إيقاف رسائل التنبيه مؤقتًا",
+		"pause": "إيقاف رسائل التنبيه مؤقتاً",
 		"moderation_duration": "مدة الإشراف",
 		"black_list": "القائمة السوداء",
 		"remove_links": "إزالة الروابط",
 		"language": "اللغة",
-		"sec": "ثانية"
+		"sec": "ثانية",
+		"currency": "العملة"
 	},
 	"wheel": {
 		"normal": "عادي",
-		"dropout": "انسحاب",
+		"dropout": "تسرب",
 		"spin": "دوران",
 		"speed": "سرعة العجلة"
 	},
 	"timer": {
-		"continue": "متابعة",
+		"continue": "استمرار",
 		"pause": "إيقاف مؤقت",
-		"reset": "إعادة ضبط",
+		"reset": "إعادة تعيين",
 		"add_time": "إضافة وقت",
 		"reduce_time": "تقليل الوقت",
 		"add_timex2": "إضافة وقت ×2"
 	},
 	"fighter": {
-		"title": "مقاتل",
-		"match": "مباراة",
-		"final": "نهائي",
-		"game": "لعبة",
+		"title": "المحارب",
+		"match": "المباراة",
+		"final": "النهائي",
+		"game": "اللعبة",
 		"cancel": "إلغاء اللعبة",
 		"winner": "الفائز",
-		"settings": "إعدادات",
-		"create_game": "إنشاء لعبة من العروض",
+		"settings": "الإعدادات",
+		"create_game": "إنشاء لعبة من اللوتات",
 		"start": "بدء",
 		"pause": "إيقاف مؤقت",
-		"rematch": "إعادة مباراة",
+		"rematch": "إعادة المباراة",
 		"resume": "استئناف"
 	},
 	"lot": {
@@ -120,28 +134,29 @@
 	},
 	"bid": {
 		"delete": "حذف",
-		"to_lot": "إلى العرض",
+		"to_lot": "إلى اللوت",
 		"new": "جديد",
-		"add_to_random_slot": "إضافة إلى عرض عشوائي"
+		"add_to_random_slot": "إضافة إلى لوت عشوائي"
 	},
 	"lots": {
 		"add": "إضافة",
-		"new_lot_name": "اسم عرض جديد",
-		"search": "بحث عن عرض"
+		"new_lot_name": "اسم اللوت الجديد",
+		"search": "بحث عن لوت",
+		"total": "الإجمالي"
 	},
 	"auction_settings": {
 		"leader_change": "تغيير القائد",
-		"new_lot": "عرض جديد",
+		"new_lot": "لوت جديد",
 		"new_donation": "تبرع جديد",
 		"show_odds": "عرض الاحتمالات",
 		"show_total_sum": "عرض المجموع الكلي",
-		"greater_timer_adding_time": "زيادة وقت المؤقت الأكبر",
-		"not_add_time_if": "لا تضف وقتًا إذا",
+		"greater_timer_adding_time": "إضافة وقت للمؤقت عند تجاوز",
+		"not_add_time_if": "عدم إضافة وقت إذا",
 		"adding_time": "الوقت"
 	},
 	"lots_options": {
-		"import_lots": "استيراد العروض",
-		"clear_lots": "مسح العروض"
+		"import_lots": "استيراد اللوتات",
+		"clear_lots": "مسح اللوتات"
 	},
 	"auc_fighter_settings": {
 		"round_duration": "مدة الجولة",
@@ -149,30 +164,59 @@
 	},
 	"alerts": {
 		"title": "التنبيهات",
-		"group": "مجموعة"
+		"group": "المجموعة"
+	},
+	"services": {
+		"title": "الخدمات",
+		"tribute": "التحية",
+		"streamelements": "ستريم إليمنتس",
+		"connect": "الاتصال",
+		"integrations": "التكاملات",
+		"sign_out": "تسجيل الخروج",
+		"confirm_sign_out": "هل أنت متأكد من تسجيل الخروج من هذه الخدمة؟"
+	},
+	"twitch": {
+		"device_code_expired": "انتهت صلاحية رمز الجهاز. يرجى المحاولة مرة أخرى.",
+		"user_code": "رمز المستخدم",
+		"authorize_with_code": "التفويض برمز",
+		"waiting_authorization": "في انتظار التفويض..."
+	},
+	"twitch_service_settings": {
+		"title": "إعدادات تويتش",
+		"points_currency_ratio": "نسبة النقاط إلى العملة",
+		"rewards_name": "اسم المكافآت",
+		"rewards_list": "قائمة المكافآت",
+		"add_reward": "إضافة مكافأة",
+		"cost": "التكلفة",
+		"color": "اللون"
 	},
 	"alert": {
-		"image": "صورة",
-		"audio": "صوت",
+		"image": "الصورة",
+		"audio": "الصوت",
 		"view": "عرض",
 		"title": "العنوان",
-		"message": "رسالة",
+		"message": "الرسالة",
 		"test_name": "اختبار",
-		"test_text": "هذا تنبيه تجريبي!",
-		"configure": "إعداد",
+		"test_text": "هذا تنبيه اختباري!",
+		"configure": "تهيئة",
 		"test": "اختبار",
-		"add_new_variant": "إضافة خيار جديد",
-		"new_variant": "خيار جديد",
-		"variant_title": "عنوان الخيار",
-		"variant_group": "مجموعة الخيار",
+		"add_new_variant": "إضافة متغير جديد",
+		"new_variant": "متغير جديد",
+		"variant_title": "عنوان المتغير",
+		"variant_group": "مجموعة المتغير",
 		"status": "الحالة",
-		"variation_condition": "شرط التغيير",
-		"group": "مجموعة",
+		"variation_condition": "شرط المتغير",
+		"group": "المجموعة",
 		"Random": "عشوائي",
 		"AmountIsGreater": "المبلغ أكبر",
 		"AmountIsEqual": "المبلغ يساوي",
 		"delete": "حذف",
-		"sure_delete": "هل أنت متأكد أنك تريد حذف هذا الخيار؟"
+		"sure_delete": "هل أنت متأكد من حذف هذا المتغير؟",
+		"type": "النوع",
+		"Donation": "تبرع",
+		"Subscription": "اشتراك",
+		"Follow": "متابعة",
+		"Raid": "هجوم"
 	},
 	"general": "عام",
 	"goals": {
@@ -182,62 +226,70 @@
 	"goal": {
 		"new": "هدف جديد",
 		"goal": "عرض",
-		"elements": "عناصر",
+		"type": "النوع",
+		"elements": "العناصر",
 		"progress": "التقدم",
 		"goal_title": "عنوان الهدف",
-		"amount_raise": "المبلغ المطلوب جمعه",
-		"start_raising": "بدء الجمع من",
+		"amount_raise": "المبلغ المراد جمعه",
+		"start_raising": "البدء من",
 		"end_date": "تاريخ انتهاء الهدف",
 		"bar_height": "ارتفاع الشريط",
-		"rounding_radius": "نصف قطر الاستدارة",
-		"bar_stroke_thickness": "سماكة خط الشريط",
+		"rounding_radius": "نصف قطر التقريب",
+		"bar_stroke_thickness": "سمك حدود الشريط",
 		"background_bar_color": "لون شريط الخلفية",
 		"progress_bar_color": "لون شريط التقدم",
 		"goal_progress_bar": "شريط تقدم الهدف",
 		"progress_bar_layout": "تخطيط شريط التقدم",
 		"remaining_time": "الوقت المتبقي",
 		"goal_amount_limits": "حدود مبلغ الهدف",
-		"widget_background": "خلفية الودجت",
+		"widget_background": "خلفية الويدجت",
 		"background_color": "لون الخلفية",
 		"OnTop": "في الأعلى",
-		"Inside": "في الداخل",
-		"Below": "في الأسفل",
-		"DoNotDisplay": "لا تعرض",
+		"Inside": "داخل",
+		"Below": "أسفل",
+		"DoNotDisplay": "عدم العرض",
 		"title": "العنوان",
 		"limits": "الحدود",
 		"raised": "تم جمعه",
 		"days_left": "الأيام المتبقية",
 		"finish_goal": "إنهاء الهدف",
-		"sure_finish": "هل أنت متأكد أنك تريد إنهاء هذا الهدف؟"
+		"sure_finish": "هل أنت متأكد من إنهاء هذا الهدف؟",
+		"Donation": "تبرع",
+		"TwitchSubscription": "اشتراك تويتش",
+		"TwitchFollow": "متابعة تويتش",
+		"goal_not_finished": "لديك هدف غير منتهٍ من هذا النوع."
 	},
 	"save": "حفظ",
 	"back": "رجوع",
 	"widget": {
 		"copy": "نسخ",
 		"launch": "تشغيل",
-		"url": "رابط الودجت",
-		"obs_dock_url": "رابط Obs dock"
+		"url": "رابط الويدجت",
+		"obs_dock_url": "رابط لوحة OBS"
 	},
 	"view": {
-		"top": "الصورة في الأعلى، النص في الأسفل",
-		"bottom": "الصورة في الأسفل، النص في الأعلى",
-		"left": "الصورة على اليسار، النص على اليمين",
-		"right": "الصورة على اليمين، النص على اليسار",
-		"overlay": "النص فوق الصورة"
+		"top": "صورة أعلى، نص أسفل",
+		"bottom": "صورة أسفل، نص أعلى",
+		"left": "صورة يسار، نص يمين",
+		"right": "صورة يمين، نص يسار",
+		"overlay": "نص فوق الصورة"
+	},
+	"image": {
+		"show": "عرض الصورة"
 	},
 	"text": {
 		"font": "الخط",
 		"font_size": "حجم الخط",
 		"text_color": "لون النص",
-		"bold": "عريض",
+		"bold": "غامق",
 		"italics": "مائل",
 		"underline": "تحته خط",
-		"transformation": "تحويل",
-		"letter_spacing": "تباعد الأحرف",
+		"transformation": "التحويل",
+		"letter_spacing": "تباعد الحروف",
 		"word_spacing": "تباعد الكلمات",
-		"horizontal_alignment": "محاذاة أفقية",
-		"vertical_alignment": "محاذاة عمودية",
-		"text_preview": "هذه معاينة!",
+		"horizontal_alignment": "المحاذاة الأفقية",
+		"vertical_alignment": "المحاذاة الرأسية",
+		"text_preview": "هذا معاينة!",
 		"name": "الاسم"
 	},
 	"audio": {

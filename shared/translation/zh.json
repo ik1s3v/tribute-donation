@@ -1,72 +1,74 @@
 {
-	"on": "开",
-	"off": "关",
+	"on": "开启",
+	"off": "关闭",
 	"select": "选择",
 	"success": "成功",
-	"ok": "好的",
+	"ok": "确定",
 	"cancel": "取消",
 	"sound_volume": "音量",
 	"skip_media": "跳过媒体快捷方式",
-	"skip_alert": "跳过提醒快捷方式",
+	"skip_alert": "跳过警报快捷方式",
 	"authorization": {
 		"title": "授权",
-		"code": "请求代码",
+		"code": "请求验证码",
 		"sign_in": "登录",
 		"phone": "电话号码",
-		"telegram_code": "来自 Telegram 的验证码",
+		"telegram_code": "Telegram验证码",
 		"your_code": "你的验证码",
-		"2fa_password": "双重验证密码",
+		"2fa_password": "双重认证密码",
 		"password": "密码"
 	},
 	"error": {
-		"wrong_lots_format": "批次格式错误"
+		"wrong_lots_format": "错误的批次格式",
+		"not_connected": "未连接",
+		"request_error": "请求错误"
 	},
 	"updater": {
 		"title": "更新",
-		"description": "有新版本可用。你要更新吗？",
+		"description": "应用程序有新版本可用。你想更新吗？",
 		"update": "更新",
 		"later": "稍后",
 		"downloading": "正在下载..."
 	},
 	"media": {
 		"title": "媒体",
-		"youtube": "优酷",
+		"youtube": "YouTube",
 		"twitch": "Twitch",
-		"tiktok": "抖音"
+		"tiktok": "TikTok"
 	},
 	"integration": {
-		"tribute": "显示致谢消息"
+		"tribute": "显示致敬消息"
 	},
 	"auction": {
-		"lots": "拍品",
-		"wheel": "转盘",
+		"lots": "批次",
+		"wheel": "轮盘",
 		"settings": "设置"
 	},
 	"maption": {
 		"set_point": "设置点",
 		"meter_price": "每米价格",
-		"amount": "数量",
+		"amount": "金额",
 		"finish": "完成",
-		"lat_error": "纬度必须在 -90 到 90 之间",
-		"lng_error": "经度必须在 -180 到 180 之间",
-		"rules": "要使指针在消息中自动更改位置，消息中应只包含以下词之一："
+		"lat_error": "纬度必须在-90到90之间",
+		"lng_error": "经度必须在-180到180之间",
+		"rules": "要让指针在消息中自动更改位置，消息中只能包含以下一个词："
 	},
 	"media_settings": {
 		"enabled": "启用",
-		"min_amount_eur": "最小金额 欧元",
-		"min_amount_rub": "最小金额 卢布",
+		"min_amount": "最低金额",
 		"video_volume": "视频音量",
-		"min_views": "最少观看次数"
+		"min_views": "最低观看量"
 	},
 	"dashboard": {
 		"messages": "消息",
 		"settings": "设置",
-		"alerts": "提醒",
+		"services": "服务",
+		"alerts": "警报",
 		"media": "媒体",
 		"goals": "目标",
 		"auction": "拍卖",
-		"maption": "地图",
-		"fighter": "战斗"
+		"maption": "地图定位",
+		"fighter": "战士"
 	},
 	"messages": {
 		"title": "最新消息"
@@ -74,22 +76,34 @@
 	"message": {
 		"skip": "跳过",
 		"replay": "重播",
-		"donate": "捐赠"
+		"donated": "{{user_name}} 捐赠了 {{amount}}{{currency}}",
+		"followed": "{{user_name}} 关注了",
+		"subscribed": "{{user_name}} 订阅了",
+		"gifted_subscriptions": "{{user_name}} 赠送了 {{total}} 个订阅",
+		"raided_with": "{{user_name}} 带着 {{viewers}} 名观众进行了突袭"
+	},
+	"filter": {
+		"title": "过滤消息",
+		"exclude_donations": "排除捐赠",
+		"exclude_follows": "排除关注",
+		"exclude_subscriptions": "排除订阅",
+		"exclude_raids": "排除突袭"
 	},
 	"settings": {
 		"title": "设置",
-		"pause": "暂停提醒消息",
-		"moderation_duration": "审核时长",
+		"pause": "暂停警报消息",
+		"moderation_duration": "审核持续时间",
 		"black_list": "黑名单",
 		"remove_links": "移除链接",
 		"language": "语言",
-		"sec": "秒"
+		"sec": "秒",
+		"currency": "货币"
 	},
 	"wheel": {
-		"normal": "正常",
-		"dropout": "淘汰",
+		"normal": "普通",
+		"dropout": "退出",
 		"spin": "旋转",
-		"speed": "转盘速度"
+		"speed": "轮盘速度"
 	},
 	"timer": {
 		"continue": "继续",
@@ -100,56 +114,81 @@
 		"add_timex2": "增加时间 x2"
 	},
 	"fighter": {
-		"title": "战斗",
+		"title": "战士",
 		"match": "比赛",
 		"final": "决赛",
 		"game": "游戏",
 		"cancel": "取消游戏",
 		"winner": "获胜者",
 		"settings": "设置",
-		"create_game": "从拍品创建游戏",
+		"create_game": "从批次创建游戏",
 		"start": "开始",
 		"pause": "暂停",
 		"rematch": "重赛",
-		"resume": "继续"
+		"resume": "恢复"
 	},
 	"lot": {
 		"name": "名称",
 		"delete": "删除",
-		"add": "添加数量"
+		"add": "添加金额"
 	},
 	"bid": {
 		"delete": "删除",
-		"to_lot": "到拍品",
-		"new": "新的",
-		"add_to_random_slot": "添加到随机拍品"
+		"to_lot": "到批次",
+		"new": "新建",
+		"add_to_random_slot": "添加到随机批次"
 	},
 	"lots": {
 		"add": "添加",
-		"new_lot_name": "新拍品名称",
-		"search": "搜索拍品"
+		"new_lot_name": "新批次名称",
+		"search": "搜索批次",
+		"total": "总计"
 	},
 	"auction_settings": {
-		"leader_change": "领导更换",
-		"new_lot": "新拍品",
+		"leader_change": "领导者变更",
+		"new_lot": "新批次",
 		"new_donation": "新捐赠",
 		"show_odds": "显示赔率",
 		"show_total_sum": "显示总金额",
-		"greater_timer_adding_time": "更长的计时增加时间",
-		"not_add_time_if": "如果...不增加时间",
+		"greater_timer_adding_time": "计时器增加时间（更大）",
+		"not_add_time_if": "如果不满足则不增加时间",
 		"adding_time": "时间"
 	},
 	"lots_options": {
-		"import_lots": "导入拍品",
-		"clear_lots": "清除拍品"
+		"import_lots": "导入批次",
+		"clear_lots": "清除批次"
 	},
 	"auc_fighter_settings": {
-		"round_duration": "回合时长",
+		"round_duration": "回合持续时间",
 		"add_players": "添加玩家"
 	},
 	"alerts": {
-		"title": "提醒",
-		"group": "分组"
+		"title": "警报",
+		"group": "组"
+	},
+	"services": {
+		"title": "服务",
+		"tribute": "致敬",
+		"streamelements": "StreamElements",
+		"connect": "连接",
+		"integrations": "集成",
+		"sign_out": "登出",
+		"confirm_sign_out": "你确定要从此服务登出吗？"
+	},
+	"twitch": {
+		"device_code_expired": "设备验证码已过期。请重试。",
+		"user_code": "用户验证码",
+		"authorize_with_code": "使用验证码授权",
+		"waiting_authorization": "等待授权..."
+	},
+	"twitch_service_settings": {
+		"title": "Twitch 设置",
+		"points_currency_ratio": "积分货币比率",
+		"rewards_name": "奖励名称",
+		"rewards_list": "奖励列表",
+		"add_reward": "添加奖励",
+		"cost": "成本",
+		"color": "颜色"
 	},
 	"alert": {
 		"image": "图片",
@@ -158,23 +197,28 @@
 		"title": "标题",
 		"message": "消息",
 		"test_name": "测试",
-		"test_text": "这是一个测试提醒！",
+		"test_text": "这是一个测试警报！",
 		"configure": "配置",
 		"test": "测试",
 		"add_new_variant": "添加新变体",
 		"new_variant": "新变体",
 		"variant_title": "变体标题",
-		"variant_group": "变体分组",
+		"variant_group": "变体组",
 		"status": "状态",
 		"variation_condition": "变体条件",
-		"group": "分组",
+		"group": "组",
 		"Random": "随机",
 		"AmountIsGreater": "金额大于",
 		"AmountIsEqual": "金额等于",
 		"delete": "删除",
-		"sure_delete": "你确定要删除这个变体吗？"
+		"sure_delete": "你确定要删除这个变体吗？",
+		"type": "类型",
+		"Donation": "捐赠",
+		"Subscription": "订阅",
+		"Follow": "关注",
+		"Raid": "突袭"
 	},
-	"general": "通用",
+	"general": "常规",
 	"goals": {
 		"title": "目标",
 		"create": "创建新目标"
@@ -182,16 +226,17 @@
 	"goal": {
 		"new": "新目标",
 		"goal": "查看",
+		"type": "类型",
 		"elements": "元素",
 		"progress": "进度",
 		"goal_title": "目标标题",
-		"amount_raise": "筹集金额",
-		"start_raising": "开始筹集自",
+		"amount_raise": "需筹集金额",
+		"start_raising": "开始筹集金额",
 		"end_date": "目标结束日期",
 		"bar_height": "进度条高度",
 		"rounding_radius": "圆角半径",
-		"bar_stroke_thickness": "进度条粗细",
-		"background_bar_color": "背景条颜色",
+		"bar_stroke_thickness": "进度条边框厚度",
+		"background_bar_color": "背景进度条颜色",
 		"progress_bar_color": "进度条颜色",
 		"goal_progress_bar": "目标进度条",
 		"progress_bar_layout": "进度条布局",
@@ -201,38 +246,45 @@
 		"background_color": "背景颜色",
 		"OnTop": "顶部",
 		"Inside": "内部",
-		"Below": "底部",
+		"Below": "下方",
 		"DoNotDisplay": "不显示",
 		"title": "标题",
 		"limits": "限制",
 		"raised": "已筹集",
 		"days_left": "剩余天数",
 		"finish_goal": "完成目标",
-		"sure_finish": "你确定要完成这个目标吗？"
+		"sure_finish": "你确定要完成这个目标吗？",
+		"Donation": "捐赠",
+		"TwitchSubscription": "Twitch订阅",
+		"TwitchFollow": "Twitch关注",
+		"goal_not_finished": "你有一个此类型的未完成目标。"
 	},
 	"save": "保存",
 	"back": "返回",
 	"widget": {
 		"copy": "复制",
 		"launch": "启动",
-		"url": "小部件网址",
-		"obs_dock_url": "OBS 停靠网址"
+		"url": "小部件URL",
+		"obs_dock_url": "OBS面板URL"
 	},
 	"view": {
-		"top": "图片上，文字下",
-		"bottom": "图片下，文字上",
-		"left": "图片左，文字右",
-		"right": "图片右，文字左",
+		"top": "图片在上，文字在下",
+		"bottom": "图片在下，文字在上",
+		"left": "图片在左，文字在右",
+		"right": "图片在右，文字在左",
 		"overlay": "文字覆盖图片"
+	},
+	"image": {
+		"show": "显示图片"
 	},
 	"text": {
 		"font": "字体",
 		"font_size": "字体大小",
 		"text_color": "文字颜色",
-		"bold": "加粗",
+		"bold": "粗体",
 		"italics": "斜体",
 		"underline": "下划线",
-		"transformation": "转换",
+		"transformation": "变换",
 		"letter_spacing": "字母间距",
 		"word_spacing": "单词间距",
 		"horizontal_alignment": "水平对齐",

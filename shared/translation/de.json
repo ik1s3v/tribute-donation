@@ -1,13 +1,13 @@
 {
-	"on": "An",
+	"on": "Ein",
 	"off": "Aus",
 	"select": "Auswählen",
 	"success": "Erfolg",
-	"ok": "Ok",
+	"ok": "OK",
 	"cancel": "Abbrechen",
 	"sound_volume": "Lautstärke",
-	"skip_media": "Medien überspringen",
-	"skip_alert": "Alarm überspringen",
+	"skip_media": "Medien überspringen (Shortcut)",
+	"skip_alert": "Alert überspringen (Shortcut)",
 	"authorization": {
 		"title": "Autorisierung",
 		"code": "Code anfordern",
@@ -19,26 +19,28 @@
 		"password": "Passwort"
 	},
 	"error": {
-		"wrong_lots_format": "Falsches Los-Format"
+		"wrong_lots_format": "Falsches Lots-Format",
+		"not_connected": "Nicht verbunden",
+		"request_error": "Anfragefehler"
 	},
 	"updater": {
-		"title": "Aktualisierung",
-		"description": "Eine neue Version der App ist verfügbar. Möchten Sie aktualisieren?",
+		"title": "Update",
+		"description": "Eine neue Version der App ist verfügbar. Möchtest du aktualisieren?",
 		"update": "Aktualisieren",
 		"later": "Später",
 		"downloading": "Wird heruntergeladen..."
 	},
 	"media": {
 		"title": "Medien",
-		"youtube": "YouTube",
+		"youtube": "Youtube",
 		"twitch": "Twitch",
-		"tiktok": "TikTok"
+		"tiktok": "Tiktok"
 	},
 	"integration": {
-		"tribute": "Tributnachrichten anzeigen"
+		"tribute": "Tribute-Nachrichten anzeigen"
 	},
 	"auction": {
-		"lots": "Lose",
+		"lots": "Lots",
 		"wheel": "Rad",
 		"settings": "Einstellungen"
 	},
@@ -46,26 +48,26 @@
 		"set_point": "Punkt setzen",
 		"meter_price": "Preis pro Meter",
 		"amount": "Betrag",
-		"finish": "Fertigstellen",
+		"finish": "Abschließen",
 		"lat_error": "Breitengrad muss zwischen -90 und 90 liegen",
 		"lng_error": "Längengrad muss zwischen -180 und 180 liegen",
-		"rules": "Damit der Zeiger automatisch die Position ändert, sollte die Nachricht nur ein Wort enthalten aus:"
+		"rules": "Damit sich die Zeigerposition in der Nachricht automatisch ändert, darf nur ein Wort aus der Liste vorhanden sein:"
 	},
 	"media_settings": {
 		"enabled": "Aktiviert",
-		"min_amount_eur": "Mindestbetrag EUR",
-		"min_amount_rub": "Mindestbetrag RUB",
+		"min_amount": "Mindestbetrag",
 		"video_volume": "Videolautstärke",
-		"min_views": "Mindestaufrufe"
+		"min_views": "Mindestanzahl Views"
 	},
 	"dashboard": {
 		"messages": "Nachrichten",
 		"settings": "Einstellungen",
-		"alerts": "Alarme",
+		"services": "Dienste",
+		"alerts": "Alerts",
 		"media": "Medien",
 		"goals": "Ziele",
 		"auction": "Auktion",
-		"maption": "Karte",
+		"maption": "Maption",
 		"fighter": "Kämpfer"
 	},
 	"messages": {
@@ -74,29 +76,41 @@
 	"message": {
 		"skip": "Überspringen",
 		"replay": "Wiederholen",
-		"donate": "Spenden"
+		"donated": "{{user_name}} hat {{amount}}{{currency}} gespendet",
+		"followed": "{{user_name}} folgt jetzt",
+		"subscribed": "{{user_name}} hat abonniert",
+		"gifted_subscriptions": "{{user_name}} hat {{total}} Abos verschenkt",
+		"raided_with": "{{user_name}} hat mit {{viewers}} Zuschauern geraidet"
+	},
+	"filter": {
+		"title": "Nachrichten filtern",
+		"exclude_donations": "Spenden ausschließen",
+		"exclude_follows": "Follows ausschließen",
+		"exclude_subscriptions": "Abonnements ausschließen",
+		"exclude_raids": "Raids ausschließen"
 	},
 	"settings": {
 		"title": "Einstellungen",
-		"pause": "Alarmmeldungen pausieren",
+		"pause": "Alert-Nachrichten pausieren",
 		"moderation_duration": "Moderationsdauer",
-		"black_list": "Schwarze Liste",
+		"black_list": "Blacklist",
 		"remove_links": "Links entfernen",
 		"language": "Sprache",
-		"sec": "Sek."
+		"sec": "Sek.",
+		"currency": "Währung"
 	},
 	"wheel": {
 		"normal": "Normal",
-		"dropout": "Ausfall",
+		"dropout": "Dropout",
 		"spin": "Drehen",
 		"speed": "Radgeschwindigkeit"
 	},
 	"timer": {
 		"continue": "Fortsetzen",
-		"pause": "Pause",
+		"pause": "Pausieren",
 		"reset": "Zurücksetzen",
 		"add_time": "Zeit hinzufügen",
-		"reduce_time": "Zeit verkürzen",
+		"reduce_time": "Zeit reduzieren",
 		"add_timex2": "Zeit x2 hinzufügen"
 	},
 	"fighter": {
@@ -105,12 +119,12 @@
 		"final": "Finale",
 		"game": "Spiel",
 		"cancel": "Spiel abbrechen",
-		"winner": "Sieger",
+		"winner": "Gewinner",
 		"settings": "Einstellungen",
-		"create_game": "Spiel aus Losen erstellen",
-		"start": "Starten",
-		"pause": "Pause",
-		"rematch": "Revanche",
+		"create_game": "Spiel aus Lots erstellen",
+		"start": "Start",
+		"pause": "Pausieren",
+		"rematch": "Rematch",
 		"resume": "Fortsetzen"
 	},
 	"lot": {
@@ -120,47 +134,72 @@
 	},
 	"bid": {
 		"delete": "Löschen",
-		"to_lot": "Zum Los",
+		"to_lot": "Zum Lot",
 		"new": "Neu",
-		"add_to_random_slot": "Zu zufälligem Los hinzufügen"
+		"add_to_random_slot": "Zu zufälligem Lot hinzufügen"
 	},
 	"lots": {
 		"add": "Hinzufügen",
-		"new_lot_name": "Neuer Losname",
-		"search": "Los suchen"
+		"new_lot_name": "Neuer Lot-Name",
+		"search": "Lot suchen",
+		"total": "Gesamt"
 	},
 	"auction_settings": {
 		"leader_change": "Führungswechsel",
-		"new_lot": "Neues Los",
+		"new_lot": "Neues Lot",
 		"new_donation": "Neue Spende",
 		"show_odds": "Quoten anzeigen",
 		"show_total_sum": "Gesamtsumme anzeigen",
-		"greater_timer_adding_time": "Mehr Zeit hinzufügen",
+		"greater_timer_adding_time": "Zeit hinzufügen bei Überschreitung",
 		"not_add_time_if": "Keine Zeit hinzufügen, wenn",
 		"adding_time": "Zeit"
 	},
 	"lots_options": {
-		"import_lots": "Lose importieren",
-		"clear_lots": "Lose löschen"
+		"import_lots": "Lots importieren",
+		"clear_lots": "Lots löschen"
 	},
 	"auc_fighter_settings": {
 		"round_duration": "Rundendauer",
 		"add_players": "Spieler hinzufügen"
 	},
 	"alerts": {
-		"title": "Alarme",
+		"title": "Alerts",
 		"group": "Gruppe"
+	},
+	"services": {
+		"title": "Dienste",
+		"tribute": "Tribute",
+		"streamelements": "StreamElements",
+		"connect": "Verbinden",
+		"integrations": "Integrationen",
+		"sign_out": "Abmelden",
+		"confirm_sign_out": "Bist du sicher, dass du dich von diesem Dienst abmelden möchtest?"
+	},
+	"twitch": {
+		"device_code_expired": "Gerätecode abgelaufen. Bitte erneut versuchen.",
+		"user_code": "Benutzercode",
+		"authorize_with_code": "Mit Code autorisieren",
+		"waiting_authorization": "Warte auf Autorisierung..."
+	},
+	"twitch_service_settings": {
+		"title": "Twitch-Einstellungen",
+		"points_currency_ratio": "Punkte-Währungs-Verhältnis",
+		"rewards_name": "Belohnungsname",
+		"rewards_list": "Belohnungsliste",
+		"add_reward": "Belohnung hinzufügen",
+		"cost": "Kosten",
+		"color": "Farbe"
 	},
 	"alert": {
 		"image": "Bild",
 		"audio": "Audio",
-		"view": "Ansehen",
+		"view": "Ansicht",
 		"title": "Titel",
 		"message": "Nachricht",
 		"test_name": "Test",
-		"test_text": "Dies ist ein Testalarm!",
+		"test_text": "Das ist ein Test-Alert!",
 		"configure": "Konfigurieren",
-		"test": "Test",
+		"test": "Testen",
 		"add_new_variant": "Neue Variante hinzufügen",
 		"new_variant": "Neue Variante",
 		"variant_title": "Variantentitel",
@@ -172,7 +211,12 @@
 		"AmountIsGreater": "Betrag ist größer",
 		"AmountIsEqual": "Betrag ist gleich",
 		"delete": "Löschen",
-		"sure_delete": "Sind Sie sicher, dass Sie diese Variante löschen möchten?"
+		"sure_delete": "Bist du sicher, dass du diese Variante löschen möchtest?",
+		"type": "Typ",
+		"Donation": "Spende",
+		"Subscription": "Abonnement",
+		"Follow": "Follow",
+		"Raid": "Raid"
 	},
 	"general": "Allgemein",
 	"goals": {
@@ -181,16 +225,17 @@
 	},
 	"goal": {
 		"new": "Neues Ziel",
-		"goal": "Ansehen",
+		"goal": "Ansicht",
+		"type": "Typ",
 		"elements": "Elemente",
 		"progress": "Fortschritt",
 		"goal_title": "Zieltitel",
 		"amount_raise": "Zu sammelnder Betrag",
 		"start_raising": "Startbetrag",
-		"end_date": "Enddatum",
+		"end_date": "Ziel-Enddatum",
 		"bar_height": "Balkenhöhe",
 		"rounding_radius": "Abrundungsradius",
-		"bar_stroke_thickness": "Balkenstrichstärke",
+		"bar_stroke_thickness": "Balkenrahmenstärke",
 		"background_bar_color": "Hintergrundbalkenfarbe",
 		"progress_bar_color": "Fortschrittsbalkenfarbe",
 		"goal_progress_bar": "Ziel-Fortschrittsbalken",
@@ -207,8 +252,12 @@
 		"limits": "Grenzen",
 		"raised": "Gesammelt",
 		"days_left": "Verbleibende Tage",
-		"finish_goal": "Ziel beenden",
-		"sure_finish": "Sind Sie sicher, dass Sie dieses Ziel beenden möchten?"
+		"finish_goal": "Ziel abschließen",
+		"sure_finish": "Bist du sicher, dass du dieses Ziel abschließen möchtest?",
+		"Donation": "Spende",
+		"TwitchSubscription": "Twitch-Abonnement",
+		"TwitchFollow": "Twitch-Follow",
+		"goal_not_finished": "Du hast ein unvollendetes Ziel dieses Typs."
 	},
 	"save": "Speichern",
 	"back": "Zurück",
@@ -225,23 +274,26 @@
 		"right": "Bild rechts, Text links",
 		"overlay": "Text über Bild"
 	},
+	"image": {
+		"show": "Bild anzeigen"
+	},
 	"text": {
 		"font": "Schriftart",
 		"font_size": "Schriftgröße",
 		"text_color": "Textfarbe",
 		"bold": "Fett",
 		"italics": "Kursiv",
-		"underline": "Unterstreichen",
+		"underline": "Unterstrichen",
 		"transformation": "Transformation",
-		"letter_spacing": "Zeichenabstand",
+		"letter_spacing": "Buchstabenabstand",
 		"word_spacing": "Wortabstand",
 		"horizontal_alignment": "Horizontale Ausrichtung",
 		"vertical_alignment": "Vertikale Ausrichtung",
-		"text_preview": "Dies ist eine Vorschau!",
+		"text_preview": "Das ist eine Vorschau!",
 		"name": "Name"
 	},
 	"audio": {
 		"play": "Abspielen",
-		"stop": "Stopp"
+		"stop": "Stoppen"
 	}
 }
