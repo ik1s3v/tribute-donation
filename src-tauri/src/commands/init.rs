@@ -1,7 +1,6 @@
-use crate::constants::{SQLITE_DB, STATIC_DIR};
 use crate::services::{
-    AxumService, DatabaseService, ExchangeRatesService, MediaService, StreamElementsService,
-    TTSService, TelegramService, TwitchService, WebSocketBroadcaster,
+    AxumService, ConfigService, DatabaseService, ExchangeRatesService, MediaService,
+    StreamElementsService, TTSService, TelegramService, TwitchService, WebSocketBroadcaster,
 };
 use crate::utils::copy_assets_to_static;
 use grammers_client::types::{LoginToken, PasswordToken};
@@ -23,39 +22,20 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     *executed = true;
 
     let version = app.package_info().version.to_string();
+    let config_service = ConfigService::new(&app)?;
+    app.manage(config_service.clone());
 
-    let db_path = app
-        .path()
-        .resolve(SQLITE_DB.to_string(), BaseDirectory::AppLocalData)
-        .map_err(|e| format!("Failed to resolve database path: {}", e))?;
-    let widget_path = app
-        .path()
-        .resolve("dist-widget", BaseDirectory::Resource)
-        .map_err(|e| format!("Failed to resolve widget path: {}", e))?;
-    let auc_fighter_path = app
-        .path()
-        .resolve("auc-fighter", BaseDirectory::Resource)
-        .map_err(|e| format!("Failed to resolve auc-fighter path: {}", e))?;
-    let static_path = app
-        .path()
-        .resolve(format!("{}", STATIC_DIR), BaseDirectory::AppLocalData)
-        .map_err(|e| format!("Failed to resolve static directory path: {}", e))?;
-    let assets_path = app
-        .path()
-        .resolve("assets", BaseDirectory::Resource)
-        .map_err(|e| format!("Failed to resolve assets path: {}", e))?;
-
-    copy_assets_to_static(&assets_path, &static_path)?;
-    let database_service = DatabaseService::new(&db_path, &version).await?;
+    copy_assets_to_static(&config_service.assets_path, &config_service.static_path)?;
+    let database_service = DatabaseService::new(&config_service.db_path, &version).await?;
     app.manage(database_service);
 
     let websocket_broadcaster = WebSocketBroadcaster::new();
     app.manage(websocket_broadcaster);
 
     let axum_service = AxumService::new(
-        widget_path.clone(),
-        static_path.clone(),
-        auc_fighter_path.clone(),
+        config_service.widget_path.clone(),
+        config_service.static_path.clone(),
+        config_service.auc_fighter_path.clone(),
     );
     axum_service.run(app.clone()).await?;
     app.manage(axum_service);
@@ -66,11 +46,8 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     .build();
     app.manage(language_detector);
 
-    let tts_service = TTSService::new(static_path.clone());
+    let tts_service = TTSService::new(config_service.static_path.clone());
     app.manage(tts_service);
-
-    let api_id: i32 = env!("API_ID").parse().expect("API_ID must be a valid i32");
-    let api_hash: String = env!("API_HASH").to_string();
 
     let user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36";
     let reqwest_client = reqwest::Client::builder()
@@ -82,7 +59,7 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
     let media_service = MediaService::new();
     app.manage(media_service);
 
-    let twitch_service = TwitchService::new();
+    let twitch_service = TwitchService::new(config_service.client_id);
     twitch_service.connect(app.clone()).await?;
     app.manage(twitch_service);
 
@@ -100,7 +77,8 @@ pub async fn init(app: AppHandle, flag: State<'_, ExecutionFlag>) -> Result<(), 
         .path()
         .resolve("telegram.session", BaseDirectory::AppLocalData)
         .map_err(|e| format!("Failed to resolve telegram session path: {}", e))?;
-    let mut telegram_service = TelegramService::new(api_id, api_hash, session_path);
+    let mut telegram_service =
+        TelegramService::new(config_service.api_id, config_service.api_hash, session_path);
     telegram_service.connect(app.clone()).await?;
     app.manage(telegram_service);
 

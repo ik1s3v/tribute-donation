@@ -1,4 +1,4 @@
-# Logs
+target/
 cert.cer
 certificate.pfx
 private-key.key

@@ -1,4 +1,5 @@
 pub mod axum_service;
+pub mod config_service;
 pub mod database_service;
 pub mod exchange_rates_service;
 pub mod media_service;
@@ -8,6 +9,7 @@ pub mod tts_service;
 pub mod twitch_service;
 pub mod websocket_broadcaster;
 pub use axum_service::*;
+pub use config_service::*;
 pub use database_service::*;
 pub use exchange_rates_service::*;
 pub use media_service::*;

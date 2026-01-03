@@ -362,7 +362,7 @@ pub struct TwitchService {
 }
 
 impl TwitchService {
-    pub fn new() -> Self {
+    pub fn new(client_id:String) -> Self {
         #[cfg(not(debug_assertions))]
         let auth_endpoint = "https://id.twitch.tv/oauth2".to_string();
         #[cfg(debug_assertions)]
@@ -383,7 +383,7 @@ impl TwitchService {
 
         Self {
             is_close_connection:Arc::new(Mutex::new(false)),
-            client_id:  env!("TWITCH_CLIENT_ID").to_string(),
+            client_id,
             scopes: "user:read:email channel:read:subscriptions moderator:read:followers channel:manage:redemptions"
                 .to_string(),
             websocket_eventsub_url,
