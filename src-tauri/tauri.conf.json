@@ -61,7 +61,7 @@
 			},
 			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDE3QzY2N0VFQkI0QUYzMkMKUldRczgwcTc3bWZHRjVpakY5SEVFcUpKWkhnVXRhaGNUYXRmYnFCOFY2MFhTQkRIMjl6Sm1nV2sK",
 			"endpoints": [
-				"https://github.com/ik1s3v/tribute-donation/releases/download/latest/latest.json"
+				"https://github.com/ik1s3v/widy/releases/download/latest/latest.json"
 			]
 		}
 	}

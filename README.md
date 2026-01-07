@@ -1,3 +1,10 @@
+## ⚠️ Project status
+
+This project is **archived and no longer maintained**.
+
+➡️ Please consider using:
+- https://github.com/ik1s3v/widy
+
 # Tribute Donation
 
 Parser of donation messages from tribute bot and displaying them in obs.
